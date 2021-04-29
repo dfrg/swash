@@ -1,0 +1,16 @@
+[package]
+name = "swash"
+version = "0.1.0"
+authors = ["Chad Brokaw <cbrokaw@gmail.com>"]
+edition = "2018"
+description = "Font introspection, complex text shaping and glyph rendering."
+license = "MIT OR Apache-2.0"
+keywords = ["font", "shape", "glyph", "text"]
+categories = ["graphics", "text-processing"]
+repository = "https://github.com/dfrg/swash"
+homepage = "https://github.com/dfrg/swash"
+readme = "README.md"
+
+[dependencies]
+yazi = "0.1.3"
+zeno = "0.2.0"
