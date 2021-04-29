@@ -112,7 +112,7 @@ impl Header {
                 }
             }
         };
-        Some(Header {
+        Some(Self {
             width,
             height,
             color_type,
