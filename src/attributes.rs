@@ -99,16 +99,16 @@ impl Attributes {
         var_bits & 2 != 0
     }
 
-    /// Returns true if the font has a variation for the italic style
+    /// Returns true if the font has a variation for the oblique style
     /// attribute.    
-    pub fn has_italic_variation(&self) -> bool {
+    pub fn has_oblique_variation(&self) -> bool {
         let var_bits = self.0 >> 28;
         var_bits & 4 != 0
     }
 
-    /// Returns true if the font has a variation for the oblique style
+    /// Returns true if the font has a variation for the italic style
     /// attribute.    
-    pub fn has_oblique_variation(&self) -> bool {
+    pub fn has_italic_variation(&self) -> bool {
         let var_bits = self.0 >> 28;
         var_bits & 8 != 0
     }
