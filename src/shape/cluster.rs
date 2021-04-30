@@ -22,7 +22,7 @@ pub struct Glyph {
 
 /// Collection of glyphs and associated metadata corresponding to one or
 /// more source clusters.
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub struct GlyphCluster<'a> {
     /// Full source range of the cluster in original units supplied to the
     /// shaper.

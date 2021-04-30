@@ -1,5 +1,240 @@
 /*!
 Mapping complex text to a sequence of positioned glyphs.
+
+Shaping is the process of converting a sequence of 
+[character clusters](CharCluster) into a sequence of 
+[glyph clusters](GlyphCluster) with respect to the rules of a particular
+writing system and the typographic features available in a font. The shaper
+operates on one _item_ at a time where an item is a run of text with
+a single script, language, direction, font, font size, and set of variation/feature
+settings. The process of producing these runs is called _itemization_
+and is out of scope for this crate.
+
+# Building the shaper
+
+All shaping in this crate takes place within the purview of a
+[`ShapeContext`]. This opaque struct manages internal LRU caches and scratch
+buffers that are necessary for the shaping process. Generally, you'll
+want to keep an instance that persists for more than one layout pass as
+this amortizes the cost of allocations, reduces contention for the global
+heap and increases the hit rate for the internal acceleration structures. If
+you're doing multithreaded layout, you should keep a context per thread.
+
+The only method available on the context is [`builder`](ShapeContext::builder) 
+which takes a type that can be converted into a [`FontRef`] as an argument
+and produces a [`ShaperBuilder`] that provides options for configuring and
+building a [`Shaper`].
+
+Here, we'll create a context and build a shaper for Arabic text at 16px:
+```
+# use swash::{FontRef, ident::Key, shape::*, text::Script};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+// let font = ...;
+let mut context = ShapeContext::new();
+let mut shaper = context.builder(font)
+    .script(Script::Arabic)
+    .direction(Direction::RightToLeft)
+    .size(16.)
+    .build();
+```
+
+You can specify feature settings by calling the [`features`](ShaperBuilder::features)
+method with an iterator that produces a sequence of values that are convertible 
+to [`TagAndValue<u16>`]. Tuples of (&str, u16) will work in a pinch. For example, 
+you can enable discretionary ligatures like this:
+```
+# use swash::{FontRef, ident::Key, shape::*, text::Script, tag_from_bytes};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+// let font = ...;
+let mut context = ShapeContext::new();
+let mut shaper = context.builder(font)
+    .script(Script::Latin)
+    .size(14.)
+    .features(&[("dlig", 1)])
+    .build();
+```
+
+A value of `0` will disable a feature while a non-zero value will enable it.
+Some features use non-zero values as an argument. The stylistic alternates
+feature, for example, often offers a range of choices per glyph. The argument
+is used as an index to select among them. If a requested feature is not present
+in a font, the setting is ignored.
+
+Font variation settings are specified in a similar manner with the
+[`variations`](ShaperBuilder::variations) method but take an `f32`
+to define the value within the variation space for the requested axis:
+```
+# use swash::{FontRef, ident::Key, shape::*, text::Script, tag_from_bytes};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+// let font = ...;
+let mut context = ShapeContext::new();
+let mut shaper = context.builder(font)
+    .script(Script::Latin)
+    .size(14.)
+    .variations(&[("wght", 520.5)])
+    .build();
+```
+
+See [`ShaperBuilder`] for available options and default values.
+
+# Feeding the shaper
+
+Once we have a properly configured shaper, we need to feed it some
+clusters. The simplest approach is to call the [`add_str`](Shaper::add_str)
+method with a string:
+```
+# use swash::{FontRef, ident::Key, shape::*, text::Script, tag_from_bytes};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+# let mut context = ShapeContext::new();
+# let mut shaper = context.builder(font).build();
+shaper.add_str("a quick brown fox?");
+```
+
+You can call [`add_str`](Shaper::add_str) multiple times to add a sequence
+of text fragments to the shaper.
+
+This simple approach is certainly reasonable when dealing with text consisting
+of a single run on one line with a font that is known to contain all the
+necessary glyphs. A small text label in a UI is a good example.
+
+For more complex scenarios, the shaper can be fed a single cluster at a time.
+This method allows you to provide:
+- accurate source ranges per character even if your runs
+and items span multiple non-contiguous fragments
+- user data per character (a single `u32`) that can be used, for
+example, to associate each resulting glyph with a style span
+- boundary analysis per character, carrying word boundaries and
+line break opportunities through the shaper.
+
+This also provides a junction point for inserting a font fallback
+mechanism.
+
+All of this is served by the functionality in the 
+[`text::cluster`](crate::text::cluster) module.
+
+Let's see a somewhat contrived example that demonstrates the process:
+```
+use swash::text::cluster::{CharCluster, CharInfo, Parser, Token};
+# use swash::{FontRef, ident::Key, shape::*, text::Script, tag_from_bytes};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+# let mut context = ShapeContext::new();
+let mut shaper = context.builder(font)
+    .script(Script::Latin)
+    .build();
+// We'll need the character map for our font
+let charmap = font.charmap();
+// And some storage for the cluster we're working with
+let mut cluster = CharCluster::new();
+// Now we build a cluster parser which takes a script and
+// an iterator that yields a Token per character
+let mut parser = Parser::new(
+    Script::Latin,
+    "a quick brown fox?".char_indices().map(|(i, ch)| Token {
+        // The character
+        ch,
+        // Offset of the character in code units
+        offset: i as u32,
+        // Length of the character in code units
+        len: ch.len_utf8() as u8,
+        // Character information
+        info: ch.into(),
+        // Pass through user data
+        data: 0,
+    })
+);
+// Loop over all of the clusters
+while parser.next(&mut cluster) {
+    // Map all of the characters in the cluster
+    // to nominal glyph identifiers
+    cluster.map(|ch| charmap.map(ch));
+    // Add the cluster to the shaper
+    shaper.add_cluster(&cluster);
+}
+```
+
+Phew! That's quite a lot of work. It also happens to be exactly what
+[`add_str`](Shaper::add_str) does internally.
+
+So why bother? As mentioned earlier, this method allows you to customize
+the per-character data that passes through the shaper. Is your source text in
+UTF-16 instead of UTF-8? No problem. Set the [`offset`](Token::offset) and 
+[`len`](Token::len) fields of your [`Token`]s to appropriate values. Are you shaping
+across style spans? Set the [`data`](Token::data) field to the index of your span so 
+it can be recovered. Have you used the
+[`Analyze`](crate::text::Analyze) iterator to generate 
+[`CharInfo`](crate::text::cluster::CharInfo)s containing boundary analysis? This
+is where you apply them to the [`info`](Token::info) fields of your [`Token`]s.
+
+That last one deserves a quick example, showing how you might build a cluster
+parser with boundary analysis:
+```
+use swash::text::{analyze, Script};
+use swash::text::cluster::{CharInfo, Parser, Token};
+let text = "a quick brown fox?";
+let mut parser = Parser::new(
+    Script::Latin,
+    text.char_indices()
+        // Call analyze passing the same text and zip
+        // the results
+        .zip(analyze(text.chars()))
+        // Analyze yields the tuple (Properties, Boundary)
+        .map(|((i, ch), (props, boundary))| Token {
+            ch,
+            offset: i as u32,
+            len: ch.len_utf8() as u8,
+            // Create character information from properties and boundary
+            info: CharInfo::new(props, boundary),
+            data: 0,
+        }),
+);
+```
+That leaves us with font fallback. This crate does not provide the infrastructure
+for such, but a small example can demonstrate the process. The key is in
+the return value of the [`CharCluster::map`] method which describes the
+[`Status`](crate::text::cluster::Status) of the mapping operation. This function
+will return the index of the best matching font:
+```
+use swash::FontRef;
+use swash::text::cluster::{CharCluster, Status};
+
+fn select_font<'a>(fonts: &[FontRef<'a>], cluster: &mut CharCluster) -> Option<usize> {
+    let mut best = None;
+    for (i, font) in fonts.iter().enumerate() {
+        let charmap = font.charmap();
+        match cluster.map(|ch| charmap.map(ch)) {
+            // This font provided a glyph for every character
+            Status::Complete => return Some(i),
+            // This font provided the most complete mapping so far
+            Status::Keep => best = Some(i),
+            // A previous mapping was more complete
+            Status::Discard => {}
+        }
+    }
+    best
+}
+```
+
+Since this process is done during shaping, upon return we compare the selected
+font with our current font and if they're different, we complete shaping for the
+clusters submitted so far and restart the process with the new font. Performing
+fallback in this manner _outside_ the shaper avoids the costly technique of
+heuristically shaping runs.
+
+# Collecting the prize
+
+Finish up shaping by calling [`Shaper::shape_with`] with a closure that will be
+invoked with each resulting [`GlyphCluster`]. This structure contains borrowed data
+and thus cannot be stored directly. The data you extract from each cluster and the
+method in which you store it will depend entirely on the design of your text layout
+system.
+
+Please note that, unlike HarfBuzz, this shaper does _not_ reverse runs that are in
+right-to-left order. The reasoning is that, for correctness, line breaking must be 
+done in logical order and reversing runs should occur during bidi reordering.
+
+Also pertinent to right-to-left runs: you'll need to ensure that you reverse
+_clusters_ and not _glyphs_. Intra-cluster glyphs must remain in logical order
+for proper mark placement.
 */
 
 pub mod cluster;
@@ -18,7 +253,7 @@ use super::{
     NormalizedCoord,
 };
 use crate::text::{
-    cluster::{CharCluster, Parser, ShapeClass},
+    cluster::{CharCluster, Parser, ShapeClass, Token},
     Language, Script,
 };
 use at::{FeatureStore, FeatureStoreBuilder};
@@ -36,7 +271,7 @@ pub enum Direction {
     RightToLeft,
 }
 
-/// Context that manages caches and scratch buffers for shaping.
+/// Context that manages caches and transient buffers for shaping.
 pub struct ShapeContext {
     font_cache: FontCache<FontEntry>,
     feature_cache: FeatureCache,
@@ -139,25 +374,26 @@ impl<'a> ShaperBuilder<'a> {
         }
     }
 
-    /// Specifies the script.
+    /// Specifies the script. The default value is [`Script::Latin`].
     pub fn script(mut self, script: Script) -> Self {
         self.script = script;
         self
     }
 
-    /// Specifies the language.
+    /// Specifies the language. The default value is `None`.
     pub fn language(mut self, language: Option<Language>) -> Self {
         self.lang = language;
         self
     }
 
-    /// Specifies the text direction.
+    /// Specifies the text direction. The default value is [`Direction::LeftToRight`].
     pub fn direction(mut self, direction: Direction) -> Self {
         self.dir = direction;
         self
     }
 
-    /// Specifies the font size in pixels per em.
+    /// Specifies the font size in pixels per em. The default value is `0`
+    /// which will produce glyphs with offsets and advances in font units.
     pub fn size(mut self, ppem: f32) -> Self {
         self.size = ppem.max(0.);
         self
@@ -212,7 +448,8 @@ impl<'a> ShaperBuilder<'a> {
         self
     }
 
-    /// Specifies whether to insert dotted circles for broken clusters.
+    /// Specifies whether to insert dotted circles for broken clusters. The
+    /// default value is `false`.
     pub fn insert_dotted_circles(mut self, yes: bool) -> Self {
         if yes {
             let gid = self.charmap.map('\u{25cc}');
@@ -368,7 +605,7 @@ impl<'a> Shaper<'a> {
 
     /// Adds a string to the shaper.
     pub fn add_str(&mut self, s: &str) {
-        use crate::text::{cluster::Token, Codepoint};
+        use crate::text::Codepoint;
         let mut cluster = CharCluster::new();
         let mut parser = Parser::new(
             self.script,
@@ -487,17 +724,21 @@ impl<'a> Shaper<'a> {
         }
     }
 
-    /// Shapes the text and invokes the specified closure with each
-    /// resulting glyph.
-    pub fn shape_glyphs_with(mut self, mut f: impl FnMut(&Glyph)) {
-        self.finish();
-        let buf = &self.state.buffer;
-        for (g, p) in buf.glyphs.iter().zip(&buf.positions) {
-            if g.flags & IGNORABLE == 0 {
-                f(&Glyph::new(g, p))
-            }
-        }
-    }
+    // FIXME: when writing docs, I realized that it's impossible
+    // to use the result of this function correctly with RTL runs
+    // that contain marks.
+
+    // /// Shapes the text and invokes the specified closure with each
+    // /// resulting glyph.
+    // pub fn shape_glyphs_with(mut self, mut f: impl FnMut(&Glyph)) {
+    //     self.finish();
+    //     let buf = &self.state.buffer;
+    //     for (g, p) in buf.glyphs.iter().zip(&buf.positions) {
+    //         if g.flags & IGNORABLE == 0 {
+    //             f(&Glyph::new(g, p))
+    //         }
+    //     }
+    // }
 
     fn finish(&mut self) {
         use engine::{PosMode, SubMode};

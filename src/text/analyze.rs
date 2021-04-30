@@ -16,6 +16,7 @@ where
 }
 
 /// Iterator that yields Unicode properties and boundary analysis.
+/// This iterator is created by the [`analyze`] function.
 #[derive(Clone)]
 pub struct Analyze<I> {
     chars: I,

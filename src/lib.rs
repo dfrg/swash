@@ -17,6 +17,9 @@ progress.
 
 The primary currency in this crate is the [`FontRef`] struct so you'll want to 
 start there to learn how to construct and use fonts.
+
+Documentation for [shaping](shape) and [scaling](scale) is provided in 
+the respective modules.
 */
 
 pub use zeno;
