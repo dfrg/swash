@@ -17,11 +17,6 @@ impl Key {
         Self(KEY.fetch_add(1, Ordering::Relaxed))
     }
 
-    /// Returns true if the key is valid-- that is, non-zero.
-    pub fn is_valid(self) -> bool {
-        self.0 != 0
-    }
-
     /// Returns the underlying value of the key.
     pub fn value(self) -> u64 {
         self.0

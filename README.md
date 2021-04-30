@@ -65,7 +65,7 @@ areas of related interest are specifically avoided:
 - Character to nominal glyph identifier mapping with support for enumerating all pairs
 - Writing systems: provides a list of all supported script/language pairs
     and their associated typographic features
-- All introspection is zero allocation and no copy
+- All introspection is zero allocation and zero copy
 
 ### Complex text shaping
 
@@ -74,7 +74,7 @@ areas of related interest are specifically avoided:
     supported while the current extended kerning support (kerx) covers most common
     cases (kerning and mark positioning)
 - Full support for variable fonts including positioning and feature substitutions
-- Implementation of the Universal Shaping Engine for complex scripts such as Devangari, Malayalam, etc.
+- Implementation of the Universal Shaping Engine for complex scripts such as Devanagari, Malayalam, etc.
 - Arabic joining including Urdu style climbing runs
 - Basic shaping support: ligatures, marks, kerning, etc.
 - Enable/disable individual features with argument support for activating alternates

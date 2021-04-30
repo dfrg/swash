@@ -194,7 +194,14 @@ impl<'a> LocalizedStrings<'a> {
 
 impl_iter!(LocalizedStrings, LocalizedString);
 
-/// Represents a single localized name in a font.
+/// Represents a single localized string in a font.
+/// 
+/// Localized strings contain an [identifier](StringId) that describes the
+/// content of the string (such as family name, copyright notice, sample text, etc), 
+/// a language that specifies the audience for which the string is intended and
+/// some encoded data containing the value of the string. A string with a 
+/// particular identifier can appear multiple times in a font with various
+/// languages and encodings.
 #[derive(Copy, Clone)]
 pub struct LocalizedString<'a> {
     data: Bytes<'a>,

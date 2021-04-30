@@ -71,7 +71,7 @@ impl MetricsProxy {
                 m.ascent += v.delta(HASC);
                 m.descent += v.delta(HDSC);
                 m.leading += v.delta(HLGP);
-                if !self.has_vertical_metrics {
+                if self.has_vertical_metrics {
                     m.vertical_ascent += v.delta(VASC);
                     m.vertical_descent += v.delta(VDSC);
                     m.vertical_leading += v.delta(VLGP);

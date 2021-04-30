@@ -13,6 +13,8 @@ const SLNT: Tag = tag_from_bytes(b"slnt");
 const ITAL: Tag = tag_from_bytes(b"ital");
 
 /// Primary attributes for font classification: stretch, weight and style.
+/// 
+/// This struct is created by the [`attributes`](FontRef::attributes) method on [`FontRef`].
 #[derive(Copy, Clone)]
 pub struct Attributes(pub(crate) u32);
 
