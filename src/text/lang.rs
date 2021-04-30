@@ -157,7 +157,7 @@ impl Language {
         return Self::parse(LANG_ENTRIES.get(name_index)?.1)
     }
 
-    /// Returns the langauge component.
+    /// Returns the language component.
     pub fn language(&self) -> &str {
         unsafe { core::str::from_utf8_unchecked(&self.language[..self.lang_len as usize]) }
     }
