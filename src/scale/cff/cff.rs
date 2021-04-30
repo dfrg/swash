@@ -167,7 +167,7 @@ impl CffProxy {
         } else {
             Index::empty()
         };
-        Some(CffProxy {
+        Some(Self {
             cff,
             gsubrs,
             subrs,
@@ -235,7 +235,7 @@ impl<'a> Glyph<'a> {
                 };
             }
         }
-        Some(Glyph {
+        Some(Self {
             data,
             proxy: *proxy,
             fd,
