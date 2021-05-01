@@ -39,7 +39,7 @@ let mut shaper = context.builder(font)
 ```
 
 You can specify feature settings by calling the [`features`](ShaperBuilder::features)
-method with an iterator that produces a sequence of values that are convertible 
+method with an iterator that yields a sequence of values that are convertible 
 to [`TagAndValue<u16>`]. Tuples of (&str, u16) will work in a pinch. For example, 
 you can enable discretionary ligatures like this:
 ```
@@ -56,7 +56,7 @@ let mut shaper = context.builder(font)
 
 A value of `0` will disable a feature while a non-zero value will enable it.
 Some features use non-zero values as an argument. The stylistic alternates
-feature, for example, often offers a range of choices per glyph. The argument
+feature, for example, often offers a collection of choices per glyph. The argument
 is used as an index to select among them. If a requested feature is not present
 in a font, the setting is ignored.
 
@@ -189,7 +189,7 @@ let mut parser = Parser::new(
 );
 ```
 That leaves us with font fallback. This crate does not provide the infrastructure
-for such, but a small example can demonstrate the process. The key is in
+for such, but a small example can demonstrate the idea. The key is in
 the return value of the [`CharCluster::map`] method which describes the
 [`Status`](crate::text::cluster::Status) of the mapping operation. This function
 will return the index of the best matching font:
@@ -214,11 +214,16 @@ fn select_font<'a>(fonts: &[FontRef<'a>], cluster: &mut CharCluster) -> Option<u
 }
 ```
 
+Note that [`CharCluster`] maintains internal composed and decomposed sequences
+of the characters in the cluster so that it can select the best form for each
+candidate font.
+
 Since this process is done during shaping, upon return we compare the selected
 font with our current font and if they're different, we complete shaping for the
-clusters submitted so far and restart the process with the new font. Performing
-fallback in this manner _outside_ the shaper avoids the costly technique of
-heuristically shaping runs.
+clusters submitted so far and continue the process by building a new shaper with
+the selected font. By doing manual cluster parsing and nominal glyph mapping 
+_outside_ the shaper, we can implement per-cluster font fallback without the costly
+technique of heuristically shaping runs.
 
 # Collecting the prize
 
@@ -272,6 +277,8 @@ pub enum Direction {
 }
 
 /// Context that manages caches and transient buffers for shaping.
+/// 
+/// See the module level [documentation](index.html#building-the-shaper) for detail.
 pub struct ShapeContext {
     font_cache: FontCache<FontEntry>,
     feature_cache: FeatureCache,
@@ -335,6 +342,8 @@ impl State {
 }
 
 /// Builder for configuring a shaper.
+/// 
+/// See the module level [documentation](index.html#building-the-shaper) for more detail. 
 pub struct ShaperBuilder<'a> {
     state: &'a mut State,
     feature_cache: &'a mut FeatureCache,
@@ -518,6 +527,8 @@ impl<'a> ShaperBuilder<'a> {
 
 /// Maps character clusters to positioned glyph clusters according to
 /// typographic rules and features.
+/// 
+/// See the module level [documentation](index.html#feeding-the-shaper) for detail.
 pub struct Shaper<'a> {
     state: &'a mut State,
     font: FontRef<'a>,

@@ -1,5 +1,216 @@
 /*!
 Scaling, hinting and rasterization of visual glyph representations.
+
+Scaling is the process of generating an appropriately sized visual
+representation of a glyph. The scaler can produce rendered glyph
+[images](Image) from outlines, layered color outlines and embedded
+bitmaps. Alternatively, you can request raw, optionally hinted
+[outlines](Outline) that can then be further processed by [zeno] or 
+fed into other crates like [lyon](https://github.com/nical/lyon) or 
+[pathfinder](https://github.com/servo/pathfinder) for tessellation and
+GPU rendering.
+
+# Building the scaler
+
+All scaling in this crate takes place within the purview of a
+[`ScaleContext`]. This opaque struct manages internal LRU caches and scratch
+buffers that are necessary for the scaling process. Generally, you'll
+want to keep an instance with your glyph cache, or if doing multithreaded
+glyph rasterization, one instance per thread.
+
+The only method available on the context is [`builder`](ScaleContext::builder) 
+which takes a type that can be converted into a [`FontRef`] as an argument
+and produces a [`ScalerBuilder`] that provides options for configuring and
+building a [`Scaler`].
+
+Here, we'll create a context and build a scaler for a size of 14px with
+hinting enabled:
+```
+# use swash::{FontRef, ident::Key, scale::*};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+// let font = ...;
+let mut context = ScaleContext::new();
+let mut scaler = context.builder(font)
+    .size(14.)
+    .hint(true)
+    .build();
+```
+
+You can specify variation settings by calling the [`variations`](ScalerBuilder::variations)
+method with an iterator that yields a sequence of values that are convertible 
+to [`TagAndValue<f32>`]. Tuples of (&str, f32) will work in a pinch. For example, 
+you can request a variation of the weight axis like this:
+```
+# use swash::{FontRef, ident::Key, scale::*};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+// let font = ...;
+let mut context = ScaleContext::new();
+let mut scaler = context.builder(font)
+    .size(14.)
+    .hint(true)
+    .variations(&[("wght", 520.5)])
+    .build();
+```
+
+Alternatively, you can specify variations using the 
+[`normalized_coords`](ScalerBuilder::normalized_coords) method which takes an iterator
+that yields [`NormalizedCoord`]s (a type alias for `i16` which is a fixed point value
+in 2.14 format). This method is faster than specifying variations by tag and value, but
+the difference is likely negligible outside of microbenchmarks. The real advantage
+is that a sequence of `i16` is more compact and easier to fold into a key in a glyph
+cache. You can compute these normalized coordinates by using the 
+[`Variation::normalize`](crate::Variation::normalize) method for each available axis in
+the font. The best strategy, however, is to simply capture these during shaping with
+the [`Shaper::normalized_coords`](crate::shape::Shaper::normalized_coords) method which 
+will have already computed them for you.
+
+See [`ScalerBuilder`] for available options and default values.
+
+# Outlines and bitmaps
+
+The [`Scaler`] struct essentially provides direct access to the outlines and embedded
+bitmaps that are available in the font. In the case of outlines, it can produce the
+raw outline in font units or an optionally hinted, scaled outline. For example, to
+extract the raw outline for the letter 'Q':
+```
+# use swash::{FontRef, ident::Key, scale::*};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+// let font = ...;
+let mut context = ScaleContext::new();
+let mut scaler = context.builder(font).build();
+let glyph_id = font.charmap().map('Q');
+let outline = scaler.scale_outline(glyph_id);
+```
+
+For the same, but hinted at 12px:
+```
+# use swash::{FontRef, ident::Key, scale::*};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+// let font = ...;
+let mut context = ScaleContext::new();
+let mut scaler = context.builder(font)
+    .hint(true)
+    .size(12.)
+    .build();
+let glyph_id = font.charmap().map('Q');
+let outline = scaler.scale_outline(glyph_id);
+```
+The [`scale_outline`](Scaler::scale_outline) method returns an [`Outline`] wrapped
+in an option. It will return `None` if an outline was not available or if there was
+an error during the scaling process. Note that 
+[`scale_color_outline`](Scaler::scale_color_outline) can be used to access layered
+color outlines such as those included in the Microsoft _Segoe UI Emoji_ font. Finally,
+the `_into` variants of these methods ([`scale_outline_into`](Scaler::scale_outline_into) 
+and [`scale_color_outline_into`](Scaler::scale_color_outline_into)) will return
+their results in a previously allocated outline avoiding the extra allocations.
+
+Similar to outlines, bitmaps can be retrieved with the [`scale_bitmap`](Scaler::scale_bitmap)
+and [`scale_color_bitmap`](Scaler::scale_color_bitmap) for alpha and color bitmaps,
+respectively. These methods return an [`Image`] wrapped in an option. The associated
+`_into` variants are also available.
+
+Unlike outlines, bitmaps are available in [`strike`](crate::BitmapStrike)s of various sizes.
+When requesting a bitmap, you specify the strategy for strike selection using the
+[`StrikeWith`] enum.
+
+For example, if we want the largest available unscaled image for the fire emoji:
+```
+# use swash::{FontRef, ident::Key, scale::*};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+// let font = ...;
+let mut context = ScaleContext::new();
+let mut scaler = context.builder(font).build();
+let glyph_id = font.charmap().map('🔥');
+let image = scaler.scale_color_bitmap(glyph_id, StrikeWith::LargestSize);
+```
+
+Or, to produce a scaled image for a size of 18px:
+```
+# use swash::{FontRef, ident::Key, scale::*};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+// let font = ...;
+let mut context = ScaleContext::new();
+let mut scaler = context.builder(font)
+    .size(18.)
+    .build();
+let glyph_id = font.charmap().map('🔥');
+let image = scaler.scale_color_bitmap(glyph_id, StrikeWith::BestFit);
+```
+This will select the best strike for the requested size and return
+a bitmap that is scaled appropriately for an 18px run of text.
+
+Alpha bitmaps should generally be avoided unless you're rendering small East
+Asian text where these are sometimes still preferred over scalable outlines. In
+this case, you should only use [`StrikeWith::ExactSize`] to select the strike,
+falling back to an outline if a bitmap is unavailable.
+
+# Rendering
+
+In the general case of text rendering, you'll likely not care about the specific
+details of outlines or bitmaps and will simply want an appropriately sized
+image that represents your glyph. For this purpose, you'll want to use the
+[`Render`] struct which is a builder that provides options for rendering an image.
+This struct is constructed with a slice of [`Source`]s in priority order and
+will iterate through them until it finds one that satisfies the request. Typically,
+you'll want to use the following order:
+```
+# use swash::scale::*;
+Render::new(&[
+    // Color outline with the first palette
+    Source::ColorOutline(0),
+    // Color bitmap with best fit selection mode
+    Source::ColorBitmap(StrikeWith::BestFit),
+    // Standard scalable outline
+    Source::Outline,
+]);
+```
+
+The [`Render`] struct offers several options that control rasterization of 
+outlines such as [`format`](Render::format) for selecting a subpixel rendering mode,
+[`offset`](Render::offset) for applying fractional positioning, and others. See the
+struct documentation for detail.
+
+After selecting your options, call the [`render`](Render::render) method, passing your
+configured [`Scaler`] and the requested glyph identifier to produce an [`Image`].
+Let's put it all together by writing a simple function that will render subpixel glyphs
+with fractional positioning:
+```
+# use swash::{scale::{*, image::Image}, FontRef, GlyphId};
+fn render_glyph(
+    context: &mut ScaleContext,
+    font: &FontRef,
+    size: f32,
+    hint: bool,
+    glyph_id: GlyphId,
+    x: f32,
+    y: f32,
+) -> Option<Image> {
+    use zeno::{Format, Vector};
+    // Build the scaler
+    let mut scaler = context.builder(*font).size(size).hint(hint).build();
+    // Compute the fractional offset-- you'll likely want to quantize this
+    // in a real renderer
+    let offset = Vector::new(x.fract(), y.fract());
+    // Select our source order
+    Render::new(&[
+        Source::ColorOutline(0),
+        Source::ColorBitmap(StrikeWith::BestFit),
+        Source::Outline,
+    ])
+    // Select a subpixel format
+    .format(Format::Subpixel)
+    // Apply the fractional offset
+    .offset(offset)
+    // Render the image
+    .render(&mut scaler, glyph_id)
+}
+```
+Note that rendering also takes care of correctly scaling, rasterizing and
+compositing layered color outlines for us.
+
+There are other options available for emboldening, transforming with an
+affine matrix, and applying path effects. See the methods on [`Render`] for
+more detail.
 */
 
 const TRACE: bool = false;
@@ -37,6 +248,8 @@ pub enum StrikeWith {
     ExactSize,
     /// Load a bitmap of the best available size.
     BestFit,
+    /// Loads a bitmap of the largest size available.
+    LargestSize,
     /// Load a bitmap from the specified strike.
     Index(StrikeIndex),
 }
@@ -61,6 +274,8 @@ impl Default for Source {
 }
 
 /// Context that manages caches and scratch buffers for scaling.
+/// 
+/// See the module level [documentation](index.html#building-the-scaler) for detail.
 pub struct ScaleContext {
     fonts: FontCache<ScalerProxy>,
     state: State,
@@ -135,13 +350,14 @@ impl<'a> ScalerBuilder<'a> {
         }
     }
 
-    /// Specifies the font size in pixels per em.
+    /// Specifies the font size in pixels per em. The default value is `0` which will produce
+    /// unscaled glyphs in original font units.
     pub fn size(mut self, ppem: f32) -> Self {
         self.size = ppem.max(0.);
         self
     }
 
-    /// Specifies whether to apply hinting to outlines.
+    /// Specifies whether to apply hinting to outlines. The default value is `false`.
     pub fn hint(mut self, yes: bool) -> Self {
         self.hint = yes;
         self
@@ -169,7 +385,8 @@ impl<'a> ScalerBuilder<'a> {
         self
     }    
 
-    /// Specifies the variation settings in terms of normalized coordinates.
+    /// Specifies the variation settings in terms of normalized coordinates. This will replace
+    /// any previous variation settings.
     pub fn normalized_coords<I>(self, coords: I) -> Self
     where
         I: IntoIterator,
@@ -202,7 +419,9 @@ impl<'a> ScalerBuilder<'a> {
     }
 }
 
-/// Scales, hints and rasterizes visual representations of glyphs.
+/// Scales outline and bitmap glyphs.
+/// 
+/// See the module level [documentation](index.html#outlines-and-bitmaps) for detail.
 pub struct Scaler<'a> {
     state: &'a mut State,
     font: FontRef<'a>,
@@ -452,6 +671,10 @@ impl<'a> Scaler<'a> {
                         .get(glyph_id)
                 }
             }
+            StrikeWith::LargestSize => {
+                strikes.find_by_largest_ppem(glyph_id)?
+                .get(glyph_id)
+            }
             StrikeWith::Index(i) => strikes
                 .nth(i as usize)
                 .and_then(|strike| strike.get(glyph_id)),
@@ -526,6 +749,8 @@ impl<'a> Scaler<'a> {
 }
 
 /// Builder type for rendering a glyph into an image.
+/// 
+/// See the module level [documentation](index.html#rendering) for detail.
 pub struct Render<'a> {
     sources: &'a [Source],
     format: Format,

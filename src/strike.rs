@@ -183,7 +183,33 @@ impl<'a> BitmapStrikes<'a> {
             }
         }
         None
-    }    
+    } 
+    
+    /// Searches for a strike with the largest size that contains the specified
+    /// glyph.
+    /// 
+    /// ## Iteration behavior
+    /// This function searches the entire strike collection without regard
+    /// for the current state of the iterator.      
+    pub fn find_by_largest_ppem(&self, glyph_id: GlyphId) -> Option<BitmapStrike<'a>> {
+        let mut largest = None;
+        let mut largest_ppem = 0;
+        for i in 0..self.len {
+            let strike = match self.get(i) {
+                Some(strike) => strike,
+                _ => continue,
+            };            
+            if !strike.contains(glyph_id) {
+                continue;
+            }
+            let strike_ppem = strike.ppem();
+            if largest.is_none() || strike_ppem > largest_ppem {
+                largest = Some(strike);
+                largest_ppem = strike_ppem;
+            }
+        }
+        largest
+    } 
 }
 
 impl_iter!(BitmapStrikes, BitmapStrike);

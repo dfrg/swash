@@ -95,7 +95,7 @@ impl<'a> FontDataRef<'a> {
 /// the same, so we'll build a simple `Font` struct here that can load fonts from a
 /// file using a basic `Vec<u8>` as a backing store.
 /// ```
-/// use swash::{ident::Key, Attributes, FontRef};
+/// use swash::{ident::Key, Attributes, Charmap, FontRef};
 ///
 /// pub struct Font {
 ///     // Full content of the font file
@@ -120,9 +120,13 @@ impl<'a> FontDataRef<'a> {
 ///         Some(Self { data, offset, key })
 ///     }
 ///
-///     // As a convenience, forward some methods.
+///     // As a convenience, you may want to forward some methods.
 ///     pub fn attributes(&self) -> Attributes {
 ///         self.as_ref().attributes()
+///     }
+/// 
+///     pub fn charmap(&self) -> Charmap {
+///         self.as_ref().charmap()
 ///     }
 ///
 ///     // Create the transient font reference for accessing this crate's
