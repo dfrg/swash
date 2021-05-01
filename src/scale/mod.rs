@@ -26,8 +26,8 @@ building a [`Scaler`].
 Here, we'll create a context and build a scaler for a size of 14px with
 hinting enabled:
 ```
-# use swash::{FontRef, ident::Key, scale::*};
-# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+# use swash::{FontRef, CacheKey, scale::*};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: CacheKey::new() };
 // let font = ...;
 let mut context = ScaleContext::new();
 let mut scaler = context.builder(font)
@@ -38,11 +38,11 @@ let mut scaler = context.builder(font)
 
 You can specify variation settings by calling the [`variations`](ScalerBuilder::variations)
 method with an iterator that yields a sequence of values that are convertible 
-to [`TagAndValue<f32>`]. Tuples of (&str, f32) will work in a pinch. For example, 
+to [`Setting<f32>`]. Tuples of (&str, f32) will work in a pinch. For example, 
 you can request a variation of the weight axis like this:
 ```
-# use swash::{FontRef, ident::Key, scale::*};
-# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+# use swash::{FontRef, CacheKey, scale::*};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: CacheKey::new() };
 // let font = ...;
 let mut context = ScaleContext::new();
 let mut scaler = context.builder(font)
@@ -73,8 +73,8 @@ bitmaps that are available in the font. In the case of outlines, it can produce 
 raw outline in font units or an optionally hinted, scaled outline. For example, to
 extract the raw outline for the letter 'Q':
 ```
-# use swash::{FontRef, ident::Key, scale::*};
-# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+# use swash::{FontRef, CacheKey, scale::*};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: CacheKey::new() };
 // let font = ...;
 let mut context = ScaleContext::new();
 let mut scaler = context.builder(font).build();
@@ -84,8 +84,8 @@ let outline = scaler.scale_outline(glyph_id);
 
 For the same, but hinted at 12px:
 ```
-# use swash::{FontRef, ident::Key, scale::*};
-# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+# use swash::{FontRef, CacheKey, scale::*};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: CacheKey::new() };
 // let font = ...;
 let mut context = ScaleContext::new();
 let mut scaler = context.builder(font)
@@ -115,8 +115,8 @@ When requesting a bitmap, you specify the strategy for strike selection using th
 
 For example, if we want the largest available unscaled image for the fire emoji:
 ```
-# use swash::{FontRef, ident::Key, scale::*};
-# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+# use swash::{FontRef, CacheKey, scale::*};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: CacheKey::new() };
 // let font = ...;
 let mut context = ScaleContext::new();
 let mut scaler = context.builder(font).build();
@@ -126,8 +126,8 @@ let image = scaler.scale_color_bitmap(glyph_id, StrikeWith::LargestSize);
 
 Or, to produce a scaled image for a size of 18px:
 ```
-# use swash::{FontRef, ident::Key, scale::*};
-# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+# use swash::{FontRef, CacheKey, scale::*};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: CacheKey::new() };
 // let font = ...;
 let mut context = ScaleContext::new();
 let mut scaler = context.builder(font)
@@ -228,7 +228,7 @@ use image::*;
 use outline::*;
 
 use super::internal;
-use super::{cache::FontCache, FontRef, GlyphId, NormalizedCoord, setting::TagAndValue};
+use super::{cache::FontCache, FontRef, GlyphId, NormalizedCoord, setting::Setting};
 use proxy::*;
 use zeno::{Format, Origin, Style, Mask, Placement, Scratch, Point, Transform, Vector};
 use core::borrow::Borrow;
@@ -367,7 +367,7 @@ impl<'a> ScalerBuilder<'a> {
     pub fn variations<I>(self, settings: I) -> Self
     where
         I: IntoIterator,
-        I::Item: Into<TagAndValue<f32>>,
+        I::Item: Into<Setting<f32>>,
     {
         if self.proxy.coord_count != 0 {
             let vars = self.font.variations();

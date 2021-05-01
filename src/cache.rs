@@ -1,5 +1,23 @@
 use super::FontRef;
 
+/// Uniquely generated value for identifying and caching fonts.
+#[derive(Copy, Clone, PartialOrd, Ord, PartialEq, Eq, Hash, Debug)]
+pub struct CacheKey(pub(crate) u64);
+
+impl CacheKey {
+    /// Generates a new cache key.
+    pub fn new() -> Self {
+        use core::sync::atomic::{AtomicU64, Ordering};
+        static KEY: AtomicU64 = AtomicU64::new(1);
+        Self(KEY.fetch_add(1, Ordering::Relaxed))
+    }
+
+    /// Returns the underlying value of the key.
+    pub fn value(self) -> u64 {
+        self.0
+    }
+}
+
 pub struct FontCache<T> {
     entries: Vec<Entry<T>>,
     max_entries: usize,

@@ -1,5 +1,5 @@
 use super::internal::{var::*, RawFont};
-use super::{FontRef, string::{LocalizedString, StringId}, NormalizedCoord, Tag, setting::TagAndValue};
+use super::{FontRef, string::{LocalizedString, StringId}, NormalizedCoord, Tag, setting::Setting};
 
 /// Proxy for rematerializing variations collections.
 #[derive(Copy, Clone)]
@@ -91,7 +91,7 @@ impl<'a> Variations<'a> {
     pub fn normalized_coords<I>(&self, settings: I) -> impl Iterator<Item = NormalizedCoord> + Clone
     where
         I: IntoIterator,
-        I::Item: Into<TagAndValue<f32>>,
+        I::Item: Into<Setting<f32>>,
     {
         let mut copy = *self;
         copy.pos = 0;

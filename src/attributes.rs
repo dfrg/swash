@@ -1,7 +1,7 @@
 //! Basic font attributes: stretch, weight and style.
 
 use super::internal::{head::Os2, RawFont};
-use super::{tag_from_bytes, FontRef, Tag, TagAndValue};
+use super::{tag_from_bytes, FontRef, Tag, Setting};
 
 use core::fmt;
 use core::hash::{Hash, Hasher};
@@ -127,14 +127,14 @@ impl Attributes {
             let stretch = self.stretch();
             let req_stretch = requested.stretch();
             if stretch != requested.stretch() {
-                synth.vars[len] = TagAndValue { tag: WDTH, value: req_stretch.to_percentage() };
+                synth.vars[len] = Setting { tag: WDTH, value: req_stretch.to_percentage() };
                 len += 1;
             }
         }
         let (weight, req_weight) = (self.weight(), requested.weight());
         if weight != req_weight {
             if self.has_weight_variation() {
-                synth.vars[len] = TagAndValue { tag: WGHT, value: req_weight.0 as f32 };
+                synth.vars[len] = Setting { tag: WGHT, value: req_weight.0 as f32 };
                 len += 1;
             } else if req_weight > weight {
                 synth.embolden = true;
@@ -148,10 +148,10 @@ impl Attributes {
                     match style {
                         Style::Normal => {
                             if self.has_italic_variation() {
-                                synth.vars[len] = TagAndValue { tag: ITAL, value: 1. };
+                                synth.vars[len] = Setting { tag: ITAL, value: 1. };
                                 len += 1;
                             } else if self.has_oblique_variation() {
-                                synth.vars[len] = TagAndValue { tag: SLNT, value: 14. };
+                                synth.vars[len] = Setting { tag: SLNT, value: 14. };
                                 len += 1;
                             } else {
                                 synth.skew = 14;
@@ -165,10 +165,10 @@ impl Attributes {
                         Style::Normal => {
                             let degrees = angle.to_degrees();
                             if self.has_oblique_variation() {
-                                synth.vars[len] = TagAndValue { tag: SLNT, value: degrees };
+                                synth.vars[len] = Setting { tag: SLNT, value: degrees };
                                 len += 1;
                             } else if self.has_italic_variation() && degrees > 0. {
-                                synth.vars[len] = TagAndValue { tag: ITAL, value: 1. };
+                                synth.vars[len] = Setting { tag: ITAL, value: 1. };
                                 len += 1;
                             } else {
                                 synth.skew = degrees as i8;
@@ -604,7 +604,7 @@ impl Default for Stretch {
 /// [`Attributes`].
 #[derive(Copy, Clone, Default)]
 pub struct Synthesis {
-    vars: [TagAndValue<f32>; 3],
+    vars: [Setting<f32>; 3],
     len: u8,
     embolden: bool,
     skew: i8,
@@ -618,7 +618,7 @@ impl Synthesis {
 
     /// Returns the variations that should be applied to match the requested
     /// attributes.
-    pub fn variations(&self) -> &[TagAndValue<f32>] {
+    pub fn variations(&self) -> &[Setting<f32>] {
         &self.vars[..self.len as usize]
     }
 

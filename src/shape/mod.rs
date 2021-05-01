@@ -27,8 +27,8 @@ building a [`Shaper`].
 
 Here, we'll create a context and build a shaper for Arabic text at 16px:
 ```
-# use swash::{FontRef, ident::Key, shape::*, text::Script};
-# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+# use swash::{FontRef, CacheKey, shape::*, text::Script};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: CacheKey::new() };
 // let font = ...;
 let mut context = ShapeContext::new();
 let mut shaper = context.builder(font)
@@ -40,11 +40,11 @@ let mut shaper = context.builder(font)
 
 You can specify feature settings by calling the [`features`](ShaperBuilder::features)
 method with an iterator that yields a sequence of values that are convertible 
-to [`TagAndValue<u16>`]. Tuples of (&str, u16) will work in a pinch. For example, 
+to [`Setting<u16>`]. Tuples of (&str, u16) will work in a pinch. For example, 
 you can enable discretionary ligatures like this:
 ```
-# use swash::{FontRef, ident::Key, shape::*, text::Script, tag_from_bytes};
-# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+# use swash::{FontRef, CacheKey, shape::*, text::Script, tag_from_bytes};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: CacheKey::new() };
 // let font = ...;
 let mut context = ShapeContext::new();
 let mut shaper = context.builder(font)
@@ -64,8 +64,8 @@ Font variation settings are specified in a similar manner with the
 [`variations`](ShaperBuilder::variations) method but take an `f32`
 to define the value within the variation space for the requested axis:
 ```
-# use swash::{FontRef, ident::Key, shape::*, text::Script, tag_from_bytes};
-# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+# use swash::{FontRef, CacheKey, shape::*, text::Script, tag_from_bytes};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: CacheKey::new() };
 // let font = ...;
 let mut context = ShapeContext::new();
 let mut shaper = context.builder(font)
@@ -83,8 +83,8 @@ Once we have a properly configured shaper, we need to feed it some
 clusters. The simplest approach is to call the [`add_str`](Shaper::add_str)
 method with a string:
 ```
-# use swash::{FontRef, ident::Key, shape::*, text::Script, tag_from_bytes};
-# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+# use swash::{FontRef, CacheKey, shape::*, text::Script, tag_from_bytes};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: CacheKey::new() };
 # let mut context = ShapeContext::new();
 # let mut shaper = context.builder(font).build();
 shaper.add_str("a quick brown fox?");
@@ -115,8 +115,8 @@ All of this is served by the functionality in the
 Let's see a somewhat contrived example that demonstrates the process:
 ```
 use swash::text::cluster::{CharCluster, CharInfo, Parser, Token};
-# use swash::{FontRef, ident::Key, shape::*, text::Script, tag_from_bytes};
-# let font: FontRef = FontRef { data: &[], offset: 0, key: Key::new() };
+# use swash::{FontRef, CacheKey, shape::*, text::Script, tag_from_bytes};
+# let font: FontRef = FontRef { data: &[], offset: 0, key: CacheKey::new() };
 # let mut context = ShapeContext::new();
 let mut shaper = context.builder(font)
     .script(Script::Latin)
@@ -254,7 +254,7 @@ mod feature;
 use cluster::*;
 
 use super::{
-    cache::FontCache, charmap::Charmap, internal, metrics::Metrics, setting::TagAndValue, FontRef,
+    cache::FontCache, charmap::Charmap, internal, metrics::Metrics, setting::Setting, FontRef,
     NormalizedCoord,
 };
 use crate::text::{
@@ -412,7 +412,7 @@ impl<'a> ShaperBuilder<'a> {
     pub fn features<I>(self, settings: I) -> Self
     where
         I: IntoIterator,
-        I::Item: Into<TagAndValue<u16>>,
+        I::Item: Into<Setting<u16>>,
     {
         for feature in settings {
             let feature = feature.into();
@@ -428,7 +428,7 @@ impl<'a> ShaperBuilder<'a> {
     pub fn variations<I>(self, settings: I) -> Self
     where
         I: IntoIterator,
-        I::Item: Into<TagAndValue<f32>>,
+        I::Item: Into<Setting<f32>>,
     {
         if self.font_entry.coord_count != 0 {
             let vars = self.font.variations();

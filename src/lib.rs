@@ -41,18 +41,18 @@ mod string;
 mod tag;
 mod variation;
 
-pub mod ident;
 pub mod scale;
 pub mod shape;
 pub mod text;
 
 pub use attributes::*;
+pub use cache::CacheKey;
 pub use charmap::Charmap;
 pub use feature::{Action, Feature, WritingSystem};
 pub use font::{FontDataRef, FontRef};
 pub use metrics::{GlyphMetrics, Metrics};
 pub use palette::{ColorPalette, Usability};
-pub use setting::TagAndValue;
+pub use setting::Setting;
 pub use strike::BitmapStrike;
 pub use string::{LocalizedString, StringId};
 pub use tag::{Tag, tag_from_bytes, tag_from_str_lossy};

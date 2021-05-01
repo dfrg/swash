@@ -5,7 +5,7 @@ use super::internal::{
 };
 use super::proxy::GlyfProxy;
 use super::Point;
-use crate::{metrics::MetricsProxy, ident::Key, FontRef};
+use crate::{metrics::MetricsProxy, CacheKey, FontRef};
 
 #[derive(Default)]
 pub struct Scaler {
@@ -451,7 +451,7 @@ impl Scaler {
             &FontRef {
                 data: state.data,
                 offset: 0,
-                key: Key(0),
+                key: CacheKey(0),
             },
             state.coords,
         );

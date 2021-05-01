@@ -99,7 +99,7 @@ impl<'a> Iterator for WritingSystems<'a> {
     }
 }
 
-/// Script, language and associated features.
+/// Script, language and associated typographic features available in a font.
 #[derive(Copy, Clone)]
 pub struct WritingSystem<'a> {
     kind: WritingSystemKind<'a>,

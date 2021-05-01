@@ -1,5 +1,5 @@
 use super::internal::{raw_data, RawFont};
-use super::ident::Key;
+use super::cache::CacheKey;
 
 /// Reference to the content of a font file.
 #[derive(Copy, Clone)]
@@ -95,7 +95,7 @@ impl<'a> FontDataRef<'a> {
 /// the same, so we'll build a simple `Font` struct here that can load fonts from a
 /// file using a basic `Vec<u8>` as a backing store.
 /// ```
-/// use swash::{ident::Key, Attributes, Charmap, FontRef};
+/// use swash::{Attributes, CacheKey, Charmap, FontRef};
 ///
 /// pub struct Font {
 ///     // Full content of the font file
@@ -103,7 +103,7 @@ impl<'a> FontDataRef<'a> {
 ///     // Offset to the table directory
 ///     offset: u32,
 ///     // Cache key
-///     key: Key,
+///     key: CacheKey,
 /// }
 ///
 /// impl Font {
@@ -156,7 +156,7 @@ pub struct FontRef<'a> {
     /// Offset to the table directory of the font.
     pub offset: u32,
     /// Key for identifying a font in various caches.
-    pub key: Key,
+    pub key: CacheKey,
 }
 
 impl<'a> FontRef<'a> {
@@ -174,7 +174,7 @@ impl<'a> FontRef<'a> {
         if !raw_data::is_font(data, offset) {
             None
         } else {
-            Some(Self { data, offset, key: Key::new(), })
+            Some(Self { data, offset, key: CacheKey::new(), })
         }
     }
 }
