@@ -2,7 +2,7 @@
 # It is not intended for manual editing.
 [[package]]
 name = "swash"
-version = "0.1.1"
+version = "0.1.2"
 dependencies = [
  "yazi",
  "zeno",

@@ -72,9 +72,9 @@ where
         }
         if self.emoji() {
             self.cluster.info_mut().set_emoji(Emoji::Default);
-            loop {
+            while self.emoji() {
                 self.accept_any_as(ShapeClass::Base)?;
-                if !self.parse_emoji_extension()? || !self.emoji() {
+                if !self.parse_emoji_extension()? {
                     break;
                 }
             }

@@ -57,11 +57,13 @@ where
     fn parse(&mut self) -> Option<()> {
         use ClusterBreak::*;
         while self.accept(PP)? {}
-        if self.emoji() {
+        if self.emoji() {           
+            println!("begin emoji");
             self.cluster.info_mut().set_emoji(Emoji::Default);
-            loop {
+            while self.emoji() {
+                println!("emoji: {:x} {:?}", self.s.cur.ch as u32, self.s.cur.ch);
                 self.accept_any()?;
-                if !self.parse_emoji_extension()? || !self.emoji() {
+                if !self.parse_emoji_extension()? {
                     break;
                 }
             }
@@ -119,9 +121,11 @@ where
 
     fn parse_emoji_extension(&mut self) -> Option<bool> {
         use ClusterBreak::*;
+        println!("emoji ext: {:x} {:?} ({:?})", self.s.cur.ch as u32, self.s.cur.ch, self.kind());
         loop {
             match self.kind() {
                 EX => {
+                    println!("emoji ext+ex: {:x} {:?}", self.s.cur.ch as u32, self.s.cur.ch);
                     match self.s.cur.ch as u32 {
                         0x200C => self.accept_any_as(ShapeClass::Zwnj)?,
                         0xFE0F => {
@@ -137,9 +141,9 @@ where
                         _ => self.accept_any_as(ShapeClass::Mark)?,
                     }
                 }
-                ZWJ => {
+                ZWJ => {                    
                     self.accept_any_as(ShapeClass::Zwj)?;
-                    return Some(true);
+                    return Some(true);                    
                 }
                 _ => break,
             }
