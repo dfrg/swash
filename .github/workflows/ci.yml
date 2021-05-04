@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Rust ${{matrix.rust}}
+    timeout-minutes: 60
+
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        rust: [nightly, stable, 1.38.0]
+      
+      steps:
+        - uses: actions/checkout@v2
+        - uses: dtolnay/rust-toolchain@master
+          with:
+            toolchain: ${{matrix.rust}}
+        
+        - run: cargo test
+        - run: cargo check
