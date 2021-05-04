@@ -8,6 +8,7 @@ on:
 
 jobs:
   test:
+    name: Rust (${{ matrix.toolchain }}, ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     timeout-minutes: 60
 
@@ -29,26 +30,8 @@ jobs:
       - run: cargo test
       - run: cargo check 
 
-  fmt:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions-rs/toolchain@v1
-        with:
-          toolchain: stable
-          components: rustfmt
-          override: true
-        
-      - run: cargo fmt -- --check
-
-  clippy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: dtolnay/rust-toolchain@clippy
-      - run: cargo clippy
-
   miri:
+    name: Miri
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
