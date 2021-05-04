@@ -27,7 +27,6 @@ jobs:
           target: ${{ matrix.target }}
           override: true
 
-      - run: cargo check 
       - run: cargo test
 
   miri:
