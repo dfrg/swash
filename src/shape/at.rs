@@ -712,13 +712,19 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
         self.s.cur < self.s.end
     }
 
-    fn _move_last(&mut self) -> bool {
+    fn move_last(&mut self) -> bool {
         if self.s.end == 0 {
             return false;
         }
         self.s.cur = self.s.end - 1;
-        if self.ignored(self.s.cur) {
-            return self._move_previous();
+        loop {
+            if !self.ignored(self.s.cur) {
+                break;
+            }
+            if self.s.cur == 0 {
+                return false;
+            }
+            self.s.cur -= 1;
         }
         true
     }
@@ -734,7 +740,7 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
         self.s.cur < self.s.end
     }
 
-    fn _move_previous(&mut self) -> bool {
+    fn move_previous(&mut self) -> bool {
         if self.s.cur == self.start {
             return false;
         }
@@ -847,26 +853,53 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
         self.s.end = end.unwrap_or(self.end);
         self.apply_skip_state();
         let mut applied = false;
-        if !self.move_to(first) {
-            return Some(false);
-        }
-        while self.s.cur < self.s.end {
-            let i = self.s.cur;
-            let g = self.buf.glyphs.get(i)?;
-            if !g.skip {
-                let id = g.id;
-                if self.cache.test(lookup.coverage, id) {
-                    for s in subtables {
-                        if let Some(index) = s.coverage(b, id) {
-                            if self.apply_subtable(b, s, index as usize, i, id) == Some(true) {
-                                applied = true;
-                                break;
+        if lookup.kind == LookupKind::RevChainContext {
+            if !self.move_last() {
+                return Some(false);
+            }
+            loop {
+                let i = self.s.cur;
+                let g = self.buf.glyphs.get(i)?;
+                if !g.skip {
+                    let id = g.id;
+                    if self.cache.test(lookup.coverage, id) {
+                        for s in subtables {
+                            if let Some(index) = s.coverage(b, id) {
+                                if self.apply_subtable(b, s, index as usize, i, id) == Some(true) {
+                                    applied = true;
+                                    break;
+                                }
                             }
                         }
                     }
                 }
+                if self.s.cur == 0 {
+                    break;
+                }
+                self.s.cur -= 1;
             }
-            self.s.cur += 1;
+        } else {
+            if !self.move_to(first) {
+                return Some(false);
+            }
+            while self.s.cur < self.s.end {
+                let i = self.s.cur;
+                let g = self.buf.glyphs.get(i)?;
+                if !g.skip {
+                    let id = g.id;
+                    if self.cache.test(lookup.coverage, id) {
+                        for s in subtables {
+                            if let Some(index) = s.coverage(b, id) {
+                                if self.apply_subtable(b, s, index as usize, i, id) == Some(true) {
+                                    applied = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+                self.s.cur += 1;
+            }
         }
         Some(applied)
     }
@@ -1409,7 +1442,36 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                 let count = c.read::<u16>()? as usize;
                 return self.apply_contextual(c, count, input_end);
             }
-            _ => return None,
+            RevChainContext1 => {
+                let mut c = b.stream_at(base + 4)?;
+                let backtrack_count = c.read::<u16>()? as usize;
+                if backtrack_count != 0 {
+                    if backtrack_count > cur - self.start {
+                        return None;
+                    }
+                    let backtrack = c.read_array::<u16>(backtrack_count)?;
+                    self.match_backtrack(cur, backtrack_count, |i, id| {
+                        self.coverage(base + backtrack.get_or(i, 0) as usize, id)
+                            .is_some()
+                    })?;
+                }
+                let lookahead_count = c.read::<u16>()? as usize;
+                if lookahead_count != 0 {
+                    if lookahead_count + cur + 1 > self.s.end {
+                        return None;
+                    }
+                    let lookahead = c.read_array::<u16>(lookahead_count)?;
+                    self.match_sequence(cur, lookahead_count, |i, id| {
+                        self.coverage(base + lookahead.get_or(i, 0) as usize, id)
+                            .is_some()
+                    })?;
+                }
+                let count = c.read::<u16>()? as usize;
+                let substs = c.read_array::<u16>(count)?;
+                let subst = substs.get(index)?;
+                self.buf.substitute(cur, subst);
+                return Some(true);
+            }
         }
         None
     }
@@ -1452,13 +1514,20 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
         // self.s.mark_set = lookup.mark_set;
         // self.s.mark_class = lookup.mark_class;
         let mut applied = false;
-        if !self.move_to(first) {
-            return Some(false);
-        }
         let subtables = base + 6;
         let count = lookup.count as usize;
         let ext = lookup.is_ext;
-        let kind = lookup.kind;
+        let kind = lookup.kind;        
+        let reverse = lookup.kind == LookupKind::RevChainContext;
+        if reverse {
+            if !self.move_last() {
+                return Some(false);
+            }
+        } else {
+            if !self.move_to(first) {
+                return Some(false);
+            }
+        }
         loop {
             let cur = self.s.cur;
             let g = self.buf.glyphs[cur].id;
@@ -1477,8 +1546,14 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                     }
                 }
             }
-            if !self.move_next() {
-                break;
+            if reverse {
+                if !self.move_previous() {
+                    break;
+                }
+            } else {
+                if !self.move_next() {
+                    break;
+                }    
             }
         }
         Some(applied)

@@ -817,7 +817,18 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
             }
             _ => return None,
         },
-        _ => None,
+        RevChainContext => {
+            let kind = match fmt {
+                1 => SubtableKind::RevChainContext1,
+                _ => return None,
+            };
+            let coverage = cov(b, base, 2)?;
+            Some(SubtableData {
+                kind,
+                offset,
+                coverage,
+            })            
+        }
     }
 }
 
