@@ -37,7 +37,7 @@ areas of related interest are specifically avoided:
     released shortly.
 
 - Composition. Like layout, this is also application specific in addition to being
-    hardware dependent. Glyph catching, geometry batching and rendering all belong
+    hardware dependent. Glyph caching, geometry batching and rendering all belong
     here and should integrate well with the application and the hardware environment.
     There is also a sibling crate that attempts to provide these services that will
     be released in the future.
@@ -132,4 +132,3 @@ competently wrangle the borrow checker. Doubly interested if the work involves t
 or general 2D (or 3D!) graphics development. Alternatively, please consider supporting me
 on [patreon](https://patreon.com/dfrg) or contacting me about sponsorship if you find this
 project useful. 
-
