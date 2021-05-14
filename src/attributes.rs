@@ -16,12 +16,12 @@ const ITAL: Tag = tag_from_bytes(b"ital");
 /// 
 /// This struct is created by the [`attributes`](FontRef::attributes) method on [`FontRef`].
 #[derive(Copy, Clone)]
-pub struct Attributes(pub(crate) u32);
+pub struct Attributes(pub u32);
 
 impl Attributes {
     /// Creates new font attributes from the specified stretch, weight and
     /// style.
-    pub fn new(stretch: Stretch, weight: Weight, style: Style) -> Self {
+    pub const fn new(stretch: Stretch, weight: Weight, style: Style) -> Self {
         let stretch = stretch.0 as u32 & 0x1FF;
         let weight = weight.0 as u32 & 0x3FF;
         let style = style.pack();
@@ -386,7 +386,7 @@ impl Style {
         }
     }
 
-    fn pack(&self) -> u32 {
+    const fn pack(&self) -> u32 {
         match self {
             Self::Normal => 0b10,
             Self::Italic => 0b110,
