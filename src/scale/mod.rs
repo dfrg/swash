@@ -5,8 +5,8 @@ Scaling is the process of generating an appropriately sized visual
 representation of a glyph. The scaler can produce rendered glyph
 [images](Image) from outlines, layered color outlines and embedded
 bitmaps. Alternatively, you can request raw, optionally hinted
-[outlines](Outline) that can then be further processed by [zeno] or 
-fed into other crates like [lyon](https://github.com/nical/lyon) or 
+[outlines](Outline) that can then be further processed by [zeno] or
+fed into other crates like [lyon](https://github.com/nical/lyon) or
 [pathfinder](https://github.com/servo/pathfinder) for tessellation and
 GPU rendering.
 
@@ -18,7 +18,7 @@ buffers that are necessary for the scaling process. Generally, you'll
 want to keep an instance with your glyph cache, or if doing multithreaded
 glyph rasterization, one instance per thread.
 
-The only method available on the context is [`builder`](ScaleContext::builder) 
+The only method available on the context is [`builder`](ScaleContext::builder)
 which takes a type that can be converted into a [`FontRef`] as an argument
 and produces a [`ScalerBuilder`] that provides options for configuring and
 building a [`Scaler`].
@@ -37,8 +37,8 @@ let mut scaler = context.builder(font)
 ```
 
 You can specify variation settings by calling the [`variations`](ScalerBuilder::variations)
-method with an iterator that yields a sequence of values that are convertible 
-to [`Setting<f32>`]. Tuples of (&str, f32) will work in a pinch. For example, 
+method with an iterator that yields a sequence of values that are convertible
+to [`Setting<f32>`]. Tuples of (&str, f32) will work in a pinch. For example,
 you can request a variation of the weight axis like this:
 ```
 # use swash::{FontRef, CacheKey, scale::*};
@@ -52,16 +52,16 @@ let mut scaler = context.builder(font)
     .build();
 ```
 
-Alternatively, you can specify variations using the 
+Alternatively, you can specify variations using the
 [`normalized_coords`](ScalerBuilder::normalized_coords) method which takes an iterator
 that yields [`NormalizedCoord`]s (a type alias for `i16` which is a fixed point value
 in 2.14 format). This method is faster than specifying variations by tag and value, but
 the difference is likely negligible outside of microbenchmarks. The real advantage
 is that a sequence of `i16` is more compact and easier to fold into a key in a glyph
-cache. You can compute these normalized coordinates by using the 
+cache. You can compute these normalized coordinates by using the
 [`Variation::normalize`](crate::Variation::normalize) method for each available axis in
 the font. The best strategy, however, is to simply capture these during shaping with
-the [`Shaper::normalized_coords`](crate::shape::Shaper::normalized_coords) method which 
+the [`Shaper::normalized_coords`](crate::shape::Shaper::normalized_coords) method which
 will have already computed them for you.
 
 See [`ScalerBuilder`] for available options and default values.
@@ -97,10 +97,10 @@ let outline = scaler.scale_outline(glyph_id);
 ```
 The [`scale_outline`](Scaler::scale_outline) method returns an [`Outline`] wrapped
 in an option. It will return `None` if an outline was not available or if there was
-an error during the scaling process. Note that 
+an error during the scaling process. Note that
 [`scale_color_outline`](Scaler::scale_color_outline) can be used to access layered
 color outlines such as those included in the Microsoft _Segoe UI Emoji_ font. Finally,
-the `_into` variants of these methods ([`scale_outline_into`](Scaler::scale_outline_into) 
+the `_into` variants of these methods ([`scale_outline_into`](Scaler::scale_outline_into)
 and [`scale_color_outline_into`](Scaler::scale_color_outline_into)) will return
 their results in a previously allocated outline avoiding the extra allocations.
 
@@ -165,7 +165,7 @@ Render::new(&[
 ]);
 ```
 
-The [`Render`] struct offers several options that control rasterization of 
+The [`Render`] struct offers several options that control rasterization of
 outlines such as [`format`](Render::format) for selecting a subpixel rendering mode,
 [`offset`](Render::offset) for applying fractional positioning, and others. See the
 struct documentation for detail.
@@ -228,10 +228,12 @@ use image::*;
 use outline::*;
 
 use super::internal;
-use super::{cache::FontCache, FontRef, GlyphId, NormalizedCoord, setting::Setting};
-use proxy::*;
-use zeno::{Format, Origin, Style, Mask, Placement, Scratch, Point, Transform, Vector};
+use super::{cache::FontCache, setting::Setting, FontRef, GlyphId, NormalizedCoord};
 use core::borrow::Borrow;
+use proxy::*;
+#[cfg(feature = "render")]
+use zeno::{Format, Mask, Origin, Scratch, Style, Transform, Vector};
+use zeno::{Placement, Point};
 
 pub(crate) use bitmap::decode_png;
 
@@ -274,7 +276,7 @@ impl Default for Source {
 }
 
 /// Context that manages caches and scratch buffers for scaling.
-/// 
+///
 /// See the module level [documentation](index.html#building-the-scaler) for detail.
 pub struct ScaleContext {
     fonts: FontCache<ScalerProxy>,
@@ -288,6 +290,7 @@ struct State {
     scratch0: Vec<u8>,
     scratch1: Vec<u8>,
     outline: Outline,
+    #[cfg(feature = "render")]
     rcx: Scratch,
 }
 
@@ -309,6 +312,7 @@ impl ScaleContext {
                 scratch0: Vec::new(),
                 scratch1: Vec::new(),
                 outline: Outline::new(),
+                #[cfg(feature = "render")]
                 rcx: Scratch::new(),
             },
             coords: Vec::new(),
@@ -383,7 +387,7 @@ impl<'a> ScalerBuilder<'a> {
             }
         }
         self
-    }    
+    }
 
     /// Specifies the variation settings in terms of normalized coordinates. This will replace
     /// any previous variation settings.
@@ -420,7 +424,7 @@ impl<'a> ScalerBuilder<'a> {
 }
 
 /// Scales outline and bitmap glyphs.
-/// 
+///
 /// See the module level [documentation](index.html#outlines-and-bitmaps) for detail.
 pub struct Scaler<'a> {
     state: &'a mut State,
@@ -567,6 +571,8 @@ impl<'a> Scaler<'a> {
         }
     }
 
+    // Unused when render feature is disabled.
+    #[allow(dead_code)]
     fn scale_color_outline_impl(&mut self, glyph_id: GlyphId) -> bool {
         if !self.has_color_outlines() {
             return false;
@@ -671,10 +677,7 @@ impl<'a> Scaler<'a> {
                         .get(glyph_id)
                 }
             }
-            StrikeWith::LargestSize => {
-                strikes.find_by_largest_ppem(glyph_id)?
-                .get(glyph_id)
-            }
+            StrikeWith::LargestSize => strikes.find_by_largest_ppem(glyph_id)?.get(glyph_id),
             StrikeWith::Index(i) => strikes
                 .nth(i as usize)
                 .and_then(|strike| strike.get(glyph_id)),
@@ -749,8 +752,9 @@ impl<'a> Scaler<'a> {
 }
 
 /// Builder type for rendering a glyph into an image.
-/// 
+///
 /// See the module level [documentation](index.html#rendering) for detail.
+#[cfg(feature = "render")]
 pub struct Render<'a> {
     sources: &'a [Source],
     format: Format,
@@ -761,6 +765,7 @@ pub struct Render<'a> {
     style: Style<'a>,
 }
 
+#[cfg(feature = "render")]
 impl<'a> Render<'a> {
     /// Creates a new builder for configuring rendering using the specified
     /// prioritized list of sources.
@@ -821,12 +826,7 @@ impl<'a> Render<'a> {
 
     /// Renders the specified glyph using the current configuration into the
     /// provided image.
-    pub fn render_into(
-        &self,
-        scaler: &mut Scaler,
-        glyph_id: GlyphId,
-        image: &mut Image,
-    ) -> bool {
+    pub fn render_into(&self, scaler: &mut Scaler, glyph_id: GlyphId, image: &mut Image) -> bool {
         for source in self.sources {
             match source {
                 Source::Outline => {

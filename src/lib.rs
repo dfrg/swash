@@ -22,6 +22,7 @@ Documentation for [shaping](shape) and [scaling](scale) is provided in
 the respective modules.
 */
 
+#[cfg(feature = "scale")]
 pub use zeno;
 
 #[macro_use]
@@ -41,7 +42,9 @@ mod string;
 mod tag;
 mod variation;
 
+#[cfg(feature = "scale")]
 pub mod scale;
+
 pub mod shape;
 pub mod text;
 

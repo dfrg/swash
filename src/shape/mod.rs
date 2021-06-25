@@ -1,8 +1,8 @@
 /*!
 Mapping complex text to a sequence of positioned glyphs.
 
-Shaping is the process of converting a sequence of 
-[character clusters](CharCluster) into a sequence of 
+Shaping is the process of converting a sequence of
+[character clusters](CharCluster) into a sequence of
 [glyph clusters](GlyphCluster) with respect to the rules of a particular
 writing system and the typographic features available in a font. The shaper
 operates on one _item_ at a time where an item is a run of text with
@@ -20,7 +20,7 @@ this amortizes the cost of allocations, reduces contention for the global
 heap and increases the hit rate for the internal acceleration structures. If
 you're doing multithreaded layout, you should keep a context per thread.
 
-The only method available on the context is [`builder`](ShapeContext::builder) 
+The only method available on the context is [`builder`](ShapeContext::builder)
 which takes a type that can be converted into a [`FontRef`] as an argument
 and produces a [`ShaperBuilder`] that provides options for configuring and
 building a [`Shaper`].
@@ -39,8 +39,8 @@ let mut shaper = context.builder(font)
 ```
 
 You can specify feature settings by calling the [`features`](ShaperBuilder::features)
-method with an iterator that yields a sequence of values that are convertible 
-to [`Setting<u16>`]. Tuples of (&str, u16) will work in a pinch. For example, 
+method with an iterator that yields a sequence of values that are convertible
+to [`Setting<u16>`]. Tuples of (&str, u16) will work in a pinch. For example,
 you can enable discretionary ligatures like this:
 ```
 # use swash::{FontRef, CacheKey, shape::*, text::Script, tag_from_bytes};
@@ -109,7 +109,7 @@ line break opportunities through the shaper.
 This also provides a junction point for inserting a font fallback
 mechanism.
 
-All of this is served by the functionality in the 
+All of this is served by the functionality in the
 [`text::cluster`](crate::text::cluster) module.
 
 Let's see a somewhat contrived example that demonstrates the process:
@@ -157,11 +157,11 @@ Phew! That's quite a lot of work. It also happens to be exactly what
 
 So why bother? As mentioned earlier, this method allows you to customize
 the per-character data that passes through the shaper. Is your source text in
-UTF-16 instead of UTF-8? No problem. Set the [`offset`](Token::offset) and 
+UTF-16 instead of UTF-8? No problem. Set the [`offset`](Token::offset) and
 [`len`](Token::len) fields of your [`Token`]s to appropriate values. Are you shaping
-across style spans? Set the [`data`](Token::data) field to the index of your span so 
+across style spans? Set the [`data`](Token::data) field to the index of your span so
 it can be recovered. Have you used the
-[`Analyze`](crate::text::Analyze) iterator to generate 
+[`Analyze`](crate::text::Analyze) iterator to generate
 [`CharInfo`](crate::text::cluster::CharInfo)s containing boundary analysis? This
 is where you apply them to the [`info`](Token::info) fields of your [`Token`]s.
 
@@ -221,7 +221,7 @@ candidate font.
 Since this process is done during shaping, upon return we compare the selected
 font with our current font and if they're different, we complete shaping for the
 clusters submitted so far and continue the process by building a new shaper with
-the selected font. By doing manual cluster parsing and nominal glyph mapping 
+the selected font. By doing manual cluster parsing and nominal glyph mapping
 _outside_ the shaper, we can implement per-cluster font fallback without the costly
 technique of heuristically shaping runs.
 
@@ -234,7 +234,7 @@ method in which you store it will depend entirely on the design of your text lay
 system.
 
 Please note that, unlike HarfBuzz, this shaper does _not_ reverse runs that are in
-right-to-left order. The reasoning is that, for correctness, line breaking must be 
+right-to-left order. The reasoning is that, for correctness, line breaking must be
 done in logical order and reversing runs should occur during bidi reordering.
 
 Also pertinent to right-to-left runs: you'll need to ensure that you reverse
@@ -277,7 +277,7 @@ pub enum Direction {
 }
 
 /// Context that manages caches and transient buffers for shaping.
-/// 
+///
 /// See the module level [documentation](index.html#building-the-shaper) for detail.
 pub struct ShapeContext {
     font_cache: FontCache<FontEntry>,
@@ -342,8 +342,8 @@ impl State {
 }
 
 /// Builder for configuring a shaper.
-/// 
-/// See the module level [documentation](index.html#building-the-shaper) for more detail. 
+///
+/// See the module level [documentation](index.html#building-the-shaper) for more detail.
 pub struct ShaperBuilder<'a> {
     state: &'a mut State,
     feature_cache: &'a mut FeatureCache,
@@ -527,7 +527,7 @@ impl<'a> ShaperBuilder<'a> {
 
 /// Maps character clusters to positioned glyph clusters according to
 /// typographic rules and features.
-/// 
+///
 /// See the module level [documentation](index.html#feeding-the-shaper) for detail.
 pub struct Shaper<'a> {
     state: &'a mut State,
@@ -656,7 +656,10 @@ impl<'a> Shaper<'a> {
         self.finish();
         let buf = &mut self.state.buffer;
         buf.shaped_glyphs.clear();
-        let mut sentinel = (buffer::GlyphInfo::default(), buffer::PositionInfo::default());
+        let mut sentinel = (
+            buffer::GlyphInfo::default(),
+            buffer::PositionInfo::default(),
+        );
         sentinel.0.cluster = buf.ranges.len() as u32;
         let mut last_cluster = 0;
         for (g, p) in buf

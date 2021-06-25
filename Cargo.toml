@@ -1,6 +1,6 @@
 [package]
 name = "swash"
-version = "0.1.2"
+version = "0.1.3"
 authors = ["Chad Brokaw <cbrokaw@gmail.com>"]
 edition = "2018"
 description = "Font introspection, complex text shaping and glyph rendering."
@@ -11,6 +11,12 @@ repository = "https://github.com/dfrg/swash"
 homepage = "https://github.com/dfrg/swash"
 readme = "README.md"
 
+[features]
+default = ["scale", "render"]
+
+scale = ["yazi", "zeno"]
+render = ["scale", "zeno/eval"]
+
 [dependencies]
-yazi = "0.1.3"
-zeno = "0.2.0"
+yazi = { version = "0.1.4", optional = true }
+zeno = { version = "0.2.2", optional = true, default_features = false }

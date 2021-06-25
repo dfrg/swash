@@ -216,6 +216,7 @@ impl_iter!(BitmapStrikes, BitmapStrike);
 
 /// Collection of bitmaps of a specific size and format.
 #[derive(Copy, Clone)]
+#[allow(dead_code)]
 pub struct BitmapStrike<'a> {
     data: Bytes<'a>,
     bitmap_data: &'a [u8],
@@ -258,6 +259,7 @@ impl<'a> BitmapStrike<'a> {
     }
 
     /// Returns the bitmap for the specified glyph, if available.
+    #[cfg(feature = "scale")]
     pub(crate) fn get(&self, glyph_id: GlyphId) -> Option<Bitmap<'a>> {
         let loc = get_location(&self.data, self.offset, self.is_sbix, glyph_id)?;
         loc.get(self.bitmap_data, self.upem, self.is_apple)
@@ -265,6 +267,7 @@ impl<'a> BitmapStrike<'a> {
 }
 
 /// Format of a bitmap.
+#[cfg(feature = "scale")]
 #[derive(Copy, Clone, PartialEq, Eq, Debug)]
 pub enum BitmapFormat {
     /// Alpha mask with the specified number of bits.
@@ -277,6 +280,7 @@ pub enum BitmapFormat {
     Png,
 }
 
+#[cfg(feature = "scale")]
 impl BitmapFormat {
     /// Returns the number of channels.
     pub fn channels(&self) -> u32 {
@@ -294,6 +298,7 @@ impl BitmapFormat {
 }
 
 /// Bitmap glyph.
+#[cfg(feature = "scale")]
 #[derive(Copy, Clone)]
 pub struct Bitmap<'a> {
     pub format: BitmapFormat,
@@ -307,6 +312,7 @@ pub struct Bitmap<'a> {
     pub data: &'a [u8],
 }
 
+#[cfg(feature = "scale")]
 impl<'a> Bitmap<'a> {
     fn new(data: &BitmapData<'a>, upem: u16, is_apple: bool) -> Option<Self> {
         let format = if data.is_packed {
@@ -461,6 +467,7 @@ impl<'a> Bitmap<'a> {
 }
 
 /// The location of a bitmap in the bitmap data table.
+#[cfg(feature = "scale")]
 #[derive(Copy, Clone)]
 struct Location {
     format: u8,
@@ -476,6 +483,7 @@ struct Location {
     vertical_metrics: Metrics,
 }
 
+#[cfg(feature = "scale")]
 impl Location {
     /// Gets a bitmap from this location in the specified data source.
     pub fn get<'a>(&self, data: &'a [u8], upem: u16, is_apple: bool) -> Option<Bitmap<'a>> {
@@ -508,6 +516,7 @@ fn get_coverage(table: &[u8], strike_base: usize, is_sbix: bool, glyph_id: u16) 
     None
 }
 
+#[cfg(feature = "scale")]
 fn get_location(
     table: &[u8],
     strike_base: usize,
@@ -632,6 +641,7 @@ fn get_location(
     None
 }
 
+#[cfg(feature = "scale")]
 fn get_data<'a>(table: &'a [u8], loc: &Location) -> Option<BitmapData<'a>> {
     let depth = loc.bit_depth as usize;
     let mut bitmap = BitmapData {
@@ -766,6 +776,7 @@ struct BitmapData<'a> {
     pub is_sbix: bool,
 }
 
+#[cfg(feature = "scale")]
 impl<'a> BitmapData<'a> {
     fn read_metrics(&mut self, d: &Bytes, offset: usize, flags: u8, big: bool) -> Option<()> {
         let (w, h) = get_metrics(
@@ -789,6 +800,7 @@ struct Metrics {
     pub advance: u8,
 }
 
+#[cfg(feature = "scale")]
 fn get_metrics(
     d: &Bytes,
     offset: usize,

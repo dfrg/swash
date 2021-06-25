@@ -33,14 +33,11 @@ areas of related interest are specifically avoided:
 - Text layout. This is highly application specific and the requirements for both
     features and performance differ greatly among web browsers, word processors,
     text editors, game engines, etc. There is a sibling crate in development that
-    does provide general purpose text layout based on this library and will be
-    released shortly.
+    does provide general purpose text layout based on this library.
 
 - Composition. Like layout, this is also application specific in addition to being
     hardware dependent. Glyph caching, geometry batching and rendering all belong
     here and should integrate well with the application and the hardware environment.
-    There is also a sibling crate that attempts to provide these services that will
-    be released in the future.
 
 ### General features
 
@@ -87,7 +84,6 @@ areas of related interest are specifically avoided:
     properties with glyphs
 - Pass-through per cluster information for retaining text analysis results such as word
     and line boundaries, whitespace identification and emoji presentation modes
-- Shaping of vertical runs is not yet provided but a prototype exists and will be released soon
 
 ### Scaling
 
@@ -122,13 +118,3 @@ simply measure shaper initialization and glyph iteration. A comprehensive set of
 
 Contributions are welcome and appreciated! All contributions must be granted under the
 licenses under which this project is released.
-
-### About me
-
-This project has been a long term goal of mine and I haphazardly decided to take it on as my
-first major foray into Rust. What a ride! I've grown quite fond of development in Rust and
-would be interested if there are any employers out there looking for someone who can
-competently wrangle the borrow checker. Doubly interested if the work involves text rendering
-or general 2D (or 3D!) graphics development. Alternatively, please consider supporting me
-on [patreon](https://patreon.com/dfrg) or contacting me about sponsorship if you find this
-project useful. 
