@@ -243,6 +243,7 @@ for proper mark placement.
 */
 
 pub mod cluster;
+pub mod partition;
 
 mod aat;
 mod at;
