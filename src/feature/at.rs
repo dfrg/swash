@@ -68,25 +68,23 @@ impl<'a> Scripts<'a> {
                 self.cur = 0;
                 self.len = script_count(&self.data, self.gpos);
             }
-        } else {
-            if self.cur < self.len {
-                let index = self.cur;
-                self.cur += 1;
-                let (tag, offset) = script_at(&self.data, self.gpos, index)?;
-                if script_by_tag(&self.data, self.gsub, tag).is_some() {
-                    return None;
-                }
-                return Some(Script {
-                    data: self.data,
-                    gsub: self.gsub,
-                    gpos: self.gpos,
-                    gsub_offset: 0,
-                    gpos_offset: offset,
-                    tag,
-                });
-            } else {
-                self.done = true;
+        } else if self.cur < self.len {
+            let index = self.cur;
+            self.cur += 1;
+            let (tag, offset) = script_at(&self.data, self.gpos, index)?;
+            if script_by_tag(&self.data, self.gsub, tag).is_some() {
+                return None;
             }
+            return Some(Script {
+                data: self.data,
+                gsub: self.gsub,
+                gpos: self.gpos,
+                gsub_offset: 0,
+                gpos_offset: offset,
+                tag,
+            });
+        } else {
+            self.done = true;
         }
         None
     }
@@ -176,27 +174,24 @@ impl<'a> Languages<'a> {
                 self.cur = 0;
                 self.len = script_language_count(&self.data, self.gpos_script);
             }
-        } else {
-            if self.cur < self.len {
-                let index = self.cur;
-                self.cur += 1;
-                let (tag, offset) = script_language_at(&self.data, self.gpos_script, index)?;
-                if let Some(_) =
-                    script_language_by_tag(&self.data, self.gsub_script, Some(tag))
-                {
-                    return None;
-                }
-                return Some(Language {
-                    data: self.data,
-                    gsub: self.gsub,
-                    gpos: self.gpos,
-                    gsub_offset: 0,
-                    gpos_offset: offset,
-                    tag,
-                });
-            } else {
-                self.done = true;
+        } else if self.cur < self.len {
+            let index = self.cur;
+            self.cur += 1;
+            let (tag, offset) = script_language_at(&self.data, self.gpos_script, index)?;
+            if script_language_by_tag(&self.data, self.gsub_script, Some(tag)).is_some()
+            {
+                return None;
             }
+            return Some(Language {
+                data: self.data,
+                gsub: self.gsub,
+                gpos: self.gpos,
+                gsub_offset: 0,
+                gpos_offset: offset,
+                tag,
+            });
+        } else {
+            self.done = true;
         }
         None
     }
@@ -323,16 +318,14 @@ impl<'a> Features<'a> {
             let (tag, _offset) = feature_at(&self.data, gsubgpos, feature)?;
             return Some(Feature {
                 stage: self.stage,
-                tag: tag,
+                tag,
             });
+        } else if self.stage == 0 {
+            self.stage = 1;
+            self.len = language_feature_count(&self.data, self.gpos_language);
+            self.cur = 0;
         } else {
-            if self.stage == 0 {
-                self.stage = 1;
-                self.len = language_feature_count(&self.data, self.gpos_language);
-                self.cur = 0;
-            } else {
-                self.done = true;
-            }
+            self.done = true;
         }
         None
     }
@@ -411,4 +404,3 @@ impl<'a> Iterator for AllFeatures<'a> {
         }
     }
 }
-
