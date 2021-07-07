@@ -326,6 +326,12 @@ impl ScaleContext {
     }
 }
 
+impl Default for ScaleContext {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 /// Builder for configuring a scaler.
 pub struct ScalerBuilder<'a> {
     state: &'a mut State,
@@ -378,10 +384,12 @@ impl<'a> ScalerBuilder<'a> {
             self.coords.resize(vars.len(), 0);
             for setting in settings {
                 let setting = setting.into();
-                for var in vars.clone() {
+                for var in vars {
                     if var.tag() == setting.tag {
                         let value = var.normalize(setting.value);
-                        self.coords.get_mut(var.index()).map(|c| *c = value);
+                        if let Some(c) = self.coords.get_mut(var.index()) {
+                            *c = value;
+                        }
                     }
                 }
             }
@@ -441,10 +449,7 @@ pub struct Scaler<'a> {
 impl<'a> Scaler<'a> {
     /// Returns true if scalable glyph outlines are available.
     pub fn has_outlines(&self) -> bool {
-        match self.proxy.outlines {
-            OutlinesProxy::None => false,
-            _ => true,
-        }
+        !matches!(self.proxy.outlines, OutlinesProxy::None)
     }
 
     /// Scales an outline for the specified glyph into the provided outline.

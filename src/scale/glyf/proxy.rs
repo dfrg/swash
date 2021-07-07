@@ -95,11 +95,13 @@ impl GlyfProxy {
         for (a, b) in entries.iter().zip(values.iter_mut()) {
             *b = a as i32
         }
-        if coords.len() != 0 && self.cvar != 0 {
+        if !coords.is_empty() && self.cvar != 0 {
             if let Some(tuples) = var::cvar_tuples(data, self.cvar, coords, self.axis_count) {
                 for deltas in tuples {
                     for (index, delta, _) in deltas {
-                        values.get_mut(index).map(|value| *value += delta.to_i32());
+                        if let Some(value) = values.get_mut(index) {
+                            *value += delta.to_i32();
+                        }
                     }
                 }
             }
@@ -139,21 +141,23 @@ impl GlyfProxy {
             for tuple_deltas in tuples {
                 if tuple_deltas.full_coverage() {
                     for (index, x, y) in tuple_deltas {
-                        deltas.get_mut(index).map(|point| {
+                        if let Some(point) = deltas.get_mut(index) {
                             point.x += x.0;
                             point.y += y.0;
-                        });
+                        }
                     }
                 } else {
                     for p in accum.iter_mut() {
                         *p = Point::default();
                     }
                     for (index, x, y) in tuple_deltas {
-                        tags.get_mut(index).map(|tag| *tag |= HAS_DELTA_TAG);
-                        accum.get_mut(index).map(|point| {
+                        if let Some(tag) = tags.get_mut(index) {
+                            *tag |= HAS_DELTA_TAG;
+                        }
+                        if let Some(point) = accum.get_mut(index) {
                             point.x += x.0;
                             point.y += y.0;
-                        });
+                        }
                     }
                     let mut next_start = 0;
                     for end in contours.iter() {
@@ -236,16 +240,15 @@ impl GlyfProxy {
         deltas: &mut [Point],
     ) -> bool {
         if let Some(tuples) = var::gvar_tuples(data, self.gvar, coords, glyph_id) {
-            let len = deltas.len();
-            for i in 0..len {
-                deltas[i] = Point::default();
+            for delta in deltas.iter_mut() {
+                *delta = Point::default();
             }
             for tuple_deltas in tuples {
                 for (index, x, y) in tuple_deltas {
-                    deltas.get_mut(index).map(|point| {
+                    if let Some(point) = deltas.get_mut(index) {
                         point.x += x.round().to_i32();
                         point.y += y.round().to_i32();
-                    });
+                    }
                 }
             }
             return true;
@@ -276,12 +279,12 @@ fn interpolate(
     let out2 = Fixed(deltas[ref2].x);
     if in1 == in2 {
         if out1 == out2 {
-            for p in p1..=p2 {
-                deltas[p].x = out1.0;
+            for delta in deltas[p1..=p2].iter_mut() {
+                delta.x = out1.0;
             }
         } else {
-            for p in p1..=p2 {
-                deltas[p].x = 0;
+            for delta in deltas[p1..=p2].iter_mut() {
+                delta.x = 0;
             }
         }
     } else {
@@ -309,12 +312,12 @@ fn interpolate(
     let out2 = Fixed(deltas[ref2].y);
     if in1 == in2 {
         if out1 == out2 {
-            for p in p1..=p2 {
-                deltas[p].y = out1.0;
+            for delta in deltas[p1..=p2].iter_mut() {
+                delta.y = out1.0;
             }
         } else {
-            for p in p1..=p2 {
-                deltas[p].y = 0;
+            for delta in deltas[p1..=p2].iter_mut() {
+                delta.y = 0;
             }
         }
     } else {

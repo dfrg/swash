@@ -4,7 +4,7 @@ use super::cff::{Glyph, GlyphSink, DictionarySink};
 use super::TRACE;
 
 /// Hinting state for a compact font format glyph.
-/// 
+///
 /// Note that hinter states depend on the scale, subfont index and
 /// variation coordinates of a glyph. They can be retained and reused
 /// if those values remain the same.
@@ -155,10 +155,8 @@ impl HinterState {
                 }
             }
         }
-        if max_height.0 > 0 {
-            if self.blue_scale > (Fixed::ONE / max_height) {
-                self.blue_scale = Fixed::ONE / max_height;
-            }
+        if max_height.0 > 0 && self.blue_scale > (Fixed::ONE / max_height) {
+            self.blue_scale = Fixed::ONE / max_height;
         }
         if self.scale < self.blue_scale {
             self.supress_overshoot = true;
@@ -190,31 +188,27 @@ impl HinterState {
         let mut captured = false;
         let mut adjustment = Fixed(0);
         for zone in &self.zones[..self.zone_count as usize] {
-            if zone.is_bottom && bottom.is_bottom() {
-                if (zone.bottom - fuzz) <= bottom.coord && bottom.coord <= (zone.top + fuzz) {
-                    adjustment = if self.supress_overshoot {
-                        zone.ds_flat
-                    } else if zone.top - bottom.coord >= self.blue_shift {
-                        bottom.ds_coord.round().min(zone.ds_flat - Fixed::ONE)
-                    } else {
-                        bottom.ds_coord.round()
-                    } - bottom.ds_coord;
-                    captured = true;
-                    break;
-                }
+            if zone.is_bottom && bottom.is_bottom() && (zone.bottom - fuzz) <= bottom.coord && bottom.coord <= (zone.top + fuzz) {
+                adjustment = if self.supress_overshoot {
+                    zone.ds_flat
+                } else if zone.top - bottom.coord >= self.blue_shift {
+                    bottom.ds_coord.round().min(zone.ds_flat - Fixed::ONE)
+                } else {
+                    bottom.ds_coord.round()
+                } - bottom.ds_coord;
+                captured = true;
+                break;
             }
-            if !zone.is_bottom && top.is_top() {
-                if (zone.bottom - fuzz) <= top.coord && top.coord <= (zone.top + fuzz) {
-                    adjustment = if self.supress_overshoot {
-                        zone.ds_flat
-                    } else if top.coord - zone.bottom >= self.blue_shift {
-                        top.ds_coord.round().max(zone.ds_flat + Fixed::ONE)
-                    } else {
-                        top.ds_coord.round()
-                    } - top.ds_coord;
-                    captured = true;
-                    break;
-                }
+            if !zone.is_bottom && top.is_top() && (zone.bottom - fuzz) <= top.coord && top.coord <= (zone.top + fuzz) {
+                adjustment = if self.supress_overshoot {
+                    zone.ds_flat
+                } else if top.coord - zone.bottom >= self.blue_shift {
+                    top.ds_coord.round().max(zone.ds_flat + Fixed::ONE)
+                } else {
+                    top.ds_coord.round()
+                } - top.ds_coord;
+                captured = true;
+                break;
             }
         }
         if captured {
@@ -275,8 +269,7 @@ impl<'a, 'b, Sink: GlyphSink> Hinter<'a, 'b, Sink> {
         let f = (coord * 65536.) as i32;
         let mapped = self.map
             .map(self.state.scale, Fixed(f));
-        let res = ((mapped.0 >> 10) as f32) / 64.;
-        res
+        ((mapped.0 >> 10) as f32) / 64.
     }
 
     #[inline(always)]
@@ -473,19 +466,17 @@ impl Hint {
                 self.coord = stem.min;
                 self.flags = PAIR_TOP;
             }
+        } else if is_bottom {
+            self.coord = stem.min;
+            self.flags = PAIR_BOTTOM;
         } else {
-            if is_bottom {
-                self.coord = stem.min;
-                self.flags = PAIR_BOTTOM;
-            } else {
-                self.coord = stem.max;
-                self.flags = PAIR_TOP;
-            }
+            self.coord = stem.max;
+            self.flags = PAIR_TOP;
         }
         if self.is_top() {
-            self.coord = self.coord + Fixed::from_i32(2) * darken_y;
+            self.coord += Fixed::from_i32(2) * darken_y;
         }
-        self.coord = self.coord + origin;
+        self.coord += origin;
         self.scale = scale;
         self.index = index;
         if self.flags != 0 && stem.used {
@@ -603,12 +594,8 @@ impl HintMap {
         if insertion_index > 0 && first.ds_coord < self.hints[insertion_index - 1].ds_coord {
             return;
         }
-        if insertion_index < self.len {
-            if is_pair && second.ds_coord > self.hints[insertion_index].ds_coord {
-                return;
-            } else if first.ds_coord > self.hints[insertion_index].ds_coord {
-                return;
-            }
+        if insertion_index < self.len && ((is_pair && second.ds_coord > self.hints[insertion_index].ds_coord) || first.ds_coord > self.hints[insertion_index].ds_coord) {
+            return;
         }
         if insertion_index != self.len {
             let mut src_index = self.len - 1;
@@ -687,17 +674,15 @@ impl HintMap {
                     } else {
                         adjustment = move_up;
                     }
+                } else if i == 0
+                    || self.hints[i - 1].ds_coord
+                        <= (self.hints[i].ds_coord + move_down - MIN_COUNTER)
+                {
+                    adjustment = move_down;
+                    save_edge = move_up < -move_down;
                 } else {
-                    if i == 0
-                        || self.hints[i - 1].ds_coord
-                            <= (self.hints[i].ds_coord + move_down - MIN_COUNTER)
-                    {
-                        adjustment = move_down;
-                        save_edge = move_up < -move_down;
-                    } else {
-                        adjustment = Fixed(0);
-                        save_edge = true;
-                    }
+                    adjustment = Fixed(0);
+                    save_edge = true;
                 }
                 if save_edge && j < self.len - 1 && !self.hints[j + 1].is_locked() {
                     saved[saved_count] = (j, move_up - adjustment);
@@ -708,12 +693,10 @@ impl HintMap {
                     self.hints[j].ds_coord += adjustment;
                 }
             }
-            if i > 0 {
-                if self.hints[i].coord != self.hints[i - 1].coord {
-                    let a = self.hints[i];
-                    let b = self.hints[i - 1];
-                    self.hints[i - 1].scale = (a.ds_coord - b.ds_coord) / (a.coord - b.coord);
-                }
+            if i > 0 && self.hints[i].coord != self.hints[i - 1].coord {
+                let a = self.hints[i];
+                let b = self.hints[i - 1];
+                self.hints[i - 1].scale = (a.ds_coord - b.ds_coord) / (a.coord - b.coord);
             }
             if is_pair {
                 if self.hints[j].coord != self.hints[j - 1].coord {
@@ -758,7 +741,7 @@ impl HintMap {
         }
         let initial_map = initial_map.map(|x| x as &HintMap);
         self.clear();
-        let mut mask = mask.unwrap_or_else(|| HintMask::all());
+        let mut mask = mask.unwrap_or_else(HintMask::all);
         if !mask.valid {
             mask = HintMask::all();
         }
@@ -777,7 +760,7 @@ impl HintMap {
             self.insert(&bottom, &invalid, scale, initial_map);
             self.insert(&invalid, &top, scale, initial_map);
         }
-        let mut tmp_mask = mask.clone();
+        let mut tmp_mask = mask;
         for (i, stem) in stems.iter().enumerate() {
             if !tmp_mask.get(i) {
                 continue;
@@ -797,9 +780,11 @@ impl HintMap {
         }
         if initial {
             if self.len == 0 || self.hints[0].coord.0 > 0 || self.hints[self.len - 1].coord.0 < 0 {
-                let mut edge = Hint::default();
-                edge.flags = GHOST_BOTTOM | LOCKED | SYNTHETIC;
-                edge.scale = scale;
+                let edge = Hint {
+                    flags: GHOST_BOTTOM | LOCKED | SYNTHETIC,
+                    scale,
+                    ..Default::default()
+                };
                 let invalid = Hint::default();
                 self.insert(&edge, &invalid, scale, None);
             }
@@ -838,9 +823,9 @@ impl HintMap {
     }
 
     fn dump(&self) {
-        if !TRACE {
-            return;
-        }
+        // if !TRACE {
+        //     return;
+        // }
         // for i in 0..self.len {
         //     let hint = self.hints[i];
         //     println!(

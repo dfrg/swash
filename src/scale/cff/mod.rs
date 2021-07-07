@@ -3,6 +3,7 @@ PostScript outlines.
 
 */
 
+#[allow(clippy::module_inception)]
 mod cff;
 mod hint;
 
@@ -49,12 +50,10 @@ impl Scaler {
             } else {
                 None
             }
+        } else if glyph.path(scale, coords, None, sink) {
+            Some(())
         } else {
-            if glyph.path(scale, coords, None, sink) {
-                Some(())
-            } else {
-                None
-            }
+            None
         }
     }
 
@@ -102,7 +101,7 @@ impl Scaler {
     fn find_entry(&self, id: u64, dict: u16, coords: &[i16], scale: f32) -> (bool, usize) {
         let mut lowest_epoch = self.epoch;
         let mut lowest_index = 0;
-        let vary = coords.len() != 0;
+        let vary = !coords.is_empty();
         for (i, entry) in self.entries.iter().enumerate() {
             if entry.id == id
                 && entry.dict == dict

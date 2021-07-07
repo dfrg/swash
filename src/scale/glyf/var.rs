@@ -57,7 +57,7 @@ impl<'a> TupleStore<'a> {
             data_offset,
             true,
             8,
-        )        
+        )
     }
 
     fn from_gvar(b: Bytes<'a>, glyph_id: u16) -> Option<Self> {
@@ -212,7 +212,7 @@ impl<'a> Tuples<'a> {
 
 impl<'a> Iterator for Tuples<'a> {
     type Item = Deltas<'a>;
-    
+
     fn next(&mut self) -> Option<Self::Item> {
         loop {
             if self.cur > self.tuple_count {
@@ -248,6 +248,7 @@ struct Tuple<'a> {
 impl<'a> Tuple<'a> {
     /// Returns a scaling factor based on the specified variation coordinates
     /// for the deltas associated with this region.
+    #[allow(clippy::needless_range_loop)]
     fn compute_scalar(&self, coords: &[i16]) -> Fixed {
         const ZERO: Fixed = Fixed::ZERO;
         const ONE: Fixed = Fixed::ONE;

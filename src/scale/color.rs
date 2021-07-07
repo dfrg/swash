@@ -28,22 +28,23 @@ impl ColorProxy {
         let mut l = 0;
         let mut h = count;
         while l < h {
+            use core::cmp::Ordering::*;
             let i = l + (h - l) / 2;
             let rec = base_offset + i * 6;
             let id = b.read::<u16>(rec)?;
-            if glyph_id < id {
-                h = i;
-            } else if glyph_id > id {
-                l = i + 1;
-            } else {
-                let first = b.read::<u16>(rec + 2)? as usize;
-                let offset = b.read::<u32>(8)? as usize + first * 4;
-                let len = b.read::<u16>(rec + 4)?;
-                return Some(Layers {
-                    data: b,
-                    offset,
-                    len,
-                });
+            match glyph_id.cmp(&id) {
+                Less => h = i,
+                Greater => l = i + 1,
+                Equal => {
+                    let first = b.read::<u16>(rec + 2)? as usize;
+                    let offset = b.read::<u32>(8)? as usize + first * 4;
+                    let len = b.read::<u16>(rec + 4)?;
+                    return Some(Layers {
+                        data: b,
+                        offset,
+                        len,
+                    });
+                }
             }
         }
         None

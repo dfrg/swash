@@ -96,8 +96,8 @@ impl<'a> Zone<'a> {
             unscaled,
             original,
             points,
-            contours,
             tags,
+            contours,
         }
     }
 
@@ -587,7 +587,7 @@ impl<'a> Hinter<'a> {
         let tag = z.tags.get_mut(point)?;
         match state {
             1 => {
-                if (!legacy && !bc) || legacy {
+                if legacy || !bc {
                     p.x += distance;
                 }
                 *tag |= TOUCH_X;
@@ -600,7 +600,7 @@ impl<'a> Hinter<'a> {
             }
             _ => {
                 if x != 0 {
-                    if (!legacy && !bc) || legacy {
+                    if legacy || !bc {
                         p.x += muldiv(distance, x as i32, fdotp);
                     }
                     *tag |= TOUCH_X;
@@ -740,7 +740,7 @@ impl<'a> Hinter<'a> {
         let p = z.points.get_mut(point)?;
         let tag = z.tags.get_mut(point)?;
         if x != 0 {
-            if !(!v35 && compat) {
+            if v35 || !compat {
                 p.x += dx;
             }
             if touch {
@@ -820,8 +820,8 @@ impl<'a> Hinter<'a> {
         let mut u;
         let mut v;
         loop {
-            u = Wrapping((x + (x * b >> 16)).0 as u32);
-            v = Wrapping((y + (y * b >> 16)).0 as u32);
+            u = Wrapping((x + ((x * b) >> 16)).0 as u32);
+            v = Wrapping((y + ((y * b) >> 16)).0 as u32);
             z = Wrapping(-((u * u + v * v).0 as i32)) / Wrapping(0x200);
             z = z * ((Wrapping(0x10000) + b) >> 8) / Wrapping(0x10000);
             b += z;
@@ -843,7 +843,7 @@ impl<'a> Hinter<'a> {
         composite: bool,
     ) -> Option<u32> {
         let mut code = programs[program as usize];
-        if code.len() == 0 {
+        if code.is_empty() {
             return Some(0);
         }
         let (v35, grayscale, subpixel, grayscale_cleartype) = match state.mode {
@@ -1110,7 +1110,7 @@ impl<'a> Hinter<'a> {
                 OP_POP => {}
                 OP_CLEAR => new_top = 0,
                 OP_SWAP => {
-                    let s = &mut self.stack[..];
+                    let s = &mut *self.stack;
                     let t = *s.get(a0)?;
                     *s.get_mut(a0)? = *s.get(a1)?;
                     *s.get_mut(a1)? = t;
@@ -1130,7 +1130,7 @@ impl<'a> Hinter<'a> {
                     if a0 == 0 || index > a0 {
                         return None;
                     } else {
-                        let s = &mut self.stack[..];
+                        let s = &mut *self.stack;
                         let e = *s.get(a0 - index)?;
                         for i in (a0 - index)..(a0 - 1) {
                             let v = *s.get(i + 1)?;
@@ -1172,11 +1172,12 @@ impl<'a> Hinter<'a> {
                         if !def.active {
                             return None;
                         }
-                        let mut rec = CallRecord::default();
-                        rec.caller_program = program;
-                        rec.caller_ip = pc + 1;
-                        rec.current_count = count as u32;
-                        rec.definition = *def;
+                        let rec = CallRecord {
+                            caller_program: program,
+                            caller_ip: pc + 1,
+                            current_count: count as u32,
+                            definition: *def,
+                        };
                         callstack[callstack_top] = rec;
                         callstack_top += 1;
                         program = def.program;
@@ -1238,7 +1239,7 @@ impl<'a> Hinter<'a> {
                 }
                 OP_IUP0 | OP_IUP1 => {
                     let is_x = (opcode & 1) != 0;
-                    let mut run = self.glyph.contours.len() > 0;
+                    let mut run = !self.glyph.contours.is_empty();
                     if !self.v35 && self.compat {
                         if self.iupx && self.iupy {
                             run = false;
@@ -1355,7 +1356,7 @@ impl<'a> Hinter<'a> {
                         self.compute_point_displacement(opcode, rp1, rp2)?;
                     let limit = if self.zp2 == 0 {
                         self.zp2().points.len()
-                    } else if self.zp2 == 1 && self.zp2().contours.len() > 0 {
+                    } else if self.zp2 == 1 && !self.zp2().contours.is_empty() {
                         let z = self.zp2();
                         *z.contours.get(z.contours.len() - 1)? as usize + 1
                     } else {
@@ -1564,16 +1565,14 @@ impl<'a> Hinter<'a> {
                         let v1 = self.zp0().points.get(b)?;
                         let v2 = self.zp1().points.get(a)?;
                         self.project(*v1, *v2)
+                    } else if self.zp0 == 0 || self.zp1 == 0 {
+                        let v1 = self.zp0().original.get(b)?;
+                        let v2 = self.zp1().original.get(a)?;
+                        self.dual_project(*v1, *v2)
                     } else {
-                        if self.zp0 == 0 || self.zp1 == 0 {
-                            let v1 = self.zp0().original.get(b)?;
-                            let v2 = self.zp1().original.get(a)?;
-                            self.dual_project(*v1, *v2)
-                        } else {
-                            let v1 = self.zp0().unscaled.get(b)?;
-                            let v2 = self.zp1().unscaled.get(a)?;
-                            mul(self.dual_project(*v1, *v2), self.yscale)
-                        }
+                        let v1 = self.zp0().unscaled.get(b)?;
+                        let v2 = self.zp1().unscaled.get(a)?;
+                        mul(self.dual_project(*v1, *v2), self.yscale)
                     };
                     *self.stack.get_mut(a0)? = d;
                 }
@@ -1907,7 +1906,7 @@ impl<'a> Hinter<'a> {
                     if (a & 2) != 0 && self.rotated {
                         k |= 1 << 8;
                     }
-                    if (a & 8) != 0 && self.coords.len() > 0 {
+                    if (a & 8) != 0 && !self.coords.is_empty() {
                         k |= 1 << 10;
                     }
                     if (a & 32) != 0 && grayscale {
@@ -1917,11 +1916,11 @@ impl<'a> Hinter<'a> {
                         if (a & 64) != 0 {
                             k |= 1 << 13;
                         }
-                        if (a & 256) != 0 && false
-                        /* self.vertical_lcd */
-                        {
-                            k |= 1 << 15;
-                        }
+                        // if (a & 256) != 0 && false
+                        // /* self.vertical_lcd */
+                        // {
+                        //     k |= 1 << 15;
+                        // }
                         if (a & 1024) != 0 {
                             k |= 1 << 17;
                         }
@@ -1971,7 +1970,7 @@ impl<'a> Hinter<'a> {
                     next_pc += 1;
                 }
                 OP_ROLL => {
-                    let s = &mut self.stack[..];
+                    let s = &mut *self.stack;
                     let (a, b, c) = (*s.get(a2)?, *s.get(a1)?, *s.get(a0)?);
                     *s.get_mut(a2)? = c;
                     *s.get_mut(a1)? = a;
@@ -1993,13 +1992,13 @@ impl<'a> Hinter<'a> {
                     let a = *self.stack.get(a1)? as u32;
                     let b = *self.stack.get(a0)? as u32;
                     let af = 1 << (a - 1);
-                    if a < 1 || a > 3 || (b != 0 && b != af) {
+                    if !(1..=3).contains(&a) || (b != 0 && b != af) {
                         // nothing
                     } else {
                         state.gs.instruct_control &= !(af as u8);
                         state.gs.instruct_control |= b as u8;
                         if a == 3 && !self.v35 && state.mode != HinterMode::Modern {
-                            self.compat = !(b == 4);
+                            self.compat = b != 4;
                         }
                     }
                 }
@@ -2059,10 +2058,8 @@ impl<'a> Hinter<'a> {
                             if distance < min_distance {
                                 distance = min_distance;
                             }
-                        } else {
-                            if distance > -min_distance {
-                                distance = -min_distance;
-                            }
+                        } else if distance > -min_distance {
+                            distance = -min_distance;
                         }
                     }
                     original_distance =
@@ -2105,10 +2102,8 @@ impl<'a> Hinter<'a> {
                     );
                     let current_distance =
                         self.project(*self.zp1().points.get(point)?, *self.zp0().points.get(rp0)?);
-                    if state.gs.auto_flip {
-                        if (original_distance ^ cvt_distance) < 0 {
-                            cvt_distance = -cvt_distance;
-                        }
+                    if state.gs.auto_flip && (original_distance ^ cvt_distance) < 0 {
+                        cvt_distance = -cvt_distance;
                     }
                     let mut distance = if (opcode & 4) != 0 {
                         if self.zp0 == self.zp1 {
@@ -2127,10 +2122,8 @@ impl<'a> Hinter<'a> {
                             if distance < min_distance {
                                 distance = min_distance
                             };
-                        } else {
-                            if distance > -min_distance {
-                                distance = -min_distance
-                            };
+                        } else if distance > -min_distance {
+                            distance = -min_distance
                         }
                     }
                     self.move_point(self.zp1, point, distance.wrapping_sub(current_distance))?;
@@ -2175,11 +2168,12 @@ impl<'a> Hinter<'a> {
                         }
                         if index != !0 && callstack_top < callstack_len {
                             let def = self.idefs[index];
-                            let mut rec = CallRecord::default();
-                            rec.caller_program = program;
-                            rec.caller_ip = pc + 1;
-                            rec.current_count = count as u32;
-                            rec.definition = def;
+                            let rec = CallRecord{
+                                caller_program: program,
+                                caller_ip: pc + 1,
+                                current_count: count as u32,
+                                definition: def,
+                            };
                             callstack[callstack_top] = rec;
                             callstack_top += 1;
                             program = def.program;
@@ -2211,7 +2205,7 @@ impl<'a> Hinter<'a> {
                 break;
             }
         }
-        return Some(count);
+        Some(count)
     }
 }
 
@@ -2376,7 +2370,8 @@ mod ops {
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
     ];
 
-    #[cfg_attr(rustfmt, rustfmt_skip)]
+    #[rustfmt::skip]
+    #[allow(clippy::eq_op, clippy::identity_op)]
     pub const OPCODE_POP_PUSH: [u8; 256] = [
         (0 << 4) | 0, (0 << 4) | 0, (0 << 4) | 0, (0 << 4) | 0, (0 << 4) | 0, (0 << 4) | 0,
         (2 << 4) | 0, (2 << 4) | 0, (2 << 4) | 0, (2 << 4) | 0, (2 << 4) | 0, (2 << 4) | 0,
@@ -2423,7 +2418,7 @@ mod ops {
         (2 << 4) | 0, (2 << 4) | 0, (2 << 4) | 0, (2 << 4) | 0,
     ];
 
-    #[cfg_attr(rustfmt, rustfmt_skip)]
+    #[rustfmt::skip]
     pub const OPCODE_NAME: [&'static str; 256] = [
         "SVTCA0", "SVTCA1", "SPVTCA0", "SPVTCA1", "SFVTCA0", "SFVTCA1", "SPVTL0", "SPVTL1", "SFVTL0",
         "SFVTL1", "SPVFS", "SFVFS", "GPV", "GFV", "SFVTPV", "ISECT", "SRP0", "SRP1", "SRP2", "SZP0",
@@ -2452,7 +2447,7 @@ mod ops {
         "MIRP01000", "MIRP01001", "MIRP01010", "MIRP01011", "MIRP01100", "MIRP01101", "MIRP01110",
         "MIRP01111", "MIRP10000", "MIRP10001", "MIRP10010", "MIRP10011", "MIRP10100", "MIRP10101",
         "MIRP10110", "MIRP10111", "MIRP11000", "MIRP11001", "MIRP11010", "MIRP11011", "MIRP11100",
-        "MIRP11101", "MIRP11110", "MIRP11111", 
+        "MIRP11101", "MIRP11110", "MIRP11111",
     ];
 
     pub const OP_SVTCA0: u8 = 0x00;
