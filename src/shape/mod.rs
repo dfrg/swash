@@ -312,6 +312,12 @@ impl ShapeContext {
     }
 }
 
+impl Default for ShapeContext {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 struct State {
     buffer: Buffer,
     store_builder: FeatureStoreBuilder,
@@ -436,10 +442,12 @@ impl<'a> ShaperBuilder<'a> {
             self.coords.resize(vars.len(), 0);
             for setting in settings {
                 let setting = setting.into();
-                for var in vars.clone() {
+                for var in vars {
                     if var.tag() == setting.tag {
                         let value = var.normalize(setting.value);
-                        self.coords.get_mut(var.index()).map(|c| *c = value);
+                        if let Some(c) = self.coords.get_mut(var.index()) {
+                            *c = value;
+                        }
                     }
                 }
             }
@@ -561,7 +569,7 @@ impl<'a> Shaper<'a> {
                 let range = buf.push_order(cluster, &self.state.order);
                 e.set_classes(buf, Some(range.clone()));
                 let start = range.start;
-                e.gsub(s, s.groups.default, buf, Some(range.clone()));
+                e.gsub(s, s.groups.default, buf, Some(range));
                 let end = buf.len();
                 e.gsub(s, s.groups.reph, buf, Some(start..end));
                 let end = buf.len();
@@ -578,7 +586,7 @@ impl<'a> Shaper<'a> {
                 e.set_classes(buf, Some(range.clone()));
                 let start = range.start;
                 // Default group
-                e.gsub(s, s.groups.default, buf, Some(range.clone()));
+                e.gsub(s, s.groups.default, buf, Some(range));
                 // Reph identification
                 let len = 3.min(buf.glyphs.len() - start);
                 let end = start + len;
@@ -757,7 +765,7 @@ impl<'a> Shaper<'a> {
 
     fn finish(&mut self) {
         use engine::{PosMode, SubMode};
-        if self.state.buffer.glyphs.len() == 0 {
+        if self.state.buffer.glyphs.is_empty() {
             return;
         }
         let e = &mut self.engine;

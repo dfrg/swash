@@ -82,11 +82,11 @@ pub fn apply_morx(
                     let mut state = LigatureState::new();
                     while i < buffer.glyphs.len() {
                         let g = buffer.glyphs[i].id;
-                        if t.next(&mut state, i, g, |i, g, comps| {
+                        let f = |i, g, comps: &[usize]| {
                             buffer.substitute_ligature(i, g, comps);
                             Some(())
-                        })
-                        .is_none()
+                        };
+                        if t.next(&mut state, i, g, f).is_none()
                         {
                             break;
                         }
@@ -259,7 +259,7 @@ pub fn apply_kern(
         if !subtable.is_horizontal() {
             continue;
         }
-        buffer.ensure_order(buffer.is_rtl);        
+        buffer.ensure_order(buffer.is_rtl);
         let cross_stream = subtable.cross_stream();
         match kind {
             SubtableKind::Format0(t) => {
@@ -303,17 +303,15 @@ pub fn apply_kern(
                                 if pos.y == 0. {
                                     pos.y = kerning as f32;
                                 }
-                            } else {
-                                if let Some(base) = find_base(buffer, buffer.is_rtl, i) {
-                                    let diff = (base as isize - i as isize).abs() as usize;
-                                    if diff < 255 {
-                                        let pos = &mut buffer.positions[i];
-                                        if pos.base == 0 {
-                                            pos.flags |= MARK_ATTACH;
-                                            pos.base = diff as u8;
-                                            pos.x = kerning as f32;
-                                            buffer.has_marks = true;
-                                        }
+                            } else if let Some(base) = find_base(buffer, buffer.is_rtl, i) {
+                                let diff = if base >= i { base - i } else { i - base };
+                                if diff < 255 {
+                                    let pos = &mut buffer.positions[i];
+                                    if pos.base == 0 {
+                                        pos.flags |= MARK_ATTACH;
+                                        pos.base = diff as u8;
+                                        pos.x = kerning as f32;
+                                        buffer.has_marks = true;
                                     }
                                 }
                             }
@@ -323,7 +321,7 @@ pub fn apply_kern(
                         Some(advance) => i += advance,
                         None => break,
                     }
-                }                
+                }
             }
         }
     }

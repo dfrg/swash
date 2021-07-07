@@ -195,11 +195,11 @@ impl Buffer {
     fn _push_hangul_char(&mut self, ch: &Char) {
         let cluster = self.next_cluster;
         let c = ch.ch as u32;
-        let mask = if (c >= 0x1100 && c <= 0x115F) || (c >= 0xA960 && c <= 0xA97C) {
+        let mask = if (0x1100..=0x115F).contains(&c) || (0xA960..=0xA97C).contains(&c) {
             1
-        } else if (c >= 0x1160 && c <= 0x11A7) || (c >= 0xD7B0 && c <= 0xD7C6) {
+        } else if (0x1160..=0x11A7).contains(&c) || (0xD7B0..=0xD7C6).contains(&c) {
             2
-        } else if (c >= 0x11A8 && c <= 0x11FF) || (c >= 0xD7CB && c <= 0xD7FB) {
+        } else if (0x11A8..=0x11FF).contains(&c) || (0xD7CB..=0xD7FB).contains(&c) {
             4
         } else {
             1 | 2 | 4
@@ -290,7 +290,7 @@ impl Buffer {
         //     }
         //     println!(" -> {}", id);
         // }
-        if components.len() == 0 {
+        if components.is_empty() {
             return;
         }
         let g = &mut self.glyphs[index];
@@ -533,6 +533,7 @@ pub fn reorder_myanmar(chars: &[Char], order: &mut Vec<usize>) {
     }
 }
 
+#[allow(clippy::needless_range_loop)]
 pub fn reorder_complex(glyphs: &mut [GlyphInfo], buf: &mut Vec<GlyphInfo>, order: &mut Vec<usize>) {
     use ShapeClass::*;
     let mut first_base = None;
@@ -613,19 +614,19 @@ pub fn reorder_complex(glyphs: &mut [GlyphInfo], buf: &mut Vec<GlyphInfo>, order
                 j += 1;
             }
         }
-        if let Some(i) = pref.clone() {
+        if let Some(i) = pref {
             order[j] = i;
             j += 1;
         }
     }
     // Insert the base...
-    if let Some(i) = first_base.clone() {
+    if let Some(i) = first_base {
         order[j] = i;
         j += 1;
     }
     if last_base.is_none() {
         // ... and the reph
-        if let Some(i) = reph.clone() {
+        if let Some(i) = reph {
             order[j] = i;
             j += 1;
         }
@@ -643,7 +644,7 @@ pub fn reorder_complex(glyphs: &mut [GlyphInfo], buf: &mut Vec<GlyphInfo>, order
         j += 1;
         // Insert reph after final base
         if Some(i) == last_base {
-            if let Some(i) = reph.clone() {
+            if let Some(i) = reph {
                 order[j] = i;
                 j += 1;
             }
@@ -662,7 +663,7 @@ pub fn reorder_complex(glyphs: &mut [GlyphInfo], buf: &mut Vec<GlyphInfo>, order
                     j += 1;
                 }
             }
-            if let Some(i) = pref.clone() {
+            if let Some(i) = pref {
                 order[j] = i;
                 j += 1;
             }
@@ -684,8 +685,8 @@ pub fn reorder_complex(glyphs: &mut [GlyphInfo], buf: &mut Vec<GlyphInfo>, order
 // Matches the Arabic joining table from Harfbuzz.
 #[rustfmt::skip]
 const JOIN_STATES: [[(u8, u8, u8); 6]; 7] = [
-    //   U,                            L,                       R,                        D,                    ALAPH,                 DALATH_RISH      
-    // State 0: prev was U, not willing to join. 
+    //   U,                            L,                       R,                        D,                    ALAPH,                 DALATH_RISH
+    // State 0: prev was U, not willing to join.
     [ (NONE_MASK,NONE_MASK,0), (NONE_MASK,ISOL_MASK,2), (NONE_MASK,ISOL_MASK,1), (NONE_MASK,ISOL_MASK,2), (NONE_MASK,ISOL_MASK,1), (NONE_MASK,ISOL_MASK,6), ],
     // State 1: prev was R or ISOL_MASK/ALAPH, not willing to join.
     [ (NONE_MASK,NONE_MASK,0), (NONE_MASK,ISOL_MASK,2), (NONE_MASK,ISOL_MASK,1), (NONE_MASK,ISOL_MASK,2), (NONE_MASK,FIN2_MASK,5), (NONE_MASK,ISOL_MASK,6), ],

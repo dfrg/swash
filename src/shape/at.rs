@@ -97,10 +97,7 @@ impl FeatureStore {
     pub fn mask(&self, features: &[RawTag]) -> u64 {
         let mut mask = 0;
         for feature in features {
-            match self.bit(*feature) {
-                Some(bit) => mask |= 1 << bit,
-                _ => {}
-            }
+            if let Some(bit) = self.bit(*feature) { mask |= 1 << bit }
         }
         mask
     }
@@ -122,46 +119,41 @@ impl FeatureStore {
         pos_args.resize(pos_count, 0);
         let mut sub = self.groups.basic;
         let mut pos = self.groups.position;
-        match dir {
-            Direction::RightToLeft => sub |= self.groups.rtl,
-            // Direction::TopToBottom => sub |= self.groups.vert,
-            _ => {}
-        }
+        if dir == Direction::RightToLeft { sub |= self.groups.rtl }
         for feature in features {
-            match self.features.binary_search_by(|x| x.0.cmp(&feature.0)) {
-                Ok(index) => {
-                    let cached_feature = self.features[index];
-                    let mask = if cached_feature.2 == 0 {
-                        &mut sub
-                    } else {
-                        &mut pos
-                    };
-                    let bit_index = cached_feature.1 as usize;
-                    if cached_feature.2 == 0 {
-                        sub_args[bit_index] = feature.1;
-                    } else {
-                        pos_args[bit_index] = feature.1;
-                    }
-                    let bit = 1 << bit_index;
-                    if feature.1 != 0 {
-                        *mask |= bit;
-                    } else {
-                        *mask &= !bit;
-                    }
+            if let Ok(index) = self.features.binary_search_by(|x| x.0.cmp(&feature.0)) {
+                let cached_feature = self.features[index];
+                let mask = if cached_feature.2 == 0 {
+                    &mut sub
+                } else {
+                    &mut pos
+                };
+                let bit_index = cached_feature.1 as usize;
+                if cached_feature.2 == 0 {
+                    sub_args[bit_index] = feature.1;
+                } else {
+                    pos_args[bit_index] = feature.1;
                 }
-                _ => {}
+                let bit = 1 << bit_index;
+                if feature.1 != 0 {
+                    *mask |= bit;
+                } else {
+                    *mask &= !bit;
+                }
             }
         }
         (sub, pos)
     }
 
     pub fn groups(&self, script: Script) -> FeatureGroups {
-        let mut g = FeatureGroups::default();
-        g.vert = self.mask(&[VRT2]);
+        let mut g = FeatureGroups {
+            vert: self.mask(&[VRT2]),
+            rtl: self.mask(&[RTLM]),
+            ..Default::default()
+        };
         if g.vert == 0 {
             g.vert = self.mask(&[VERT]);
         }
-        g.rtl = self.mask(&[RTLM]);
         if script.is_complex() {
             match script {
                 Script::Myanmar => {
@@ -319,7 +311,7 @@ impl FeatureStoreBuilder {
                 }
             } else {
                 fbase + b.read::<u16>(rec + 4)? as usize
-            };            
+            };
             let lcount = b.read_u16(foffset + 2)? as usize;
             for i in 0..lcount {
                 let lookup_index = b.read_u16(foffset + 4 + i * 2)?;
@@ -570,7 +562,7 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
             gsubgpos,
             defs,
             coords,
-            enable_var: defs.has_var_store() && coords.len() > 0,
+            enable_var: defs.has_var_store() && !coords.is_empty(),
             cache,
             storage,
             top: 0,
@@ -610,15 +602,13 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                     }
                 }
             }
+        } else if mask != 0 {
+            for g in self.buf.glyphs[range].iter_mut() {
+                g.skip = (ss.flags & (1 << g.class) != 0) || (g.mask & mask != mask);
+            }
         } else {
-            if mask != 0 {
-                for g in self.buf.glyphs[range].iter_mut() {
-                    g.skip = (ss.flags & (1 << g.class) != 0) || (g.mask & mask != mask);
-                }
-            } else {
-                for g in self.buf.glyphs[range].iter_mut() {
-                    g.skip = ss.flags & (1 << g.class) != 0;
-                }
+            for g in self.buf.glyphs[range].iter_mut() {
+                g.skip = ss.flags & (1 << g.class) != 0;
             }
         }
     }
@@ -750,7 +740,7 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                 return true;
             }
         }
-        return false;
+        false
     }
 
     fn move_to(&mut self, index: usize) -> bool {
@@ -1039,25 +1029,26 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                 let mut l = 0;
                 let mut h = count;
                 while l < h {
+                    use core::cmp::Ordering::*;
                     let i = (l + h) / 2;
                     let v = vbase + i * step;
                     let gv = b.read::<u16>(v)?;
-                    if g2 > gv {
-                        l = i + 1;
-                    } else if g2 < gv {
-                        h = i;
-                    } else {
-                        if vf1 != 0 {
-                            let mut pos = [0f32; 4];
-                            self.value_record(setbase, v + 2, vf1, &mut pos)?;
-                            self.buf.position(cur, pos[0], pos[1], pos[2], pos[3]);
+                    match g2.cmp(&gv) {
+                        Greater => l = i + 1,
+                        Less => h = i,
+                        Equal => {
+                            if vf1 != 0 {
+                                let mut pos = [0f32; 4];
+                                self.value_record(setbase, v + 2, vf1, &mut pos)?;
+                                self.buf.position(cur, pos[0], pos[1], pos[2], pos[3]);
+                            }
+                            if vf2 != 0 {
+                                let mut pos = [0f32; 4];
+                                self.value_record(setbase, v + 2 + len1, vf2, &mut pos)?;
+                                self.buf.position(next, pos[0], pos[1], pos[2], pos[3]);
+                            }
+                            return Some(true);
                         }
-                        if vf2 != 0 {
-                            let mut pos = [0f32; 4];
-                            self.value_record(setbase, v + 2 + len1, vf2, &mut pos)?;
-                            self.buf.position(next, pos[0], pos[1], pos[2], pos[3]);
-                        }
-                        return Some(true);
                     }
                 }
             }
@@ -1299,11 +1290,10 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                     let backtrack_count = c.read::<u16>()? as usize;
                     if backtrack_count != 0 {
                         let seq = c.read_array::<u16>(backtrack_count)?;
-                        if !self
-                            .match_backtrack(cur, backtrack_count, |i, id| {
-                                id == seq.get(i).unwrap_or(0)
-                            })
-                            .is_some()
+                        let pred = |i, id| {
+                            id == seq.get(i).unwrap_or(0)
+                        };
+                        if self.match_backtrack(cur, backtrack_count, pred).is_none()
                         {
                             continue;
                         }
@@ -1324,11 +1314,10 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                     let lookahead_count = c.read::<u16>()? as usize;
                     if lookahead_count != 0 {
                         let seq = c.read_array::<u16>(lookahead_count)?;
-                        if !self
-                            .match_sequence(input_end, lookahead_count, |i, id| {
-                                id == seq.get(i).unwrap_or(0)
-                            })
-                            .is_some()
+                        let pred = |i, id| {
+                            id == seq.get(i).unwrap_or(0)
+                        };
+                        if self.match_sequence(input_end, lookahead_count, pred).is_none()
                         {
                             continue;
                         }
@@ -1365,11 +1354,10 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                     let backtrack_count = c.read::<u16>()? as usize;
                     if backtrack_count != 0 {
                         let seq = c.read_array::<u16>(backtrack_count)?;
-                        if !self
-                            .match_backtrack(cur, backtrack_count, |i, id| {
-                                self.class(backtrack_classdef, id) == seq.get(i).unwrap_or(0)
-                            })
-                            .is_some()
+                        let pred = |i, id| {
+                            self.class(backtrack_classdef, id) == seq.get(i).unwrap_or(0)
+                        };
+                        if self.match_backtrack(cur, backtrack_count, pred).is_none()
                         {
                             continue;
                         }
@@ -1390,11 +1378,10 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                     let lookahead_count = c.read::<u16>()? as usize;
                     if lookahead_count != 0 {
                         let seq = c.read_array::<u16>(lookahead_count)?;
-                        if !self
-                            .match_sequence(input_end, lookahead_count, |i, id| {
-                                self.class(lookahead_classdef, id) == seq.get(i).unwrap_or(0)
-                            })
-                            .is_some()
+                        let pred = |i, id| {
+                            self.class(lookahead_classdef, id) == seq.get(i).unwrap_or(0)
+                        };
+                        if self.match_sequence(input_end, lookahead_count, pred).is_none()
                         {
                             continue;
                         }
@@ -1517,16 +1504,14 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
         let subtables = base + 6;
         let count = lookup.count as usize;
         let ext = lookup.is_ext;
-        let kind = lookup.kind;        
+        let kind = lookup.kind;
         let reverse = lookup.kind == LookupKind::RevChainContext;
         if reverse {
             if !self.move_last() {
                 return Some(false);
             }
-        } else {
-            if !self.move_to(first) {
-                return Some(false);
-            }
+        } else if !self.move_to(first) {
+            return Some(false);
         }
         loop {
             let cur = self.s.cur;
@@ -1550,10 +1535,8 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                 if !self.move_previous() {
                     break;
                 }
-            } else {
-                if !self.move_next() {
-                    break;
-                }    
+            } else if !self.move_next() {
+                break;
             }
         }
         Some(applied)
@@ -1572,7 +1555,7 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
         if applied {
             self.s.cur = end;
         }
-        return Some(applied);
+        Some(applied)
     }
 
     #[inline(always)]
@@ -1658,7 +1641,7 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
         let format = b.read::<u16>(offset)?;
         let mut x = b.read::<i16>(offset + 2)? as f32;
         let mut y = b.read::<i16>(offset + 4)? as f32;
-        if format == 3 && self.defs.has_var_store() && self.coords.len() != 0 {
+        if format == 3 && self.defs.has_var_store() && !self.coords.is_empty() {
             x += self.value_delta(offset, b.read::<u16>(offset + 6)?)?;
             y += self.value_delta(offset, b.read::<u16>(offset + 8)?)?;
         }
