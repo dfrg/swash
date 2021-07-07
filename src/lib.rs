@@ -15,12 +15,18 @@ progress.
 
 # Usage
 
-The primary currency in this crate is the [`FontRef`] struct so you'll want to 
+The primary currency in this crate is the [`FontRef`] struct so you'll want to
 start there to learn how to construct and use fonts.
 
-Documentation for [shaping](shape) and [scaling](scale) is provided in 
+Documentation for [shaping](shape) and [scaling](scale) is provided in
 the respective modules.
 */
+
+#![allow(clippy::float_cmp)]
+#![allow(clippy::many_single_char_names)]
+#![allow(clippy::needless_lifetimes)]
+#![allow(clippy::redundant_static_lifetimes)]
+#![allow(clippy::too_many_arguments)]
 
 #[cfg(feature = "scale")]
 pub use zeno;
@@ -69,7 +75,7 @@ pub mod iter {
     pub use super::strike::BitmapStrikes;
     pub use super::string::{Chars, LocalizedStrings};
     pub use super::variation::{Instances, Variations};
-}   
+}
 
 /// Proxies used to efficiently rematerialize metadata.
 pub mod proxy {
@@ -77,7 +83,7 @@ pub mod proxy {
     pub use super::charmap::CharmapProxy;
     pub use super::metrics::MetricsProxy;
     pub use super::variation::VariationsProxy;
-}   
+}
 
 use iter::*;
 use proxy::BitmapStrikesProxy;
@@ -155,7 +161,6 @@ impl<'a> FontRef<'a> {
     pub fn table(&self, tag: Tag) -> Option<&'a [u8]> {
         use internal::RawFont;
         let range = self.table_range(tag)?;
-        self.data.get(range.0 as usize..range.1 as usize)        
+        self.data.get(range.0 as usize..range.1 as usize)
     }
 }
-

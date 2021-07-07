@@ -18,6 +18,12 @@ impl CacheKey {
     }
 }
 
+impl Default for CacheKey {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 pub struct FontCache<T> {
     entries: Vec<Entry<T>>,
     max_entries: usize,

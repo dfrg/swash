@@ -130,15 +130,15 @@ impl<'a> BitmapStrikes<'a> {
             is_apple: self.is_apple,
             offset,
         })
-    }   
-    
+    }
+
     /// Searches for a strike that matches the specified size and glyph
     /// identifier. Returns the strike of the nearest suitable size, preferring
     /// larger strikes if no exact match is available.
-    /// 
+    ///
     /// ## Iteration behavior
     /// This function searches the entire strike collection without regard
-    /// for the current state of the iterator.  
+    /// for the current state of the iterator.
     pub fn find_by_nearest_ppem(&self, ppem: u16, glyph_id: GlyphId) -> Option<BitmapStrike<'a>> {
         let mut best = None;
         let mut best_size = 0;
@@ -165,16 +165,16 @@ impl<'a> BitmapStrikes<'a> {
 
     /// Searches for a strike that exactly matches the specified size and glyph
     /// identifier.
-    /// 
+    ///
     /// ## Iteration behavior
     /// This function searches the entire strike collection without regard
-    /// for the current state of the iterator.  
+    /// for the current state of the iterator.
     pub fn find_by_exact_ppem(&self, ppem: u16, glyph_id: GlyphId) -> Option<BitmapStrike<'a>> {
         for i in 0..self.len {
             let strike = match self.get(i) {
                 Some(strike) => strike,
                 _ => continue,
-            };            
+            };
             if !strike.contains(glyph_id) {
                 continue;
             }
@@ -183,14 +183,14 @@ impl<'a> BitmapStrikes<'a> {
             }
         }
         None
-    } 
-    
+    }
+
     /// Searches for a strike with the largest size that contains the specified
     /// glyph.
-    /// 
+    ///
     /// ## Iteration behavior
     /// This function searches the entire strike collection without regard
-    /// for the current state of the iterator.      
+    /// for the current state of the iterator.
     pub fn find_by_largest_ppem(&self, glyph_id: GlyphId) -> Option<BitmapStrike<'a>> {
         let mut largest = None;
         let mut largest_ppem = 0;
@@ -198,7 +198,7 @@ impl<'a> BitmapStrikes<'a> {
             let strike = match self.get(i) {
                 Some(strike) => strike,
                 _ => continue,
-            };            
+            };
             if !strike.contains(glyph_id) {
                 continue;
             }
@@ -209,7 +209,7 @@ impl<'a> BitmapStrikes<'a> {
             }
         }
         largest
-    } 
+    }
 }
 
 impl_iter!(BitmapStrikes, BitmapStrike);
@@ -242,7 +242,7 @@ impl<'a> BitmapStrike<'a> {
             return 32;
         }
         self.data.read_or_default::<u8>(self.offset + 46)
-    }    
+    }
 
     /// Returns the size of the strike in pixels per em.
     pub fn ppem(&self) -> u16 {
@@ -394,7 +394,7 @@ impl<'a> Bitmap<'a> {
         let w = self.width as usize;
         let h = self.height as usize;
         let src = self.data;
-        let dst = &mut target[..];
+        let dst = &mut *target;
         match self.format {
             BitmapFormat::Packed(bits) => match bits {
                 1 => {
@@ -425,7 +425,7 @@ impl<'a> Bitmap<'a> {
                                 dst[dst_idx] = (row[x >> 3] >> (!x & 7) & 1) * 255;
                                 dst_idx += 1;
                             }
-                        }                        
+                        }
                     }
                     2 => {
                         let mut dst_idx = 0;
@@ -434,7 +434,7 @@ impl<'a> Bitmap<'a> {
                                 dst[dst_idx] = (row[x >> 2] >> (!(x * 2) & 2) & 3) * 85;
                                 dst_idx += 1;
                             }
-                        }                        
+                        }
                     }
                     4 => {
                         let mut dst_idx = 0;
@@ -450,7 +450,7 @@ impl<'a> Bitmap<'a> {
                     }
                     _ => return false,
                 }
-            
+
             BitmapFormat::Color => {
                 dst.copy_from_slice(src);
             }
@@ -459,11 +459,11 @@ impl<'a> Bitmap<'a> {
                 scratch.clear();
                 if decode_png(src, scratch, target).is_none() {
                     return false;
-                }                
+                }
             }
         }
         true
-    }      
+    }
 }
 
 /// The location of a bitmap in the bitmap data table.
@@ -532,7 +532,7 @@ fn get_location(
         let y = d.read::<i16>(start + 2)?;
         let ppem = d.read::<u16>(strike_base)?;
         return Some(Location {
-            ppem: ppem,
+            ppem,
             id: glyph_id,
             bit_depth: 32,
             width: 0,
@@ -614,22 +614,23 @@ fn get_location(
                 let mut l = 0;
                 let mut h = d.read::<u32>(base)? as usize;
                 while l < h {
+                    use core::cmp::Ordering::*;
                     let i = (l + h) / 2;
                     let rec = base + i * 4;
                     let id = d.read::<u16>(rec)?;
-                    if glyph_id < id {
-                        h = i;
-                    } else if glyph_id > id {
-                        l = i + i;
-                    } else {
-                        let offset1 = d.read::<u16>(rec + 2)? as u32;
-                        let offset2 = d.read::<u16>(rec + 6)? as u32;
-                        if offset2 <= offset1 {
-                            return None;
+                    match glyph_id.cmp(&id) {
+                        Less => h = i,
+                        Greater => l = i + i,
+                        Equal => {
+                            let offset1 = d.read::<u16>(rec + 2)? as u32;
+                            let offset2 = d.read::<u16>(rec + 6)? as u32;
+                            if offset2 <= offset1 {
+                                return None;
+                            }
+                            loc.offset = image_offset + offset1;
+                            loc.size = offset2 - offset1;
+                            return Some(loc);
                         }
-                        loc.offset = image_offset + offset1;
-                        loc.size = offset2 - offset1;
-                        return Some(loc);
                     }
                 }
             }
@@ -667,14 +668,14 @@ fn get_data<'a>(table: &'a [u8], loc: &Location) -> Option<BitmapData<'a>> {
             bitmap.data = d.read_bytes(offset, size)?;
             bitmap.is_png = true;
             bitmap.is_sbix = true;
-            return Some(bitmap);
+            Some(bitmap)
         }
         1 => {
             bitmap.read_metrics(d, offset, flags, false)?;
             let w = (bitmap.width as usize * depth + 7) / 8;
             let h = bitmap.height as usize;
             bitmap.data = d.read_bytes(offset + 5, w * h)?;
-            return Some(bitmap);
+            Some(bitmap)
         }
         2 => {
             bitmap.read_metrics(d, offset, flags, false)?;
@@ -682,19 +683,19 @@ fn get_data<'a>(table: &'a [u8], loc: &Location) -> Option<BitmapData<'a>> {
             let h = bitmap.height as usize;
             bitmap.data = d.read_bytes(offset + 5, (w * h + 7) / 8)?;
             bitmap.is_packed = true;
-            return Some(bitmap);
+            Some(bitmap)
         }
         5 => {
             bitmap.data = d.read_bytes(offset, size)?;
             bitmap.is_packed = true;
-            return Some(bitmap);
+            Some(bitmap)
         }
         6 => {
             bitmap.read_metrics(d, offset, flags, true)?;
             let w = (bitmap.width as usize * depth + 7) / 8;
             let h = bitmap.height as usize;
             bitmap.data = d.read_bytes(offset + 8, w * h)?;
-            return Some(bitmap);
+            Some(bitmap)
         }
         7 => {
             bitmap.read_metrics(d, offset, flags, true)?;
@@ -702,29 +703,29 @@ fn get_data<'a>(table: &'a [u8], loc: &Location) -> Option<BitmapData<'a>> {
             let h = bitmap.height as usize;
             bitmap.data = d.read_bytes(offset + 8, (w * h + 7) / 8)?;
             bitmap.is_packed = true;
-            return Some(bitmap);
+            Some(bitmap)
         }
         17 => {
             bitmap.read_metrics(d, offset, flags, false)?;
             let size = d.read::<u32>(offset + 5)? as usize;
             bitmap.data = d.read_bytes(offset + 9, size)?;
             bitmap.is_png = true;
-            return Some(bitmap);
+            Some(bitmap)
         }
         18 => {
             bitmap.read_metrics(d, offset, flags, true)?;
             let size = d.read::<u32>(offset + 8)? as usize;
             bitmap.data = d.read_bytes(offset + 12, size)?;
             bitmap.is_png = true;
-            return Some(bitmap);
+            Some(bitmap)
         }
         19 => {
             let size = d.read::<u32>(offset)? as usize;
             bitmap.data = d.read_bytes(offset + 4, size)?;
             bitmap.is_png = true;
-            return Some(bitmap);
+            Some(bitmap)
         }
-        _ => return None,
+        _ => None,
     }
 }
 
@@ -735,7 +736,7 @@ fn sbix_range(
     recurse: i32,
 ) -> Option<(u32, u32)> {
     const DUPE: RawTag = raw_tag(b"dupe");
-    const PNG: RawTag = raw_tag(b"png ");   
+    const PNG: RawTag = raw_tag(b"png ");
     if recurse > 1 {
         return None;
     }

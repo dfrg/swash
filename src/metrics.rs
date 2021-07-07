@@ -36,8 +36,10 @@ pub struct MetricsProxy {
 impl MetricsProxy {
     /// Creates a metrics proxy for the specified font.
     pub fn from_font(font: &FontRef) -> Self {
-        let mut metadata = Self::default();
-        metadata.units_per_em = 1;
+        let mut metadata = Self {
+            units_per_em: 1,
+            ..Self::default()
+        };
         metadata.fill(font);
         metadata
     }
@@ -47,24 +49,25 @@ impl MetricsProxy {
     /// from the same font.
     pub fn materialize_metrics(&self, font: &FontRef, coords: &[NormalizedCoord]) -> Metrics {
         let data = font.data;
-        let mut m = Metrics::default();
-        m.units_per_em = self.units_per_em;
-        m.glyph_count = self.glyph_count;
-        m.is_monospace = self.is_monospace;
-        m.has_vertical_metrics = self.has_vertical_metrics;
-        m.ascent = self.ascent as f32;
-        m.descent = self.descent as f32;
-        m.leading = self.leading as f32;
-        m.vertical_ascent = self.vertical_ascent as f32;
-        m.vertical_descent = self.vertical_descent as f32;
-        m.vertical_leading = self.vertical_leading as f32;
-        m.cap_height = self.cap_height as f32;
-        m.x_height = self.x_height as f32;
-        m.average_width = self.average_width as f32;
-        m.max_width = self.max_width as f32;
-        m.underline_offset = self.underline_offset as f32;
-        m.strikeout_offset = self.strikeout_offset as f32;
-        m.stroke_size = self.stroke_size as f32;
+        let mut m = Metrics {
+            units_per_em: self.units_per_em,
+            glyph_count: self.glyph_count,
+            is_monospace: self.is_monospace,
+            has_vertical_metrics: self.has_vertical_metrics,
+            ascent: self.ascent as f32,
+            descent: self.descent as f32,
+            leading: self.leading as f32,
+            vertical_ascent: self.vertical_ascent as f32,
+            vertical_descent: self.vertical_descent as f32,
+            vertical_leading: self.vertical_leading as f32,
+            cap_height: self.cap_height as f32,
+            x_height: self.x_height as f32,
+            average_width: self.average_width as f32,
+            max_width: self.max_width as f32,
+            underline_offset: self.underline_offset as f32,
+            strikeout_offset: self.strikeout_offset as f32,
+            stroke_size: self.stroke_size as f32,
+        };
         if self.mvar != 0 && !coords.is_empty() {
             if let Some(v) = var::Mvar::new(data, self.mvar, coords) {
                 use var::mvar_tags::*;
@@ -97,23 +100,20 @@ impl MetricsProxy {
         let data = font.data;
         let mut vertical = self.vertical;
         if !coords.is_empty() {
-            match &mut vertical {
-                Vertical::Synthesized {
+            if let Vertical::Synthesized {
                     mvar,
                     advance,
                     origin,
-                } => {
-                    if *mvar != 0 {
-                        if let Some(v) = var::Mvar::new(data, *mvar, coords) {
-                            use var::mvar_tags::*;
-                            let ascent_delta = v.delta(HASC);
-                            let descent_delta = v.delta(HDSC);
-                            *advance += ascent_delta + descent_delta;
-                            *origin += ascent_delta;
-                        }
+                } = &mut vertical {
+                if *mvar != 0 {
+                    if let Some(v) = var::Mvar::new(data, *mvar, coords) {
+                        use var::mvar_tags::*;
+                        let ascent_delta = v.delta(HASC);
+                        let descent_delta = v.delta(HDSC);
+                        *advance += ascent_delta + descent_delta;
+                        *origin += ascent_delta;
                     }
                 }
-                _ => {}
             }
         }
         GlyphMetrics {
@@ -258,7 +258,7 @@ pub struct Metrics {
     pub vertical_descent: f32,
     /// Recommended additional spacing between columns.
     pub vertical_leading: f32,
-    /// Distance from the baseline to the top of a typical English capital.    
+    /// Distance from the baseline to the top of a typical English capital.
     pub cap_height: f32,
     /// Distance from the baseline to the top of the lowercase "x" or
     /// similar character.
@@ -350,10 +350,7 @@ impl<'a> GlyphMetrics<'a> {
 
     /// Returns true if the font provides canonical vertical glyph metrics.
     pub fn has_vertical_metrics(&self) -> bool {
-        match self.vertical {
-            Vertical::Synthesized { .. } => false,
-            _ => true,
-        }
+        !matches!(self.vertical, Vertical::Synthesized { .. })
     }
 
     /// Returns true if variations are supported.

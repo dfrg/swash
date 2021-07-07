@@ -37,6 +37,11 @@ impl<'a> FontDataRef<'a> {
         self.len
     }
 
+    /// Returns true if there are no available fonts.
+    pub fn is_empty(&self) -> bool {
+        self.len == 0
+    }
+
     /// Returns the font at the specified index.
     pub fn get(&self, index: usize) -> Option<FontRef<'a>> {
         FontRef::from_offset(self.data, raw_data::offset(self.data, index as u32)?)
@@ -52,7 +57,7 @@ impl<'a> FontDataRef<'a> {
 }
 
 /// Reference to a font.
-/// 
+///
 /// This struct encapsulates the data required to access font resources and
 /// uniquely identify the font in various caches. Font files can be organized
 /// into collections of multiple fonts, so along with a reference to the actual
@@ -61,10 +66,10 @@ impl<'a> FontDataRef<'a> {
 /// zero). Note that internal references in the font are stored relative to the
 /// base of the file, so the entire file must be kept in memory and it is an error
 /// to slice the data at the offset.
-/// 
+///
 /// # Getting started
-/// As a primer, let's write a function to read a font file, construct a font reference 
-/// and print the [`Attributes`](super::Attributes) and all of the associated 
+/// As a primer, let's write a function to read a font file, construct a font reference
+/// and print the [`Attributes`](super::Attributes) and all of the associated
 /// [`LocalizedString`](super::LocalizedString)s (including names, copyright information
 /// and other metadata).
 ///
@@ -87,10 +92,10 @@ impl<'a> FontDataRef<'a> {
 /// ```
 ///
 /// # Owning your fonts
-/// The [`FontRef`] struct is designed to be agnostic with regard to the font management 
+/// The [`FontRef`] struct is designed to be agnostic with regard to the font management
 /// policy of higher level crates and applications, and as such, contains borrowed
 /// data and is intended to be used as a transient resource. If you're using this
-/// library, you'll likely want to create your own type to represent a font. 
+/// library, you'll likely want to create your own type to represent a font.
 /// Regardless of the complexity of your management strategy, the basic pattern remains
 /// the same, so we'll build a simple `Font` struct here that can load fonts from a
 /// file using a basic `Vec<u8>` as a backing store.
@@ -124,7 +129,7 @@ impl<'a> FontDataRef<'a> {
 ///     pub fn attributes(&self) -> Attributes {
 ///         self.as_ref().attributes()
 ///     }
-/// 
+///
 ///     pub fn charmap(&self) -> Charmap {
 ///         self.as_ref().charmap()
 ///     }
@@ -148,7 +153,7 @@ impl<'a> FontDataRef<'a> {
 /// `Rc<Vec<u8>>` for a reference counted version or an `Arc<Vec<u8>>` for fonts
 /// that are shareable across threads. You may also consider memory mapping
 /// your font data, particularly for larger fonts (hello Apple Color Emoji!).
-/// 
+///
 #[derive(Copy, Clone)]
 pub struct FontRef<'a> {
     /// Full content of a file containing the font.
