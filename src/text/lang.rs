@@ -64,10 +64,9 @@ impl Language {
                             lang.language[1] = b;
                             lang.lang_len = 2;
                             let key = tag2(&[a, b]);
-                            match LANG_BY_TAG2.binary_search_by(|x| x.0.cmp(&key)) {
-                                Ok(index) => lang_index = (*LANG_BY_TAG2.get(index)?).1,
-                                _ => {}
-                            };
+                            if let Ok(index) = LANG_BY_TAG2.binary_search_by(|x| x.0.cmp(&key)) {
+                                lang_index = (*LANG_BY_TAG2.get(index)?).1
+                            }
                         }
                         3 => {
                             let a = bytes[0].to_ascii_lowercase();
@@ -79,10 +78,9 @@ impl Language {
                             lang.language[2] = c;
                             lang.lang_len = 3;
                             let key = tag3(&[a, b, c]);
-                            match LANG_BY_TAG3.binary_search_by(|x| x.0.cmp(&key)) {
-                                Ok(index) => lang_index = (*LANG_BY_TAG3.get(index)?).1 as u16,
-                                _ => {}
-                            };
+                            if let Ok(index) = LANG_BY_TAG3.binary_search_by(|x| x.0.cmp(&key)) {
+                                lang_index = (*LANG_BY_TAG3.get(index)?).1 as u16
+                            }
                         }
                         _ => return None,
                     };
@@ -148,8 +146,8 @@ impl Language {
         if tag == tag_from_bytes(b"ZHT ") {
             return Self::parse("zh-Hant");
         } else if tag == tag_from_bytes(b"ZHS ") {
-            return Self::parse("zh-Hans");            
-        }        
+            return Self::parse("zh-Hans");
+        }
         let name_index = match LANG_TAGS.binary_search_by(|x| x.cmp(&tag)) {
             Ok(index) => index,
             _ => return None,
@@ -178,20 +176,20 @@ impl Language {
         } else {
             return None;
         })
-    }   
+    }
 
     /// Returns the CJK language.
     pub fn cjk(&self) -> Cjk {
         self.cjk
     }
-    
+
     /// Returns the name of the language.
     pub fn name(&self) -> Option<&'static str> {
         LANG_ENTRIES.get(self.name_index as usize).map(|e| e.0)
     }
 
     /// Returns the associated OpenType language tag.
-    pub fn to_opentype(&self) -> Option<Tag> {
+    pub fn to_opentype(self) -> Option<Tag> {
         self.tag
     }
 }

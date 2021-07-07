@@ -15,7 +15,7 @@ pub struct ComplexState<I> {
     done: bool,
 }
 
-impl<I> ComplexState<I> 
+impl<I> ComplexState<I>
 where
     I: Iterator<Item = Token> + Clone
 {
@@ -38,7 +38,7 @@ where
                 done: true,
             }
         }
-    }    
+    }
 
     pub fn next(&mut self, cluster: &mut CharCluster) -> bool {
         if self.done {
@@ -46,7 +46,7 @@ where
         }
         Parser::new(self, cluster).parse();
         true
-    }    
+    }
 }
 
 struct Parser<'a, I> {
@@ -61,7 +61,7 @@ where
 {
     fn new(s: &'a mut ComplexState<I>, cluster: &'a mut CharCluster) -> Self {
         Self {
-            s, 
+            s,
             cluster,
             vt: false,
         }
@@ -108,10 +108,10 @@ where
                             },
                             Category::Control => ShapeClass::Control,
                             _ => ShapeClass::Base,
-                        };       
-                        self.accept_any_as(class)?; 
+                        };
+                        self.accept_any_as(class)?;
                     }
-                }                 
+                }
             }
             IND | Rsv | WJ => {
                 self.accept_any_as(ShapeClass::Base)?;
@@ -145,7 +145,7 @@ where
             }
         }
         None
-    }    
+    }
 
     fn parse_standard(&mut self, is_potential_symbol: bool) -> Option<()> {
         use UseClass::*;
@@ -192,7 +192,7 @@ where
         self.accept_zero_or_many(FPst)?;
         self.accept(FM)?;
         Some(())
-    }    
+    }
 
     fn parse_vowel_modifier(&mut self) -> Option<bool> {
         use UseClass::*;
@@ -215,7 +215,7 @@ where
             }
             _ => false,
         })
-    }    
+    }
 
     fn parse_halant_base(&mut self) -> Option<bool> {
         use UseClass::*;
@@ -251,7 +251,7 @@ where
             _ => {}
         }
         Some(false)
-    }   
+    }
 
     fn parse_halant_number(&mut self) -> Option<bool> {
         use UseClass::*;
@@ -291,21 +291,21 @@ where
                         _ => self.accept_any_as(ShapeClass::Mark)?,
                     }
                 }
-                ZWJ => {                    
+                ZWJ => {
                     self.accept_any_as(ShapeClass::Zwj)?;
-                    return Some(true);                    
+                    return Some(true);
                 }
                 _ => break,
             }
         }
         Some(false)
-    }    
+    }
 
     #[inline(always)]
     fn emoji(&self) -> bool {
         self.s.cur_emoji
     }
-    
+
     #[inline(always)]
     fn kind(&self) -> Kind {
         self.s.cur_kind
@@ -322,7 +322,7 @@ where
         } else {
             Some(false)
         }
-    }     
+    }
 
     fn accept_zero_or_many(&mut self, kind: Kind) -> Option<bool> {
         let mut some = false;
@@ -330,27 +330,27 @@ where
             some = true;
         }
         Some(some)
-    } 
-    
+    }
+
     fn accept_zero_or_many_as(&mut self, kind: Kind, as_class: ShapeClass) -> Option<bool> {
         let mut some = false;
         while self.accept_as(kind, as_class)? {
             some = true;
         }
         Some(some)
-    }     
+    }
 
     fn accept_any(&mut self) -> Option<()> {
         self.cluster.push(&self.s.cur, ShapeClass::Other);
         self.advance()?;
         Some(())
-    }     
-  
+    }
+
     fn accept_any_as(&mut self, as_class: ShapeClass) -> Option<()> {
         self.cluster.push(&self.s.cur, as_class);
         self.advance()?;
         Some(())
-    }    
+    }
 
     fn advance(&mut self) -> Option<()> {
         if self.cluster.len() as usize == MAX_CLUSTER_SIZE {
@@ -368,7 +368,7 @@ where
             self.s.done = true;
             None
         }
-    }       
+    }
 }
 
 #[derive(Clone)]
@@ -402,7 +402,7 @@ where
         if self.decomp_offset < self.decomp_len {
             let (input, class) = self.decomp[self.decomp_offset as usize];
             self.decomp_offset += 1;
-            return Some((input, class, false));
+            Some((input, class, false))
         } else {
             let input = self.iter.next()?;
             let (class, needs_decomp, emoji) = input.info.use_class();
@@ -446,7 +446,7 @@ where
                     _ => {}
                 }
             }
-            return Some((input, class, emoji));
+            Some((input, class, emoji))
         }
     }
 }

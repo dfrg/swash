@@ -119,13 +119,13 @@ impl ClusterInfo {
         self.0 |= 1;
     }
 
-    pub(super) fn set_emoji(&mut self, emoji: Emoji) {        
+    pub(super) fn set_emoji(&mut self, emoji: Emoji) {
         self.0 = self.0 & !(EMOJI_MASK << EMOJI_SHIFT) | (emoji as u16) << EMOJI_SHIFT;
     }
 
     pub(super) fn set_space(&mut self, space: Whitespace) {
         self.0 = self.0 & !(SPACE_MASK << SPACE_SHIFT) | (space as u16) << SPACE_SHIFT;
-    }    
+    }
 
     #[inline]
     pub(super) fn set_space_from_char(&mut self, ch: char) {
@@ -135,7 +135,7 @@ impl ClusterInfo {
             '\t' => self.set_space(Whitespace::Tab),
             _ => {}
         }
-    }    
+    }
 
     pub(super) fn merge_boundary(&mut self, boundary: u16) {
         let bits = (self.0 >> BOUND_SHIFT).max(boundary) << BOUND_SHIFT;
@@ -218,10 +218,7 @@ pub enum Whitespace {
 impl Whitespace {
     /// Returns true for space or no break space.
     pub fn is_space_or_nbsp(self) -> bool {
-        match self {
-            Self::Space | Self::NoBreakSpace => true,
-            _ => false,
-        }
+        matches!(self, Self::Space | Self::NoBreakSpace)
     }
 
     #[inline]

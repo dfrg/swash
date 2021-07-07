@@ -48,15 +48,10 @@ where
     #[inline]
     pub fn next(&mut self, cluster: &mut CharCluster) -> bool {
         cluster.clear();
-        if match &mut self.inner {
-            &mut Inner::Simple(ref mut c) => c.next(cluster),
-            &mut Inner::Myanmar(ref mut c) => c.next(cluster),
-            &mut Inner::Complex(ref mut c) => c.next(cluster),
-        } {
-            true
-        } else {
-            false
+        match self.inner {
+            Inner::Simple(ref mut c) => c.next(cluster),
+            Inner::Myanmar(ref mut c) => c.next(cluster),
+            Inner::Complex(ref mut c) => c.next(cluster),
         }
     }
 }
-
