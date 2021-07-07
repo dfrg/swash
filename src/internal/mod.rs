@@ -56,7 +56,7 @@ pub mod raw_data {
             0
         }
     }
-    
+
     /// Returns the byte offset for the font at the specified index in the data.
     pub fn offset(data: &[u8], index: u32) -> Option<u32> {
         if index >= count(data) {
@@ -104,20 +104,21 @@ pub trait RawFont<'a>: Sized {
         let mut l = 0;
         let mut h = len;
         while l < h {
+            use core::cmp::Ordering::*;
             let i = (l + h) / 2;
             let recbase = reclen.checked_mul(i)?.checked_add(record_base)?;
             let mut s = b.stream_at(recbase)?;
             let table_tag = s.read_u32()?;
-            if tag < table_tag {
-                h = i;
-            } else if tag > table_tag {
-                l = i + 1;
-            } else {
-                s.skip(4)?;
-                let start = s.read_u32()?;
-                let len = s.read_u32()?;
-                let end = start.checked_add(len)?;
-                return Some((start, end));
+            match tag.cmp(&table_tag) {
+                Less => h = i,
+                Greater => l = i + 1,
+                Equal => {
+                    s.skip(4)?;
+                    let start = s.read_u32()?;
+                    let len = s.read_u32()?;
+                    let end = start.checked_add(len)?;
+                    return Some((start, end));
+                }
             }
         }
         None

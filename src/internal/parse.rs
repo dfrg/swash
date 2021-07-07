@@ -20,7 +20,7 @@ impl<'a> Bytes<'a> {
     /// Creates a new bytes instance with the specified range of data.
     pub fn with_range(data: &'a [u8], range: Range<usize>) -> Option<Self> {
         Some(Self(data.get(range)?))
-    }    
+    }
 
     /// Returns the underlying data.
     pub fn data(&self) -> &'a [u8] {
@@ -49,43 +49,43 @@ impl<'a> Bytes<'a> {
         }
     }
 
-    /// Reads a value of the specified type at some offset. 
+    /// Reads a value of the specified type at some offset.
     #[inline(always)]
     pub fn read<T: FromBeData>(&self, offset: usize) -> Option<T> {
         T::from_be_data(self.0, offset)
     }
 
-    /// Reads a u8 value at some offset. 
+    /// Reads a u8 value at some offset.
     #[inline(always)]
     pub fn read_u8(&self, offset: usize) -> Option<u8> {
         u8::from_be_data(self.0, offset)
-    }   
-    
-    /// Reads a u16 value at some offset. 
+    }
+
+    /// Reads a u16 value at some offset.
     #[inline(always)]
     pub fn read_u16(&self, offset: usize) -> Option<u16> {
         u16::from_be_data(self.0, offset)
-    }     
+    }
 
-    /// Reads a u32 value at some offset. 
+    /// Reads a u32 value at some offset.
     #[inline(always)]
     pub fn read_u32(&self, offset: usize) -> Option<u32> {
         u32::from_be_data(self.0, offset)
-    }  
-    
-    /// Reads an i8 value at some offset. 
+    }
+
+    /// Reads an i8 value at some offset.
     #[inline(always)]
     pub fn read_i8(&self, offset: usize) -> Option<i8> {
         i8::from_be_data(self.0, offset)
-    }   
-    
-    /// Reads an i16 value at some offset. 
+    }
+
+    /// Reads an i16 value at some offset.
     #[inline(always)]
     pub fn read_i16(&self, offset: usize) -> Option<i16> {
         i16::from_be_data(self.0, offset)
-    }     
+    }
 
-    /// Reads a value of the specified type at some offset, or returns the 
+    /// Reads a value of the specified type at some offset, or returns the
     /// default value on bounds check failure.
     pub fn read_or_default<T: FromBeData + Default>(&self, offset: usize) -> T {
         T::from_be_data(self.0, offset).unwrap_or_default()
@@ -186,8 +186,8 @@ impl<'a> Stream<'a> {
     /// Returns true if the specified number of bytes can be read.
     pub fn check_range(&self, len: usize) -> bool {
         self.data.len() - self.offset >= len
-    }   
-    
+    }
+
     /// Returns an error of the specified number of bytes cannot be read.
     pub fn ensure_range(&self, len: usize) -> Option<()> {
         if self.check_range(len) {
@@ -195,7 +195,7 @@ impl<'a> Stream<'a> {
         } else {
             None
         }
-    }     
+    }
 
     /// Skips the specified number of bytes.
     pub fn skip(&mut self, bytes: usize) -> Option<()> {
@@ -213,37 +213,37 @@ impl<'a> Stream<'a> {
         }
     }
 
-    /// Reads a u8 value and advances the offset. 
+    /// Reads a u8 value and advances the offset.
     #[inline(always)]
     pub fn read_u8(&mut self) -> Option<u8> {
         self.read::<u8>()
-    }   
-    
-    /// Reads a u16 value and advances the offset. 
+    }
+
+    /// Reads a u16 value and advances the offset.
     #[inline(always)]
     pub fn read_u16(&mut self) -> Option<u16> {
         self.read::<u16>()
-    }     
+    }
 
-    /// Reads a u32 value and advances the offset. 
+    /// Reads a u32 value and advances the offset.
     #[inline(always)]
     pub fn read_u32(&mut self) -> Option<u32> {
         self.read::<u32>()
-    }  
-    
-    /// Reads an i8 value and advances the offset. 
+    }
+
+    /// Reads an i8 value and advances the offset.
     #[inline(always)]
     pub fn read_i8(&mut self) -> Option<i8> {
         self.read::<i8>()
-    }   
-    
+    }
+
     /// Reads an i16 value and advances the offset.
     #[inline(always)]
     pub fn read_i16(&mut self) -> Option<i16> {
         self.read::<i16>()
-    }    
+    }
 
-    /// Reads an array of values of the specified type and length and 
+    /// Reads an array of values of the specified type and length and
     /// advances the offset.
     pub fn read_array<T: FromBeData>(&mut self, len: usize) -> Option<Array<'a, T>> {
         let len = len * T::SIZE;
@@ -330,7 +330,7 @@ impl<'a, T: FromBeData> Array<'a, T> {
     /// Performs a binary search over the array using the specified comparator
     /// function. Returns the index and value of the element on success, or
     /// `None` if a match was not found.
-    pub fn binary_search_by<F>(&self, mut f: F) -> Option<(usize, T)> 
+    pub fn binary_search_by<F>(&self, mut f: F) -> Option<(usize, T)>
         where F: FnMut(&T) -> core::cmp::Ordering
     {
         // Taken from Rust core library.
@@ -438,7 +438,7 @@ impl FromBeData for u16 {
     #[inline(always)]
     unsafe fn from_be_data_unchecked(buf: &[u8], offset: usize) -> Self {
         if USE_UNALIGNED_READS_LE {
-            (*(buf.as_ptr().offset(offset as isize) as *const u16)).swap_bytes()
+            (*(buf.as_ptr().add(offset) as *const u16)).swap_bytes()
         } else {
             (*buf.get_unchecked(offset) as u16) << 8 | *buf.get_unchecked(offset + 1) as u16
         }
@@ -454,7 +454,7 @@ impl FromBeData for i16 {
 impl FromBeData for u32 {
     unsafe fn from_be_data_unchecked(buf: &[u8], offset: usize) -> Self {
         if USE_UNALIGNED_READS_LE {
-            (*(buf.as_ptr().offset(offset as isize) as *const u32)).swap_bytes()
+            (*(buf.as_ptr().add(offset) as *const u32)).swap_bytes()
         } else {
             (*buf.get_unchecked(offset) as u32) << 24
                 | (*buf.get_unchecked(offset + 1) as u32) << 16
@@ -473,7 +473,7 @@ impl FromBeData for i32 {
 impl FromBeData for u64 {
     unsafe fn from_be_data_unchecked(buf: &[u8], offset: usize) -> Self {
         if USE_UNALIGNED_READS_LE {
-            (*(buf.as_ptr().offset(offset as isize) as *const u64)).swap_bytes()
+            (*(buf.as_ptr().add(offset) as *const u64)).swap_bytes()
         } else {
             (*buf.get_unchecked(offset) as u64) << 56
                 | (*buf.get_unchecked(offset + 1) as u64) << 48
@@ -506,6 +506,5 @@ impl FromBeData for U24 {
 
 impl FromBeData for () {
     unsafe fn from_be_data_unchecked(_buf: &[u8], _offset: usize) -> Self {
-        ()
     }
 }

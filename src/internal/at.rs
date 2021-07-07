@@ -230,7 +230,7 @@ pub struct FeatureSubsts(u32);
 
 impl FeatureSubsts {
     pub fn new(b: &Bytes, offset: u32, coords: &[i16]) -> Option<Self> {
-        if offset == 0 || coords.len() == 0 {
+        if offset == 0 || coords.is_empty() {
             return None;
         }
         let base = offset as usize;
@@ -275,15 +275,14 @@ impl FeatureSubsts {
         let mut l = 0;
         let mut h = count;
         while l < h {
+            use core::cmp::Ordering::*;
             let i = (l + h) / 2;
             let rec = base + i * 6;
             let idx = b.read::<u16>(rec)?;
-            if index < idx {
-                h = i;
-            } else if index > idx {
-                l = i + 1;
-            } else {
-                return Some((self.0 + b.read::<u32>(rec + 2)?) as usize);
+            match index.cmp(&idx) {
+                Less => h = i,
+                Greater => l = i + 1,
+                Equal => return Some((self.0 + b.read::<u32>(rec + 2)?) as usize),
             }
         }
         None
@@ -323,15 +322,14 @@ pub fn script_by_tag(b: &Bytes, gsubgpos_offset: u32, script: RawTag) -> Option<
     let mut l = 0;
     let mut h = b.read::<u16>(sbase)? as usize;
     while l < h {
+        use core::cmp::Ordering::*;
         let i = l + (h - l) / 2;
         let rec = sbase + 2 + i * 6;
         let t = b.read::<u32>(rec)?;
-        if script < t {
-            h = i;
-        } else if script > t {
-            l = i + 1;
-        } else {
-            return Some(sbase as u32 + b.read::<u16>(rec + 4)? as u32);
+        match script.cmp(&t) {
+            Less => h = i,
+            Greater => l = i + 1,
+            Equal => return Some(sbase as u32 + b.read::<u16>(rec + 4)? as u32),
         }
     }
     None
@@ -392,19 +390,20 @@ pub fn script_language_by_tag(
         let mut l = 0;
         let mut h = b.read::<u16>(base + 2)? as usize;
         while l < h {
+            use core::cmp::Ordering::*;
             let i = (l + h) / 2;
             let rec = base + 4 + i * 6;
             let t = b.read::<u32>(rec)?;
-            if lang < t {
-                h = i;
-            } else if lang > t {
-                l = i + 1;
-            } else {
-                let lang_offset = b.read::<u16>(rec + 4)? as usize;
-                if lang_offset == 0 {
-                    return None;
+            match lang.cmp(&t) {
+                Less => h = i,
+                Greater => l = i + 1,
+                Equal => {
+                    let lang_offset = b.read::<u16>(rec + 4)? as usize;
+                    if lang_offset == 0 {
+                        return None;
+                    }
+                    return Some((script_offset + lang_offset as u32, false));
                 }
-                return Some((script_offset + lang_offset as u32, false));
             }
         }
     }
@@ -412,7 +411,7 @@ pub fn script_language_by_tag(
     if default == 0 {
         return None;
     }
-    return Some(((base + default) as u32, true));
+    Some(((base + default) as u32, true))
 }
 
 pub fn language_or_default_by_tags(
@@ -648,11 +647,7 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData {
-                kind,
-                offset,
-                coverage,
-            })
+            Some(SubtableData { offset, kind, coverage })
         }
         MultiSub => {
             let kind = match fmt {
@@ -660,11 +655,7 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData {
-                kind,
-                offset,
-                coverage,
-            })
+            Some(SubtableData { offset, kind, coverage })
         }
         AltSub => {
             let kind = match fmt {
@@ -672,11 +663,7 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData {
-                kind,
-                offset,
-                coverage,
-            })
+            Some(SubtableData { offset, kind, coverage })
         }
         LigSub => {
             let kind = match fmt {
@@ -684,11 +671,7 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData {
-                kind,
-                offset,
-                coverage,
-            })
+            Some(SubtableData { offset, kind, coverage })
         }
         SingleAdj => {
             let kind = match fmt {
@@ -697,11 +680,7 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData {
-                kind,
-                offset,
-                coverage,
-            })
+            Some(SubtableData { offset, kind, coverage })
         }
         PairAdj => {
             let kind = match fmt {
@@ -710,11 +689,7 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData {
-                kind,
-                offset,
-                coverage,
-            })
+            Some(SubtableData { offset, kind, coverage })
         }
         Cursive => {
             let kind = match fmt {
@@ -722,11 +697,7 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData {
-                kind,
-                offset,
-                coverage,
-            })
+            Some(SubtableData { offset, kind, coverage })
         }
         MarkToBase => {
             let kind = match fmt {
@@ -734,11 +705,7 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData {
-                kind,
-                offset,
-                coverage,
-            })
+            Some(SubtableData { offset, kind, coverage })
         }
         MarkToLig => {
             let kind = match fmt {
@@ -746,11 +713,7 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData {
-                kind,
-                offset,
-                coverage,
-            })
+            Some(SubtableData { offset, kind, coverage })
         }
         MarkToMark => {
             let kind = match fmt {
@@ -758,11 +721,7 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData {
-                kind,
-                offset,
-                coverage,
-            })
+            Some(SubtableData { offset, kind, coverage })
         }
         Context => match fmt {
             1 | 2 => {
@@ -772,11 +731,7 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                     SubtableKind::Context2
                 };
                 let coverage = cov(b, base, 2)?;
-                Some(SubtableData {
-                    kind,
-                    offset,
-                    coverage,
-                })
+                Some(SubtableData { offset, kind, coverage })
             }
             3 => {
                 let coverage = cov(b, base, 6)?;
@@ -786,7 +741,7 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                     coverage,
                 })
             }
-            _ => return None,
+            _ => None,
         },
         ChainContext => match fmt {
             1 | 2 => {
@@ -796,11 +751,7 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                     SubtableKind::ChainContext2
                 };
                 let coverage = cov(b, base, 2)?;
-                Some(SubtableData {
-                    kind,
-                    offset,
-                    coverage,
-                })
+                Some(SubtableData { offset, kind, coverage })
             }
             3 => {
                 let backtrack_len = b.read::<u16>(base + 2)? as usize * 2;
@@ -815,7 +766,7 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                     coverage,
                 })
             }
-            _ => return None,
+            _ => None,
         },
         RevChainContext => {
             let kind = match fmt {
@@ -823,11 +774,7 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData {
-                kind,
-                offset,
-                coverage,
-            })            
+            Some(SubtableData { offset, kind, coverage })
         }
     }
 }
@@ -868,14 +815,13 @@ pub unsafe fn fast_coverage(b: &Bytes, coverage_offset: u32, glyph_id: u16) -> O
         let mut l = 0;
         let mut h = len;
         while l < h {
+            use core::cmp::Ordering::*;
             let i = (l + h) / 2;
             let g = b.read_unchecked::<u16>(arr + i * 2);
-            if glyph_id < g {
-                h = i;
-            } else if glyph_id > g {
-                l = i + 1;
-            } else {
-                return Some(i as u16);
+            match glyph_id.cmp(&g) {
+                Less => h = i,
+                Greater => l = i + 1,
+                Equal => return Some(i as u16),
             }
         }
     } else if fmt == 2 {
@@ -913,14 +859,13 @@ pub fn coverage(b: &Bytes, coverage_offset: u32, glyph_id: u16) -> Option<u16> {
         let mut l = 0;
         let mut h = len;
         while l < h {
+            use core::cmp::Ordering::*;
             let i = (l + h) / 2;
             let g = unsafe { b.read_unchecked::<u16>(arr + i * 2) };
-            if glyph_id < g {
-                h = i;
-            } else if glyph_id > g {
-                l = i + 1;
-            } else {
-                return Some(i as u16);
+            match glyph_id.cmp(&g) {
+                Less => h = i,
+                Greater => l = i + 1,
+                Equal => return Some(i as u16),
             }
         }
     } else if fmt == 2 {

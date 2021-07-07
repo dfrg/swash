@@ -26,9 +26,7 @@ pub fn subtable<'a>(font: impl RawFont<'a>) -> Option<(u32, u8, bool)> {
         let offset = cmap.checked_add(offset)?;
         if is_symbol(platform, encoding) {
             return Some((offset, format, true));
-        } else if format == 12 && is_unicode(platform, encoding) {
-            best = Some((offset, format, false));
-        } else if best.is_none() && is_unicode(platform, encoding) {
+        } else if (format == 12 && is_unicode(platform, encoding)) || (best.is_none() && is_unicode(platform, encoding)) {
             best = Some((offset, format, false));
         }
     }
@@ -188,12 +186,7 @@ pub fn enumerate(data: &[u8], subtable: u32, mut f: impl FnMut(u32, u16)) {
 }
 
 fn is_unicode(platform: u16, encoding: u16) -> bool {
-    match (platform, encoding) {
-        (0, _) => true,
-        (3, 1) => true,
-        (3, 10) => true,
-        _ => false,
-    }
+    matches!((platform, encoding), (0, _) | (3, 1) | (3, 10))
 }
 
 fn is_symbol(platform: u16, encoding: u16) -> bool {
