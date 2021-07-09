@@ -52,7 +52,7 @@ impl CharCluster {
     /// Returns the primary user data for the cluster.
     pub fn user_data(&self) -> UserData {
         self.chars[0].data
-    }    
+    }
 
     /// Returns the source range for the cluster in code units.
     pub fn range(&self) -> SourceRange {
@@ -91,15 +91,13 @@ impl CharCluster {
         let mut glyph_ids = [0u16; MAX_CLUSTER_SIZE];
         let prev_ratio = self.best_ratio;
         let mut ratio;
-        if self.force_normalize {
-            if self.composed().is_some() {
-                ratio = self.comp.map(&f, &mut glyph_ids, self.best_ratio);
-                if ratio > self.best_ratio {
-                    self.best_ratio = ratio;
-                    self.form = FormKind::NFC;
-                    if ratio >= 1. {
-                        return Status::Complete;
-                    }
+        if self.force_normalize && self.composed().is_some() {
+            ratio = self.comp.map(&f, &mut glyph_ids, self.best_ratio);
+            if ratio > self.best_ratio {
+                self.best_ratio = ratio;
+                self.form = FormKind::NFC;
+                if ratio >= 1. {
+                    return Status::Complete;
                 }
             }
         }
@@ -115,24 +113,22 @@ impl CharCluster {
                 return Status::Complete;
             }
         }
-        if len > 1 {
-            if self.decomposed().is_some() {
-                ratio = self.decomp.map(&f, &mut glyph_ids, self.best_ratio);
+        if len > 1 && self.decomposed().is_some() {
+            ratio = self.decomp.map(&f, &mut glyph_ids, self.best_ratio);
+            if ratio > self.best_ratio {
+                self.best_ratio = ratio;
+                self.form = FormKind::NFD;
+                if ratio >= 1. {
+                    return Status::Complete;
+                }
+            }
+            if !self.force_normalize && self.composed().is_some() {
+                ratio = self.comp.map(&f, &mut glyph_ids, self.best_ratio);
                 if ratio > self.best_ratio {
                     self.best_ratio = ratio;
-                    self.form = FormKind::NFD;
+                    self.form = FormKind::NFC;
                     if ratio >= 1. {
                         return Status::Complete;
-                    }
-                }
-                if !self.force_normalize && self.composed().is_some() {
-                    ratio = self.comp.map(&f, &mut glyph_ids, self.best_ratio);
-                    if ratio > self.best_ratio {
-                        self.best_ratio = ratio;
-                        self.form = FormKind::NFC;
-                        if ratio >= 1. {
-                            return Status::Complete;
-                        }
                     }
                 }
             }
@@ -222,6 +218,12 @@ impl CharCluster {
     }
 }
 
+impl Default for CharCluster {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 /// Functions for cluster building.
 impl CharCluster {
     pub(super) fn info_mut(&mut self) -> &mut ClusterInfo {
@@ -267,7 +269,7 @@ impl CharCluster {
         }
         self.info.merge_boundary(input.info.boundary() as u16);
         self.end = input.offset + input.len as u32;
-    }    
+    }
 }
 
 /// Iterative status of mapping a character cluster to nominal glyph identifiers.
@@ -314,6 +316,7 @@ impl fmt::Display for SourceRange {
 }
 
 #[derive(Copy, Clone, PartialEq, Eq)]
+#[allow(clippy::upper_case_acronyms)]
 enum FormKind {
     Original,
     NFD,

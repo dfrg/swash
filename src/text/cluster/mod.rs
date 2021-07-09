@@ -8,6 +8,7 @@ may produce shaping clusters that contain multiple graphemes.
 */
 
 mod char;
+#[allow(clippy::module_inception)]
 mod cluster;
 mod complex;
 mod info;

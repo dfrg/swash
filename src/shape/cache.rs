@@ -87,10 +87,8 @@ impl FeatureCache {
         let mut lowest_index = 0;
         for (i, entry) in self.entries.iter().enumerate() {
             if entry.id == id && &entry.tags == tags {
-                if has_feature_vars {
-                    if coords != &entry.coords[..] {
-                        continue;
-                    }
+                if has_feature_vars && coords != &entry.coords[..] {
+                    continue;
                 }
                 return (true, i);
             }

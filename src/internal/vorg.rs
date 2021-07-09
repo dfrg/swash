@@ -16,15 +16,14 @@ pub fn origin(data: &[u8], vorg: u32, glyph_id: u16) -> Option<i16> {
     let mut l = 0;
     let mut h = count;
     while l < h {
+        use std::cmp::Ordering::*;
         let i = (l + h) / 2;
         let rec = base + 8 + i * 4;
         let g = b.read::<u16>(rec)?;
-        if glyph_id < g {
-            h = i;
-        } else if glyph_id > g {
-            l = i + 1;
-        } else {
-            return b.read::<i16>(rec + 2);
+        match glyph_id.cmp(&g) {
+            Less => h = i,
+            Greater => l = i + 1,
+            Equal => return b.read::<i16>(rec + 2),
         }
     }
     Some(default)

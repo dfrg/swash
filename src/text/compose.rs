@@ -102,16 +102,16 @@ const SCOUNT: u32 = LCOUNT * NCOUNT;
 
 fn is_hangul(c: char) -> bool {
     let c = c as u32;
-    c >= SBASE && c < (SBASE + SCOUNT)
+    (SBASE..(SBASE + SCOUNT)).contains(&c)
 }
 
 fn compose_hangul(a: char, b: char) -> Option<char> {
     let a = a as u32;
     let b = b as u32;
-    if b < VBASE || b >= (TBASE + TCOUNT) {
+    if !(VBASE..(TBASE + TCOUNT)).contains(&b) {
         return None;
     }
-    if (a < LBASE || a >= (LBASE + LCOUNT)) && (a < SBASE || a >= (SBASE + SCOUNT)) {
+    if !(LBASE..(LBASE + LCOUNT)).contains(&a) && !(SBASE..(SBASE + SCOUNT)).contains(&a) {
         return None;
     }
     if a >= SBASE {

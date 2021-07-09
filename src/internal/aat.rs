@@ -67,15 +67,14 @@ pub fn lookup<T: FromBeData>(data: &Bytes, offset: usize, id: u16) -> Option<T> 
             let mut l = 0;
             let mut h = nrecs;
             while l < h {
+                use core::cmp::Ordering::*;
                 let i = (l + h) / 2;
                 let rec = base + i * reclen;
                 let glyph = data.read::<u16>(rec)?;
-                if id > glyph {
-                    l = i + 1;
-                } else if id < glyph {
-                    h = i;
-                } else {
-                    return data.read::<T>(rec + 2);
+                match id.cmp(&glyph) {
+                    Greater => l = i + 1,
+                    Less => h = i,
+                    Equal => return data.read::<T>(rec + 2),
                 }
             }
         }
@@ -194,7 +193,7 @@ impl <'a> StateTable<'a> {
         } else {
             1
         }
-    }    
+    }
 
     /// Returns the entry for the specified state and class.
     pub fn entry<T: FromBeData>(&self, state: u16, class: u16) -> Option<Entry<T>> {
@@ -206,7 +205,7 @@ impl <'a> StateTable<'a> {
         let new_state = (entry.new_state as u32).checked_sub(self.state_array)? / self.class_count as u32;
         entry.new_state = new_state as u16;
         Some(entry)
-    }    
+    }
 }
 
 /// Entry in a state table.
@@ -239,7 +238,7 @@ pub mod morx {
     /// Returns an iterator over the chains in a `morx` table at the
     /// specified offset.
     pub fn chains<'a>(data: &'a [u8], offset: u32) -> Chains<'a> {
-        let data = Bytes::with_offset(data, offset as usize).unwrap_or(Bytes::new(&[]));
+        let data = Bytes::with_offset(data, offset as usize).unwrap_or_else(|| Bytes::new(&[]));
         let len = data.read_u32(4).unwrap_or(0);
         Chains {
             data,
@@ -584,28 +583,14 @@ pub mod morx {
             let start = self.start;
             let end = (self.end + 1).min(buffer.len());
             let mut tmp = [T::default(); 4];
-            if end - start >= usize::from(l + r) {
-                for i in 0..l {
-                    tmp[i] = buffer[start + i];
+            if end - start >= l + r {
+                tmp[..l].copy_from_slice(&buffer[start..(start + l)]);
+                tmp[2..(2 + r)].copy_from_slice(&buffer[(end - r)..end]);
+                if l != r {
+                    buffer.copy_within((start + l)..(end - r), start + r);
                 }
-                for i in 0..r {
-                    tmp[i + 2] = buffer[end - r + i];
-                }
-                if l > r {
-                    for i in 0..(end - start - l - r) {
-                        buffer[start + r + i] = buffer[start + l + i];
-                    }
-                } else if l < r {
-                    for i in (0..(end - start - l - r)).rev() {
-                        buffer[start + r + i] = buffer[start + l + i];
-                    }
-                }
-                for i in 0..r {
-                    buffer[start + i] = tmp[2 + i];
-                }
-                for i in 0..l {
-                    buffer[end - l + i] = tmp[i];
-                }
+                buffer[start..(r + start)].copy_from_slice(&tmp[2..(r + 2)]);
+                buffer[(end - l)..end].copy_from_slice(&tmp[..l]);
                 if reverse_l {
                     buffer.swap(end - 1, end - 2);
                 }
@@ -840,7 +825,7 @@ pub mod morx {
             *self.indices.get_mut(self.pos)? = index;
             *self.glyphs.get_mut(self.pos)? = glyph_id;
             self.pos += 1;
-            return Some(());
+            Some(())
         }
     }
 
@@ -1108,7 +1093,7 @@ pub mod kerx {
         let b = if kerx == 0 {
             Bytes::new(&[])
         } else {
-            Bytes::with_offset(data, kerx as usize).unwrap_or(Bytes::new(&[]))
+            Bytes::with_offset(data, kerx as usize).unwrap_or_else(|| Bytes::new(&[]))
         };
         let ankr = if ankr == 0 {
             &[]
@@ -1149,7 +1134,7 @@ pub mod kerx {
             let offset = self.offset;
             let subtable = Subtable::new(&self.data, offset, self.version, self.ankr)?;
             self.offset = self.offset.checked_add(subtable.size as usize)?;
-            return Some(subtable);
+            Some(subtable)
         }
     }
 
@@ -1244,14 +1229,13 @@ pub mod kerx {
             let mut l = 0;
             let mut h = self.count;
             while l < h {
+                use core::cmp::Ordering::*;
                 let i = (l + h) / 2;
                 let pair = b.read::<u32>(base + i * reclen)?;
-                if key > pair {
-                    l = i + 1;
-                } else if key < pair {
-                    h = i;
-                } else {
-                    return b.read_i16(base + i * reclen + 4);
+                match key.cmp(&pair) {
+                    Greater => l = i + 1,
+                    Less => h = i,
+                    Equal => return b.read_i16(base + i * reclen + 4),
                 }
             }
             None
@@ -1467,11 +1451,11 @@ pub mod kerx {
         pub fn new() -> Self {
             Self::default()
         }
-    }    
+    }
 
     /// Returns the set of anchor points for the specified glyph.
     pub fn anchor_points<'a>(data: &'a [u8], glyph_id: u16) -> Option<AnchorPoints<'a>> {
-        if data.len() == 0 {
+        if data.is_empty() {
             return None;
         }
         let b = Bytes::new(data);
@@ -1517,7 +1501,7 @@ pub mod kern {
         let b = if kern == 0 {
             Bytes::new(&[])
         } else {
-            Bytes::with_offset(data, kern as usize).unwrap_or(Bytes::new(&[]))
+            Bytes::with_offset(data, kern as usize).unwrap_or_else(|| Bytes::new(&[]))
         };
         let version = b.read_or_default::<u16>(0);
         if version == 0 {
@@ -1537,7 +1521,7 @@ pub mod kern {
                 len,
                 cur: 0,
                 is_aat: true,
-            }            
+            }
         }
     }
 
@@ -1546,13 +1530,13 @@ pub mod kern {
         data: Bytes<'a>,
         offset: usize,
         len: u32,
-        cur: u32,        
+        cur: u32,
         is_aat: bool,
     }
 
     impl<'a> Iterator for Subtables<'a> {
         type Item = Subtable<'a>;
-        
+
         fn next(&mut self) -> Option<Self::Item> {
             if self.cur >= self.len {
                 return None;
@@ -1561,7 +1545,7 @@ pub mod kern {
             let offset = self.offset;
             let subtable = Subtable::new(&self.data, offset, self.is_aat)?;
             self.offset = self.offset.checked_add(subtable.size as usize)?;
-            return Some(subtable);
+            Some(subtable)
         }
     }
 
@@ -1576,7 +1560,7 @@ pub mod kern {
         is_horizontal: bool,
         cross_stream: bool,
         format: u8,
-    }    
+    }
 
     impl<'a> Subtable<'a> {
         fn new(data: &Bytes<'a>, mut offset: usize, is_aat: bool) -> Option<Self> {
@@ -1611,8 +1595,8 @@ pub mod kern {
                 cross_stream,
                 format,
             })
-        }    
-        
+        }
+
         pub fn is_horizontal(&self) -> bool {
             self.is_horizontal
         }
@@ -1644,7 +1628,7 @@ pub mod kern {
     }
 
     impl<'a> Format0<'a> {
-        fn new(subtable: &Subtable<'a>) -> Option<Self> {            
+        fn new(subtable: &Subtable<'a>) -> Option<Self> {
             let count = subtable.data.read_u16(subtable.offset)? as usize;
             Some(Self {
                 data: subtable.data,
@@ -1662,19 +1646,18 @@ pub mod kern {
             let mut l = 0;
             let mut h = self.count;
             while l < h {
+                use core::cmp::Ordering::*;
                 let i = (l + h) / 2;
                 let pair = b.read::<u32>(base + i * reclen)?;
-                if key > pair {
-                    l = i + 1;
-                } else if key < pair {
-                    h = i;
-                } else {
-                    return b.read_i16(base + i * reclen + 4);
+                match key.cmp(&pair) {
+                    Greater => l = i + 1,
+                    Less => h = i,
+                    Equal => return b.read_i16(base + i * reclen + 4),
                 }
             }
             None
         }
-    }    
+    }
 
     /// Contextual kerning subtable.
     #[derive(Copy, Clone)]
@@ -1729,7 +1712,7 @@ pub mod kern {
                     let pos = state.pos - 1;
                     state.pos = pos;
                     if self.cross_stream && value as u16 == 0x8000 {
-                        // Reset cross stream?                        
+                        // Reset cross stream?
                     } else {
                         f(state.stack[pos], value)?;
                     }
@@ -1737,7 +1720,7 @@ pub mod kern {
                         state.pos = 0;
                         break;
                     }
-                    value_offset = value_offset + 2;
+                    value_offset += 2;
                 }
             }
             let advance = entry.flags & DONT_ADVANCE == 0;

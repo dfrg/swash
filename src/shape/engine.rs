@@ -41,7 +41,7 @@ impl<'a> Engine<'a> {
         lang: Option<Language>,
     ) -> Self {
         let data = Bytes::new(font_data);
-        let gdef = Gdef::from_offset(font_data, metadata.gdef).unwrap_or_else(|| Gdef::empty());
+        let gdef = Gdef::from_offset(font_data, metadata.gdef).unwrap_or_else(Gdef::empty);
         let script_tag = script.to_opentype();
         let lang_tag = lang.map(|l| l.to_opentype()).flatten();
         let (gsub, stags) = if metadata.sub_mode == SubMode::Gsub {
@@ -232,7 +232,7 @@ impl<'a> Engine<'a> {
         if self.kern != 0 {
             aat::apply_kern(self.data.data(), self.kern, buffer);
         }
-    }    
+    }
 }
 
 /// The overall mode of the engine based on a combination of the

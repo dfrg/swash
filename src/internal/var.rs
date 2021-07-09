@@ -131,18 +131,17 @@ impl VarAxis {
     /// Returns a normalized axis coordinate for the specified value in 2.14
     /// fixed point format.
     pub fn normalized_coord(&self, mut value: Fixed, avar: Option<(&[u8], u32)>) -> i16 {
+        use core::cmp::Ordering::*;
         if value < self.min {
             value = self.min;
         } else if value > self.max {
             value = self.max;
         }
-        if value < self.default {
-            value = -((self.default - value) / (self.default - self.min));
-        } else if value > self.default {
-            value = (value - self.default) / (self.max - self.default);
-        } else {
-            value = Fixed(0);
-        }
+        value = match value.cmp(&self.default) {
+            Less => -((self.default - value) / (self.default - self.min)),
+            Greater => (value - self.default) / (self.max - self.default),
+            Equal => Fixed(0),
+        };
         value = value.min(Fixed::ONE).max(-Fixed::ONE);
         value = avar
             .map(|(data, avar)| adjust_axis(data, avar, self.index, value))
@@ -200,17 +199,18 @@ impl<'a> Mvar<'a> {
         let mut l = 0;
         let mut h = self.rec_count;
         while l < h {
+            use core::cmp::Ordering::*;
             let i = (l + h) / 2;
             let offset = base + i * rec_size;
             let t = b.read::<u32>(offset)?;
-            if metric < t {
-                h = i;
-            } else if metric > t {
-                l = i + 1;
-            } else {
-                let inner = b.read::<u16>(offset + 4)?;
-                let outer = b.read::<u16>(offset + 6)?;
-                return item_delta(b.data(), self.store, outer, inner, self.coords);
+            match metric.cmp(&t) {
+                Less => h = i,
+                Greater => l = i + 1,
+                Equal => {
+                    let inner = b.read::<u16>(offset + 4)?;
+                    let outer = b.read::<u16>(offset + 6)?;
+                    return item_delta(b.data(), self.store, outer, inner, self.coords);
+                }
             }
         }
         None
@@ -250,19 +250,20 @@ pub fn adjust_axis(data: &[u8], avar: u32, axis: u16, coord: Fixed) -> Option<Fi
     let count = b.read::<u16>(offset)? as usize;
     offset += 2;
     for i in 0..count {
+        use core::cmp::Ordering::*;
         let from = Fixed(b.read::<i16>(offset)? as i32 * 4);
-        if from == coord {
-            return Some(Fixed(b.read::<i16>(offset + 2)? as i32 * 4));
-        } else if from > coord {
-            if i == 0 {
-                return None;
+        match from.cmp(&coord) {
+            Equal => return Some(Fixed(b.read::<i16>(offset + 2)? as i32 * 4)),
+            Greater if i == 0 => return None,
+            Greater => {
+                let to = Fixed(b.read::<i16>(offset + 2)? as i32 * 4);
+                let prev_from = Fixed(b.read::<i16>(offset - 4)? as i32 * 4);
+                let prev_to = Fixed(b.read::<i16>(offset - 2)? as i32 * 4);
+                return Some(prev_to + ((to - prev_to) * (coord - prev_from) / (from - prev_from)));
+
             }
-            let to = Fixed(b.read::<i16>(offset + 2)? as i32 * 4);
-            let prev_from = Fixed(b.read::<i16>(offset - 4)? as i32 * 4);
-            let prev_to = Fixed(b.read::<i16>(offset - 2)? as i32 * 4);
-            return Some(prev_to + ((to - prev_to) * (coord - prev_from) / (from - prev_from)));
+            Less => offset += 4,
         }
-        offset += 4;
     }
     None
 }
@@ -319,25 +320,18 @@ pub fn item_delta(
                 .get(axis)
                 .map(|c| Fixed::from_f2dot14(*c))
                 .unwrap_or(ZERO);
-            scalar = scalar
-                * if start > peak || peak > end {
-                    ONE
-                } else if start < ZERO && end > ZERO && peak != ZERO {
-                    ONE
-                } else if peak == ZERO {
-                    ONE
-                } else if coord < start || coord > end {
-                    scalar = ZERO;
-                    break;
-                } else {
-                    if coord == peak {
-                        Fixed::ONE
-                    } else if coord < peak {
-                        (coord - start) / (peak - start)
-                    } else {
-                        (end - coord) / (end - peak)
-                    }
-                };
+            if start > peak || peak > end || peak == ZERO || start < ZERO && end > ZERO {
+                continue;
+            } else if coord < start || coord > end {
+                scalar = ZERO;
+                break;
+            } else if coord == peak {
+                continue;
+            } else if coord < peak {
+                scalar = scalar * (coord - start) / (peak - start)
+            } else {
+                scalar = scalar * (end - coord) / (end - peak)
+            };
         }
         let val = if idx >= short_count {
             delta_base += 1;
@@ -347,7 +341,7 @@ pub fn item_delta(
             b.read::<i16>(delta_base - 2)?
         };
         idx += 1;
-        delta = delta + scalar * Fixed::from_i32(val as i32);
+        delta += scalar * Fixed::from_i32(val as i32);
     }
     Some(delta)
 }

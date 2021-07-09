@@ -122,6 +122,11 @@ impl<'a> ColorPalette<'a> {
         self.num_entries
     }
 
+    /// Returns whether this palette is empty.
+    pub fn is_empty(&self) -> bool {
+        self.num_entries == 0
+    }
+
     /// Returns the color for the specified entry in RGBA order.
     pub fn get(&self, index: u16) -> [u8; 4] {
         if index >= self.num_entries {

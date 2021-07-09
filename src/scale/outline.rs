@@ -30,6 +30,11 @@ impl Outline {
         self.layers.len()
     }
 
+    /// Returns true if there are no layers in the outline.
+    pub fn is_empty(&self) -> bool {
+        self.layers.is_empty()
+    }
+
     /// Returns a reference to the layer at the specified index.
     pub fn get<'a>(&'a self, index: usize) -> Option<Layer<'a>> {
         let data = self.layers.get(index)?;
@@ -157,7 +162,7 @@ impl<'a> LayerMut<'a> {
 
     /// Returns a mutable reference the sequence of points for the layer.
     pub fn points_mut(&'a mut self) -> &'a mut [Point] {
-        &mut self.points[..]
+        &mut *self.points
     }
 
     /// Returns the sequence of verbs for the layer.
@@ -383,10 +388,9 @@ fn compute_winding(points: &[Point]) -> u8 {
     let mut area = 0.;
     let last = points.len() - 1;
     let mut prev = points[last];
-    for i in 0..=last {
-        let cur = points[i];
+    for cur in points[0..=last].iter() {
         area += (cur.y - prev.y) * (cur.x + prev.x);
-        prev = cur;
+        prev = *cur;
     }
     if area > 0. {
         1

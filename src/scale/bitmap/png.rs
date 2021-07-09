@@ -13,7 +13,7 @@ pub enum DecodeError {
     /// Invalid signature in an image.
     InvalidSignature,
     /// The file contains a pixel format this is not supported.
-    UnsupportedPixelFormat,    
+    UnsupportedPixelFormat,
     /// The file enables a feature that is not supported.
     UnsupportedFeature,
     /// Some size limit was exceeded.
@@ -428,15 +428,13 @@ fn normalize(
                 for (i, d) in dest.iter_mut().enumerate() {
                     *d = source[i * 2];
                 }
-            } else {
-                if IS_LITTLE_ENDIAN {
-                    for (s, d) in source.chunks(2).zip(dest.chunks_mut(2)) {
-                        d[1] = s[0];
-                        d[0] = s[1];
-                    }
-                } else {
-                    dest.copy_from_slice(source);
+            } else if IS_LITTLE_ENDIAN {
+                for (s, d) in source.chunks(2).zip(dest.chunks_mut(2)) {
+                    d[1] = s[0];
+                    d[0] = s[1];
                 }
+            } else {
+                dest.copy_from_slice(source);
             }
         }
         8 => {
@@ -543,14 +541,11 @@ impl Emit for EmitRGBA8 {
                 }
             }
             Greyscale => {
-                let mut i = 0;
-                for _ in 0..len {
-                    let c = src[i];
+                for c in src[..len].iter().copied() {
                     image[out] = c;
                     image[out + 1] = c;
                     image[out + 2] = c;
                     image[out + 3] = 255;
-                    i += 1;
                     out += 4 * inc;
                 }
             }
@@ -581,11 +576,12 @@ fn paeth(a: u8, b: u8, c: u8) -> u8 {
         .wrapping_sub(c as i32))
     .abs();
     if pc < pa && pc < pb {
-        return c;
+        c
     } else if pb < pa {
-        return b;
+        b
+    } else {
+        a
     }
-    return a;
 }
 
 fn get_u32be(buf: &[u8], offset: usize) -> u32 {

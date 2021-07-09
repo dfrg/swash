@@ -206,7 +206,7 @@ impl Cache {
                 *c += point_base as u16;
             }
         }
-    }    
+    }
 
     fn find_font(&mut self, font_id: u64) -> (bool, usize) {
         let mut lowest_epoch = self.epoch;
@@ -236,7 +236,7 @@ impl Cache {
     ) -> (bool, usize) {
         let mut lowest_epoch = self.epoch;
         let mut lowest_index = 0;
-        let vary = coords.len() != 0;
+        let vary = !coords.is_empty();
         for (i, size) in self.sizes.iter().enumerate() {
             if size.epoch < lowest_epoch {
                 lowest_epoch = size.epoch;

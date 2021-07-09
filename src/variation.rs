@@ -13,7 +13,7 @@ impl VariationsProxy {
     /// Creates a variations proxy from the specified font.
     pub fn from_font(font: &FontRef) -> Self {
         let fvar = font.table_offset(FVAR);
-        let table = Fvar::from_font(font).unwrap_or(Fvar::new(&[]));
+        let table = Fvar::from_font(font).unwrap_or_else(|| Fvar::new(&[]));
         let avar = font.table_offset(AVAR);
         let len = table.axis_count() as usize;
         Self { fvar, avar, len }
@@ -49,7 +49,7 @@ pub struct Variations<'a> {
 
 impl<'a> Variations<'a> {
     pub(crate) fn from_font(font: &FontRef<'a>) -> Self {
-        let fvar = Fvar::from_font(font).unwrap_or(Fvar::new(&[]));
+        let fvar = Fvar::from_font(font).unwrap_or_else(|| Fvar::new(&[]));
         let avar = font.table_offset(AVAR);
         let len = fvar.axis_count() as usize;
         Self {
@@ -74,7 +74,7 @@ impl<'a> Variations<'a> {
     ///
     /// ## Iteration behavior
     /// This function searches the entire variation collection without regard
-    /// for the current state of the iterator.    
+    /// for the current state of the iterator.
     pub fn find_by_tag(&self, tag: Tag) -> Option<Variation<'a>> {
         for i in 0..self.len {
             if let Some(var) = self.get(i) {
@@ -100,9 +100,9 @@ impl<'a> Variations<'a> {
         for setting in settings {
             let val = setting.into();
             let tag = val.tag;
-            for (i, var) in copy.clone().enumerate().take(len) {
+            for (var, coord) in copy.take(len).zip(coords.iter_mut()) {
                 if var.axis.tag == tag {
-                    coords[i] = var.normalize(val.value);
+                    *coord = var.normalize(val.value);
                 }
             }
         }
@@ -187,7 +187,7 @@ pub struct Instances<'a> {
 
 impl<'a> Instances<'a> {
     pub(crate) fn from_font(font: &FontRef<'a>) -> Self {
-        let fvar = Fvar::from_font(font).unwrap_or(Fvar::new(&[]));
+        let fvar = Fvar::from_font(font).unwrap_or_else(|| Fvar::new(&[]));
         let avar = font.table_offset(AVAR);
         Self {
             font: *font,
@@ -210,13 +210,13 @@ impl<'a> Instances<'a> {
     ///
     /// ## Iteration behavior
     /// This function searches the entire instance collection without regard
-    /// for the current state of the iterator.    
+    /// for the current state of the iterator.
     pub fn find_by_name(&self, name: &str) -> Option<Instance<'a>> {
         let strings = self.font.localized_strings();
         for i in 0..self.len {
             if let Some(instance) = self.get(i) {
                 let id = instance.name_id();
-                for instance_name in strings.clone().filter(|s| s.id() == id) {
+                for instance_name in strings.filter(|s| s.id() == id) {
                     if instance_name.chars().eq(name.chars()) {
                         return Some(instance);
                     }
@@ -229,13 +229,13 @@ impl<'a> Instances<'a> {
     ///
     /// ## Iteration behavior
     /// This function searches the entire instance collection without regard
-    /// for the current state of the iterator.    
+    /// for the current state of the iterator.
     pub fn find_by_postscript_name(&self, name: &str) -> Option<Instance<'a>> {
         let strings = self.font.localized_strings();
         for i in 0..self.len {
             if let Some(instance) = self.get(i) {
                 if let Some(id) = instance.postscript_name_id() {
-                    for instance_name in strings.clone().filter(|s| s.id() == id) {
+                    for instance_name in strings.filter(|s| s.id() == id) {
                         if instance_name.chars().eq(name.chars()) {
                             return Some(instance);
                         }

@@ -214,7 +214,7 @@ impl<'a> Glyph<'a> {
                 fd_select: 0,
                 font_matrix: None,
                 vstore: 0,
-                vsindex: vsindex,
+                vsindex,
                 ok: true,
             };
             let fd_range = proxy.fd_array.get_range(data, fd as u32)?;
@@ -303,15 +303,13 @@ impl<'a> Glyph<'a> {
                 let mut hinter = Hinter::new(state, sink);
                 self.parse(coords, &mut hinter)
             }
+        } else if let Some(xform) = self.proxy.font_matrix {
+            let xform = Transform::combine(&xform, &Transform::scale(scale));
+            let mut sink = TransformSink { xform, inner: sink };
+            self.parse(coords, &mut sink)
         } else {
-            if let Some(xform) = self.proxy.font_matrix {
-                let xform = Transform::combine(&xform, &Transform::scale(scale));
-                let mut sink = TransformSink { xform, inner: sink };
-                self.parse(coords, &mut sink)
-            } else {
-                let mut sink = ScaleSink { scale, inner: sink };
-                self.parse(coords, &mut sink)
-            }
+            let mut sink = ScaleSink { scale, inner: sink };
+            self.parse(coords, &mut sink)
         }
     }
 
@@ -340,7 +338,7 @@ impl<'a> Glyph<'a> {
             stem_count: 0,
             vsindex: self.vsindex,
         };
-        let blend = if self.proxy.vstore != 0 && coords.len() != 0 {
+        let blend = if self.proxy.vstore != 0 && !coords.is_empty() {
             Some(BlendData::new(self.data, self.proxy.vstore, coords))
         } else {
             None
@@ -396,7 +394,7 @@ impl<'a> Glyph<'a> {
                     if !self.proxy.is_cff2 {
                         return None;
                     }
-                    if stack.len() < 1 {
+                    if stack.is_empty() {
                         return None;
                     }
                     s.vsindex = stack.pop() as u16;
@@ -445,7 +443,7 @@ impl<'a> Glyph<'a> {
                     break;
                 }
                 ENDCHAR => {
-                    if stack.len() > 0 && !s.have_width {
+                    if !stack.is_empty() && !s.have_width {
                         s.have_width = true;
                         stack.clear();
                     }
@@ -532,7 +530,7 @@ impl<'a> Glyph<'a> {
                     if stack.len() == 2 && !s.have_width {
                         s.have_width = true;
                         i = 1;
-                    } else if stack.len() < 1 {
+                    } else if stack.is_empty() {
                         return None;
                     }
                     if !s.open {
@@ -554,7 +552,7 @@ impl<'a> Glyph<'a> {
                     }
                     let mut i = 0;
                     while i < stack.len() {
-                        x += stack.get(i + 0);
+                        x += stack.get(i);
                         y += stack.get(i + 1);
                         b.line_to(x, y);
                         i += 2;
@@ -597,7 +595,7 @@ impl<'a> Glyph<'a> {
                     }
                     let mut i = 0;
                     while i < stack.len() {
-                        let x1 = x + stack.get(i + 0);
+                        let x1 = x + stack.get(i);
                         let y1 = y + stack.get(i + 1);
                         let x2 = x1 + stack.get(i + 2);
                         let y2 = y1 + stack.get(i + 3);
@@ -614,7 +612,7 @@ impl<'a> Glyph<'a> {
                     }
                     let mut i = 0;
                     while i < stack.len() - 2 {
-                        let x1 = x + stack.get(i + 0);
+                        let x1 = x + stack.get(i);
                         let y1 = y + stack.get(i + 1);
                         let x2 = x1 + stack.get(i + 2);
                         let y2 = y1 + stack.get(i + 3);
@@ -623,7 +621,7 @@ impl<'a> Glyph<'a> {
                         b.curve_to(x1, y1, x2, y2, x, y);
                         i += 6;
                     }
-                    x += stack.get(i + 0);
+                    x += stack.get(i);
                     y += stack.get(i + 1);
                     b.line_to(x, y);
                     stack.clear();
@@ -634,12 +632,12 @@ impl<'a> Glyph<'a> {
                     }
                     let mut i = 0;
                     while i < stack.len() - 6 {
-                        x += stack.get(i + 0);
+                        x += stack.get(i);
                         y += stack.get(i + 1);
                         b.line_to(x, y);
                         i += 2;
                     }
-                    let x1 = x + stack.get(i + 0);
+                    let x1 = x + stack.get(i);
                     let y1 = y + stack.get(i + 1);
                     let x2 = x1 + stack.get(i + 2);
                     let y2 = y1 + stack.get(i + 3);
@@ -659,7 +657,7 @@ impl<'a> Glyph<'a> {
                     }
                     while i < stack.len() {
                         let x1 = x;
-                        let y1 = y + stack.get(i + 0);
+                        let y1 = y + stack.get(i);
                         let x2 = x1 + stack.get(i + 1);
                         let y2 = y1 + stack.get(i + 2);
                         x = x2;
@@ -679,7 +677,7 @@ impl<'a> Glyph<'a> {
                         return None;
                     }
                     while i < stack.len() {
-                        let x1 = x + stack.get(i + 0);
+                        let x1 = x + stack.get(i);
                         let y1 = y;
                         let x2 = x1 + stack.get(i + 1);
                         let y2 = y1 + stack.get(i + 2);
@@ -843,7 +841,7 @@ impl<'a> Glyph<'a> {
                     stack.clear();
                 }
                 CALLSUBR | CALLGSUBR => {
-                    if stack.len() == 0 {
+                    if stack.is_empty() {
                         return None;
                     }
                     let data = self.data;
@@ -956,6 +954,7 @@ impl Transform {
         )
     }
 
+    #[allow(clippy::suspicious_operation_groupings)]
     fn combine(a: &Transform, b: &Transform) -> Self {
         let xx = a.xx * b.xx + a.yx * b.xy;
         let yx = a.xx * b.yx + a.yx * b.yy;
@@ -965,8 +964,8 @@ impl Transform {
         let y = a.x * b.yx + a.y * b.yy + b.y;
         Self {
             xx,
-            yx,
             xy,
+            yx,
             yy,
             x,
             y,
@@ -1291,7 +1290,7 @@ struct BlendData<'a> {
 
 impl<'a> BlendData<'a> {
     fn new(data: &'a [u8], store: u32, coords: &'a [i16]) -> Self {
-        let store = Bytes::with_offset(data, store as usize).unwrap_or(Bytes::new(&[]));
+        let store = Bytes::with_offset(data, store as usize).unwrap_or_else(|| Bytes::new(&[]));
         Self { store, coords }
     }
 }
@@ -1355,6 +1354,7 @@ impl BlendState {
         Some(total_count)
     }
 
+    #[allow(clippy::needless_range_loop)]
     fn compute_scalars(data: &BlendData, outer: u16, scalars: &mut [f32]) -> Option<(bool, usize)> {
         let b = &data.store;
         let vary_coords = data.coords;
@@ -1383,7 +1383,7 @@ impl BlendState {
             for axis in 0..axis_count {
                 fn f2dot14_to_f32(x: i16) -> f32 {
                     ((x as i32) << 2) as f32 / 65536.
-                }                
+                }
                 let region_axis_base = region_offset + axis * 6;
                 let start = f2dot14_to_f32(b.read::<i16>(region_axis_base)?);
                 let peak = f2dot14_to_f32(b.read::<i16>(region_axis_base + 2)?);
@@ -1393,23 +1393,17 @@ impl BlendState {
                 } else {
                     f2dot14_to_f32(vary_coords[axis])
                 };
-                scalar *= if start > peak || peak > end {
-                    1.
-                } else if start < 0. && end > 0. && peak != 0. {
-                    1.
-                } else if peak == 0. {
-                    1.
+                if (start > peak || peak > end) || (start < 0. && end > 0. && peak != 0.) || peak == 0. {
+                    continue;
                 } else if coord < start || coord > end {
                     scalar = 0.;
                     break;
+                } else if coord == peak {
+                    continue;
+                } else if coord < peak {
+                    scalar *= (coord - start) / (peak - start)
                 } else {
-                    if coord == peak {
-                        1.
-                    } else if coord < peak {
-                        (coord - start) / (peak - start)
-                    } else {
-                        (end - coord) / (end - peak)
-                    }
+                    scalar *= (end - coord) / (end - peak)
                 };
             }
             scalars[i] = scalar;
@@ -1487,7 +1481,7 @@ fn parse_dict<Sink: DictionarySink>(
     sink: &mut Sink,
 ) -> Option<()> {
     use opcodes::*;
-    if range.len() == 0 {
+    if range.is_empty() {
         return Some(());
     }
     let mut s = Stream::with_range(data, range)?;
@@ -1618,7 +1612,7 @@ fn parse_dict<Sink: DictionarySink>(
 }
 
 fn delta_vector(ops: &mut [f32]) {
-    if ops.len() == 0 {
+    if ops.is_empty() {
         return;
     }
     let mut s = ops[0];
@@ -1734,10 +1728,7 @@ fn parse_real(s: &mut Stream) -> Option<f32> {
         buf[n] = b'0';
         n += 1;
     }
-    if let Ok(buf) = core::str::from_utf8(&buf[0..n]) {
-        return buf.parse::<f32>().ok();
-    }
-    return None;
+    core::str::from_utf8(&buf[0..n]).map_or(None, |b| b.parse::<f32>().ok())
 }
 
 fn parse_fd_select(data: &[u8], offset: u32, glyph_id: u16) -> Option<usize> {
@@ -1850,12 +1841,12 @@ mod opcodes {
     pub const HFLEX1: u16 = 36 | 12 << 8;
     pub const FLEX1: u16 = 37 | 12 << 8;
 
-    #[cfg_attr(rustfmt, rustfmt_skip)]
+    #[rustfmt::skip]
     pub const NAMES: [&'static str; 38] = [
-        "", "hstem", "", "vstem", "vmoveto", "rlineto", "hlineto", "vlineto", "rrcurveto", "", 
-        "callsubr", "return", "escape", "", "endchar", "vsindex", "blend", "", "hstemhm", "hintmask", 
-        "cntrmask", "rmoveto", "hmoveto", "vstemhm", "rcurveline", "rlinecurve", "vvcurveto", 
-        "hhcurveto", "shortint", "callgsubr", "vhcurveto", "hvcurveto", "", "", "hflex", "flex", 
-        "hflex1", "flex1", 
+        "", "hstem", "", "vstem", "vmoveto", "rlineto", "hlineto", "vlineto", "rrcurveto", "",
+        "callsubr", "return", "escape", "", "endchar", "vsindex", "blend", "", "hstemhm", "hintmask",
+        "cntrmask", "rmoveto", "hmoveto", "vstemhm", "rcurveline", "rlinecurve", "vvcurveto",
+        "hhcurveto", "shortint", "callgsubr", "vhcurveto", "hvcurveto", "", "", "hflex", "flex",
+        "hflex1", "flex1",
     ];
 }

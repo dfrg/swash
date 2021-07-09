@@ -94,7 +94,7 @@ impl<'a> Iterator for WritingSystems<'a> {
                     lang: None,
                 })
             }
-            _ => return None,
+            _ => None,
         }
     }
 }
@@ -258,7 +258,7 @@ impl<'a> Iterator for Features<'a> {
                     Action::Substitution
                 };
                 Some(Feature {
-                    tag: tag,
+                    tag,
                     name: Some(name),
                     action,
                 })

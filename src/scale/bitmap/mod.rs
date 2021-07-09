@@ -55,9 +55,7 @@ pub fn blit(
             let a = (src_row[sx] as u32 * color_a) >> 8;
             if a >= 255 {
                 dst_row[dx + 3] = 255;
-                for i in 0..3 {
-                    dst_row[dx + i] = color[i];
-                }
+                dst_row[dx..(dx + 3)].copy_from_slice(&color[..3]);
                 dst_row[dx + 3] = 255;
             } else if a != 0 {
                 let inverse_a = 255 - a;

@@ -65,7 +65,7 @@ impl Properties {
         self.record().cluster_break
     }
 
-    /// Returns the word break property for the character.    
+    /// Returns the word break property for the character.
     pub fn word_break(self) -> WordBreak {
         self.record().word_break
     }
@@ -172,7 +172,7 @@ impl From<&'_ u32> for Properties {
 }
 
 /// Trait that exposes Unicode properties for the `char` type.
-pub trait Codepoint: Sized {
+pub trait Codepoint: Sized + Copy {
     /// Returns the codepoint properties.
     fn properties(self) -> Properties;
 
@@ -340,8 +340,7 @@ impl Script {
 
     /// Returns true if the script has cursive joining.
     pub fn is_joined(self) -> bool {
-        match self {
-            Script::Arabic
+        matches!(self, Script::Arabic
             | Script::Mongolian
             | Script::Syriac
             | Script::Nko
@@ -349,9 +348,7 @@ impl Script {
             | Script::Mandaic
             | Script::Manichaean
             | Script::PsalterPahlavi
-            | Script::Adlam => true,
-            _ => false,
-        }
+            | Script::Adlam)
     }
 
     /// Returns the script as an OpenType tag.
@@ -379,7 +376,7 @@ impl BidiClass {
         const OVERRIDE_MASK: u32 = RLE.mask() | LRE.mask() | RLO.mask() | LRO.mask();
         const ISOLATE_MASK: u32 = RLI.mask() | LRI.mask() | FSI.mask();
         const EXPLICIT_MASK: u32 = OVERRIDE_MASK | ISOLATE_MASK;
-        const BIDI_MASK: u32 = EXPLICIT_MASK | R.mask() | AL.mask() | AN.mask();    
-        self.mask() & BIDI_MASK != 0    
+        const BIDI_MASK: u32 = EXPLICIT_MASK | R.mask() | AL.mask() | AN.mask();
+        self.mask() & BIDI_MASK != 0
     }
 }
