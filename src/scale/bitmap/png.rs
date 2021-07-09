@@ -154,7 +154,7 @@ pub fn decode(
     }
     state.trunc_16 = true;
     state.expand_alpha = true;
-    decode_data::<EmitRGBA8>(&mut state, decomp, extra, target)
+    decode_data::<EmitRgba8>(&mut state, decomp, extra, target)
         .ok_or(DecodeError::CorruptData)?;
     Ok((w, h, state.has_alpha))
 }
@@ -476,9 +476,9 @@ trait Emit {
     ) -> Option<()>;
 }
 
-struct EmitRGBA8;
+struct EmitRgba8;
 
-impl Emit for EmitRGBA8 {
+impl Emit for EmitRgba8 {
     fn emit(
         state: &State,
         source: &[u8],

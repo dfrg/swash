@@ -453,7 +453,7 @@ pub mod morx {
                 0 => SubtableKind::Rearrangement(Rearrangement::new(data)?),
                 1 => SubtableKind::Contextual(Contextual::new(data)?),
                 2 => SubtableKind::Ligature(Ligature::new(data)?),
-                4 => SubtableKind::NonContextual(NonContextual::new(data)?),
+                4 => SubtableKind::NonContextual(NonContextual::new(data)),
                 5 => SubtableKind::Insertion(Insertion::new(data)?),
                 _ => return None,
             })
@@ -836,8 +836,8 @@ pub mod morx {
     }
 
     impl<'a> NonContextual<'a> {
-        fn new(data: Bytes<'a>) -> Option<Self> {
-            Some(Self { data })
+        fn new(data: Bytes<'a>) -> Self {
+            Self { data }
         }
 
         /// Returns a substitution for the specified glyph id.

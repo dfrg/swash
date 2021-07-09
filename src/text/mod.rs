@@ -2,6 +2,9 @@
 Character properties and textual analysis.
 */
 
+// Avoid errors for generated Unicode data.
+#![allow(clippy::upper_case_acronyms)]
+
 mod analyze;
 mod compose;
 mod lang;
