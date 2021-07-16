@@ -522,6 +522,48 @@ impl<'a> Post<'a> {
     pub fn is_fixed_pitch(&self) -> bool {
         self.0.read::<u32>(12).unwrap_or(0) != 0
     }
+
+    /// Returns true if the table can provide glyph names. Only versions 1.0 
+    /// (0x00010000) and 2.0 (0x00020000).
+    pub fn has_names(&self) -> bool {
+        let v = self.version();
+        v == 0x10000 || v == 0x20000
+    }
+
+    /// Returns the name of the specified glyph id if available.
+    pub fn name(&self, glyph_id: u16) -> Option<&'a str> {
+        if !self.has_names() {
+            return None;
+        }
+        let v = self.version();
+        if v == 0x10000 {
+            if glyph_id >= 258 {
+                return None;
+            }
+            return Some(DEFAULT_GLYPH_NAMES[glyph_id as usize]);
+        } else if v == 0x20000 {
+            let b = &self.0;
+            let count = b.read::<u16>(32)?;
+            if glyph_id >= count {
+                return None;
+            }
+            let mut index = b.read::<u16>(34 + glyph_id as usize * 2)? as usize;
+            if index < 258 {
+                return Some(DEFAULT_GLYPH_NAMES[index]);
+            }
+            index -= 258;
+            let mut base = 34 + count as usize * 2;
+            for _ in 0..index {
+                let len = b.read::<u8>(base)? as usize;
+                base += len + 1;
+            }
+            let len = b.read::<u8>(base)? as usize;
+            base += 1;
+            let bytes = b.read_bytes(base, len)?;
+            return core::str::from_utf8(bytes).ok();
+        }
+        None
+    }    
 }
 
 /// Maximum profile table.
@@ -808,3 +850,36 @@ impl<'a> Vhea<'a> {
         self.0.read(34).unwrap_or(0)
     }
 }
+
+#[rustfmt::skip]
+const DEFAULT_GLYPH_NAMES: [&'static str; 258] = [
+    ".notdef", ".null", "nonmarkingreturn", "space", "exclam", "quotedbl", "numbersign", "dollar", 
+    "percent", "ampersand", "quotesingle", "parenleft", "parenright", "asterisk", "plus", "comma", 
+    "hyphen", "period", "slash", "zero", "one", "two", "three", "four", "five", "six", "seven", 
+    "eight", "nine", "colon", "semicolon", "less", "equal", "greater", "question", "at", "A", "B", 
+    "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", 
+    "V", "W", "X", "Y", "Z", "bracketleft", "backslash", "bracketright", "asciicircum", 
+    "underscore", "grave", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", 
+    "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "braceleft", "bar", "braceright", 
+    "asciitilde", "Adieresis", "Aring", "Ccedilla", "Eacute", "Ntilde", "Odieresis", "Udieresis", 
+    "aacute", "agrave", "acircumflex", "adieresis", "atilde", "aring", "ccedilla", "eacute", 
+    "egrave", "ecircumflex", "edieresis", "iacute", "igrave", "icircumflex", "idieresis", "ntilde", 
+    "oacute", "ograve", "ocircumflex", "odieresis", "otilde", "uacute", "ugrave", "ucircumflex", 
+    "udieresis", "dagger", "degree", "cent", "sterling", "section", "bullet", "paragraph", 
+    "germandbls", "registered", "copyright", "trademark", "acute", "dieresis", "notequal", "AE", 
+    "Oslash", "infinity", "plusminus", "lessequal", "greaterequal", "yen", "mu", "partialdiff", 
+    "summation", "product", "pi", "integral", "ordfeminine", "ordmasculine", "Omega", "ae", 
+    "oslash", "questiondown", "exclamdown", "logicalnot", "radical", "florin", "approxequal", 
+    "Delta", "guillemotleft", "guillemotright", "ellipsis", "nonbreakingspace", "Agrave", "Atilde", 
+    "Otilde", "OE", "oe", "endash", "emdash", "quotedblleft", "quotedblright", "quoteleft", 
+    "quoteright", "divide", "lozenge", "ydieresis", "Ydieresis", "fraction", "currency", 
+    "guilsinglleft", "guilsinglright", "fi", "fl", "daggerdbl", "periodcentered", "quotesinglbase", 
+    "quotedblbase", "perthousand", "Acircumflex", "Ecircumflex", "Aacute", "Edieresis", "Egrave", 
+    "Iacute", "Icircumflex", "Idieresis", "Igrave", "Oacute", "Ocircumflex", "apple", "Ograve", 
+    "Uacute", "Ucircumflex", "Ugrave", "dotlessi", "circumflex", "tilde", "macron", "breve", 
+    "dotaccent", "ring", "cedilla", "hungarumlaut", "ogonek", "caron", "Lslash", "lslash", 
+    "Scaron", "scaron", "Zcaron", "zcaron", "brokenbar", "Eth", "eth", "Yacute", "yacute", "Thorn", 
+    "thorn", "minus", "multiply", "onesuperior", "twosuperior", "threesuperior", "onehalf", 
+    "onequarter", "threequarters", "franc", "Gbreve", "gbreve", "Idotaccent", "Scedilla", 
+    "scedilla", "Cacute", "cacute", "Ccaron", "ccaron", "dcroat",     
+];

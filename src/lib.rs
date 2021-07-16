@@ -163,4 +163,12 @@ impl<'a> FontRef<'a> {
         let range = self.table_range(tag)?;
         self.data.get(range.0 as usize..range.1 as usize)
     }
+
+    /// Returns the name for the specified glyph identifier. This is an internal
+    /// function used for testing and stability is not guaranteed.
+    #[doc(hidden)]
+    pub fn glyph_name(&self, glyph_id: GlyphId) -> Option<&'a str> {
+        use internal::head::Post;
+        Post::from_font(self)?.name(glyph_id)
+    }
 }
