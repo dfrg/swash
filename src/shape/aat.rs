@@ -42,7 +42,7 @@ pub fn apply_morx(
                     let mut state = RearrangementState::new();
                     while i < buffer.glyphs.len() {
                         let g = buffer.glyphs[i].id;
-                        match t.next(&mut state, i, g, |r| {
+                        match t.next(&mut state, i, g, false, |r| {
                             // if TRACE {
                             //     println!("Rearrange!");
                             // }
@@ -53,6 +53,11 @@ pub fn apply_morx(
                             None => break,
                         }
                     }
+                    // Apply END_OF_TEXT state
+                    t.next(&mut state, i, 0, true, |r| {
+                        r.apply(&mut buffer.glyphs);
+                        Some(())
+                    });
                 }
                 SubtableKind::Contextual(t) => {
                     //println!(".. contextual");

@@ -490,12 +490,13 @@ pub mod morx {
             state: &mut RearrangementState,
             index: usize,
             glyph_id: u16,
+            end_of_text: bool,
             mut f: impl FnMut(&Rearrange) -> Option<()>,
         ) -> Option<usize> {
             const MARK_FIRST: u16 = 0x8000;
             const DONT_ADVANCE: u16 = 0x4000;
             const MARK_LAST: u16 = 0x2000;
-            let class = self.state_table.class(glyph_id);
+            let class = if end_of_text { 0 } else { self.state_table.class(glyph_id) };
             let entry = self.state_table.entry::<()>(state.state, class)?;
             state.state = entry.new_state;
             if entry.flags & MARK_FIRST != 0 {
@@ -507,7 +508,7 @@ pub mod morx {
             let verb = entry.flags & 0xF;
             let start = state.first;
             let end = state.last;
-            if verb != 0 && start < end {
+            if verb != 0 && start <= end {
                 let m = REARRANGEMENT_MAP[verb as usize & 0xF];
                 let l = 2.min(m >> 4) as usize;
                 let r = 2.min(m & 0x0F) as usize;
