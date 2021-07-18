@@ -678,9 +678,8 @@ impl<'a> Shaper<'a> {
             .chain(core::iter::once((&sentinel.0, &sentinel.1)))
         {
             if g.cluster != last_cluster {
-                let diff = g.cluster - last_cluster;
                 // Simple and common case: no ligatures and no empty clusters.
-                if diff == 1 {
+                if last_cluster > g.cluster || g.cluster - last_cluster == 1 {
                     let index = last_cluster as usize;
                     let info = &buf.infos[index];
                     let cluster = GlyphCluster {
