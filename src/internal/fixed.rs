@@ -1,7 +1,7 @@
 //! Minimal fixed point math types and functions used internally.
 
-use core::ops::{Add, AddAssign, Div, Mul, Neg, Sub};
 use super::parse::FromBeData;
+use core::ops::{Add, AddAssign, Div, Mul, Neg, Sub};
 
 /// Fixed point value in 16.16 format.
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Default, Debug)]

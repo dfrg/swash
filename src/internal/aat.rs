@@ -161,7 +161,7 @@ pub struct StateTable<'a> {
     classes: &'a [u8],
 }
 
-impl <'a> StateTable<'a> {
+impl<'a> StateTable<'a> {
     /// Creates a new extended state table for the specified data.
     pub fn new(data: &Bytes<'a>) -> Option<Self> {
         let class_count = data.read_u16(0)?;
@@ -200,9 +200,11 @@ impl <'a> StateTable<'a> {
         let index = state as usize * self.class_count as usize + class as usize;
         let entry_index = *self.states.get(index)? as usize;
         let entry_offset = entry_index * (4 + T::SIZE);
-        let mut entry = self.data
+        let mut entry = self
+            .data
             .read::<Entry<T>>(self.entry_table as usize + entry_offset)?;
-        let new_state = (entry.new_state as u32).checked_sub(self.state_array)? / self.class_count as u32;
+        let new_state =
+            (entry.new_state as u32).checked_sub(self.state_array)? / self.class_count as u32;
         entry.new_state = new_state as u16;
         Some(entry)
     }
@@ -496,7 +498,11 @@ pub mod morx {
             const MARK_FIRST: u16 = 0x8000;
             const DONT_ADVANCE: u16 = 0x4000;
             const MARK_LAST: u16 = 0x2000;
-            let class = if end_of_text { 0 } else { self.state_table.class(glyph_id) };
+            let class = if end_of_text {
+                0
+            } else {
+                self.state_table.class(glyph_id)
+            };
             let entry = self.state_table.entry::<()>(state.state, class)?;
             state.state = entry.new_state;
             if entry.flags & MARK_FIRST != 0 {
@@ -1407,15 +1413,15 @@ pub mod kerx {
                 state.mark_id = glyph_id;
             }
             if entry.data != 0xFFFF {
-                let offset = self
-                    .control_table
-                    .checked_add(entry.data as usize * 2)?;
+                let offset = self.control_table.checked_add(entry.data as usize * 2)?;
                 match self.action_type {
                     0 => {}
                     1 => {
-                        let mark_index =  self.data.read_u16(offset)?;
+                        let mark_index = self.data.read_u16(offset)?;
                         let cur_index = self.data.read_u16(offset + 2)?;
-                        if let Some((x, y)) = self.anchor_offset(mark_index, state.mark_id, cur_index, glyph_id) {
+                        if let Some((x, y)) =
+                            self.anchor_offset(mark_index, state.mark_id, cur_index, glyph_id)
+                        {
                             let diff = index - state.mark;
                             if diff < 255 {
                                 f(index, diff, x, y);
@@ -1430,7 +1436,13 @@ pub mod kerx {
             Some(advance as usize)
         }
 
-        fn anchor_offset(&self, mark_index: u16, mark_id: u16, cur_index: u16, cur_id: u16) -> Option<(f32, f32)> {
+        fn anchor_offset(
+            &self,
+            mark_index: u16,
+            mark_id: u16,
+            cur_index: u16,
+            cur_id: u16,
+        ) -> Option<(f32, f32)> {
             let mark_point = anchor_points(self.ankr, mark_id)?.get(mark_index as u32)?;
             let cur_point = anchor_points(self.ankr, cur_id)?.get(cur_index as u32)?;
             Some((

@@ -1,4 +1,4 @@
-use super::super::{Properties};
+use super::super::Properties;
 use super::Boundary;
 
 use core::fmt;

@@ -26,7 +26,9 @@ pub fn subtable<'a>(font: impl RawFont<'a>) -> Option<(u32, u8, bool)> {
         let offset = cmap.checked_add(offset)?;
         if is_symbol(platform, encoding) {
             return Some((offset, format, true));
-        } else if (format == 12 && is_unicode(platform, encoding)) || (best.is_none() && is_unicode(platform, encoding)) {
+        } else if (format == 12 && is_unicode(platform, encoding))
+            || (best.is_none() && is_unicode(platform, encoding))
+        {
             best = Some((offset, format, false));
         }
     }

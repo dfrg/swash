@@ -276,7 +276,10 @@ pub struct Array<'a, T: FromBeData> {
     _p: core::marker::PhantomData<T>,
 }
 
-impl<T> core::fmt::Debug for Array<'_, T> where T: core::fmt::Debug + FromBeData {
+impl<T> core::fmt::Debug for Array<'_, T>
+where
+    T: core::fmt::Debug + FromBeData,
+{
     fn fmt(&self, f: &mut core::fmt::Formatter) -> core::fmt::Result {
         write!(f, "[")?;
         for (i, value) in self.iter().enumerate() {
@@ -331,7 +334,8 @@ impl<'a, T: FromBeData> Array<'a, T> {
     /// function. Returns the index and value of the element on success, or
     /// `None` if a match was not found.
     pub fn binary_search_by<F>(&self, mut f: F) -> Option<(usize, T)>
-        where F: FnMut(&T) -> core::cmp::Ordering
+    where
+        F: FnMut(&T) -> core::cmp::Ordering,
     {
         // Taken from Rust core library.
         use core::cmp::Ordering::*;
@@ -420,7 +424,8 @@ pub trait FromBeData: Sized + Copy + Clone {
     unsafe fn from_be_data_unchecked(buf: &[u8], offset: usize) -> Self;
 }
 
-pub(crate) const USE_UNALIGNED_READS_LE: bool = cfg!(any(target_arch = "x86", target_arch = "x86_64"));
+pub(crate) const USE_UNALIGNED_READS_LE: bool =
+    cfg!(any(target_arch = "x86", target_arch = "x86_64"));
 
 impl FromBeData for u8 {
     unsafe fn from_be_data_unchecked(buf: &[u8], offset: usize) -> Self {
@@ -505,6 +510,5 @@ impl FromBeData for U24 {
 }
 
 impl FromBeData for () {
-    unsafe fn from_be_data_unchecked(_buf: &[u8], _offset: usize) -> Self {
-    }
+    unsafe fn from_be_data_unchecked(_buf: &[u8], _offset: usize) -> Self {}
 }

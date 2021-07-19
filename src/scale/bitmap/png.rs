@@ -154,8 +154,7 @@ pub fn decode(
     }
     state.trunc_16 = true;
     state.expand_alpha = true;
-    decode_data::<EmitRgba8>(&mut state, decomp, extra, target)
-        .ok_or(DecodeError::CorruptData)?;
+    decode_data::<EmitRgba8>(&mut state, decomp, extra, target).ok_or(DecodeError::CorruptData)?;
     Ok((w, h, state.has_alpha))
 }
 
@@ -358,7 +357,7 @@ fn decode_data<E: Emit>(
             let source = decomp.get(offset..end)?;
             let ty = *source.get(0)?;
             defilter(ty, source.get(1..)?, line, prev_line, bwidth)?;
-            normalize(line, out_line, depth, has_palette, w,  trunc_16)?;
+            normalize(line, out_line, depth, has_palette, w, trunc_16)?;
             E::emit(&state, out_line, target, 0, y, w, 1, w)?;
             std::mem::swap(&mut prev_line, &mut line);
         }

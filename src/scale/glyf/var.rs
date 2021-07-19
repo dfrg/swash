@@ -1,6 +1,11 @@
 use super::internal::{fixed::Fixed, Array, Bytes};
 
-pub fn cvar_tuples<'a>(data: &'a [u8], cvar: u32, coords: &'a [i16], axis_count: u16) -> Option<Tuples<'a>> {
+pub fn cvar_tuples<'a>(
+    data: &'a [u8],
+    cvar: u32,
+    coords: &'a [i16],
+    axis_count: u16,
+) -> Option<Tuples<'a>> {
     if cvar == 0 {
         return None;
     }
@@ -8,7 +13,12 @@ pub fn cvar_tuples<'a>(data: &'a [u8], cvar: u32, coords: &'a [i16], axis_count:
     Some(TupleStore::from_cvar(b, axis_count).tuples(coords))
 }
 
-pub fn gvar_tuples<'a>(data: &'a [u8], gvar: u32, coords: &'a [i16], glyph_id: u16) -> Option<Tuples<'a>> {
+pub fn gvar_tuples<'a>(
+    data: &'a [u8],
+    gvar: u32,
+    coords: &'a [i16],
+    glyph_id: u16,
+) -> Option<Tuples<'a>> {
     if gvar == 0 {
         return None;
     }

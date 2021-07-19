@@ -1,5 +1,5 @@
-use super::internal::{raw_data, RawFont};
 use super::cache::CacheKey;
+use super::internal::{raw_data, RawFont};
 
 /// Reference to the content of a font file.
 #[derive(Copy, Clone)]
@@ -179,7 +179,11 @@ impl<'a> FontRef<'a> {
         if !raw_data::is_font(data, offset) {
             None
         } else {
-            Some(Self { data, offset, key: CacheKey::new(), })
+            Some(Self {
+                data,
+                offset,
+                key: CacheKey::new(),
+            })
         }
     }
 }

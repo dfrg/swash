@@ -1,6 +1,6 @@
 //! OpenType advanced typography tables.
 
-use super::{raw_tag, RawTag, Bytes};
+use super::{raw_tag, Bytes, RawTag};
 
 pub const GDEF: RawTag = raw_tag(b"GDEF");
 pub const GSUB: RawTag = raw_tag(b"GSUB");
@@ -118,15 +118,9 @@ impl<'a> Gdef<'a> {
 
     pub fn delta(&self, outer: u16, inner: u16, coords: &[i16]) -> f32 {
         if self.var_store != 0 {
-            super::var::item_delta(
-                self.data.data(),
-                self.var_store,
-                outer,
-                inner,
-                coords,
-            )
-            .map(|d| d.to_f32())
-            .unwrap_or(0.)
+            super::var::item_delta(self.data.data(), self.var_store, outer, inner, coords)
+                .map(|d| d.to_f32())
+                .unwrap_or(0.)
         } else {
             0.
         }
@@ -361,10 +355,7 @@ pub fn script_language_at(b: &Bytes, script_offset: u32, index: u16) -> Option<(
         return None;
     }
     let index = if index == 0 {
-        return Some((
-            DFLT,
-            script_default_language(b, script_offset)?,
-        ));
+        return Some((DFLT, script_default_language(b, script_offset)?));
     } else {
         index - 1
     };
@@ -647,7 +638,11 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData { offset, kind, coverage })
+            Some(SubtableData {
+                offset,
+                kind,
+                coverage,
+            })
         }
         MultiSub => {
             let kind = match fmt {
@@ -655,7 +650,11 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData { offset, kind, coverage })
+            Some(SubtableData {
+                offset,
+                kind,
+                coverage,
+            })
         }
         AltSub => {
             let kind = match fmt {
@@ -663,7 +662,11 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData { offset, kind, coverage })
+            Some(SubtableData {
+                offset,
+                kind,
+                coverage,
+            })
         }
         LigSub => {
             let kind = match fmt {
@@ -671,7 +674,11 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData { offset, kind, coverage })
+            Some(SubtableData {
+                offset,
+                kind,
+                coverage,
+            })
         }
         SingleAdj => {
             let kind = match fmt {
@@ -680,7 +687,11 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData { offset, kind, coverage })
+            Some(SubtableData {
+                offset,
+                kind,
+                coverage,
+            })
         }
         PairAdj => {
             let kind = match fmt {
@@ -689,7 +700,11 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData { offset, kind, coverage })
+            Some(SubtableData {
+                offset,
+                kind,
+                coverage,
+            })
         }
         Cursive => {
             let kind = match fmt {
@@ -697,7 +712,11 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData { offset, kind, coverage })
+            Some(SubtableData {
+                offset,
+                kind,
+                coverage,
+            })
         }
         MarkToBase => {
             let kind = match fmt {
@@ -705,7 +724,11 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData { offset, kind, coverage })
+            Some(SubtableData {
+                offset,
+                kind,
+                coverage,
+            })
         }
         MarkToLig => {
             let kind = match fmt {
@@ -713,7 +736,11 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData { offset, kind, coverage })
+            Some(SubtableData {
+                offset,
+                kind,
+                coverage,
+            })
         }
         MarkToMark => {
             let kind = match fmt {
@@ -721,7 +748,11 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData { offset, kind, coverage })
+            Some(SubtableData {
+                offset,
+                kind,
+                coverage,
+            })
         }
         Context => match fmt {
             1 | 2 => {
@@ -731,7 +762,11 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                     SubtableKind::Context2
                 };
                 let coverage = cov(b, base, 2)?;
-                Some(SubtableData { offset, kind, coverage })
+                Some(SubtableData {
+                    offset,
+                    kind,
+                    coverage,
+                })
             }
             3 => {
                 let coverage = cov(b, base, 6)?;
@@ -751,7 +786,11 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                     SubtableKind::ChainContext2
                 };
                 let coverage = cov(b, base, 2)?;
-                Some(SubtableData { offset, kind, coverage })
+                Some(SubtableData {
+                    offset,
+                    kind,
+                    coverage,
+                })
             }
             3 => {
                 let backtrack_len = b.read::<u16>(base + 2)? as usize * 2;
@@ -774,7 +813,11 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
                 _ => return None,
             };
             let coverage = cov(b, base, 2)?;
-            Some(SubtableData { offset, kind, coverage })
+            Some(SubtableData {
+                offset,
+                kind,
+                coverage,
+            })
         }
     }
 }

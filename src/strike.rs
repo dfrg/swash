@@ -69,10 +69,23 @@ impl BitmapStrikesProxy {
     /// Materializes a color strike iterator for the specified font. This
     /// proxy must have been created from the same font.
     pub fn materialize_color<'a>(&self, font: &FontRef<'a>) -> BitmapStrikes<'a> {
-        self.materialize_impl(font.data, self.color_bitmaps.0, self.color_bitmaps.1, self.upem, self.is_apple)
+        self.materialize_impl(
+            font.data,
+            self.color_bitmaps.0,
+            self.color_bitmaps.1,
+            self.upem,
+            self.is_apple,
+        )
     }
 
-    fn materialize_impl<'a>(&self, data: &'a [u8], loc: u32, dat: u32, upem: u16, is_apple: bool) -> BitmapStrikes<'a> {
+    fn materialize_impl<'a>(
+        &self,
+        data: &'a [u8],
+        loc: u32,
+        dat: u32,
+        upem: u16,
+        is_apple: bool,
+    ) -> BitmapStrikes<'a> {
         if loc == 0 {
             BitmapStrikes::new(&[], &[], upem, false, false)
         } else if loc == dat {
@@ -99,7 +112,13 @@ pub struct BitmapStrikes<'a> {
 }
 
 impl<'a> BitmapStrikes<'a> {
-    fn new(data: &'a [u8], bitmap_data: &'a [u8], upem: u16, is_sbix: bool, is_apple: bool) -> Self {
+    fn new(
+        data: &'a [u8],
+        bitmap_data: &'a [u8],
+        upem: u16,
+        is_sbix: bool,
+        is_apple: bool,
+    ) -> Self {
         let data = Bytes::new(data);
         Self {
             data,
@@ -416,40 +435,40 @@ impl<'a> Bitmap<'a> {
                     dst.copy_from_slice(src);
                 }
                 _ => return false,
-            }
+            },
             BitmapFormat::Alpha(bits) => match bits {
-                    1 => {
-                        let mut dst_idx = 0;
-                        for row in src.chunks(((w * bits as usize) + 7) / 8) {
-                            for x in 0..w as usize {
-                                dst[dst_idx] = (row[x >> 3] >> (!x & 7) & 1) * 255;
-                                dst_idx += 1;
-                            }
+                1 => {
+                    let mut dst_idx = 0;
+                    for row in src.chunks(((w * bits as usize) + 7) / 8) {
+                        for x in 0..w as usize {
+                            dst[dst_idx] = (row[x >> 3] >> (!x & 7) & 1) * 255;
+                            dst_idx += 1;
                         }
                     }
-                    2 => {
-                        let mut dst_idx = 0;
-                        for row in src.chunks(((w * bits as usize) + 7) / 8) {
-                            for x in 0..w as usize {
-                                dst[dst_idx] = (row[x >> 2] >> (!(x * 2) & 2) & 3) * 85;
-                                dst_idx += 1;
-                            }
-                        }
-                    }
-                    4 => {
-                        let mut dst_idx = 0;
-                        for row in src.chunks(((w * bits as usize) + 7) / 8) {
-                            for x in 0..w as usize {
-                                dst[dst_idx] = (row[x >> 1] >> (!(x * 4) & 4) & 15) * 17;
-                                dst_idx += 1;
-                            }
-                        }
-                    }
-                    8 | 32 => {
-                        dst.copy_from_slice(src);
-                    }
-                    _ => return false,
                 }
+                2 => {
+                    let mut dst_idx = 0;
+                    for row in src.chunks(((w * bits as usize) + 7) / 8) {
+                        for x in 0..w as usize {
+                            dst[dst_idx] = (row[x >> 2] >> (!(x * 2) & 2) & 3) * 85;
+                            dst_idx += 1;
+                        }
+                    }
+                }
+                4 => {
+                    let mut dst_idx = 0;
+                    for row in src.chunks(((w * bits as usize) + 7) / 8) {
+                        for x in 0..w as usize {
+                            dst[dst_idx] = (row[x >> 1] >> (!(x * 4) & 4) & 15) * 17;
+                            dst_idx += 1;
+                        }
+                    }
+                }
+                8 | 32 => {
+                    dst.copy_from_slice(src);
+                }
+                _ => return false,
+            },
 
             BitmapFormat::Color => {
                 dst.copy_from_slice(src);
@@ -729,12 +748,7 @@ fn get_data<'a>(table: &'a [u8], loc: &Location) -> Option<BitmapData<'a>> {
     }
 }
 
-fn sbix_range(
-    table: &[u8],
-    strike_base: usize,
-    glyph_id: u16,
-    recurse: i32,
-) -> Option<(u32, u32)> {
+fn sbix_range(table: &[u8], strike_base: usize, glyph_id: u16, recurse: i32) -> Option<(u32, u32)> {
     const DUPE: RawTag = raw_tag(b"dupe");
     const PNG: RawTag = raw_tag(b"png ");
     if recurse > 1 {

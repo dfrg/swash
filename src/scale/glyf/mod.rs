@@ -7,7 +7,7 @@ mod var;
 use super::internal;
 
 pub use proxy::GlyfProxy;
-pub use scale::{ScalerState, Scaler};
+pub use scale::{Scaler, ScalerState};
 
 #[derive(Copy, Clone, Default, Debug)]
 pub struct Point {
@@ -20,4 +20,3 @@ impl Point {
         Self { x, y }
     }
 }
-

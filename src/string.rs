@@ -118,7 +118,7 @@ impl<'a> LocalizedStrings<'a> {
     pub(crate) fn new(data: &'a [u8]) -> Self {
         let data = Bytes::new(data);
         let len = data.read_or_default::<u16>(2) as usize;
-        Self { data, len, pos: 0, }
+        Self { data, len, pos: 0 }
     }
 
     pub(crate) fn from_font(font: &FontRef<'a>) -> Self {
@@ -131,11 +131,7 @@ impl<'a> LocalizedStrings<'a> {
     /// ## Iteration behavior
     /// This function searches the entire string collection without regard
     /// for the current state of the iterator.
-    pub fn find_by_id(
-        &self,
-        id: StringId,
-        language: Option<&str>,
-    ) -> Option<LocalizedString<'a>> {
+    pub fn find_by_id(&self, id: StringId, language: Option<&str>) -> Option<LocalizedString<'a>> {
         let mut first = None;
         let mut best = None;
         let raw_id = id.to_raw();

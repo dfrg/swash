@@ -1,5 +1,5 @@
-use super::{buffer::*, feature::*, Direction};
 use super::internal::{at::*, *};
+use super::{buffer::*, feature::*, Direction};
 use crate::text::Script;
 use core::ops::Range;
 
@@ -97,7 +97,9 @@ impl FeatureStore {
     pub fn mask(&self, features: &[RawTag]) -> u64 {
         let mut mask = 0;
         for feature in features {
-            if let Some(bit) = self.bit(*feature) { mask |= 1 << bit }
+            if let Some(bit) = self.bit(*feature) {
+                mask |= 1 << bit
+            }
         }
         mask
     }
@@ -119,7 +121,9 @@ impl FeatureStore {
         pos_args.resize(pos_count, 0);
         let mut sub = self.groups.basic;
         let mut pos = self.groups.position;
-        if dir == Direction::RightToLeft { sub |= self.groups.rtl }
+        if dir == Direction::RightToLeft {
+            sub |= self.groups.rtl
+        }
         for feature in features {
             if let Ok(index) = self.features.binary_search_by(|x| x.0.cmp(&feature.0)) {
                 let cached_feature = self.features[index];
@@ -1290,11 +1294,8 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                     let backtrack_count = c.read::<u16>()? as usize;
                     if backtrack_count != 0 {
                         let seq = c.read_array::<u16>(backtrack_count)?;
-                        let pred = |i, id| {
-                            id == seq.get(i).unwrap_or(0)
-                        };
-                        if self.match_backtrack(cur, backtrack_count, pred).is_none()
-                        {
+                        let pred = |i, id| id == seq.get(i).unwrap_or(0);
+                        if self.match_backtrack(cur, backtrack_count, pred).is_none() {
                             continue;
                         }
                     }
@@ -1314,10 +1315,10 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                     let lookahead_count = c.read::<u16>()? as usize;
                     if lookahead_count != 0 {
                         let seq = c.read_array::<u16>(lookahead_count)?;
-                        let pred = |i, id| {
-                            id == seq.get(i).unwrap_or(0)
-                        };
-                        if self.match_sequence(input_end, lookahead_count, pred).is_none()
+                        let pred = |i, id| id == seq.get(i).unwrap_or(0);
+                        if self
+                            .match_sequence(input_end, lookahead_count, pred)
+                            .is_none()
                         {
                             continue;
                         }
@@ -1354,11 +1355,9 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                     let backtrack_count = c.read::<u16>()? as usize;
                     if backtrack_count != 0 {
                         let seq = c.read_array::<u16>(backtrack_count)?;
-                        let pred = |i, id| {
-                            self.class(backtrack_classdef, id) == seq.get(i).unwrap_or(0)
-                        };
-                        if self.match_backtrack(cur, backtrack_count, pred).is_none()
-                        {
+                        let pred =
+                            |i, id| self.class(backtrack_classdef, id) == seq.get(i).unwrap_or(0);
+                        if self.match_backtrack(cur, backtrack_count, pred).is_none() {
                             continue;
                         }
                     }
@@ -1378,10 +1377,11 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                     let lookahead_count = c.read::<u16>()? as usize;
                     if lookahead_count != 0 {
                         let seq = c.read_array::<u16>(lookahead_count)?;
-                        let pred = |i, id| {
-                            self.class(lookahead_classdef, id) == seq.get(i).unwrap_or(0)
-                        };
-                        if self.match_sequence(input_end, lookahead_count, pred).is_none()
+                        let pred =
+                            |i, id| self.class(lookahead_classdef, id) == seq.get(i).unwrap_or(0);
+                        if self
+                            .match_sequence(input_end, lookahead_count, pred)
+                            .is_none()
                         {
                             continue;
                         }

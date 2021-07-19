@@ -1,7 +1,7 @@
-use super::char::{ShapeClass, Char};
-use super::token::Token;
-use super::{UserData, ClusterInfo};
 use super::super::{Codepoint as _, JoiningType};
+use super::char::{Char, ShapeClass};
+use super::token::Token;
+use super::{ClusterInfo, UserData};
 use crate::GlyphId;
 
 use core::fmt;

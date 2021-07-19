@@ -385,7 +385,7 @@ impl Scaler {
                     self.tags.truncate(self.tags.len() - 4);
                 }
                 Some(())
-            },
+            }
             Equal => Some(()),
         }
     }

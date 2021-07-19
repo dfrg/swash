@@ -1,8 +1,8 @@
-use super::util::*;
 use super::internal::{aat::morx, raw_tag};
+use super::util::*;
 
-use morx::Chains;
 pub use morx::chains;
+use morx::Chains;
 
 #[derive(Copy, Clone)]
 pub struct Features<'a> {

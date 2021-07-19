@@ -1,9 +1,5 @@
 use super::{
-    super::{
-        strike::BitmapStrikesProxy,
-        metrics::MetricsProxy,
-        FontRef,
-    },
+    super::{metrics::MetricsProxy, strike::BitmapStrikesProxy, FontRef},
     cff::CffProxy,
     color::ColorProxy,
     glyf::GlyfProxy,

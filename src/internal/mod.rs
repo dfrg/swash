@@ -165,7 +165,10 @@ pub trait RawFont<'a>: Sized {
     }
 }
 
-impl<'a, T> RawFont<'a> for &T where T: RawFont<'a> {
+impl<'a, T> RawFont<'a> for &T
+where
+    T: RawFont<'a>,
+{
     fn data(&self) -> &'a [u8] {
         (*self).data()
     }

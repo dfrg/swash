@@ -1,6 +1,6 @@
-use super::internal::{*, at::*};
-use super::util::*;
 use super::super::Tag;
+use super::internal::{at::*, *};
+use super::util::*;
 
 #[derive(Copy, Clone)]
 pub struct Script<'a> {
@@ -178,8 +178,7 @@ impl<'a> Languages<'a> {
             let index = self.cur;
             self.cur += 1;
             let (tag, offset) = script_language_at(&self.data, self.gpos_script, index)?;
-            if script_language_by_tag(&self.data, self.gsub_script, Some(tag)).is_some()
-            {
+            if script_language_by_tag(&self.data, self.gsub_script, Some(tag)).is_some() {
                 return None;
             }
             return Some(Language {
@@ -262,7 +261,7 @@ impl<'a> Iterator for WritingSystems<'a> {
                 return Some(WritingSystem {
                     lang,
                     script_tag: self.script_tag,
-                })
+                });
             } else {
                 self.langs = None;
             }

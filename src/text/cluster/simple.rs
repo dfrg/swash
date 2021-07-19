@@ -1,7 +1,7 @@
 //! Simple cluster formation (unicode grapheme cluster algorithm).
 
-use super::{ShapeClass, CharCluster, Token, MAX_CLUSTER_SIZE, Emoji, Whitespace};
 use super::super::ClusterBreak;
+use super::{CharCluster, Emoji, ShapeClass, Token, Whitespace, MAX_CLUSTER_SIZE};
 
 pub struct SimpleState<I> {
     chars: I,
@@ -13,7 +13,7 @@ pub struct SimpleState<I> {
 
 impl<I> SimpleState<I>
 where
-    I: Iterator<Item = Token> 
+    I: Iterator<Item = Token>,
 {
     pub fn new(mut chars: I) -> Self {
         if let Some(first) = chars.by_ref().next() {
@@ -52,12 +52,12 @@ pub struct Parser<'a, I> {
 
 impl<'a, I> Parser<'a, I>
 where
-    I: Iterator<Item = Token> 
+    I: Iterator<Item = Token>,
 {
     fn parse(&mut self) -> Option<()> {
         use ClusterBreak::*;
         while self.accept(PP)? {}
-        if self.emoji() {           
+        if self.emoji() {
             self.cluster.info_mut().set_emoji(Emoji::Default);
             while self.emoji() {
                 self.accept_any()?;
@@ -105,7 +105,7 @@ where
                     self.accept(RI)?;
                 }
                 EX | SM | ZWJ => {
-                    self.cluster.info_mut().set_broken();                    
+                    self.cluster.info_mut().set_broken();
                 }
                 _ => {
                     self.cluster.info_mut().set_space_from_char(self.s.cur.ch);
@@ -121,25 +121,23 @@ where
         use ClusterBreak::*;
         loop {
             match self.kind() {
-                EX => {
-                    match self.s.cur.ch as u32 {
-                        0x200C => self.accept_any_as(ShapeClass::Zwnj)?,
-                        0xFE0F => {
-                            self.cluster.info_mut().set_emoji(Emoji::Color);
-                            self.cluster.note_char(&self.s.cur);
-                            self.advance()?;
-                        }
-                        0xFE0E => {
-                            self.cluster.info_mut().set_emoji(Emoji::Text);
-                            self.cluster.note_char(&self.s.cur);
-                            self.advance()?;
-                        }
-                        _ => self.accept_any_as(ShapeClass::Mark)?,
+                EX => match self.s.cur.ch as u32 {
+                    0x200C => self.accept_any_as(ShapeClass::Zwnj)?,
+                    0xFE0F => {
+                        self.cluster.info_mut().set_emoji(Emoji::Color);
+                        self.cluster.note_char(&self.s.cur);
+                        self.advance()?;
                     }
-                }
-                ZWJ => {                    
+                    0xFE0E => {
+                        self.cluster.info_mut().set_emoji(Emoji::Text);
+                        self.cluster.note_char(&self.s.cur);
+                        self.advance()?;
+                    }
+                    _ => self.accept_any_as(ShapeClass::Mark)?,
+                },
+                ZWJ => {
                     self.accept_any_as(ShapeClass::Zwj)?;
-                    return Some(true);                    
+                    return Some(true);
                 }
                 _ => break,
             }
@@ -170,15 +168,15 @@ where
                 self.accept_any_as(ShapeClass::Zwj)?;
                 true
             }
-            _ => false
+            _ => false,
         })
-    }    
+    }
 
     #[inline(always)]
     fn emoji(&self) -> bool {
         self.s.cur_emoji
     }
-    
+
     #[inline(always)]
     fn kind(&self) -> ClusterBreak {
         self.s.cur_kind
@@ -200,7 +198,7 @@ where
         } else {
             Some(false)
         }
-    }    
+    }
 
     fn accept_any(&mut self) -> Option<()> {
         self.push_cur();
@@ -212,7 +210,7 @@ where
         self.cluster.push(&self.s.cur, as_kind);
         self.advance()?;
         Some(())
-    }    
+    }
 
     fn advance(&mut self) -> Option<()> {
         if self.cluster.len() as usize == MAX_CLUSTER_SIZE {
@@ -232,6 +230,6 @@ where
 
     #[inline]
     fn push_cur(&mut self) {
-        self.cluster.push(&self.s.cur, ShapeClass::Base); 
+        self.cluster.push(&self.s.cur, ShapeClass::Base);
     }
 }

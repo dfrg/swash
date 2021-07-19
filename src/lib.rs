@@ -64,7 +64,7 @@ pub use palette::{ColorPalette, Usability};
 pub use setting::Setting;
 pub use strike::BitmapStrike;
 pub use string::{LocalizedString, StringId};
-pub use tag::{Tag, tag_from_bytes, tag_from_str_lossy};
+pub use tag::{tag_from_bytes, tag_from_str_lossy, Tag};
 pub use variation::{Instance, Variation};
 
 /// Collection of various iterators over metadata contained in a font.
@@ -79,9 +79,9 @@ pub mod iter {
 
 /// Proxies used to efficiently rematerialize metadata.
 pub mod proxy {
-    pub use super::strike::BitmapStrikesProxy;
     pub use super::charmap::CharmapProxy;
     pub use super::metrics::MetricsProxy;
+    pub use super::strike::BitmapStrikesProxy;
     pub use super::variation::VariationsProxy;
 }
 

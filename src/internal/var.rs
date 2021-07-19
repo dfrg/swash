@@ -260,7 +260,6 @@ pub fn adjust_axis(data: &[u8], avar: u32, axis: u16, coord: Fixed) -> Option<Fi
                 let prev_from = Fixed(b.read::<i16>(offset - 4)? as i32 * 4);
                 let prev_to = Fixed(b.read::<i16>(offset - 2)? as i32 * 4);
                 return Some(prev_to + ((to - prev_to) * (coord - prev_from) / (from - prev_from)));
-
             }
             Less => offset += 4,
         }

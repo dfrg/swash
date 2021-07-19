@@ -1,5 +1,5 @@
+use super::cff::{DictionarySink, Glyph, GlyphSink};
 use super::internal::fixed::{muldiv, Fixed};
-use super::cff::{Glyph, GlyphSink, DictionarySink};
 
 use super::TRACE;
 
@@ -63,7 +63,11 @@ impl HinterState {
         if self.language_group == 1 {
             if self.blues.len == 2 {
                 let v = self.blues.values();
-                if v[0].0 < ICF_BOTTOM && v[0].1 < ICF_BOTTOM && v[1].0 > ICF_TOP && v[1].1 > ICF_TOP {
+                if v[0].0 < ICF_BOTTOM
+                    && v[0].1 < ICF_BOTTOM
+                    && v[1].0 > ICF_TOP
+                    && v[1].1 > ICF_TOP
+                {
                     self.em_box_hints = true;
                 }
             } else if self.blues.len == 0 {
@@ -188,7 +192,11 @@ impl HinterState {
         let mut captured = false;
         let mut adjustment = Fixed(0);
         for zone in &self.zones[..self.zone_count as usize] {
-            if zone.is_bottom && bottom.is_bottom() && (zone.bottom - fuzz) <= bottom.coord && bottom.coord <= (zone.top + fuzz) {
+            if zone.is_bottom
+                && bottom.is_bottom()
+                && (zone.bottom - fuzz) <= bottom.coord
+                && bottom.coord <= (zone.top + fuzz)
+            {
                 adjustment = if self.supress_overshoot {
                     zone.ds_flat
                 } else if zone.top - bottom.coord >= self.blue_shift {
@@ -199,7 +207,11 @@ impl HinterState {
                 captured = true;
                 break;
             }
-            if !zone.is_bottom && top.is_top() && (zone.bottom - fuzz) <= top.coord && top.coord <= (zone.top + fuzz) {
+            if !zone.is_bottom
+                && top.is_top()
+                && (zone.bottom - fuzz) <= top.coord
+                && top.coord <= (zone.top + fuzz)
+            {
                 adjustment = if self.supress_overshoot {
                     zone.ds_flat
                 } else if top.coord - zone.bottom >= self.blue_shift {
@@ -267,8 +279,7 @@ impl<'a, 'b, Sink: GlyphSink> Hinter<'a, 'b, Sink> {
             self.build_hint_map(Some(self.mask), Fixed(0));
         }
         let f = (coord * 65536.) as i32;
-        let mapped = self.map
-            .map(self.state.scale, Fixed(f));
+        let mapped = self.map.map(self.state.scale, Fixed(f));
         ((mapped.0 >> 10) as f32) / 64.
     }
 
@@ -594,7 +605,10 @@ impl HintMap {
         if insertion_index > 0 && first.ds_coord < self.hints[insertion_index - 1].ds_coord {
             return;
         }
-        if insertion_index < self.len && ((is_pair && second.ds_coord > self.hints[insertion_index].ds_coord) || first.ds_coord > self.hints[insertion_index].ds_coord) {
+        if insertion_index < self.len
+            && ((is_pair && second.ds_coord > self.hints[insertion_index].ds_coord)
+                || first.ds_coord > self.hints[insertion_index].ds_coord)
+        {
             return;
         }
         if insertion_index != self.len {

@@ -2,8 +2,8 @@
 Rendered glyph image.
 */
 
-use zeno::Placement;
 use super::Source;
+use zeno::Placement;
 
 /// Content of a scaled glyph image.
 #[derive(Copy, Clone, PartialEq, Eq, Debug)]
