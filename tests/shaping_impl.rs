@@ -1,12 +1,16 @@
+use swash::text::{Codepoint, Script};
+
 pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &str) -> String {
     let file = std::fs::read(font).unwrap();
     let font = swash::FontRef::from_offset(&file, 0).unwrap();
     let mut context = swash::shape::ShapeContext::new();
-    let script = swash::text::analyze(input.chars())
-        .next()
-        .unwrap()
-        .0
-        .script();
+    let script = input
+        .chars()
+        .map(|ch| ch.script())
+        .find(|&script| {
+            script != Script::Unknown && script != Script::Inherited && script != Script::Common
+        })
+        .unwrap_or(Script::Latin);   
     let builder = context
         .builder(font)
         .size(font_size as f32)
