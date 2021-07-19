@@ -19,7 +19,7 @@ pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &s
                     "{}",
                     font.glyph_name(glyph.id)
                         .map(|x| x.to_string())
-                        .unwrap_or(glyph.id.to_string())
+                        .unwrap_or(format!("gid{}", glyph.id))
                 ));
             } else {
                 output.push(format!(
@@ -35,20 +35,16 @@ pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &s
         });
     });
 
-    if output.len() > 1 {
-        let collected: String = output
-            .iter()
-            .enumerate()
-            .map(|(idx, i)| {
-                if idx == 0 {
-                    i.to_owned()
-                } else {
-                    format!("|{}", i)
-                }
-            })
-            .collect();
-        format!("[{}]", collected)
-    } else {
-        format!("[gid{}]", output.concat())
-    }
+    let collected: String = output
+    .iter()
+    .enumerate()
+    .map(|(idx, i)| {
+        if idx == 0 {
+            i.to_owned()
+        } else {
+            format!("|{}", i)
+        }
+    })
+    .collect();
+    format!("[{}]", collected)
 }
