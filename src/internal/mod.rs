@@ -34,6 +34,7 @@ pub mod raw_data {
     const OTTO: RawTag = raw_tag(b"OTTO");
     const TTCF: RawTag = raw_tag(b"ttcf");
     const FONT: RawTag = 0x10000;
+    const TRUE: RawTag = raw_tag(b"true");
 
     /// Returns true if the data represents a font collection.
     pub fn is_collection(data: &[u8]) -> bool {
@@ -43,7 +44,7 @@ pub mod raw_data {
     /// Returns true if the data represents a font at the specified offset.
     pub fn is_font(data: &[u8], offset: u32) -> bool {
         let tag = Bytes::new(data).read_u32(offset as usize).unwrap_or(0);
-        tag == FONT || tag == OTTO
+        tag == FONT || tag == OTTO || tag == TRUE
     }
 
     /// Returns the number of fonts contained in the specified data.
