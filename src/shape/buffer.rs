@@ -1,7 +1,7 @@
 use super::cluster::Glyph;
 use super::feature::*;
 use crate::text::{
-    cluster::{CharCluster, ClusterInfo, Char, ShapeClass, SourceRange, MAX_CLUSTER_SIZE},
+    cluster::{Char, CharCluster, ClusterInfo, ShapeClass, SourceRange, MAX_CLUSTER_SIZE},
     JoiningType,
 };
 use core::ops::Range;
@@ -220,7 +220,8 @@ impl Buffer {
     }
 
     fn push_cluster(&mut self, cluster: &CharCluster) {
-        self.infos.push((cluster.info(), false, cluster.user_data()));
+        self.infos
+            .push((cluster.info(), false, cluster.user_data()));
         self.ranges.push(cluster.range());
     }
 
@@ -265,8 +266,7 @@ impl Buffer {
             self.glyphs
                 .retain(|g| g.flags & COMPONENT == 0 && g.id != 0xFFFF);
         } else {
-            self.glyphs
-                .retain(|g| g.flags & COMPONENT == 0);
+            self.glyphs.retain(|g| g.flags & COMPONENT == 0);
         }
         self.positions.clear();
         self.positions

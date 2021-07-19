@@ -1,7 +1,7 @@
-use super::at::{FeatureStore};
+use super::at::FeatureStore;
 use super::engine::EngineMetadata;
 use super::internal::var::Fvar;
-use crate::{FontRef, charmap::CharmapProxy, metrics::MetricsProxy};
+use crate::{charmap::CharmapProxy, metrics::MetricsProxy, FontRef};
 
 pub type Epoch = u64;
 

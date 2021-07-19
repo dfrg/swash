@@ -2579,7 +2579,9 @@ const RECORD_INDEX2: [u16; 14744] = [
 pub fn get_record_index(x: usize) -> usize {
     const SHIFT1: usize = 5;
     const SHIFT2: usize = 3;
-    if x >= 1114112 { return 0; }
+    if x >= 1114112 {
+        return 0;
+    }
     let mut index = (RECORD_INDEX0[x >> (SHIFT1 + SHIFT2)] as usize) << SHIFT1;
     let mut offset = (x >> SHIFT2) & ((1 << SHIFT1) - 1);
     index = (RECORD_INDEX1[index + offset] as usize) << SHIFT2;
@@ -4062,7 +4064,9 @@ const COMPOSE_INDEX2: [u32; 1603] = [
 pub fn compose_index(x: usize) -> usize {
     const SHIFT1: usize = 2;
     const SHIFT2: usize = 1;
-    if x >= 23751 { return 0; }
+    if x >= 23751 {
+        return 0;
+    }
     let mut index = (COMPOSE_INDEX0[x >> (SHIFT1 + SHIFT2)] as usize) << SHIFT1;
     let mut offset = (x >> SHIFT2) & ((1 << SHIFT1) - 1);
     index = (COMPOSE_INDEX1[index + offset] as usize) << SHIFT2;
@@ -4322,7 +4326,9 @@ const DECOMPOSE_INDEX2: [u16; 3312] = [
 pub fn decompose_index(x: usize) -> usize {
     const SHIFT1: usize = 6;
     const SHIFT2: usize = 4;
-    if x >= 1114112 { return 0; }
+    if x >= 1114112 {
+        return 0;
+    }
     let mut index = (DECOMPOSE_INDEX0[x >> (SHIFT1 + SHIFT2)] as usize) << SHIFT1;
     let mut offset = (x >> SHIFT2) & ((1 << SHIFT1) - 1);
     index = (DECOMPOSE_INDEX1[index + offset] as usize) << SHIFT2;
@@ -4739,7 +4745,9 @@ const DECOMPOSE_COMPAT_INDEX2: [u16; 5984] = [
 pub fn decompose_compat_index(x: usize) -> usize {
     const SHIFT1: usize = 6;
     const SHIFT2: usize = 4;
-    if x >= 1114112 { return 0; }
+    if x >= 1114112 {
+        return 0;
+    }
     let mut index = (DECOMPOSE_COMPAT_INDEX0[x >> (SHIFT1 + SHIFT2)] as usize) << SHIFT1;
     let mut offset = (x >> SHIFT2) & ((1 << SHIFT1) - 1);
     index = (DECOMPOSE_COMPAT_INDEX1[index + offset] as usize) << SHIFT2;

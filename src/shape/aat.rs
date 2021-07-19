@@ -91,8 +91,7 @@ pub fn apply_morx(
                             buffer.substitute_ligature(i, g, comps);
                             Some(())
                         };
-                        if t.next(&mut state, i, g, f).is_none()
-                        {
+                        if t.next(&mut state, i, g, f).is_none() {
                             break;
                         }
                         i += 1;
@@ -157,8 +156,11 @@ pub fn apply_kerx(
                     continue;
                 }
                 let len = buffer.len();
-                let mut left_index = if let Some((index, _)) =
-                    buffer.glyphs.iter().enumerate().find(|(_, g)| g.joining_type != 6)
+                let mut left_index = if let Some((index, _)) = buffer
+                    .glyphs
+                    .iter()
+                    .enumerate()
+                    .find(|(_, g)| g.joining_type != 6)
                 {
                     index
                 } else {
@@ -205,8 +207,11 @@ pub fn apply_kerx(
                 }
                 //println!("142/116 = {:?}", t.get(142, 116));
                 let len = buffer.len();
-                let mut left_index = if let Some((index, _)) =
-                    buffer.glyphs.iter().enumerate().find(|(_, g)| g.joining_type != 6)
+                let mut left_index = if let Some((index, _)) = buffer
+                    .glyphs
+                    .iter()
+                    .enumerate()
+                    .find(|(_, g)| g.joining_type != 6)
                 {
                     index
                 } else {
@@ -250,11 +255,7 @@ pub fn apply_kerx(
     Some(())
 }
 
-pub fn apply_kern(
-    data: &[u8],
-    kern: u32,
-    buffer: &mut Buffer,
-) -> Option<()> {
+pub fn apply_kern(data: &[u8], kern: u32, buffer: &mut Buffer) -> Option<()> {
     use kern::*;
     for (_i, subtable) in subtables(data, kern).enumerate() {
         let kind = match subtable.kind() {
@@ -270,8 +271,11 @@ pub fn apply_kern(
             SubtableKind::Format0(t) => {
                 buffer.ensure_order(false);
                 let len = buffer.len();
-                let mut left_index = if let Some((index, _)) =
-                    buffer.glyphs.iter().enumerate().find(|(_, g)| g.joining_type != 6)
+                let mut left_index = if let Some((index, _)) = buffer
+                    .glyphs
+                    .iter()
+                    .enumerate()
+                    .find(|(_, g)| g.joining_type != 6)
                 {
                     index
                 } else {

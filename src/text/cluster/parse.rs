@@ -1,10 +1,6 @@
 use super::{
-    complex::ComplexState,
-    myanmar::MyanmarState,
-    simple::SimpleState,
-    super::Script,
+    super::Script, complex::ComplexState, myanmar::MyanmarState, simple::SimpleState, CharCluster,
     Token,
-    CharCluster,
 };
 
 /// Parser that accepts a sequence of characters and outputs character clusters.

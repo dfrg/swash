@@ -1393,7 +1393,10 @@ impl BlendState {
                 } else {
                     f2dot14_to_f32(vary_coords[axis])
                 };
-                if (start > peak || peak > end) || (start < 0. && end > 0. && peak != 0.) || peak == 0. {
+                if (start > peak || peak > end)
+                    || (start < 0. && end > 0. && peak != 0.)
+                    || peak == 0.
+                {
                     continue;
                 } else if coord < start || coord > end {
                     scalar = 0.;

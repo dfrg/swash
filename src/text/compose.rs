@@ -156,7 +156,8 @@ pub fn decompose(c: char) -> Decompose {
         } else {
             let buf = &DECOMPOSE[index..];
             let end = 1 + buf[0] as usize;
-            DecomposeInner::Slice(unsafe { &*(&buf[1..end] as *const [u32] as *const [char]) }).into()
+            DecomposeInner::Slice(unsafe { &*(&buf[1..end] as *const [u32] as *const [char]) })
+                .into()
         }
     }
 }
@@ -174,11 +175,13 @@ pub fn decompose_compat(c: char) -> Decompose {
             let index = decompose_index(c as usize);
             let buf = &DECOMPOSE[index..];
             let end = 1 + buf[0] as usize;
-            DecomposeInner::Slice(unsafe { &*(&buf[1..end] as *const [u32] as *const [char]) }).into()
+            DecomposeInner::Slice(unsafe { &*(&buf[1..end] as *const [u32] as *const [char]) })
+                .into()
         } else {
             let buf = &DECOMPOSE_COMPAT[index..];
             let end = 1 + buf[0] as usize;
-            DecomposeInner::Slice(unsafe { &*(&buf[1..end] as *const [u32] as *const [char]) }).into()
+            DecomposeInner::Slice(unsafe { &*(&buf[1..end] as *const [u32] as *const [char]) })
+                .into()
         }
     }
 }

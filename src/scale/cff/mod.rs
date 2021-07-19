@@ -7,7 +7,7 @@ PostScript outlines.
 mod cff;
 mod hint;
 
-pub use cff::{Glyph, GlyphSink, Cff, CffProxy};
+pub use cff::{Cff, CffProxy, Glyph, GlyphSink};
 pub use hint::HinterState;
 
 use super::{internal, TRACE};

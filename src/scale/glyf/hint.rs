@@ -315,11 +315,7 @@ impl<'a> Hinter<'a> {
         }
     }
 
-    pub fn run_fpgm<'b>(
-        &mut self,
-        state: &'b mut HinterState,
-        fpgm: &[u8],
-    ) -> bool {
+    pub fn run_fpgm<'b>(&mut self, state: &'b mut HinterState, fpgm: &[u8]) -> bool {
         let programs = [fpgm, &[], &[]];
         for f in self.fdefs.iter_mut() {
             *f = Function::default();
@@ -2168,7 +2164,7 @@ impl<'a> Hinter<'a> {
                         }
                         if index != !0 && callstack_top < callstack_len {
                             let def = self.idefs[index];
-                            let rec = CallRecord{
+                            let rec = CallRecord {
                                 caller_program: program,
                                 caller_ip: pc + 1,
                                 current_count: count as u32,

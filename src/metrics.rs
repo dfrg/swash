@@ -101,10 +101,11 @@ impl MetricsProxy {
         let mut vertical = self.vertical;
         if !coords.is_empty() {
             if let Vertical::Synthesized {
-                    mvar,
-                    advance,
-                    origin,
-                } = &mut vertical {
+                mvar,
+                advance,
+                origin,
+            } = &mut vertical
+            {
                 if *mvar != 0 {
                     if let Some(v) = var::Mvar::new(data, *mvar, coords) {
                         use var::mvar_tags::*;

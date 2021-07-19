@@ -1,6 +1,6 @@
 //! Font header tables.
 
-use super::{raw_tag, RawTag, RawFont, Bytes};
+use super::{raw_tag, Bytes, RawFont, RawTag};
 
 pub const HEAD: RawTag = raw_tag(b"head");
 pub const OS_2: RawTag = raw_tag(b"OS/2");
@@ -523,7 +523,7 @@ impl<'a> Post<'a> {
         self.0.read::<u32>(12).unwrap_or(0) != 0
     }
 
-    /// Returns true if the table can provide glyph names. Only versions 1.0 
+    /// Returns true if the table can provide glyph names. Only versions 1.0
     /// (0x00010000) and 2.0 (0x00020000).
     pub fn has_names(&self) -> bool {
         let v = self.version();
@@ -563,7 +563,7 @@ impl<'a> Post<'a> {
             return core::str::from_utf8(bytes).ok();
         }
         None
-    }    
+    }
 }
 
 /// Maximum profile table.

@@ -11,8 +11,8 @@ pub use super::unicode_data::{
 
 use super::compose::{compose_pair, decompose, decompose_compat};
 use super::unicode_data::{
-    get_record_index, MyanmarClass, UseClass, BRACKETS, MIRRORS, RECORDS, SCRIPTS_BY_TAG,
-    SCRIPT_COMPLEXITY, SCRIPT_NAMES, SCRIPT_TAGS, Record,
+    get_record_index, MyanmarClass, Record, UseClass, BRACKETS, MIRRORS, RECORDS, SCRIPTS_BY_TAG,
+    SCRIPT_COMPLEXITY, SCRIPT_NAMES, SCRIPT_TAGS,
 };
 use crate::Tag;
 
@@ -340,15 +340,18 @@ impl Script {
 
     /// Returns true if the script has cursive joining.
     pub fn is_joined(self) -> bool {
-        matches!(self, Script::Arabic
-            | Script::Mongolian
-            | Script::Syriac
-            | Script::Nko
-            | Script::PhagsPa
-            | Script::Mandaic
-            | Script::Manichaean
-            | Script::PsalterPahlavi
-            | Script::Adlam)
+        matches!(
+            self,
+            Script::Arabic
+                | Script::Mongolian
+                | Script::Syriac
+                | Script::Nko
+                | Script::PhagsPa
+                | Script::Mandaic
+                | Script::Manichaean
+                | Script::PsalterPahlavi
+                | Script::Adlam
+        )
     }
 
     /// Returns the script as an OpenType tag.

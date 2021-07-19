@@ -1,7 +1,7 @@
 //! Parser for Myanmar clusters.
 
-use super::{ShapeClass, CharCluster, Token, MAX_CLUSTER_SIZE, Emoji, Whitespace};
-use super::unicode_data::{MyanmarClass, ClusterBreak, Category};
+use super::unicode_data::{Category, ClusterBreak, MyanmarClass};
+use super::{CharCluster, Emoji, ShapeClass, Token, Whitespace, MAX_CLUSTER_SIZE};
 
 type Kind = MyanmarClass;
 
@@ -13,9 +13,9 @@ pub struct MyanmarState<I> {
     done: bool,
 }
 
-impl<I> MyanmarState<I> 
+impl<I> MyanmarState<I>
 where
-    I: Iterator<Item = Token> + Clone
+    I: Iterator<Item = Token> + Clone,
 {
     pub fn new(mut chars: I) -> Self {
         if let Some(first) = chars.by_ref().next() {
@@ -36,7 +36,7 @@ where
                 done: true,
             }
         }
-    }    
+    }
 
     pub fn next(&mut self, cluster: &mut CharCluster) -> bool {
         if self.done {
@@ -44,7 +44,7 @@ where
         }
         Parser::new(self, cluster).parse();
         true
-    }    
+    }
 }
 
 struct Parser<'a, I> {
@@ -55,11 +55,11 @@ struct Parser<'a, I> {
 
 impl<'a, I> Parser<'a, I>
 where
-    I: Iterator<Item = Token> + Clone
+    I: Iterator<Item = Token> + Clone,
 {
     fn new(s: &'a mut MyanmarState<I>, cluster: &'a mut CharCluster) -> Self {
         Self {
-            s, 
+            s,
             cluster,
             vt: false,
         }
@@ -78,7 +78,7 @@ where
                     break;
                 }
             }
-            return Some(())
+            return Some(());
         }
         match self.kind() {
             O => {
@@ -106,10 +106,10 @@ where
                             },
                             Category::Control => ShapeClass::Control,
                             _ => ShapeClass::Base,
-                        };       
-                        self.accept_any_as(class)?; 
+                        };
+                        self.accept_any_as(class)?;
                     }
-                }                 
+                }
             }
             P | S | R | WJ | D0 => {
                 self.accept_any()?;
@@ -176,7 +176,7 @@ where
             }
         }
         None
-    }    
+    }
 
     fn parse_stacked_consonant_or_vowel(&mut self) -> Option<bool> {
         use MyanmarClass::*;
@@ -196,7 +196,7 @@ where
             }
             _ => Some(false),
         }
-    }    
+    }
 
     fn parse_post_base_vowel(&mut self) -> Option<bool> {
         use MyanmarClass::*;
@@ -214,7 +214,7 @@ where
             }
             _ => Some(false),
         }
-    }    
+    }
 
     fn parse_pwo_tone_mark(&mut self) -> Option<bool> {
         use MyanmarClass::*;
@@ -235,43 +235,41 @@ where
             }
             _ => Some(false),
         }
-    }    
+    }
 
     fn parse_emoji_extension(&mut self) -> Option<bool> {
         use ClusterBreak::*;
         loop {
             match self.s.cur.info.cluster_break() {
-                EX => {
-                    match self.s.cur.ch as u32 {
-                        0x200C => self.accept_any_as(ShapeClass::Zwnj)?,
-                        0xFE0F => {
-                            self.cluster.info_mut().set_emoji(Emoji::Color);
-                            self.cluster.note_char(&self.s.cur);
-                            self.advance()?;
-                        }
-                        0xFE0E => {
-                            self.cluster.info_mut().set_emoji(Emoji::Text);
-                            self.cluster.note_char(&self.s.cur);
-                            self.advance()?;
-                        }
-                        _ => self.accept_any_as(ShapeClass::Mark)?,
+                EX => match self.s.cur.ch as u32 {
+                    0x200C => self.accept_any_as(ShapeClass::Zwnj)?,
+                    0xFE0F => {
+                        self.cluster.info_mut().set_emoji(Emoji::Color);
+                        self.cluster.note_char(&self.s.cur);
+                        self.advance()?;
                     }
-                }
-                ZWJ => {                    
+                    0xFE0E => {
+                        self.cluster.info_mut().set_emoji(Emoji::Text);
+                        self.cluster.note_char(&self.s.cur);
+                        self.advance()?;
+                    }
+                    _ => self.accept_any_as(ShapeClass::Mark)?,
+                },
+                ZWJ => {
                     self.accept_any_as(ShapeClass::Zwj)?;
-                    return Some(true);                    
+                    return Some(true);
                 }
                 _ => break,
             }
         }
         Some(false)
-    }    
+    }
 
     #[inline(always)]
     fn emoji(&self) -> bool {
         self.s.cur_emoji
     }
-    
+
     #[inline(always)]
     fn kind(&self) -> Kind {
         self.s.cur_kind
@@ -288,7 +286,7 @@ where
         } else {
             Some(false)
         }
-    }     
+    }
 
     fn accept_zero_or_many(&mut self, kind: Kind) -> Option<bool> {
         let mut some = false;
@@ -296,7 +294,7 @@ where
             some = true;
         }
         Some(some)
-    }    
+    }
 
     fn accept_zero_or_many_as(&mut self, kind: Kind, as_class: ShapeClass) -> Option<bool> {
         let mut some = false;
@@ -304,19 +302,19 @@ where
             some = true;
         }
         Some(some)
-    }    
+    }
 
     fn accept_any(&mut self) -> Option<()> {
         self.cluster.push(&self.s.cur, ShapeClass::Other);
         self.advance()?;
         Some(())
-    }    
-  
+    }
+
     fn accept_any_as(&mut self, as_class: ShapeClass) -> Option<()> {
         self.cluster.push(&self.s.cur, as_class);
         self.advance()?;
         Some(())
-    }    
+    }
 
     fn advance(&mut self) -> Option<()> {
         if self.cluster.len() as usize == MAX_CLUSTER_SIZE {
@@ -335,5 +333,5 @@ where
             self.s.done = true;
             None
         }
-    }       
+    }
 }

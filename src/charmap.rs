@@ -22,7 +22,10 @@ impl CharmapProxy {
     /// Materializes a character map from the specified font. This proxy must
     /// have been created from the same font.
     pub fn materialize<'a>(&self, font: &FontRef<'a>) -> Charmap<'a> {
-        Charmap { data: font.data, proxy: *self }
+        Charmap {
+            data: font.data,
+            proxy: *self,
+        }
     }
 }
 
@@ -54,7 +57,8 @@ impl<'a> Charmap<'a> {
         let mut glyph_id = cmap::map(self.data, self.proxy.0, self.proxy.1, codepoint).unwrap_or(0);
         // Remap U+0000..=U+00FF to U+F000..=U+F0FF for symbol encodings
         if glyph_id == 0 && self.proxy.2 && codepoint <= 0x00FF {
-            glyph_id = cmap::map(self.data, self.proxy.0, self.proxy.1, codepoint + 0xF000).unwrap_or(0);
+            glyph_id =
+                cmap::map(self.data, self.proxy.0, self.proxy.1, codepoint + 0xF000).unwrap_or(0);
         }
         glyph_id
     }

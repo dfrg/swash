@@ -81,5 +81,3 @@ impl Default for ShapeClass {
         Self::Base
     }
 }
-
-

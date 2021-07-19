@@ -2,8 +2,7 @@ use super::internal::{
     fixed::{mul, Fixed},
     glyf::*,
     var::Fvar,
-    Array,
-    RawFont,
+    Array, RawFont,
 };
 use crate::{FontRef, GlyphId};
 

@@ -1,9 +1,9 @@
 //! A complex cluster parser based on Microsoft's Universal Shaping Engine
 //! specification.
 
-use super::{ShapeClass, CharCluster, Token, MAX_CLUSTER_SIZE, Emoji, Whitespace};
 use super::super::{Category, Codepoint, Script};
-use super::unicode_data::{UseClass, ClusterBreak};
+use super::unicode_data::{ClusterBreak, UseClass};
+use super::{CharCluster, Emoji, ShapeClass, Token, Whitespace, MAX_CLUSTER_SIZE};
 
 type Kind = UseClass;
 
@@ -17,7 +17,7 @@ pub struct ComplexState<I> {
 
 impl<I> ComplexState<I>
 where
-    I: Iterator<Item = Token> + Clone
+    I: Iterator<Item = Token> + Clone,
 {
     pub fn new(script: Script, chars: I) -> Self {
         let mut chars = Tokens::new(script, chars);
@@ -57,7 +57,7 @@ struct Parser<'a, I> {
 
 impl<'a, I> Parser<'a, I>
 where
-    I: Iterator<Item = Token> + Clone
+    I: Iterator<Item = Token> + Clone,
 {
     fn new(s: &'a mut ComplexState<I>, cluster: &'a mut CharCluster) -> Self {
         Self {
@@ -80,7 +80,7 @@ where
                     break;
                 }
             }
-            return Some(())
+            return Some(());
         }
         match self.kind() {
             O => {
@@ -275,22 +275,20 @@ where
         use ClusterBreak::*;
         loop {
             match self.s.cur.info.cluster_break() {
-                EX => {
-                    match self.s.cur.ch as u32 {
-                        0x200C => self.accept_any_as(ShapeClass::Zwnj)?,
-                        0xFE0F => {
-                            self.cluster.info_mut().set_emoji(Emoji::Color);
-                            self.cluster.note_char(&self.s.cur);
-                            self.advance()?;
-                        }
-                        0xFE0E => {
-                            self.cluster.info_mut().set_emoji(Emoji::Text);
-                            self.cluster.note_char(&self.s.cur);
-                            self.advance()?;
-                        }
-                        _ => self.accept_any_as(ShapeClass::Mark)?,
+                EX => match self.s.cur.ch as u32 {
+                    0x200C => self.accept_any_as(ShapeClass::Zwnj)?,
+                    0xFE0F => {
+                        self.cluster.info_mut().set_emoji(Emoji::Color);
+                        self.cluster.note_char(&self.s.cur);
+                        self.advance()?;
                     }
-                }
+                    0xFE0E => {
+                        self.cluster.info_mut().set_emoji(Emoji::Text);
+                        self.cluster.note_char(&self.s.cur);
+                        self.advance()?;
+                    }
+                    _ => self.accept_any_as(ShapeClass::Mark)?,
+                },
                 ZWJ => {
                     self.accept_any_as(ShapeClass::Zwj)?;
                     return Some(true);
@@ -421,7 +419,7 @@ where
                         info: input.info.with_properties(props),
                         ..input
                     };
-                    self.decomp[self.decomp_len as usize] = (c2 ,class);
+                    self.decomp[self.decomp_len as usize] = (c2, class);
                     self.decomp_len += 1;
                 }
                 //self.decomp[..self.decomp_len as usize].reverse(); //.sort_unstable_by(|a, b| a.3.cmp(&b.3));

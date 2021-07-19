@@ -1,5 +1,9 @@
 use super::internal::{var::*, RawFont};
-use super::{FontRef, string::{LocalizedString, StringId}, NormalizedCoord, Tag, setting::Setting};
+use super::{
+    setting::Setting,
+    string::{LocalizedString, StringId},
+    FontRef, NormalizedCoord, Tag,
+};
 
 /// Proxy for rematerializing variations collections.
 #[derive(Copy, Clone)]

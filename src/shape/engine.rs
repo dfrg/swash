@@ -1,4 +1,4 @@
-use super::{at, aat};
+use super::{aat, at};
 
 use super::buffer::*;
 use super::internal::{self, at::Gdef, raw_tag, Bytes, RawFont, RawTag};

@@ -1,4 +1,4 @@
-use crate::{Tag, tag_from_bytes};
+use crate::{tag_from_bytes, Tag};
 use core::fmt;
 
 use super::lang_data::*;
@@ -58,7 +58,7 @@ impl Language {
                                 (b'z', b'h') => zh = true,
                                 (b'j', b'a') => lang.cjk = Cjk::Japanese,
                                 (b'k', b'o') => lang.cjk = Cjk::Korean,
-                                _ => {},
+                                _ => {}
                             };
                             lang.language[0] = a;
                             lang.language[1] = b;
@@ -152,7 +152,7 @@ impl Language {
             Ok(index) => index,
             _ => return None,
         };
-        return Self::parse(LANG_ENTRIES.get(name_index)?.1)
+        return Self::parse(LANG_ENTRIES.get(name_index)?.1);
     }
 
     /// Returns the language component.
