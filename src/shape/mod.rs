@@ -322,7 +322,7 @@ struct State {
     buffer: Buffer,
     store_builder: FeatureStoreBuilder,
     order: Vec<usize>,
-    glyphs: Vec<GlyphInfo>,
+    glyphs: Vec<GlyphData>,
     disable_kern: bool,
     features: Vec<(u32, u16)>,
     selectors: Vec<(u16, u16)>,
@@ -672,8 +672,8 @@ impl<'a> Shaper<'a> {
         let buf = &mut self.state.buffer;
         buf.shaped_glyphs.clear();
         let mut sentinel = (
-            buffer::GlyphInfo::default(),
-            buffer::PositionInfo::default(),
+            buffer::GlyphData::default(),
+            buffer::PositionData::default(),
         );
         sentinel.0.cluster = buf.ranges.len() as u32;
         let mut last_cluster = 0;
