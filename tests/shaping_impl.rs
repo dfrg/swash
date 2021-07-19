@@ -36,15 +36,15 @@ pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &s
     });
 
     let collected: String = output
-    .iter()
-    .enumerate()
-    .map(|(idx, i)| {
-        if idx == 0 {
-            i.to_owned()
-        } else {
-            format!("|{}", i)
-        }
-    })
-    .collect();
+        .iter()
+        .enumerate()
+        .map(|(idx, i)| {
+            if idx == 0 {
+                i.to_owned()
+            } else {
+                format!("|{}", i)
+            }
+        })
+        .collect();
     format!("[{}]", collected)
 }
