@@ -38,7 +38,7 @@ pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &s
                         .map(|x| x.to_string())
                         .unwrap_or(format!("gid{}", glyph.id)),
                     (glyph.x + advance).round() as i64,
-                    glyph.y as i64,
+                    glyph.y.round() as i64,
                 ));
             }
             advance += glyph.advance;
