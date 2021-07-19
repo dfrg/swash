@@ -1,4 +1,4 @@
-use swash::text::{Codepoint, Script, analyze};
+use swash::text::{analyze, Codepoint, Script};
 
 pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &str) -> String {
     // Open file, open font, get necessary data for `ShaperBuilder` etc.
@@ -11,7 +11,7 @@ pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &s
         .find(|&script| {
             script != Script::Unknown && script != Script::Inherited && script != Script::Common
         })
-        .unwrap_or(Script::Latin);   
+        .unwrap_or(Script::Latin);
     let builder = context
         .builder(font)
         .size(font_size as f32)
