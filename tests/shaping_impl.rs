@@ -2,12 +2,16 @@ pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &s
     let file = std::fs::read(font).unwrap();
     let font = swash::FontRef::from_offset(&file, 0).unwrap();
     let mut context = swash::shape::ShapeContext::new();
-    let script = swash::text::analyze(input.chars()).next().unwrap().0.script();
-
+    let script = swash::text::analyze(input.chars())
+        .next()
+        .unwrap()
+        .0
+        .script();
     let builder = context
         .builder(font)
         .size(font_size as f32)
-        .variations(variations).script(script);
+        .variations(variations)
+        .script(script);
     let bidi_info = unic_bidi::BidiInfo::new(input, None);
 
     let mut advance = 0.0;
