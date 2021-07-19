@@ -1,6 +1,7 @@
 use swash::text::{Codepoint, Script, analyze};
 
 pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &str) -> String {
+    // Open file, open font, get necessary data for `ShaperBuilder` etc.
     let file = std::fs::read(font).unwrap();
     let font = swash::FontRef::from_offset(&file, 0).unwrap();
     let mut context = swash::shape::ShapeContext::new();
@@ -24,6 +25,7 @@ pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &s
     shaper.add_str(input);
     shaper.shape_with(|cluster| {
         cluster.glyphs.iter().for_each(|glyph| {
+            // HarfBuzz format doesn't include glyphs with no advance
             if advance == 0.0 {
                 output.push(format!(
                     "{}",
@@ -45,10 +47,12 @@ pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &s
         });
     });
 
+    // Check if runs need to be reversed.
     if needs_resolution {
         output.reverse();
     }
 
+    // Format the returned glyphs to match the HarfBuzz format.
     let collected: String = output
         .iter()
         .enumerate()
