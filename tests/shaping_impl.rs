@@ -1,6 +1,6 @@
 pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &str) -> String {
     let file = std::fs::read(font).unwrap();
-    let font = swash::FontRef::from_index(&file, 0).unwrap();
+    let font = swash::FontRef::from_offset(&file, 0).unwrap();
     let mut context = swash::shape::ShapeContext::new();
     let builder = context
         .builder(font)
@@ -27,7 +27,7 @@ pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &s
                     font.glyph_name(glyph.id)
                         .map(|x| x.to_string())
                         .unwrap_or(format!("gid{}", glyph.id)),
-                    (glyph.x + advance).ceil() as usize,
+                    (glyph.x + f32::ceil(advance) )as usize,
                     glyph.y as usize,
                 ));
             }
