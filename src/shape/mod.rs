@@ -586,7 +586,13 @@ impl<'a> Shaper<'a> {
                 e.set_classes(buf, Some(range.clone()));
                 let start = range.start;
                 // Default group
-                e.gsub(s, s.groups.default, buf, Some(range));
+                e.gsub(s, s.groups.default, buf, Some(range.clone()));
+                for g in &mut buf.glyphs[range] {
+                    if g.char_class == ShapeClass::Halant && g.flags & SUBSTITUTED != 0 {
+                        // Don't prevent reordering across a virama that has been substituted
+                        g.char_class = ShapeClass::Other;
+                    }
+                }
                 // Reph identification
                 let len = 3.min(buf.glyphs.len() - start);
                 let end = start + len;
