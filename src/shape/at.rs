@@ -1067,7 +1067,6 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                 let class2 = self.class(base + b.read::<u16>(base + 10)? as usize, g2) as usize;
                 let class2_count = b.read::<u16>(base + 14)? as usize;
                 let v = base + 16 + (class1 * step * class2_count) + (class2 * step);
-
                 if vf1 != 0 {
                     let mut pos = [0f32; 4];
                     self.value_record(base, v, vf1, &mut pos)?;
