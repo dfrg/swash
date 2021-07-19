@@ -155,8 +155,8 @@ where
                 self.parse_standard_tail(is_potential_symbol)?;
             }
             _ => {
-                self.accept_any()?;
                 self.cluster.info_mut().set_broken();
+                self.accept_any_as(self.kind().to_shape_class())?;
             }
         }
         Some(())
@@ -365,6 +365,22 @@ where
         } else {
             self.s.done = true;
             None
+        }
+    }
+}
+
+impl UseClass {
+    pub fn to_shape_class(self) -> ShapeClass {
+        match self {
+            Self::B => ShapeClass::Base,
+            Self::H => ShapeClass::Halant,
+            Self::VPre => ShapeClass::VPre,
+            Self::VMPre => ShapeClass::VMPre,
+            Self::VBlw => ShapeClass::VBlw,
+            Self::R => ShapeClass::Reph,
+            Self::ZWNJ => ShapeClass::Zwnj,
+            Self::ZWJ => ShapeClass::Zwj,
+            _ => ShapeClass::Other,
         }
     }
 }
