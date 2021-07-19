@@ -1,4 +1,4 @@
-use swash::text::{Codepoint, Script};
+use swash::text::{Codepoint, Script, analyze};
 
 pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &str) -> String {
     let file = std::fs::read(font).unwrap();
@@ -16,7 +16,7 @@ pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &s
         .size(font_size as f32)
         .variations(variations)
         .script(script);
-    let bidi_info = unic_bidi::BidiInfo::new(input, None);
+    let rh = analyze(input.chars()).any(|x| x.0.bidi_class().needs_resolution());
 
     let mut advance = 0.0;
     let mut output = Vec::new();
@@ -45,7 +45,7 @@ pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &s
         });
     });
 
-    if bidi_info.has_rtl() {
+    if rh {
         output.reverse();
     }
 

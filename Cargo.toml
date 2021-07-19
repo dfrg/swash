@@ -20,6 +20,3 @@ render = ["scale", "zeno/eval"]
 [dependencies]
 yazi = { version = "0.1.4", optional = true }
 zeno = { version = "0.2.2", optional = true, default_features = false }
-
-[dev-dependencies]
-unic-bidi = "0.9"
