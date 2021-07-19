@@ -16,7 +16,7 @@ pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &s
         .size(font_size as f32)
         .variations(variations)
         .script(script);
-    let rh = analyze(input.chars()).any(|x| x.0.bidi_class().needs_resolution());
+    let needs_resolution = analyze(input.chars()).any(|x| x.0.bidi_class().needs_resolution());
 
     let mut advance = 0.0;
     let mut output = Vec::new();
@@ -45,7 +45,7 @@ pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &s
         });
     });
 
-    if rh {
+    if needs_resolution {
         output.reverse();
     }
 
