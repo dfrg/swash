@@ -27,11 +27,11 @@ pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &s
                     font.glyph_name(glyph.id)
                         .map(|x| x.to_string())
                         .unwrap_or(format!("gid{}", glyph.id)),
-                    (glyph.x + f32::ceil(advance) )as usize,
+                    (glyph.x as f64 + f64::ceil(advance) ) as usize,
                     glyph.y as usize,
                 ));
             }
-            advance += glyph.advance;
+            advance += glyph.advance as f64;
         });
     });
 
