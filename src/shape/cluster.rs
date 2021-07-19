@@ -2,14 +2,28 @@
 Glyph cluster modeling-- output from the shaper.
 */
 
+use super::buffer::MARK_ATTACH;
 use crate::text::cluster::{ClusterInfo, SourceRange, UserData};
 use crate::GlyphId;
+
+/// Information for a glyph.
+#[derive(Copy, Clone, Default, Debug)]
+pub struct GlyphInfo(pub u16);
+
+impl GlyphInfo {
+    /// Returns true if the glyph is an attached mark.
+    pub fn is_mark(self) -> bool {
+        self.0 & MARK_ATTACH != 0
+    }
+}
 
 /// Glyph identifier and positioning information as a result of shaping.
 #[derive(Copy, Clone, Default, Debug)]
 pub struct Glyph {
     /// Glyph identifier.
     pub id: GlyphId,
+    /// Glyph flags.
+    pub info: GlyphInfo,
     /// Horizontal offset.
     pub x: f32,
     /// Vertical offset.

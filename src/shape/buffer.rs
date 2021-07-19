@@ -1,4 +1,4 @@
-use super::cluster::Glyph;
+use super::cluster::{Glyph, GlyphInfo};
 use super::feature::*;
 use crate::text::{
     cluster::{Char, CharCluster, ClusterInfo, ShapeClass, SourceRange, MAX_CLUSTER_SIZE},
@@ -16,7 +16,7 @@ pub const IGNORABLE: u16 = 64;
 
 /// Per glyph shaping data.
 #[derive(Copy, Clone, Default, Debug)]
-pub struct GlyphInfo {
+pub struct GlyphData {
     pub id: u16,
     pub flags: u16,
     pub class: u8,
@@ -30,7 +30,7 @@ pub struct GlyphInfo {
     pub data: u32,
 }
 
-impl GlyphInfo {
+impl GlyphData {
     pub fn is_component(&self) -> bool {
         self.flags & COMPONENT != 0
     }
@@ -38,7 +38,7 @@ impl GlyphInfo {
 
 /// Per glyph shaping position data.
 #[derive(Copy, Clone, Default, Debug)]
-pub struct PositionInfo {
+pub struct PositionData {
     pub base: u8,
     pub flags: u16,
     pub x: f32,
@@ -47,9 +47,10 @@ pub struct PositionInfo {
 }
 
 impl Glyph {
-    pub(super) fn new(g: &GlyphInfo, p: &PositionInfo) -> Self {
+    pub(super) fn new(g: &GlyphData, p: &PositionData) -> Self {
         Self {
             id: g.id,
+            info: GlyphInfo(p.flags),
             x: p.x,
             y: p.y,
             advance: p.advance,
@@ -60,8 +61,8 @@ impl Glyph {
 
 #[derive(Clone, Default)]
 pub struct Buffer {
-    pub glyphs: Vec<GlyphInfo>,
-    pub positions: Vec<PositionInfo>,
+    pub glyphs: Vec<GlyphData>,
+    pub positions: Vec<PositionData>,
     pub infos: Vec<(ClusterInfo, bool, u32)>,
     pub ranges: Vec<SourceRange>,
     pub shaped_glyphs: Vec<Glyph>,
@@ -177,7 +178,7 @@ impl Buffer {
     #[inline(always)]
     fn push_char(&mut self, ch: &Char) {
         let cluster = self.next_cluster;
-        self.glyphs.push(GlyphInfo {
+        self.glyphs.push(GlyphData {
             id: ch.glyph_id,
             flags: (ch.ignorable as u16) << 6,
             class: 0,
@@ -204,7 +205,7 @@ impl Buffer {
         } else {
             1 | 2 | 4
         };
-        self.glyphs.push(GlyphInfo {
+        self.glyphs.push(GlyphData {
             id: ch.glyph_id,
             flags: (ch.ignorable as u16) << 6,
             class: 0,
@@ -270,7 +271,7 @@ impl Buffer {
         }
         self.positions.clear();
         self.positions
-            .resize(self.glyphs.len(), PositionInfo::default());
+            .resize(self.glyphs.len(), PositionData::default());
     }
 
     pub fn substitute(&mut self, index: usize, id: u16) {
@@ -409,12 +410,12 @@ impl Buffer {
 
 struct SubstIter<'a> {
     ids: &'a [u16],
-    g: GlyphInfo,
+    g: GlyphData,
     cur: usize,
 }
 
 impl<'a> Iterator for SubstIter<'a> {
-    type Item = GlyphInfo;
+    type Item = GlyphData;
 
     fn size_hint(&self) -> (usize, Option<usize>) {
         let remaining = self.ids.len() - self.cur;
@@ -425,7 +426,7 @@ impl<'a> Iterator for SubstIter<'a> {
         if self.cur >= self.ids.len() {
             return None;
         }
-        let g = GlyphInfo {
+        let g = GlyphData {
             id: self.ids[self.cur],
             flags: SUBSTITUTED,
             ..self.g
@@ -534,7 +535,7 @@ pub fn reorder_myanmar(chars: &[Char], order: &mut Vec<usize>) {
 }
 
 #[allow(clippy::needless_range_loop)]
-pub fn reorder_complex(glyphs: &mut [GlyphInfo], buf: &mut Vec<GlyphInfo>, order: &mut Vec<usize>) {
+pub fn reorder_complex(glyphs: &mut [GlyphData], buf: &mut Vec<GlyphData>, order: &mut Vec<usize>) {
     use ShapeClass::*;
     let mut first_base = None;
     let mut last_base = None;
@@ -546,7 +547,7 @@ pub fn reorder_complex(glyphs: &mut [GlyphInfo], buf: &mut Vec<GlyphInfo>, order
     let mut ignored = [false; 64];
     let len = glyphs.len();
     if buf.len() < glyphs.len() {
-        buf.resize(len, GlyphInfo::default());
+        buf.resize(len, GlyphData::default());
     }
     let buf = &mut buf[..len];
     if order.len() < len {
