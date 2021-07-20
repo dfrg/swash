@@ -841,7 +841,7 @@ impl<'a> Shaper<'a> {
             .metrics
             .materialize_glyph_metrics(&self.font, self.engine.coords);
         for (g, p) in buf.glyphs.iter_mut().zip(buf.positions.iter_mut()) {
-            if g.class != 3 {
+            if g.flags & MARK_ATTACH == 0 {
                 p.advance += glyph_metrics.advance_width(g.id);
             }
             g.flags |= p.flags;
