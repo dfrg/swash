@@ -363,7 +363,8 @@ impl Form {
             .chars()
             .iter()
             .filter(|c| c.shape_class != ShapeClass::Control)
-            .count() as u8).max(1);
+            .count() as u8)
+            .max(1);
     }
 
     fn map(
