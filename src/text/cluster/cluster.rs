@@ -103,7 +103,7 @@ impl CharCluster {
         }
         ratio = Mapper {
             chars: &mut self.chars[..self.len as usize],
-            map_len: self.map_len,
+            map_len: self.map_len.max(1),
         }
         .map(&f, &mut glyph_ids, self.best_ratio);
         if ratio > self.best_ratio {
@@ -359,11 +359,11 @@ impl Form {
     }
 
     fn setup(&mut self) {
-        self.map_len = self
+        self.map_len = (self
             .chars()
             .iter()
             .filter(|c| c.shape_class != ShapeClass::Control)
-            .count() as u8;
+            .count() as u8).max(1);
     }
 
     fn map(
