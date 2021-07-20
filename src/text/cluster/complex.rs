@@ -183,17 +183,6 @@ where
         self.accept(MBlw)?;
         self.accept(MPst)?;
         self.accept_zero_or_many_as(VPre, ShapeClass::VPre)?;
-        // Hack to handle special reordering classes for Kannada. This may require
-        // more specialized work in the spirit of the Myanmar shaper.
-        if self.s.chars.script == Script::Kannada {
-            match self.s.cur.ch as u32 {
-                0x0CBF | 0x0CC6 | 0x0CCC | 0x0CBE | 0x0CE2 | 0x0CE3 | 0x0CC1 | 0x0CC2 => {
-                    // VPre forces before base ordering for these codepoints
-                    self.accept_any_as(ShapeClass::VPre)?;
-                }
-                _ => {}
-            }
-        }
         self.accept_zero_or_many(VAbv)?;
         self.accept_zero_or_many(VBlw)?;
         self.accept_zero_or_many(VPst)?;
