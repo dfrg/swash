@@ -398,7 +398,10 @@ impl<'a> Mapper<'a> {
         let mut mapped = 0;
         for (c, g) in self.chars.iter().zip(glyphs.iter_mut()) {
             if !c.contributes_to_shaping {
-                *g = 0;
+                *g = f(c.ch);
+                if self.map_len == 1 {
+                    mapped += 1;
+                }
             } else {
                 let gid = f(c.ch);
                 *g = gid;

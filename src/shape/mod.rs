@@ -360,6 +360,7 @@ pub struct ShaperBuilder<'a> {
     coords: &'a mut Vec<i16>,
     charmap: Charmap<'a>,
     dotted_circle: Option<u16>,
+    retain_ignorables: bool,
     size: f32,
     script: Script,
     lang: Option<Language>,
@@ -383,6 +384,7 @@ impl<'a> ShaperBuilder<'a> {
             coords: &mut context.coords,
             charmap: font_entry.charmap.materialize(&font),
             dotted_circle: None,
+            retain_ignorables: false,
             size: 0.,
             script: Script::Latin,
             lang: None,
@@ -480,6 +482,13 @@ impl<'a> ShaperBuilder<'a> {
         self
     }
 
+    /// Specifies whether characters defined as default ignorable should be
+    /// retained by the shaper. The default is `false`.
+    pub fn retain_ignorables(mut self, yes: bool) -> Self {
+        self.retain_ignorables = yes;
+        self
+    }
+
     /// Builds a shaper for the current configuration.
     pub fn build(self) -> Shaper<'a> {
         let engine = Engine::new(
@@ -522,6 +531,7 @@ impl<'a> ShaperBuilder<'a> {
             font: self.font,
             font_entry: self.font_entry,
             charmap: self.charmap,
+            retain_ignorables: self.retain_ignorables,
             size: self.size,
             script: self.script,
             joined: engine.use_ot && self.script.is_joined(),
@@ -543,6 +553,7 @@ pub struct Shaper<'a> {
     font: FontRef<'a>,
     font_entry: &'a FontEntry,
     charmap: Charmap<'a>,
+    retain_ignorables: bool,
     size: f32,
     script: Script,
     joined: bool,
@@ -746,7 +757,7 @@ impl<'a> Shaper<'a> {
                 }
             }
             last_cluster = g.cluster;
-            if g.flags & IGNORABLE == 0 {
+            if self.retain_ignorables || g.flags & IGNORABLE == 0 {
                 buf.shaped_glyphs.push(Glyph::new(g, p));
             }
         }
