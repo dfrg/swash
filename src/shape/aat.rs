@@ -8,7 +8,9 @@ pub fn apply_morx(
     selectors: &[(u16, u16)],
 ) -> Option<()> {
     use morx::*;
+    let max_ops = buffer.glyphs.len() * 16;
     for chain in chains(data, morx) {
+        let mut ops = 0;
         let mut flags = chain.default_flags();
         if !selectors.is_empty() {
             for feature in chain.features() {
@@ -40,7 +42,7 @@ pub fn apply_morx(
                     //println!(".. rearrangement");
                     let mut i = 0;
                     let mut state = RearrangementState::new();
-                    while i < buffer.glyphs.len() {
+                    while i < buffer.glyphs.len() && ops < max_ops {
                         let g = buffer.glyphs[i].id;
                         match t.next(&mut state, i, g, false, |r| {
                             // if TRACE {
@@ -52,6 +54,7 @@ pub fn apply_morx(
                             Some(advance) => i += advance,
                             None => break,
                         }
+                        ops += 1;
                     }
                     // Apply END_OF_TEXT state
                     t.next(&mut state, i, 0, true, |r| {
@@ -64,11 +67,22 @@ pub fn apply_morx(
                     let mut state = ContextualState::new();
                     for i in 0..buffer.glyphs.len() {
                         let g = buffer.glyphs[i].id;
-                        t.next(&mut state, i, g, |i, g| {
+                        t.next(&mut state, i, g, false, |i, g| {
                             buffer.substitute(i, g);
                             Some(())
                         });
                     }
+                    // Apply END_OF_TEXT state
+                    t.next(
+                        &mut state,
+                        buffer.glyphs.len().saturating_sub(1),
+                        0,
+                        true,
+                        |i, g| {
+                            buffer.substitute(i, g);
+                            Some(())
+                        },
+                    );
                 }
                 SubtableKind::NonContextual(t) => {
                     //println!(".. non-contextual");
@@ -85,23 +99,35 @@ pub fn apply_morx(
                     //println!(".. ligature");
                     let mut i = 0;
                     let mut state = LigatureState::new();
-                    while i < buffer.glyphs.len() {
+                    while i < buffer.glyphs.len() && ops < max_ops {
                         let g = buffer.glyphs[i].id;
                         let f = |i, g, comps: &[usize]| {
                             buffer.substitute_ligature(i, g, comps);
                             Some(())
                         };
-                        if t.next(&mut state, i, g, f).is_none() {
+                        if t.next(&mut state, i, g, false, f).is_none() {
                             break;
                         }
                         i += 1;
+                        ops += 1;
                     }
+                    // Apply END_OF_TEXT state
+                    t.next(
+                        &mut state,
+                        buffer.glyphs.len().saturating_sub(1),
+                        0,
+                        true,
+                        |i, g, comps| {
+                            buffer.substitute_ligature(i, g, comps);
+                            Some(())
+                        },
+                    );
                 }
                 SubtableKind::Insertion(t) => {
                     //println!(".. insertion");
                     let mut i = 0;
                     let mut state = InsertionState::new();
-                    while i < buffer.glyphs.len() {
+                    while i < buffer.glyphs.len() && ops < max_ops {
                         let g = buffer.glyphs[i].id;
                         match t.next(&mut state, i, g, |i, array| {
                             // if TRACE {
@@ -120,6 +146,7 @@ pub fn apply_morx(
                             Some(advance) => i += advance,
                             None => break,
                         }
+                        ops += 1;
                     }
                 }
             }

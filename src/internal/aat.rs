@@ -8,6 +8,9 @@ pub const KERX: RawTag = raw_tag(b"kerx");
 pub const ANKR: RawTag = raw_tag(b"ankr");
 pub const KERN: RawTag = raw_tag(b"kern");
 
+/// Maximum number of times we allow consecutive DONT_ADVANCE states.
+const MAX_CYCLES: u16 = 16;
+
 /// Gets a value from a lookup table.
 ///
 /// <https://developer.apple.com/fonts/TrueType-Reference-Manual/RM06/Chap6Tables.html>
@@ -530,7 +533,15 @@ pub mod morx {
                 };
                 f(&rearrange)?;
             }
-            let advance = entry.flags & DONT_ADVANCE == 0;
+            let mut advance = entry.flags & DONT_ADVANCE == 0;
+            if advance {
+                state.cycles = 0;
+            } else if state.cycles > MAX_CYCLES {
+                state.cycles = 0;
+                advance = true;
+            } else {
+                state.cycles += 1;
+            }
             Some(advance as usize)
         }
     }
@@ -560,6 +571,7 @@ pub mod morx {
         state: u16,
         first: usize,
         last: usize,
+        cycles: u16,
     }
 
     impl RearrangementState {
@@ -632,13 +644,19 @@ pub mod morx {
             state: &mut ContextualState,
             index: usize,
             glyph_id: u16,
+            end_of_text: bool,
             mut f: impl FnMut(usize, u16) -> Option<()>,
         ) -> Option<()> {
             const SET_MARK: u16 = 0x8000;
             const DONT_ADVANCE: u16 = 0x4000;
             let mut last_glyph_id = glyph_id;
             let mut current_glyph_id = glyph_id;
-            let mut class = self.state_table.class(glyph_id);
+            let mut class = if end_of_text {
+                0
+            } else {
+                self.state_table.class(glyph_id)
+            };
+            let mut cycles = 0;
             loop {
                 let entry = self
                     .state_table
@@ -660,9 +678,10 @@ pub mod morx {
                 if entry.flags & SET_MARK != 0 {
                     state.mark = Some((index, glyph_id));
                 }
-                if entry.flags & DONT_ADVANCE == 0 {
+                if entry.flags & DONT_ADVANCE == 0 || cycles > MAX_CYCLES {
                     break;
                 }
+                cycles += 1;
                 if current_glyph_id != last_glyph_id {
                     class = self.state_table.class(current_glyph_id);
                 }
@@ -743,6 +762,7 @@ pub mod morx {
             state: &mut LigatureState,
             index: usize,
             glyph_id: u16,
+            end_of_text: bool,
             mut f: impl FnMut(usize, u16, &[usize]) -> Option<()>,
         ) -> Option<()> {
             const SET_COMPONENT: u16 = 0x8000;
@@ -750,7 +770,12 @@ pub mod morx {
             const PERFORM_ACTION: u16 = 0x2000;
             const LAST: u32 = 0x80000000;
             const STORE: u32 = 0x40000000;
-            let class = self.state_table.class(glyph_id);
+            let class = if end_of_text {
+                0
+            } else {
+                self.state_table.class(glyph_id)
+            };
+            let mut cycles = 0;
             loop {
                 let entry = self.state_table.entry::<u16>(state.state, class)?;
                 state.state = entry.new_state;
@@ -779,15 +804,17 @@ pub mod morx {
                             let ligature = self.ligature(ligature_index)?;
                             f(glyph_index, ligature, state.indices.get(pos + 1..end_pos)?)?;
                         }
-                        if action & LAST != 0 {
+                        if action & LAST != 0 || cycles > (MAX_CYCLES * 2) {
                             break;
                         }
+                        cycles += 1;
                     }
                     state.pos = pos;
                 }
-                if entry.flags & DONT_ADVANCE == 0 {
+                if entry.flags & DONT_ADVANCE == 0 || cycles > MAX_CYCLES {
                     break;
                 }
+                cycles += 1;
             }
             Some(())
         }
@@ -920,7 +947,15 @@ pub mod morx {
                 inserted = true;
                 f(base, glyphs)?;
             }
-            let advance = entry.flags & DONT_ADVANCE == 0;
+            let mut advance = entry.flags & DONT_ADVANCE == 0;
+            if advance {
+                state.cycles = 0;
+            } else if state.cycles > MAX_CYCLES {
+                state.cycles = 0;
+                advance = true;
+            } else {
+                state.cycles += 1;
+            }
             if inserted {
                 // It doesn't seem likely to find a don't advance flag with an active
                 // insertion state. The only logical place to position the cursor is
@@ -971,6 +1006,7 @@ pub mod morx {
     pub struct InsertionState {
         state: u16,
         mark: usize,
+        cycles: u16,
     }
 
     impl InsertionState {
@@ -1318,7 +1354,15 @@ pub mod kerx {
             if entry.flags & RESET != 0 {
                 state.pos = 0;
             }
-            let advance = entry.flags & DONT_ADVANCE == 0;
+            let mut advance = entry.flags & DONT_ADVANCE == 0;
+            if advance {
+                state.cycles = 0;
+            } else if state.cycles > MAX_CYCLES {
+                state.cycles = 0;
+                advance = true;
+            } else {
+                state.cycles += 1;
+            }
             Some(advance as usize)
         }
     }
@@ -1329,6 +1373,7 @@ pub mod kerx {
         state: u16,
         stack: [usize; 8],
         pos: usize,
+        cycles: u16,
     }
 
     impl ContextualState {
@@ -1432,7 +1477,15 @@ pub mod kerx {
                     _ => {}
                 }
             }
-            let advance = entry.flags & DONT_ADVANCE == 0;
+            let mut advance = entry.flags & DONT_ADVANCE == 0;
+            if advance {
+                state.cycles = 0;
+            } else if state.cycles > MAX_CYCLES {
+                state.cycles = 0;
+                advance = true;
+            } else {
+                state.cycles += 1;
+            }
             Some(advance as usize)
         }
 
@@ -1458,6 +1511,7 @@ pub mod kerx {
         state: u16,
         mark: usize,
         mark_id: u16,
+        cycles: u16,
     }
 
     impl Format4State {
@@ -1736,7 +1790,15 @@ pub mod kern {
                     value_offset += 2;
                 }
             }
-            let advance = entry.flags & DONT_ADVANCE == 0;
+            let mut advance = entry.flags & DONT_ADVANCE == 0;
+            if advance {
+                state.cycles = 0;
+            } else if state.cycles > MAX_CYCLES {
+                state.cycles = 0;
+                advance = true;
+            } else {
+                state.cycles += 1;
+            }
             Some(advance as usize)
         }
     }
@@ -1747,6 +1809,7 @@ pub mod kern {
         state: u16,
         stack: [usize; 8],
         pos: usize,
+        cycles: u16,
     }
 
     impl Format1State {
