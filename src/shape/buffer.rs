@@ -349,7 +349,7 @@ impl Buffer {
     }
 
     pub fn multiply(&mut self, index: usize, count: usize) {
-        let g = self.glyphs[index];
+        let g = self.glyphs.get(index).copied().unwrap_or_else(|| GlyphData::default());
         self.glyphs.splice(index..index, (0..count).map(|_| g));
     }
 
