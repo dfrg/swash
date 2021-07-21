@@ -4,7 +4,17 @@ pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &s
     // Open file, open font, get necessary data for `ShaperBuilder` etc.
     let file = std::fs::read(font).unwrap();
     let font = swash::FontRef::from_offset(&file, 0).unwrap();
+<<<<<<< HEAD
     let mut context = swash::shape::ShapeContext::new();
+=======
+    let font_size = if font_size == 0 {
+        75
+    } else {
+        font_size
+    };
+
+    // Other supplementary information for the `Shaper`.
+>>>>>>> d799474 (wip)
     let script = input
         .chars()
         .map(|ch| ch.script())
@@ -52,6 +62,7 @@ pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &s
         output.reverse();
     }
 
+<<<<<<< HEAD
     // Format the returned glyphs to match the HarfBuzz format.
     let collected: String = output
         .iter()
@@ -65,4 +76,25 @@ pub fn shape(font: &str, font_size: usize, variations: &[(&str, f32)], input: &s
         })
         .collect();
     format!("[{}]", collected)
+=======
+    // Finally format everything to match HarfBuzz, e.g. `[A|B@x,y|C@x,y]`.
+    if output.len() == 1 && output.first().unwrap() == "*" {
+        output.first().unwrap().to_string()
+    } else {
+        format!(
+            "[{}]",
+            output
+                .iter()
+                .enumerate()
+                .map(|(idx, glyph)| {
+                    if idx == 0 {
+                        glyph.to_string()
+                    } else {
+                        format!("|{}", glyph)
+                    }
+                })
+                .collect::<String>()
+        )
+    }
+>>>>>>> d799474 (wip)
 }

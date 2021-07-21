@@ -2019,13 +2019,13 @@ fn morx_23_0() {
     )
 }
 
-// #[test]
-// fn morx_24_0() {
-//     assert_eq!(
-//         shape("fonts/TestMORXTwentyfour.ttf", 0, &[], "ABCDE"),
-//         "*"
-//     )
-// }
+#[test]
+fn morx_24_0() {
+    assert_eq!(
+        shape("fonts/TestMORXTwentyfour.ttf", 0, &[], "ABCDE"),
+        "*"
+    )
+}
 
 #[test]
 fn morx_25_0() {
