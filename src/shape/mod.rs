@@ -243,6 +243,8 @@ for proper mark placement.
 */
 
 pub mod cluster;
+
+#[doc(hidden)]
 pub mod partition;
 
 mod aat;
@@ -262,7 +264,7 @@ use crate::text::{
     cluster::{CharCluster, Parser, ShapeClass, Token},
     Language, Script,
 };
-use at::{FeatureStore, FeatureStoreBuilder};
+use at::{FeatureMask, FeatureStore, FeatureStoreBuilder};
 use buffer::*;
 use cache::{FeatureCache, FontEntry};
 use core::borrow::Borrow;
@@ -524,7 +526,7 @@ impl<'a> ShaperBuilder<'a> {
             );
             (Some(store as _), sub, pos)
         } else {
-            (None, 0, 0)
+            (None, FeatureMask::default(), FeatureMask::default())
         };
         Shaper {
             state: self.state,
@@ -560,8 +562,8 @@ pub struct Shaper<'a> {
     dir: Direction,
     engine: Engine<'a>,
     store: Option<&'a FeatureStore>,
-    sub_mask: u64,
-    pos_mask: u64,
+    sub_mask: FeatureMask,
+    pos_mask: FeatureMask,
 }
 
 impl<'a> Shaper<'a> {

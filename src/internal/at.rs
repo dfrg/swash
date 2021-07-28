@@ -152,7 +152,7 @@ pub struct LookupData {
     pub index: u16,
     pub stage: u8,
     pub kind: LookupKind,
-    pub feature: u8,
+    pub feature: u16,
     pub mask: u8,
     pub ignored: u8,
     pub is_ext: bool,
