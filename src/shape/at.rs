@@ -3,32 +3,79 @@ use super::{buffer::*, feature::*, Direction};
 use crate::text::Script;
 use core::ops::Range;
 
-/// Masks or bits for specific feature groups.
+pub type FeatureBit = u16;
+
 #[derive(Copy, Clone, Default)]
-pub struct FeatureGroups {
-    pub default: u64,
-    pub reph: Option<u8>,
-    pub pref: Option<u8>,
-    pub stage1: u64,
-    pub stage2: u64,
-    pub basic: u64,
-    pub position: u64,
-    pub vert: u64,
-    pub rtl: u64,
+pub struct FeatureMask {
+    bits: [u64; 4],
 }
 
-#[derive(Copy, Clone, Default)]
-pub struct FeatureMask(pub u64);
+impl FeatureMask {
+    pub fn is_empty(&self) -> bool {
+        self.bits.iter().all(|word| *word == 0)
+    }
 
-impl From<u64> for FeatureMask {
-    fn from(mask: u64) -> Self {
-        Self(mask)
+    pub fn set(&mut self, bit: u16) {
+        let word = bit as usize / 64;
+        let mask = 1 << (bit as u64 & 63);
+        self.bits[word] |= mask;
+    }
+
+    pub fn clear(&mut self, bit: u16) {
+        let word = bit as usize / 64;
+        let mask = 1 << (bit as u64 & 63);
+        self.bits[word] &= !mask;
+    }
+
+    pub fn test(&self, bit: u16) -> bool {
+        let word = bit as usize / 64;
+        let mask = 1 << (bit as u64 & 63);
+        self.bits[word] & mask != 0
     }
 }
 
-impl From<Option<u8>> for FeatureMask {
-    fn from(bit: Option<u8>) -> Self {
-        Self(bit.map(|b| 1 << b).unwrap_or(0))
+impl core::ops::BitOr for FeatureMask {
+    type Output = Self;
+
+    fn bitor(self, other: Self) -> Self {
+        let mut result = FeatureMask::default();
+        for ((r, a), b) in result.bits.iter_mut().zip(&self.bits).zip(&other.bits) {
+            *r = *a | *b;
+        }
+        result
+    }
+}
+
+impl core::ops::BitOrAssign for FeatureMask {
+    fn bitor_assign(&mut self, other: Self) {
+        for (a, b) in self.bits.iter_mut().zip(&other.bits) {
+            *a |= *b;
+        }
+    }
+}
+
+/// Masks or bits for specific feature groups.
+#[derive(Copy, Clone, Default)]
+pub struct FeatureGroups {
+    pub default: FeatureMask,
+    pub reph: Option<FeatureBit>,
+    pub pref: Option<FeatureBit>,
+    pub stage1: FeatureMask,
+    pub stage2: FeatureMask,
+    pub basic: FeatureMask,
+    pub position: FeatureMask,
+    pub vert: FeatureMask,
+    pub rtl: FeatureMask,
+}
+
+impl From<Option<FeatureBit>> for FeatureMask {
+    fn from(bit: Option<u16>) -> Self {
+        bit.map(|bit| {
+            let mut mask = FeatureMask::default();
+            mask.set(bit);
+            mask
+        })
+        .unwrap_or_default()
     }
 }
 
@@ -53,10 +100,8 @@ impl StageOffsets {
     }
 }
 
-/// Maximum number of features that are allowed per stage. The limit is
-/// imposed by the 64-bit bitmask that is used for fast feature selection
-/// but can be bumped up to 128-bit if necessary.
-const MAX_CACHED_FEATURES: usize = 64;
+/// Maximum number of features that are allowed per stage.
+const MAX_CACHED_FEATURES: usize = 256;
 
 const MAX_NESTED_LOOKUPS: usize = 4;
 const MAX_SEQUENCE: usize = 32;
@@ -65,7 +110,7 @@ const MAX_SEQUENCE: usize = 32;
 /// script/language pair.
 #[derive(Clone, Default)]
 pub struct FeatureStore {
-    pub features: Vec<(RawTag, u8, u8)>,
+    pub features: Vec<(RawTag, FeatureBit, u8)>,
     pub lookups: Vec<LookupData>,
     pub subtables: Vec<SubtableData>,
     pub coverage: Vec<u16>,
@@ -87,18 +132,18 @@ impl FeatureStore {
         self.groups = FeatureGroups::default();
     }
 
-    pub fn bit(&self, feature: RawTag) -> Option<u8> {
+    pub fn bit(&self, feature: RawTag) -> Option<FeatureBit> {
         match self.features.binary_search_by(|x| x.0.cmp(&feature)) {
             Ok(index) => Some(self.features[index].1),
             _ => None,
         }
     }
 
-    pub fn mask(&self, features: &[RawTag]) -> u64 {
-        let mut mask = 0;
+    pub fn mask(&self, features: &[RawTag]) -> FeatureMask {
+        let mut mask = FeatureMask::default();
         for feature in features {
             if let Some(bit) = self.bit(*feature) {
-                mask |= 1 << bit
+                mask.set(bit);
             }
         }
         mask
@@ -112,7 +157,7 @@ impl FeatureStore {
         sub_args: &mut Vec<u16>,
         pos_args: &mut Vec<u16>,
         dir: Direction,
-    ) -> (u64, u64) {
+    ) -> (FeatureMask, FeatureMask) {
         let sub_count = self.sub_count;
         sub_args.clear();
         sub_args.resize(sub_count, 0);
@@ -138,11 +183,10 @@ impl FeatureStore {
                 } else {
                     pos_args[bit_index] = feature.1;
                 }
-                let bit = 1 << bit_index;
                 if feature.1 != 0 {
-                    *mask |= bit;
+                    mask.set(bit_index as u16);
                 } else {
-                    *mask &= !bit;
+                    mask.clear(bit_index as u16);
                 }
             }
         }
@@ -155,7 +199,7 @@ impl FeatureStore {
             rtl: self.mask(&[RTLM]),
             ..Default::default()
         };
-        if g.vert == 0 {
+        if g.vert.is_empty() {
             g.vert = self.mask(&[VERT]);
         }
         if script.is_complex() {
@@ -178,7 +222,7 @@ impl FeatureStore {
                     g.stage2 = if script.is_joined() {
                         self.mask(&[FIN2, FIN3, FINA, INIT, ISOL, MED2, MEDI])
                     } else {
-                        0
+                        FeatureMask::default()
                     };
                     g.basic =
                         self.mask(&[ABVS, BLWS, CALT, CLIG, HALN, LIGA, PRES, PSTS, RCLT, RLIG]);
@@ -231,9 +275,9 @@ impl FeatureStore {
 /// Builder for a feature cache.
 #[derive(Default)]
 pub struct FeatureStoreBuilder {
-    indices: Vec<(u16, u8, u8)>,
+    indices: Vec<(u16, FeatureBit, u8)>,
     coverage: CoverageBuilder,
-    next_bit: u8,
+    next_bit: FeatureBit,
 }
 
 impl FeatureStoreBuilder {
@@ -323,8 +367,15 @@ impl FeatureStoreBuilder {
             }
         }
         self.indices.sort_unstable_by(|a, b| a.0.cmp(&b.0));
-        self.indices.dedup_by(|a, b| a.0 == b.0);
+        //self.indices.dedup_by(|a, b| a.0 == b.0);
+        let mut last_index = None;
         for (index, feature, mask) in &self.indices {
+            if last_index == Some(*index) {
+                let mut lookup = *cache.lookups.last().unwrap();
+                lookup.feature = *feature;
+                cache.lookups.push(lookup);
+                continue;
+            }
             if let Some(ref mut lookup) = lookup_data(b, stage, list_base, *index, *mask, gdef) {
                 let start = cache.subtables.len();
                 self.coverage.begin();
@@ -332,6 +383,7 @@ impl FeatureStoreBuilder {
                     lookup.coverage = self.coverage.finish(&mut cache.coverage);
                     lookup.feature = *feature;
                     cache.lookups.push(*lookup);
+                    last_index = Some(*index);
                 } else {
                     cache.subtables.truncate(start);
                 }
@@ -482,11 +534,11 @@ pub fn apply(
     gdef: &Gdef,
     storage: &mut Storage,
     cache: &FeatureStore,
-    feature_mask: u64,
+    feature_mask: FeatureMask,
     buffer: &mut Buffer,
     buffer_range: Option<Range<usize>>,
 ) -> Option<bool> {
-    if gsubgpos == 0 || feature_mask == 0 {
+    if gsubgpos == 0 || feature_mask.is_empty() {
         return Some(false);
     }
     let buffer_range = if let Some(range) = buffer_range {
@@ -512,7 +564,7 @@ pub fn apply(
     };
     let mut applied = false;
     for lookup in lookups {
-        if feature_mask & (1 << lookup.feature) == 0 {
+        if !feature_mask.test(lookup.feature) {
             continue;
         }
         let table_range = lookup.subtables.0 as usize..lookup.subtables.1 as usize;
@@ -734,7 +786,7 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
         self.s.cur < self.s.end
     }
 
-    fn move_previous(&mut self) -> bool {
+    fn _move_previous(&mut self) -> bool {
         if self.s.cur == self.start {
             return false;
         }
@@ -1478,13 +1530,13 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
         let lookup = lookup_data(&self.data, self.stage, list_base, index, 0, Some(self.defs))?;
         self.storage.stack[self.top as usize] = self.s;
         self.top += 1;
-        let v = self.apply_without_subtables(&lookup, cur, end + 1, first);
+        let v = self.apply_uncached(&lookup, cur, end + 1, first);
         self.top -= 1;
         self.s = self.storage.stack[self.top as usize];
         v
     }
 
-    fn apply_without_subtables(
+    fn apply_uncached(
         &mut self,
         lookup: &LookupData,
         cur: usize,
@@ -1512,32 +1564,32 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
         } else if !self.move_to(first) {
             return Some(false);
         }
-        loop {
-            let cur = self.s.cur;
-            let g = self.buf.glyphs[cur].id;
-            for i in 0..count {
-                let mut subtable = base + b.read::<u16>(subtables + i * 2)? as usize;
-                if ext {
-                    subtable = subtable + b.read::<u32>(subtable + 4)? as usize;
-                }
-                let fmt = b.read::<u16>(subtable)?;
-                if let Some(ref s) = subtable_data(b, subtable as u32, kind, fmt) {
-                    if let Some(index) = s.coverage(b, g) {
-                        if let Some(true) = self.apply_subtable(b, s, index as usize, cur, g) {
-                            applied = true;
-                            break;
-                        }
+        // loop {
+        let cur = self.s.cur;
+        let g = self.buf.glyphs[cur].id;
+        for i in 0..count {
+            let mut subtable = base + b.read::<u16>(subtables + i * 2)? as usize;
+            if ext {
+                subtable = subtable + b.read::<u32>(subtable + 4)? as usize;
+            }
+            let fmt = b.read::<u16>(subtable)?;
+            if let Some(ref s) = subtable_data(b, subtable as u32, kind, fmt) {
+                if let Some(index) = s.coverage(b, g) {
+                    if let Some(true) = self.apply_subtable(b, s, index as usize, cur, g) {
+                        applied = true;
+                        break;
                     }
                 }
             }
-            if reverse {
-                if !self.move_previous() {
-                    break;
-                }
-            } else if !self.move_next() {
-                break;
-            }
         }
+        //     if reverse {
+        //         if !self.move_previous() {
+        //             break;
+        //         }
+        //     } else if !self.move_next() {
+        //         break;
+        //     }
+        // }
         Some(applied)
     }
 

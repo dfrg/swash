@@ -167,7 +167,7 @@ impl<'a> Engine<'a> {
             &self.gdef,
             &mut self.storage,
             store,
-            feature_mask.into().0,
+            feature_mask.into(),
             buffer,
             buffer_range,
         ) == Some(true)
@@ -189,7 +189,7 @@ impl<'a> Engine<'a> {
             &self.gdef,
             &mut self.storage,
             store,
-            feature_mask.into().0,
+            feature_mask.into(),
             buffer,
             buffer_range,
         ) == Some(true)
