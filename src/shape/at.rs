@@ -1265,9 +1265,11 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                             continue;
                         }
                     }
-                    if let Some(true) = self.apply_contextual(c, subst_count, input_end) {
-                        return Some(true);
-                    }
+                    // if let Some(true) = self.apply_contextual(c, subst_count, input_end) {
+                    //     return Some(true);
+                    // }
+                    self.apply_contextual(c, subst_count, input_end);
+                    return Some(true);
                 }
             }
             Context2 => {
@@ -1305,9 +1307,11 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                             continue;
                         }
                     }
-                    if let Some(true) = self.apply_contextual(c, subst_count, input_end) {
-                        return Some(true);
-                    }
+                    // if let Some(true) = self.apply_contextual(c, subst_count, input_end) {
+                    //     return Some(true);
+                    // }
+                    self.apply_contextual(c, subst_count, input_end);
+                    return Some(true);
                 }
             }
             Context3 => {
@@ -1324,7 +1328,8 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                     self.coverage(base + input.get(i).unwrap_or(0) as usize, id)
                         .is_some()
                 })?;
-                return self.apply_contextual(c, subst_count, input_end);
+                self.apply_contextual(c, subst_count, input_end);
+                return Some(true);
             }
             ChainContext1 => {
                 let set_index = index;
@@ -1375,9 +1380,11 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                         }
                     }
                     let count = c.read::<u16>()? as usize;
-                    if let Some(true) = self.apply_contextual(c, count, input_end) {
-                        return Some(true);
-                    }
+                    // if let Some(true) = self.apply_contextual(c, count, input_end) {
+                    //     return Some(true);
+                    // }
+                    self.apply_contextual(c, count, input_end);
+                    return Some(true);
                 }
             }
             ChainContext2 => {
@@ -1438,9 +1445,11 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                         }
                     }
                     let count = c.read::<u16>()? as usize;
-                    if let Some(true) = self.apply_contextual(c, count, input_end) {
-                        return Some(true);
-                    }
+                    // if let Some(true) = self.apply_contextual(c, count, input_end) {
+                    //     return Some(true);
+                    // }
+                    self.apply_contextual(c, count, input_end);
+                    return Some(true);
                 }
             }
             ChainContext3 => {
@@ -1478,7 +1487,8 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                     })?;
                 }
                 let count = c.read::<u16>()? as usize;
-                return self.apply_contextual(c, count, input_end);
+                self.apply_contextual(c, count, input_end);
+                return Some(true);
             }
             RevChainContext1 => {
                 let mut c = b.stream_at(base + 4)?;
