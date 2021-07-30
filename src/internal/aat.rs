@@ -803,6 +803,8 @@ pub mod morx {
                         if action & (LAST | STORE) != 0 {
                             let ligature = self.ligature(ligature_index)?;
                             f(glyph_index, ligature, state.indices.get(pos + 1..end_pos)?)?;
+                            state.glyphs[pos] = ligature;
+                            pos += 1;
                         }
                         if action & LAST != 0 || cycles > (MAX_CYCLES * 2) {
                             break;
@@ -906,6 +908,7 @@ pub mod morx {
             state: &mut InsertionState,
             index: usize,
             glyph_id: u16,
+            end_of_text: bool,
             mut f: impl FnMut(usize, Array<'a, u16>) -> Option<()>,
         ) -> Option<usize> {
             const SET_MARK: u16 = 0x8000;
@@ -914,20 +917,22 @@ pub mod morx {
             const _MARKED_IS_KASHIDA_LIKE: u16 = 0x1000;
             const CURRENT_INSERT_BEFORE: u16 = 0x800;
             const MARKED_INSERT_BEFORE: u16 = 0x400;
-            let class = self.state_table.class(glyph_id);
+            let class = if end_of_text {
+                0
+            } else {
+                self.state_table.class(glyph_id)
+            };
             let entry = self
                 .state_table
                 .entry::<InsertionData>(state.state, class)?;
             state.state = entry.new_state;
             let mut working_index = index;
             let mut mark_inserted = 0;
-            let mut inserted = false;
             if entry.data.mark_index != 0xFFFF {
                 let before = entry.flags & MARKED_INSERT_BEFORE != 0;
                 let base = if before { state.mark } else { state.mark + 1 };
                 let glyphs = self.marked_glyphs(entry.flags, entry.data.mark_index)?;
                 mark_inserted = glyphs.len();
-                inserted = true;
                 working_index += mark_inserted;
                 f(base, glyphs)?;
             }
@@ -944,7 +949,6 @@ pub mod morx {
                 };
                 let glyphs = self.current_glyphs(entry.flags, entry.data.current_index)?;
                 current_inserted = glyphs.len();
-                inserted = true;
                 f(base, glyphs)?;
             }
             let mut advance = entry.flags & DONT_ADVANCE == 0;
@@ -956,16 +960,10 @@ pub mod morx {
             } else {
                 state.cycles += 1;
             }
-            if inserted {
-                // It doesn't seem likely to find a don't advance flag with an active
-                // insertion state. The only logical place to position the cursor is
-                // following the entire group of inserted glyphs.
-                let count = mark_inserted + current_inserted;
-                // Always advance to the end of the inserted glyphs, adding an extra 1
-                // if the don't advance flag is not set.
-                Some(count + advance as usize)
+            if advance {
+                Some(mark_inserted + current_inserted + 1)
             } else {
-                Some(advance as usize)
+                Some(mark_inserted)
             }
         }
 
