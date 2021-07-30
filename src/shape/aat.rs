@@ -73,16 +73,18 @@ pub fn apply_morx(
                         });
                     }
                     // Apply END_OF_TEXT state
-                    t.next(
-                        &mut state,
-                        buffer.glyphs.len().saturating_sub(1),
-                        0,
-                        true,
-                        |i, g| {
-                            buffer.substitute(i, g);
-                            Some(())
-                        },
-                    );
+                    if let Some(last_id) = buffer.glyphs.last().map(|g| g.id) {
+                        t.next(
+                            &mut state,
+                            buffer.glyphs.len() - 1,
+                            last_id,
+                            true,
+                            |i, g| {
+                                buffer.substitute(i, g);
+                                Some(())
+                            },
+                        );
+                    }
                 }
                 SubtableKind::NonContextual(t) => {
                     //println!(".. non-contextual");
