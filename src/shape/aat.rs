@@ -129,7 +129,7 @@ pub fn apply_morx(
                     let mut state = InsertionState::new();
                     while i < buffer.glyphs.len() && ops < max_ops {
                         let g = buffer.glyphs[i].id;
-                        match t.next(&mut state, i, g, |i, array| {
+                        match t.next(&mut state, i, g, false, |i, array| {
                             // if TRACE {
                             //     let rep = array.iter().collect::<Vec<_>>();
                             //     println!("Insert[{}] {:?}", i, &rep);
@@ -148,6 +148,23 @@ pub fn apply_morx(
                         }
                         ops += 1;
                     }
+                    // Apply END_OF_TEXT state
+                    t.next(
+                        &mut state,
+                        buffer.glyphs.len().saturating_sub(1),
+                        0,
+                        true,
+                        |i, array| {
+                            buffer.multiply(i, array.len());
+                            let start = i;
+                            let end = start + array.len();
+                            for (g, s) in buffer.glyphs[start..end].iter_mut().zip(array.iter()) {
+                                g.id = s;
+                                g.flags = 0;
+                            }
+                            Some(())
+                        },
+                    );
                 }
             }
         }
