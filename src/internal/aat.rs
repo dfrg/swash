@@ -649,6 +649,9 @@ pub mod morx {
         ) -> Option<()> {
             const SET_MARK: u16 = 0x8000;
             const DONT_ADVANCE: u16 = 0x4000;
+            if end_of_text && !state.mark_set {
+                return Some(());
+            }
             let mut last_glyph_id = glyph_id;
             let mut current_glyph_id = glyph_id;
             let mut class = if end_of_text {
@@ -656,6 +659,10 @@ pub mod morx {
             } else {
                 self.state_table.class(glyph_id)
             };
+            if index == 0 && !end_of_text {
+                state.mark_index = 0;
+                state.mark_id = glyph_id;
+            }
             let mut cycles = 0;
             loop {
                 let entry = self
@@ -663,28 +670,30 @@ pub mod morx {
                     .entry::<ContextualData>(state.state, class)?;
                 state.state = entry.new_state;
                 if entry.data.mark_index != 0xFFFF {
-                    if let Some((mark_index, mark_glyph_id)) = state.mark {
-                        if let Some(g) = self.lookup(entry.data.mark_index, mark_glyph_id) {
-                            f(mark_index, g)?;
+                    if let Some(g) = self.lookup(entry.data.mark_index, state.mark_id) {
+                        f(state.mark_index, g)?;
+                        if state.mark_index == index {
+                            last_glyph_id = g;
+                            current_glyph_id = g;
                         }
                     }
                 }
                 if entry.data.current_index != 0xFFFF {
-                    if let Some(g) = self.lookup(entry.data.current_index, current_glyph_id) {
+                    if let Some(g) = self.lookup(entry.data.current_index, last_glyph_id) {
                         f(index, g)?;
                         current_glyph_id = g;
                     }
                 }
                 if entry.flags & SET_MARK != 0 {
-                    state.mark = Some((index, glyph_id));
+                    state.mark_set = true;
+                    state.mark_index = index;
+                    state.mark_id = current_glyph_id;
                 }
                 if entry.flags & DONT_ADVANCE == 0 || cycles > MAX_CYCLES {
                     break;
                 }
                 cycles += 1;
-                if current_glyph_id != last_glyph_id {
-                    class = self.state_table.class(current_glyph_id);
-                }
+                class = self.state_table.class(current_glyph_id);
                 last_glyph_id = current_glyph_id;
             }
             Some(())
@@ -704,7 +713,9 @@ pub mod morx {
     #[derive(Copy, Clone, Default)]
     pub struct ContextualState {
         state: u16,
-        mark: Option<(usize, u16)>,
+        mark_set: bool,
+        mark_index: usize,
+        mark_id: u16,
     }
 
     impl ContextualState {
