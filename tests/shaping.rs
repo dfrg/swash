@@ -67,22 +67,20 @@ pub fn shape_text(
     output
 }
 
-
-    // macro_rules! shaping_test {
-    //     ($name:ident, $font:expr, $font_size:expr, $features:expr, $variations:expr, $input:expr, $output:expr) => {
-    //         #[test]
-    //         fn $name() {
-    //             assert_eq!(
-    //                 shape_text($font, $font_size, $features, $variations, $input),
-    //                 $output
-    //             );
-    //         }
-    //     };
-    //     ($name:ident, $font:expr, $font_size:expr, $features:expr, $variations:expr, $input:expr) => {
-    //         #[test]
-    //         fn $name() {
-    //             shape_text($font, $font_size, $features, $variations, $input);
-    //         }
-    //     };
-    // }
-
+// macro_rules! shaping_test {
+//     ($name:ident, $font:expr, $font_size:expr, $features:expr, $variations:expr, $input:expr, $output:expr) => {
+//         #[test]
+//         fn $name() {
+//             assert_eq!(
+//                 shape_text($font, $font_size, $features, $variations, $input),
+//                 $output
+//             );
+//         }
+//     };
+//     ($name:ident, $font:expr, $font_size:expr, $features:expr, $variations:expr, $input:expr) => {
+//         #[test]
+//         fn $name() {
+//             shape_text($font, $font_size, $features, $variations, $input);
+//         }
+//     };
+// }

@@ -18,11 +18,9 @@ macro_rules! shaping_test {
         }
     };
 }
-
-
 shaping_test!(
     avar_1_1,
-    "fonts/TestAVAR.ttf",
+    "tests/fonts/text-rendering/TestAVAR.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 100.0)],
@@ -31,7 +29,7 @@ shaping_test!(
 );
 shaping_test!(
     avar_1_2,
-    "fonts/TestAVAR.ttf",
+    "tests/fonts/text-rendering/TestAVAR.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 150.0)],
@@ -40,7 +38,7 @@ shaping_test!(
 );
 shaping_test!(
     avar_1_3,
-    "fonts/TestAVAR.ttf",
+    "tests/fonts/text-rendering/TestAVAR.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 200.0)],
@@ -49,7 +47,7 @@ shaping_test!(
 );
 shaping_test!(
     avar_1_4,
-    "fonts/TestAVAR.ttf",
+    "tests/fonts/text-rendering/TestAVAR.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 250.0)],
@@ -58,7 +56,7 @@ shaping_test!(
 );
 shaping_test!(
     avar_1_5,
-    "fonts/TestAVAR.ttf",
+    "tests/fonts/text-rendering/TestAVAR.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 300.0)],
@@ -67,7 +65,7 @@ shaping_test!(
 );
 shaping_test!(
     avar_1_6,
-    "fonts/TestAVAR.ttf",
+    "tests/fonts/text-rendering/TestAVAR.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 350.0)],
@@ -76,7 +74,7 @@ shaping_test!(
 );
 shaping_test!(
     avar_1_7,
-    "fonts/TestAVAR.ttf",
+    "tests/fonts/text-rendering/TestAVAR.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 400.0)],
@@ -85,7 +83,7 @@ shaping_test!(
 );
 shaping_test!(
     avar_1_8,
-    "fonts/TestAVAR.ttf",
+    "tests/fonts/text-rendering/TestAVAR.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 450.0)],
@@ -94,7 +92,7 @@ shaping_test!(
 );
 shaping_test!(
     avar_1_9,
-    "fonts/TestAVAR.ttf",
+    "tests/fonts/text-rendering/TestAVAR.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 500.0)],
@@ -103,7 +101,7 @@ shaping_test!(
 );
 shaping_test!(
     avar_1_10,
-    "fonts/TestAVAR.ttf",
+    "tests/fonts/text-rendering/TestAVAR.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 550.0)],
@@ -112,7 +110,7 @@ shaping_test!(
 );
 shaping_test!(
     avar_1_11,
-    "fonts/TestAVAR.ttf",
+    "tests/fonts/text-rendering/TestAVAR.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 600.0)],
@@ -121,7 +119,7 @@ shaping_test!(
 );
 shaping_test!(
     avar_1_12,
-    "fonts/TestAVAR.ttf",
+    "tests/fonts/text-rendering/TestAVAR.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 650.0)],
@@ -130,7 +128,7 @@ shaping_test!(
 );
 shaping_test!(
     avar_1_13,
-    "fonts/TestAVAR.ttf",
+    "tests/fonts/text-rendering/TestAVAR.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 700.0)],
@@ -139,7 +137,7 @@ shaping_test!(
 );
 shaping_test!(
     avar_1_14,
-    "fonts/TestAVAR.ttf",
+    "tests/fonts/text-rendering/TestAVAR.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 750.0)],
@@ -148,7 +146,7 @@ shaping_test!(
 );
 shaping_test!(
     avar_1_15,
-    "fonts/TestAVAR.ttf",
+    "tests/fonts/text-rendering/TestAVAR.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 800.0)],
@@ -157,7 +155,7 @@ shaping_test!(
 );
 shaping_test!(
     avar_1_16,
-    "fonts/TestAVAR.ttf",
+    "tests/fonts/text-rendering/TestAVAR.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 850.0)],
@@ -166,7 +164,7 @@ shaping_test!(
 );
 shaping_test!(
     avar_1_17,
-    "fonts/TestAVAR.ttf",
+    "tests/fonts/text-rendering/TestAVAR.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 900.0)],
@@ -175,7 +173,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_1_1,
-    "fonts/FDArrayTest257.otf",
+    "tests/fonts/text-rendering/FDArrayTest257.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -184,7 +182,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_1_2,
-    "fonts/FDArrayTest257.otf",
+    "tests/fonts/text-rendering/FDArrayTest257.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -193,7 +191,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_1_3,
-    "fonts/FDArrayTest257.otf",
+    "tests/fonts/text-rendering/FDArrayTest257.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -202,7 +200,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_1_4,
-    "fonts/FDArrayTest257.otf",
+    "tests/fonts/text-rendering/FDArrayTest257.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -211,7 +209,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_1_5,
-    "fonts/FDArrayTest257.otf",
+    "tests/fonts/text-rendering/FDArrayTest257.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -220,7 +218,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_1_6,
-    "fonts/FDArrayTest257.otf",
+    "tests/fonts/text-rendering/FDArrayTest257.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -229,7 +227,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_1_7,
-    "fonts/FDArrayTest257.otf",
+    "tests/fonts/text-rendering/FDArrayTest257.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -238,7 +236,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_1_8,
-    "fonts/FDArrayTest257.otf",
+    "tests/fonts/text-rendering/FDArrayTest257.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -247,7 +245,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_1_9,
-    "fonts/FDArrayTest257.otf",
+    "tests/fonts/text-rendering/FDArrayTest257.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -256,7 +254,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_1_10,
-    "fonts/FDArrayTest257.otf",
+    "tests/fonts/text-rendering/FDArrayTest257.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -265,7 +263,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_1_11,
-    "fonts/FDArrayTest257.otf",
+    "tests/fonts/text-rendering/FDArrayTest257.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -274,7 +272,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_1_12,
-    "fonts/FDArrayTest257.otf",
+    "tests/fonts/text-rendering/FDArrayTest257.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -283,7 +281,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_1_13,
-    "fonts/FDArrayTest257.otf",
+    "tests/fonts/text-rendering/FDArrayTest257.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -292,7 +290,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_2_1,
-    "fonts/FDArrayTest65535.otf",
+    "tests/fonts/text-rendering/FDArrayTest65535.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -301,7 +299,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_2_2,
-    "fonts/FDArrayTest65535.otf",
+    "tests/fonts/text-rendering/FDArrayTest65535.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -310,7 +308,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_2_3,
-    "fonts/FDArrayTest65535.otf",
+    "tests/fonts/text-rendering/FDArrayTest65535.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -319,7 +317,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_2_4,
-    "fonts/FDArrayTest65535.otf",
+    "tests/fonts/text-rendering/FDArrayTest65535.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -328,7 +326,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_2_5,
-    "fonts/FDArrayTest65535.otf",
+    "tests/fonts/text-rendering/FDArrayTest65535.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -337,7 +335,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_2_6,
-    "fonts/FDArrayTest65535.otf",
+    "tests/fonts/text-rendering/FDArrayTest65535.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -346,7 +344,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_2_7,
-    "fonts/FDArrayTest65535.otf",
+    "tests/fonts/text-rendering/FDArrayTest65535.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -355,7 +353,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_2_8,
-    "fonts/FDArrayTest65535.otf",
+    "tests/fonts/text-rendering/FDArrayTest65535.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -364,7 +362,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_2_9,
-    "fonts/FDArrayTest65535.otf",
+    "tests/fonts/text-rendering/FDArrayTest65535.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -373,7 +371,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_2_10,
-    "fonts/FDArrayTest65535.otf",
+    "tests/fonts/text-rendering/FDArrayTest65535.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -382,7 +380,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_2_11,
-    "fonts/FDArrayTest65535.otf",
+    "tests/fonts/text-rendering/FDArrayTest65535.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -391,7 +389,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_2_12,
-    "fonts/FDArrayTest65535.otf",
+    "tests/fonts/text-rendering/FDArrayTest65535.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -400,7 +398,7 @@ shaping_test!(
 );
 shaping_test!(
     cff_2_13,
-    "fonts/FDArrayTest65535.otf",
+    "tests/fonts/text-rendering/FDArrayTest65535.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -409,7 +407,7 @@ shaping_test!(
 );
 shaping_test!(
     cff2_1_1,
-    "fonts/AdobeVFPrototype-Subset.otf",
+    "tests/fonts/text-rendering/AdobeVFPrototype-Subset.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 100.0)],
@@ -418,7 +416,7 @@ shaping_test!(
 );
 shaping_test!(
     cff2_1_2,
-    "fonts/AdobeVFPrototype-Subset.otf",
+    "tests/fonts/text-rendering/AdobeVFPrototype-Subset.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 200.0)],
@@ -427,7 +425,7 @@ shaping_test!(
 );
 shaping_test!(
     cff2_1_3,
-    "fonts/AdobeVFPrototype-Subset.otf",
+    "tests/fonts/text-rendering/AdobeVFPrototype-Subset.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 300.0)],
@@ -436,7 +434,7 @@ shaping_test!(
 );
 shaping_test!(
     cff2_1_4,
-    "fonts/AdobeVFPrototype-Subset.otf",
+    "tests/fonts/text-rendering/AdobeVFPrototype-Subset.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 400.0)],
@@ -445,7 +443,7 @@ shaping_test!(
 );
 shaping_test!(
     cff2_1_5,
-    "fonts/AdobeVFPrototype-Subset.otf",
+    "tests/fonts/text-rendering/AdobeVFPrototype-Subset.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 500.0)],
@@ -454,7 +452,7 @@ shaping_test!(
 );
 shaping_test!(
     cff2_1_6,
-    "fonts/AdobeVFPrototype-Subset.otf",
+    "tests/fonts/text-rendering/AdobeVFPrototype-Subset.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 600.0)],
@@ -463,7 +461,7 @@ shaping_test!(
 );
 shaping_test!(
     cff2_1_7,
-    "fonts/AdobeVFPrototype-Subset.otf",
+    "tests/fonts/text-rendering/AdobeVFPrototype-Subset.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 700.0)],
@@ -472,7 +470,7 @@ shaping_test!(
 );
 shaping_test!(
     cff2_1_8,
-    "fonts/AdobeVFPrototype-Subset.otf",
+    "tests/fonts/text-rendering/AdobeVFPrototype-Subset.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 800.0)],
@@ -481,7 +479,7 @@ shaping_test!(
 );
 shaping_test!(
     cff2_1_9,
-    "fonts/AdobeVFPrototype-Subset.otf",
+    "tests/fonts/text-rendering/AdobeVFPrototype-Subset.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 900.0)],
@@ -490,7 +488,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_1_1,
-    "fonts/TestCMAP14.otf",
+    "tests/fonts/text-rendering/TestCMAP14.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -499,7 +497,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_1_2,
-    "fonts/TestCMAP14.otf",
+    "tests/fonts/text-rendering/TestCMAP14.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -508,7 +506,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_1_3,
-    "fonts/TestCMAP14.otf",
+    "tests/fonts/text-rendering/TestCMAP14.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -517,7 +515,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_1_4,
-    "fonts/TestCMAP14.otf",
+    "tests/fonts/text-rendering/TestCMAP14.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -526,7 +524,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_2_1,
-    "fonts/TestCMAP14.otf",
+    "tests/fonts/text-rendering/TestCMAP14.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -535,7 +533,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_2_2,
-    "fonts/TestCMAP14.otf",
+    "tests/fonts/text-rendering/TestCMAP14.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -544,7 +542,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_3_1,
-    "fonts/TestCMAPMacTurkish.ttf",
+    "tests/fonts/text-rendering/TestCMAPMacTurkish.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -553,7 +551,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_3_2,
-    "fonts/TestCMAPMacTurkish.ttf",
+    "tests/fonts/text-rendering/TestCMAPMacTurkish.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -562,7 +560,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_3_3,
-    "fonts/TestCMAPMacTurkish.ttf",
+    "tests/fonts/text-rendering/TestCMAPMacTurkish.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -571,7 +569,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_3_4,
-    "fonts/TestCMAPMacTurkish.ttf",
+    "tests/fonts/text-rendering/TestCMAPMacTurkish.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -580,7 +578,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_3_5,
-    "fonts/TestCMAPMacTurkish.ttf",
+    "tests/fonts/text-rendering/TestCMAPMacTurkish.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -589,7 +587,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_3_6,
-    "fonts/TestCMAPMacTurkish.ttf",
+    "tests/fonts/text-rendering/TestCMAPMacTurkish.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -598,7 +596,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_3_7,
-    "fonts/TestCMAPMacTurkish.ttf",
+    "tests/fonts/text-rendering/TestCMAPMacTurkish.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -607,7 +605,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_3_8,
-    "fonts/TestCMAPMacTurkish.ttf",
+    "tests/fonts/text-rendering/TestCMAPMacTurkish.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -616,7 +614,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_3_9,
-    "fonts/TestCMAPMacTurkish.ttf",
+    "tests/fonts/text-rendering/TestCMAPMacTurkish.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -625,7 +623,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_3_10,
-    "fonts/TestCMAPMacTurkish.ttf",
+    "tests/fonts/text-rendering/TestCMAPMacTurkish.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -634,7 +632,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_3_11,
-    "fonts/TestCMAPMacTurkish.ttf",
+    "tests/fonts/text-rendering/TestCMAPMacTurkish.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -643,7 +641,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_3_12,
-    "fonts/TestCMAPMacTurkish.ttf",
+    "tests/fonts/text-rendering/TestCMAPMacTurkish.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -652,7 +650,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_3_13,
-    "fonts/TestCMAPMacTurkish.ttf",
+    "tests/fonts/text-rendering/TestCMAPMacTurkish.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -661,7 +659,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_3_14,
-    "fonts/TestCMAPMacTurkish.ttf",
+    "tests/fonts/text-rendering/TestCMAPMacTurkish.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -670,7 +668,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_3_15,
-    "fonts/TestCMAPMacTurkish.ttf",
+    "tests/fonts/text-rendering/TestCMAPMacTurkish.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -679,7 +677,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_3_16,
-    "fonts/TestCMAPMacTurkish.ttf",
+    "tests/fonts/text-rendering/TestCMAPMacTurkish.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -688,7 +686,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_3_17,
-    "fonts/TestCMAPMacTurkish.ttf",
+    "tests/fonts/text-rendering/TestCMAPMacTurkish.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -697,7 +695,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_3_18,
-    "fonts/TestCMAPMacTurkish.ttf",
+    "tests/fonts/text-rendering/TestCMAPMacTurkish.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -706,7 +704,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_3_19,
-    "fonts/TestCMAPMacTurkish.ttf",
+    "tests/fonts/text-rendering/TestCMAPMacTurkish.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -715,7 +713,7 @@ shaping_test!(
 );
 shaping_test!(
     cmap_3_20,
-    "fonts/TestCMAPMacTurkish.ttf",
+    "tests/fonts/text-rendering/TestCMAPMacTurkish.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -724,7 +722,7 @@ shaping_test!(
 );
 shaping_test!(
     cvar_1_1,
-    "fonts/TestCVARGVARTwo.ttf",
+    "tests/fonts/text-rendering/TestCVARGVARTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 72.0)],
@@ -733,7 +731,7 @@ shaping_test!(
 );
 shaping_test!(
     cvar_1_2,
-    "fonts/TestCVARGVARTwo.ttf",
+    "tests/fonts/text-rendering/TestCVARGVARTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 72.0)],
@@ -742,7 +740,7 @@ shaping_test!(
 );
 shaping_test!(
     cvar_1_3,
-    "fonts/TestCVARGVARTwo.ttf",
+    "tests/fonts/text-rendering/TestCVARGVARTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 72.0)],
@@ -751,7 +749,7 @@ shaping_test!(
 );
 shaping_test!(
     cvar_2_1,
-    "fonts/TestCVARGVAROne.ttf",
+    "tests/fonts/text-rendering/TestCVARGVAROne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 72.0)],
@@ -760,7 +758,7 @@ shaping_test!(
 );
 shaping_test!(
     cvar_2_2,
-    "fonts/TestCVARGVAROne.ttf",
+    "tests/fonts/text-rendering/TestCVARGVAROne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 72.0)],
@@ -769,7 +767,7 @@ shaping_test!(
 );
 shaping_test!(
     cvar_2_3,
-    "fonts/TestCVARGVAROne.ttf",
+    "tests/fonts/text-rendering/TestCVARGVAROne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 72.0)],
@@ -778,7 +776,7 @@ shaping_test!(
 );
 shaping_test!(
     glyf_1_1,
-    "fonts/TestGLYFOne.ttf",
+    "tests/fonts/text-rendering/TestGLYFOne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -787,7 +785,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_1_1,
-    "fonts/TestGPOSOne.ttf",
+    "tests/fonts/text-rendering/TestGPOSOne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -796,7 +794,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_1_2,
-    "fonts/TestGPOSOne.ttf",
+    "tests/fonts/text-rendering/TestGPOSOne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -805,7 +803,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_1_3,
-    "fonts/TestGPOSOne.ttf",
+    "tests/fonts/text-rendering/TestGPOSOne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -814,7 +812,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_1_4,
-    "fonts/TestGPOSOne.ttf",
+    "tests/fonts/text-rendering/TestGPOSOne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -823,7 +821,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_1_5,
-    "fonts/TestGPOSOne.ttf",
+    "tests/fonts/text-rendering/TestGPOSOne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -832,7 +830,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_1_6,
-    "fonts/TestGPOSOne.ttf",
+    "tests/fonts/text-rendering/TestGPOSOne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -841,7 +839,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_1_7,
-    "fonts/TestGPOSOne.ttf",
+    "tests/fonts/text-rendering/TestGPOSOne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -850,7 +848,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_1_8,
-    "fonts/TestGPOSOne.ttf",
+    "tests/fonts/text-rendering/TestGPOSOne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -859,7 +857,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_1_9,
-    "fonts/TestGPOSOne.ttf",
+    "tests/fonts/text-rendering/TestGPOSOne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -868,7 +866,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_1_10,
-    "fonts/TestGPOSOne.ttf",
+    "tests/fonts/text-rendering/TestGPOSOne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -877,7 +875,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_1_11,
-    "fonts/TestGPOSOne.ttf",
+    "tests/fonts/text-rendering/TestGPOSOne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -886,7 +884,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_1_12,
-    "fonts/TestGPOSOne.ttf",
+    "tests/fonts/text-rendering/TestGPOSOne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -895,7 +893,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_1_13,
-    "fonts/TestGPOSOne.ttf",
+    "tests/fonts/text-rendering/TestGPOSOne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -904,7 +902,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_1_14,
-    "fonts/TestGPOSOne.ttf",
+    "tests/fonts/text-rendering/TestGPOSOne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -913,7 +911,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_1_15,
-    "fonts/TestGPOSOne.ttf",
+    "tests/fonts/text-rendering/TestGPOSOne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -922,7 +920,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_1_16,
-    "fonts/TestGPOSOne.ttf",
+    "tests/fonts/text-rendering/TestGPOSOne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -931,7 +929,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_1_17,
-    "fonts/TestGPOSOne.ttf",
+    "tests/fonts/text-rendering/TestGPOSOne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -940,7 +938,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_1_18,
-    "fonts/TestGPOSOne.ttf",
+    "tests/fonts/text-rendering/TestGPOSOne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -949,7 +947,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_1_19,
-    "fonts/TestGPOSOne.ttf",
+    "tests/fonts/text-rendering/TestGPOSOne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -958,7 +956,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_2_1,
-    "fonts/TestGPOSTwo.otf",
+    "tests/fonts/text-rendering/TestGPOSTwo.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -967,7 +965,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_2_2,
-    "fonts/TestGPOSTwo.otf",
+    "tests/fonts/text-rendering/TestGPOSTwo.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -976,7 +974,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_2_3,
-    "fonts/TestGPOSTwo.otf",
+    "tests/fonts/text-rendering/TestGPOSTwo.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -985,7 +983,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_3_1,
-    "fonts/TestShapeEthi.ttf",
+    "tests/fonts/text-rendering/TestShapeEthi.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -994,7 +992,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_3_2,
-    "fonts/TestShapeEthi.ttf",
+    "tests/fonts/text-rendering/TestShapeEthi.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -1003,7 +1001,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_3_3,
-    "fonts/TestShapeEthi.ttf",
+    "tests/fonts/text-rendering/TestShapeEthi.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -1012,7 +1010,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_3_4,
-    "fonts/TestShapeEthi.ttf",
+    "tests/fonts/text-rendering/TestShapeEthi.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -1021,7 +1019,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_4_1,
-    "fonts/TestGPOSThree.ttf",
+    "tests/fonts/text-rendering/TestGPOSThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -1030,7 +1028,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_4_2,
-    "fonts/TestGPOSThree.ttf",
+    "tests/fonts/text-rendering/TestGPOSThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -1039,7 +1037,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_4_3,
-    "fonts/TestGPOSThree.ttf",
+    "tests/fonts/text-rendering/TestGPOSThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -1048,7 +1046,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_4_4,
-    "fonts/TestGPOSThree.ttf",
+    "tests/fonts/text-rendering/TestGPOSThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -1057,7 +1055,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_5_1,
-    "fonts/TestGPOSFour.ttf",
+    "tests/fonts/text-rendering/TestGPOSFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 100.0)],
@@ -1066,7 +1064,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_5_2,
-    "fonts/TestGPOSFour.ttf",
+    "tests/fonts/text-rendering/TestGPOSFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 300.0)],
@@ -1075,7 +1073,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_5_3,
-    "fonts/TestGPOSFour.ttf",
+    "tests/fonts/text-rendering/TestGPOSFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 600.0)],
@@ -1084,7 +1082,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_5_4,
-    "fonts/TestGPOSFour.ttf",
+    "tests/fonts/text-rendering/TestGPOSFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 700.0)],
@@ -1093,7 +1091,7 @@ shaping_test!(
 );
 shaping_test!(
     gpos_5_5,
-    "fonts/TestGPOSFour.ttf",
+    "tests/fonts/text-rendering/TestGPOSFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 900.0)],
@@ -1102,7 +1100,7 @@ shaping_test!(
 );
 shaping_test!(
     gsub_1_1,
-    "fonts/TestGSUBOne.otf",
+    "tests/fonts/text-rendering/TestGSUBOne.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -1111,7 +1109,7 @@ shaping_test!(
 );
 shaping_test!(
     gsub_2_1,
-    "fonts/TestShapeEthi.ttf",
+    "tests/fonts/text-rendering/TestShapeEthi.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -1120,7 +1118,7 @@ shaping_test!(
 );
 shaping_test!(
     gsub_2_2,
-    "fonts/TestShapeEthi.ttf",
+    "tests/fonts/text-rendering/TestShapeEthi.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -1129,7 +1127,7 @@ shaping_test!(
 );
 shaping_test!(
     gsub_2_3,
-    "fonts/TestShapeEthi.ttf",
+    "tests/fonts/text-rendering/TestShapeEthi.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -1138,7 +1136,7 @@ shaping_test!(
 );
 shaping_test!(
     gsub_2_4,
-    "fonts/TestShapeEthi.ttf",
+    "tests/fonts/text-rendering/TestShapeEthi.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -1147,7 +1145,7 @@ shaping_test!(
 );
 shaping_test!(
     gsub_2_5,
-    "fonts/TestShapeEthi.ttf",
+    "tests/fonts/text-rendering/TestShapeEthi.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -1156,7 +1154,7 @@ shaping_test!(
 );
 shaping_test!(
     gsub_2_6,
-    "fonts/TestShapeEthi.ttf",
+    "tests/fonts/text-rendering/TestShapeEthi.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -1165,7 +1163,7 @@ shaping_test!(
 );
 shaping_test!(
     gsub_2_7,
-    "fonts/TestShapeEthi.ttf",
+    "tests/fonts/text-rendering/TestShapeEthi.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -1174,7 +1172,7 @@ shaping_test!(
 );
 shaping_test!(
     gsub_2_8,
-    "fonts/TestShapeEthi.ttf",
+    "tests/fonts/text-rendering/TestShapeEthi.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -1183,7 +1181,7 @@ shaping_test!(
 );
 shaping_test!(
     gsub_2_9,
-    "fonts/TestShapeEthi.ttf",
+    "tests/fonts/text-rendering/TestShapeEthi.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -1198,7 +1196,7 @@ shaping_test!(
 );
 shaping_test!(
     gsub_2_10,
-    "fonts/TestShapeEthi.ttf",
+    "tests/fonts/text-rendering/TestShapeEthi.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -1213,7 +1211,7 @@ shaping_test!(
 );
 shaping_test!(
     gsub_2_11,
-    "fonts/TestShapeEthi.ttf",
+    "tests/fonts/text-rendering/TestShapeEthi.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -1226,10 +1224,17 @@ shaping_test!(
         "uni136B.fina@2211,0"
     ]
 );
-shaping_test!(gsub_3_1, "fonts/TestGSUBThree.ttf", 75, &[], &[], "lol");
+shaping_test!(
+    gsub_3_1,
+    "tests/fonts/text-rendering/TestGSUBThree.ttf",
+    75,
+    &[],
+    &[],
+    "lol"
+);
 shaping_test!(
     gvar_1_1,
-    "fonts/TestGVAROne.ttf",
+    "tests/fonts/text-rendering/TestGVAROne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 300.0)],
@@ -1238,7 +1243,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_1_2,
-    "fonts/TestGVAROne.ttf",
+    "tests/fonts/text-rendering/TestGVAROne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 350.0)],
@@ -1247,7 +1252,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_1_3,
-    "fonts/TestGVAROne.ttf",
+    "tests/fonts/text-rendering/TestGVAROne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 400.0)],
@@ -1256,7 +1261,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_1_4,
-    "fonts/TestGVAROne.ttf",
+    "tests/fonts/text-rendering/TestGVAROne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 450.0)],
@@ -1265,7 +1270,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_1_5,
-    "fonts/TestGVAROne.ttf",
+    "tests/fonts/text-rendering/TestGVAROne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 500.0)],
@@ -1274,7 +1279,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_1_6,
-    "fonts/TestGVAROne.ttf",
+    "tests/fonts/text-rendering/TestGVAROne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 550.0)],
@@ -1283,7 +1288,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_1_7,
-    "fonts/TestGVAROne.ttf",
+    "tests/fonts/text-rendering/TestGVAROne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 600.0)],
@@ -1292,7 +1297,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_1_8,
-    "fonts/TestGVAROne.ttf",
+    "tests/fonts/text-rendering/TestGVAROne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 650.0)],
@@ -1301,7 +1306,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_1_9,
-    "fonts/TestGVAROne.ttf",
+    "tests/fonts/text-rendering/TestGVAROne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 700.0)],
@@ -1310,7 +1315,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_2_1,
-    "fonts/TestGVARTwo.ttf",
+    "tests/fonts/text-rendering/TestGVARTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 300.0)],
@@ -1319,7 +1324,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_2_2,
-    "fonts/TestGVARTwo.ttf",
+    "tests/fonts/text-rendering/TestGVARTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 350.0)],
@@ -1328,7 +1333,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_2_3,
-    "fonts/TestGVARTwo.ttf",
+    "tests/fonts/text-rendering/TestGVARTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 400.0)],
@@ -1337,7 +1342,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_2_4,
-    "fonts/TestGVARTwo.ttf",
+    "tests/fonts/text-rendering/TestGVARTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 450.0)],
@@ -1346,7 +1351,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_2_5,
-    "fonts/TestGVARTwo.ttf",
+    "tests/fonts/text-rendering/TestGVARTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 500.0)],
@@ -1355,7 +1360,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_2_6,
-    "fonts/TestGVARTwo.ttf",
+    "tests/fonts/text-rendering/TestGVARTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 550.0)],
@@ -1364,7 +1369,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_2_7,
-    "fonts/TestGVARTwo.ttf",
+    "tests/fonts/text-rendering/TestGVARTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 600.0)],
@@ -1373,7 +1378,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_2_8,
-    "fonts/TestGVARTwo.ttf",
+    "tests/fonts/text-rendering/TestGVARTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 650.0)],
@@ -1382,7 +1387,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_2_9,
-    "fonts/TestGVARTwo.ttf",
+    "tests/fonts/text-rendering/TestGVARTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 700.0)],
@@ -1391,7 +1396,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_3_1,
-    "fonts/TestGVARThree.ttf",
+    "tests/fonts/text-rendering/TestGVARThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 300.0)],
@@ -1400,7 +1405,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_3_2,
-    "fonts/TestGVARThree.ttf",
+    "tests/fonts/text-rendering/TestGVARThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 350.0)],
@@ -1409,7 +1414,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_3_3,
-    "fonts/TestGVARThree.ttf",
+    "tests/fonts/text-rendering/TestGVARThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 400.0)],
@@ -1418,7 +1423,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_3_4,
-    "fonts/TestGVARThree.ttf",
+    "tests/fonts/text-rendering/TestGVARThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 450.0)],
@@ -1427,7 +1432,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_3_5,
-    "fonts/TestGVARThree.ttf",
+    "tests/fonts/text-rendering/TestGVARThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 500.0)],
@@ -1436,7 +1441,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_3_6,
-    "fonts/TestGVARThree.ttf",
+    "tests/fonts/text-rendering/TestGVARThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 550.0)],
@@ -1445,7 +1450,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_3_7,
-    "fonts/TestGVARThree.ttf",
+    "tests/fonts/text-rendering/TestGVARThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 600.0)],
@@ -1454,7 +1459,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_3_8,
-    "fonts/TestGVARThree.ttf",
+    "tests/fonts/text-rendering/TestGVARThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 650.0)],
@@ -1463,7 +1468,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_3_9,
-    "fonts/TestGVARThree.ttf",
+    "tests/fonts/text-rendering/TestGVARThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 700.0)],
@@ -1472,7 +1477,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_4_1,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.0)],
@@ -1481,7 +1486,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_4_2,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.1)],
@@ -1490,7 +1495,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_4_3,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.2)],
@@ -1499,7 +1504,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_4_4,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.3)],
@@ -1508,7 +1513,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_4_5,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.4)],
@@ -1517,7 +1522,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_4_6,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.5)],
@@ -1526,7 +1531,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_4_7,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.6)],
@@ -1535,7 +1540,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_4_8,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.7)],
@@ -1544,7 +1549,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_4_9,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.8)],
@@ -1553,7 +1558,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_4_10,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.9)],
@@ -1562,7 +1567,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_4_11,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 1.0)],
@@ -1571,7 +1576,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_5_1,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", -1.0)],
@@ -1580,7 +1585,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_5_2,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", -0.8)],
@@ -1589,7 +1594,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_5_3,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", -0.6)],
@@ -1598,7 +1603,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_5_4,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", -0.4)],
@@ -1607,7 +1612,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_5_5,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", -0.2)],
@@ -1616,7 +1621,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_5_6,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.0)],
@@ -1625,7 +1630,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_5_7,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.2)],
@@ -1634,7 +1639,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_5_8,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.4)],
@@ -1643,7 +1648,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_5_9,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.6)],
@@ -1652,7 +1657,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_5_10,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.8)],
@@ -1661,7 +1666,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_5_11,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 1.0)],
@@ -1670,7 +1675,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_6_1,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.0)],
@@ -1679,7 +1684,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_6_2,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.1)],
@@ -1688,7 +1693,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_6_3,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.2)],
@@ -1697,7 +1702,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_6_4,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.3)],
@@ -1706,7 +1711,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_6_5,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.4)],
@@ -1715,7 +1720,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_6_6,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.5)],
@@ -1724,7 +1729,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_6_7,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.6)],
@@ -1733,7 +1738,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_6_8,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.7)],
@@ -1742,7 +1747,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_6_9,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.8)],
@@ -1751,7 +1756,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_6_10,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.9)],
@@ -1760,7 +1765,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_6_11,
-    "fonts/Zycon.ttf",
+    "tests/fonts/text-rendering/Zycon.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 1.0)],
@@ -1769,7 +1774,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_7_1,
-    "fonts/TestGVARFour.ttf",
+    "tests/fonts/text-rendering/TestGVARFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 150.0)],
@@ -1778,7 +1783,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_7_2,
-    "fonts/TestGVARFour.ttf",
+    "tests/fonts/text-rendering/TestGVARFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 200.0)],
@@ -1787,7 +1792,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_7_3,
-    "fonts/TestGVARFour.ttf",
+    "tests/fonts/text-rendering/TestGVARFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 250.0)],
@@ -1796,7 +1801,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_7_4,
-    "fonts/TestGVARFour.ttf",
+    "tests/fonts/text-rendering/TestGVARFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 300.0)],
@@ -1805,7 +1810,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_7_5,
-    "fonts/TestGVARFour.ttf",
+    "tests/fonts/text-rendering/TestGVARFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 350.0)],
@@ -1814,7 +1819,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_7_6,
-    "fonts/TestGVARFour.ttf",
+    "tests/fonts/text-rendering/TestGVARFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 400.0)],
@@ -1823,7 +1828,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_7_7,
-    "fonts/TestGVARFour.ttf",
+    "tests/fonts/text-rendering/TestGVARFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 450.0)],
@@ -1832,7 +1837,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_8_1,
-    "fonts/TestGVAREight.ttf",
+    "tests/fonts/text-rendering/TestGVAREight.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.0)],
@@ -1841,7 +1846,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_8_2,
-    "fonts/TestGVAREight.ttf",
+    "tests/fonts/text-rendering/TestGVAREight.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", -0.2)],
@@ -1850,7 +1855,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_8_3,
-    "fonts/TestGVAREight.ttf",
+    "tests/fonts/text-rendering/TestGVAREight.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", -0.4)],
@@ -1859,7 +1864,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_8_4,
-    "fonts/TestGVAREight.ttf",
+    "tests/fonts/text-rendering/TestGVAREight.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", -0.6)],
@@ -1868,7 +1873,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_8_5,
-    "fonts/TestGVAREight.ttf",
+    "tests/fonts/text-rendering/TestGVAREight.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", -0.8)],
@@ -1877,7 +1882,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_8_6,
-    "fonts/TestGVAREight.ttf",
+    "tests/fonts/text-rendering/TestGVAREight.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", -1.0)],
@@ -1886,7 +1891,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_9_1,
-    "fonts/TestGVARNine.ttf",
+    "tests/fonts/text-rendering/TestGVARNine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", -1.0)],
@@ -1895,7 +1900,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_9_2,
-    "fonts/TestGVARNine.ttf",
+    "tests/fonts/text-rendering/TestGVARNine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", -0.5)],
@@ -1904,7 +1909,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_9_3,
-    "fonts/TestGVARNine.ttf",
+    "tests/fonts/text-rendering/TestGVARNine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.0)],
@@ -1913,7 +1918,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_9_4,
-    "fonts/TestGVARNine.ttf",
+    "tests/fonts/text-rendering/TestGVARNine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.5)],
@@ -1922,7 +1927,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_9_5,
-    "fonts/TestGVARNine.ttf",
+    "tests/fonts/text-rendering/TestGVARNine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.6)],
@@ -1931,7 +1936,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_9_6,
-    "fonts/TestGVARNine.ttf",
+    "tests/fonts/text-rendering/TestGVARNine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.7)],
@@ -1940,7 +1945,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_9_7,
-    "fonts/TestGVARNine.ttf",
+    "tests/fonts/text-rendering/TestGVARNine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.8)],
@@ -1949,7 +1954,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_9_8,
-    "fonts/TestGVARNine.ttf",
+    "tests/fonts/text-rendering/TestGVARNine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.9)],
@@ -1958,7 +1963,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_9_9,
-    "fonts/TestGVARNine.ttf",
+    "tests/fonts/text-rendering/TestGVARNine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.944444)],
@@ -1967,7 +1972,7 @@ shaping_test!(
 );
 shaping_test!(
     gvar_9_10,
-    "fonts/TestGVARNine.ttf",
+    "tests/fonts/text-rendering/TestGVARNine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 1.0)],
@@ -1976,7 +1981,7 @@ shaping_test!(
 );
 shaping_test!(
     hvar_1_1,
-    "fonts/TestHVAROne.otf",
+    "tests/fonts/text-rendering/TestHVAROne.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.0)],
@@ -1985,7 +1990,7 @@ shaping_test!(
 );
 shaping_test!(
     hvar_1_2,
-    "fonts/TestHVAROne.otf",
+    "tests/fonts/text-rendering/TestHVAROne.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 200.0)],
@@ -1994,7 +1999,7 @@ shaping_test!(
 );
 shaping_test!(
     hvar_1_3,
-    "fonts/TestHVAROne.otf",
+    "tests/fonts/text-rendering/TestHVAROne.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 400.0)],
@@ -2003,7 +2008,7 @@ shaping_test!(
 );
 shaping_test!(
     hvar_1_4,
-    "fonts/TestHVAROne.otf",
+    "tests/fonts/text-rendering/TestHVAROne.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 600.0)],
@@ -2012,7 +2017,7 @@ shaping_test!(
 );
 shaping_test!(
     hvar_1_5,
-    "fonts/TestHVAROne.otf",
+    "tests/fonts/text-rendering/TestHVAROne.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 800.0)],
@@ -2021,7 +2026,7 @@ shaping_test!(
 );
 shaping_test!(
     hvar_1_6,
-    "fonts/TestHVAROne.otf",
+    "tests/fonts/text-rendering/TestHVAROne.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 1000.0)],
@@ -2030,7 +2035,7 @@ shaping_test!(
 );
 shaping_test!(
     hvar_2_1,
-    "fonts/TestHVARTwo.ttf",
+    "tests/fonts/text-rendering/TestHVARTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 0.0)],
@@ -2039,7 +2044,7 @@ shaping_test!(
 );
 shaping_test!(
     hvar_2_2,
-    "fonts/TestHVARTwo.ttf",
+    "tests/fonts/text-rendering/TestHVARTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 200.0)],
@@ -2048,7 +2053,7 @@ shaping_test!(
 );
 shaping_test!(
     hvar_2_3,
-    "fonts/TestHVARTwo.ttf",
+    "tests/fonts/text-rendering/TestHVARTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 400.0)],
@@ -2057,7 +2062,7 @@ shaping_test!(
 );
 shaping_test!(
     hvar_2_4,
-    "fonts/TestHVARTwo.ttf",
+    "tests/fonts/text-rendering/TestHVARTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 600.0)],
@@ -2066,7 +2071,7 @@ shaping_test!(
 );
 shaping_test!(
     hvar_2_5,
-    "fonts/TestHVARTwo.ttf",
+    "tests/fonts/text-rendering/TestHVARTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 800.0)],
@@ -2075,7 +2080,7 @@ shaping_test!(
 );
 shaping_test!(
     hvar_2_6,
-    "fonts/TestHVARTwo.ttf",
+    "tests/fonts/text-rendering/TestHVARTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0), ("variations", 1000.0)],
@@ -2084,7 +2089,7 @@ shaping_test!(
 );
 shaping_test!(
     kern_1_1,
-    "fonts/TestKERNOne.otf",
+    "tests/fonts/text-rendering/TestKERNOne.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2101,7 +2106,7 @@ shaping_test!(
 );
 shaping_test!(
     kern_2_1,
-    "fonts/TestKERNOne.otf",
+    "tests/fonts/text-rendering/TestKERNOne.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2121,7 +2126,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_1_1,
-    "fonts/TestMORXOne.ttf",
+    "tests/fonts/text-rendering/TestMORXOne.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2130,7 +2135,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_10_1,
-    "fonts/TestMORXTen.ttf",
+    "tests/fonts/text-rendering/TestMORXTen.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2139,7 +2144,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_11_1,
-    "fonts/TestMORXEleven.ttf",
+    "tests/fonts/text-rendering/TestMORXEleven.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2148,7 +2153,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_12_1,
-    "fonts/TestMORXTwelve.ttf",
+    "tests/fonts/text-rendering/TestMORXTwelve.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2164,7 +2169,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_12_2,
-    "fonts/TestMORXTwelve.ttf",
+    "tests/fonts/text-rendering/TestMORXTwelve.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2180,7 +2185,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_12_3,
-    "fonts/TestMORXTwelve.ttf",
+    "tests/fonts/text-rendering/TestMORXTwelve.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2196,7 +2201,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_13_1,
-    "fonts/TestMORXThirteen.ttf",
+    "tests/fonts/text-rendering/TestMORXThirteen.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2205,7 +2210,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_14_1,
-    "fonts/TestMORXFourteen.ttf",
+    "tests/fonts/text-rendering/TestMORXFourteen.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2214,7 +2219,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_14_2,
-    "fonts/TestMORXFourteen.ttf",
+    "tests/fonts/text-rendering/TestMORXFourteen.ttf",
     75,
     &[],
     &[],
@@ -2222,7 +2227,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_16_1,
-    "fonts/TestMORXSixteen.ttf",
+    "tests/fonts/text-rendering/TestMORXSixteen.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2231,7 +2236,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_17_1,
-    "fonts/TestMORXSeventeen.ttf",
+    "tests/fonts/text-rendering/TestMORXSeventeen.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2240,7 +2245,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_18_1,
-    "fonts/TestMORXEighteen.ttf",
+    "tests/fonts/text-rendering/TestMORXEighteen.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2249,7 +2254,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_18_2,
-    "fonts/TestMORXEighteen.ttf",
+    "tests/fonts/text-rendering/TestMORXEighteen.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2265,7 +2270,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_18_3,
-    "fonts/TestMORXEighteen.ttf",
+    "tests/fonts/text-rendering/TestMORXEighteen.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2274,7 +2279,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_18_4,
-    "fonts/TestMORXEighteen.ttf",
+    "tests/fonts/text-rendering/TestMORXEighteen.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2283,7 +2288,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_19_1,
-    "fonts/TestMORXEighteen.ttf",
+    "tests/fonts/text-rendering/TestMORXEighteen.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2292,7 +2297,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_19_2,
-    "fonts/TestMORXEighteen.ttf",
+    "tests/fonts/text-rendering/TestMORXEighteen.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2301,7 +2306,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_2_1,
-    "fonts/TestMORXTwo.ttf",
+    "tests/fonts/text-rendering/TestMORXTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2325,7 +2330,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_2_2,
-    "fonts/TestMORXTwo.ttf",
+    "tests/fonts/text-rendering/TestMORXTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2349,7 +2354,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_2_3,
-    "fonts/TestMORXTwo.ttf",
+    "tests/fonts/text-rendering/TestMORXTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2373,7 +2378,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_2_4,
-    "fonts/TestMORXTwo.ttf",
+    "tests/fonts/text-rendering/TestMORXTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2397,7 +2402,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_2_5,
-    "fonts/TestMORXTwo.ttf",
+    "tests/fonts/text-rendering/TestMORXTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2421,7 +2426,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_2_6,
-    "fonts/TestMORXTwo.ttf",
+    "tests/fonts/text-rendering/TestMORXTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2445,7 +2450,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_2_7,
-    "fonts/TestMORXTwo.ttf",
+    "tests/fonts/text-rendering/TestMORXTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2469,7 +2474,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_2_8,
-    "fonts/TestMORXTwo.ttf",
+    "tests/fonts/text-rendering/TestMORXTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2493,7 +2498,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_2_9,
-    "fonts/TestMORXTwo.ttf",
+    "tests/fonts/text-rendering/TestMORXTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2517,7 +2522,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_2_10,
-    "fonts/TestMORXTwo.ttf",
+    "tests/fonts/text-rendering/TestMORXTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2541,7 +2546,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_2_11,
-    "fonts/TestMORXTwo.ttf",
+    "tests/fonts/text-rendering/TestMORXTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2565,7 +2570,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_2_12,
-    "fonts/TestMORXTwo.ttf",
+    "tests/fonts/text-rendering/TestMORXTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2589,7 +2594,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_2_13,
-    "fonts/TestMORXTwo.ttf",
+    "tests/fonts/text-rendering/TestMORXTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2613,7 +2618,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_2_14,
-    "fonts/TestMORXTwo.ttf",
+    "tests/fonts/text-rendering/TestMORXTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2637,7 +2642,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_2_15,
-    "fonts/TestMORXTwo.ttf",
+    "tests/fonts/text-rendering/TestMORXTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2661,7 +2666,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_2_16,
-    "fonts/TestMORXTwo.ttf",
+    "tests/fonts/text-rendering/TestMORXTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2685,7 +2690,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_20_1,
-    "fonts/TestMORXTwenty.ttf",
+    "tests/fonts/text-rendering/TestMORXTwenty.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2694,7 +2699,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_20_2,
-    "fonts/TestMORXTwenty.ttf",
+    "tests/fonts/text-rendering/TestMORXTwenty.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2703,7 +2708,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_20_3,
-    "fonts/TestMORXTwenty.ttf",
+    "tests/fonts/text-rendering/TestMORXTwenty.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2712,7 +2717,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_20_4,
-    "fonts/TestMORXTwenty.ttf",
+    "tests/fonts/text-rendering/TestMORXTwenty.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2721,7 +2726,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_20_5,
-    "fonts/TestMORXTwenty.ttf",
+    "tests/fonts/text-rendering/TestMORXTwenty.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2730,7 +2735,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_20_6,
-    "fonts/TestMORXTwenty.ttf",
+    "tests/fonts/text-rendering/TestMORXTwenty.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2739,7 +2744,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_20_7,
-    "fonts/TestMORXTwenty.ttf",
+    "tests/fonts/text-rendering/TestMORXTwenty.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2748,7 +2753,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_21_1,
-    "fonts/TestMORXTwentyone.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentyone.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2757,7 +2762,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_22_1,
-    "fonts/TestMORXTwentytwo.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentytwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2766,7 +2771,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_23_1,
-    "fonts/TestMORXTwentythree.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentythree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2775,7 +2780,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_24_1,
-    "fonts/TestMORXTwentyfour.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentyfour.ttf",
     75,
     &[],
     &[],
@@ -2783,7 +2788,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_25_1,
-    "fonts/TestMORXTwentyfive.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentyfive.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2798,7 +2803,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_25_2,
-    "fonts/TestMORXTwentyfive.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentyfive.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2807,7 +2812,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_25_3,
-    "fonts/TestMORXTwentyfive.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentyfive.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2822,7 +2827,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_25_4,
-    "fonts/TestMORXTwentyfive.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentyfive.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2831,7 +2836,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_25_5,
-    "fonts/TestMORXTwentyfive.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentyfive.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2840,7 +2845,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_25_6,
-    "fonts/TestMORXTwentyfive.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentyfive.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2849,7 +2854,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_25_7,
-    "fonts/TestMORXTwentyfive.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentyfive.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2858,7 +2863,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_25_8,
-    "fonts/TestMORXTwentyfive.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentyfive.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2867,7 +2872,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_25_9,
-    "fonts/TestMORXTwentyfive.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentyfive.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2876,7 +2881,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_26_1,
-    "fonts/TestMORXTwentysix.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentysix.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2885,7 +2890,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_26_2,
-    "fonts/TestMORXTwentysix.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentysix.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2894,7 +2899,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_27_1,
-    "fonts/TestMORXTwentyseven.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentyseven.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2903,7 +2908,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_27_2,
-    "fonts/TestMORXTwentyseven.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentyseven.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2912,7 +2917,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_27_3,
-    "fonts/TestMORXTwentyseven.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentyseven.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2921,7 +2926,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_28_1,
-    "fonts/TestMORXTwentyeight.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentyeight.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2930,7 +2935,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_28_2,
-    "fonts/TestMORXTwentyeight.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentyeight.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2939,7 +2944,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_28_3,
-    "fonts/TestMORXTwentyeight.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentyeight.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2948,7 +2953,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_28_4,
-    "fonts/TestMORXTwentyeight.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentyeight.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2957,7 +2962,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_28_5,
-    "fonts/TestMORXTwentyeight.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentyeight.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2966,7 +2971,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_29_1,
-    "fonts/TestMORXTwentynine.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentynine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2979,7 +2984,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_29_2,
-    "fonts/TestMORXTwentynine.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentynine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -2992,7 +2997,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_29_3,
-    "fonts/TestMORXTwentynine.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentynine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3005,7 +3010,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_29_4,
-    "fonts/TestMORXTwentynine.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentynine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3018,7 +3023,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_3_1,
-    "fonts/TestMORXThree.ttf",
+    "tests/fonts/text-rendering/TestMORXThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3034,7 +3039,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_3_2,
-    "fonts/TestMORXThree.ttf",
+    "tests/fonts/text-rendering/TestMORXThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3050,7 +3055,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_3_3,
-    "fonts/TestMORXThree.ttf",
+    "tests/fonts/text-rendering/TestMORXThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3066,7 +3071,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_3_4,
-    "fonts/TestMORXThree.ttf",
+    "tests/fonts/text-rendering/TestMORXThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3082,7 +3087,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_3_5,
-    "fonts/TestMORXThree.ttf",
+    "tests/fonts/text-rendering/TestMORXThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3098,7 +3103,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_3_6,
-    "fonts/TestMORXThree.ttf",
+    "tests/fonts/text-rendering/TestMORXThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3114,7 +3119,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_3_7,
-    "fonts/TestMORXThree.ttf",
+    "tests/fonts/text-rendering/TestMORXThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3130,7 +3135,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_3_8,
-    "fonts/TestMORXThree.ttf",
+    "tests/fonts/text-rendering/TestMORXThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3146,7 +3151,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_3_9,
-    "fonts/TestMORXThree.ttf",
+    "tests/fonts/text-rendering/TestMORXThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3162,7 +3167,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_3_10,
-    "fonts/TestMORXThree.ttf",
+    "tests/fonts/text-rendering/TestMORXThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3178,7 +3183,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_3_11,
-    "fonts/TestMORXThree.ttf",
+    "tests/fonts/text-rendering/TestMORXThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3194,7 +3199,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_3_12,
-    "fonts/TestMORXThree.ttf",
+    "tests/fonts/text-rendering/TestMORXThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3210,7 +3215,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_3_13,
-    "fonts/TestMORXThree.ttf",
+    "tests/fonts/text-rendering/TestMORXThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3226,7 +3231,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_3_14,
-    "fonts/TestMORXThree.ttf",
+    "tests/fonts/text-rendering/TestMORXThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3242,7 +3247,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_3_15,
-    "fonts/TestMORXThree.ttf",
+    "tests/fonts/text-rendering/TestMORXThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3258,7 +3263,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_3_16,
-    "fonts/TestMORXThree.ttf",
+    "tests/fonts/text-rendering/TestMORXThree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3274,7 +3279,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_30_1,
-    "fonts/TestMORXTwentynine.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentynine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3304,7 +3309,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_30_2,
-    "fonts/TestMORXTwentynine.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentynine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3334,7 +3339,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_30_3,
-    "fonts/TestMORXTwentynine.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentynine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3364,7 +3369,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_30_4,
-    "fonts/TestMORXTwentynine.ttf",
+    "tests/fonts/text-rendering/TestMORXTwentynine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3394,7 +3399,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_31_1,
-    "fonts/TestMORXThirtyone.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtyone.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3406,7 +3411,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_31_2,
-    "fonts/TestMORXThirtyone.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtyone.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3418,7 +3423,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_31_3,
-    "fonts/TestMORXThirtyone.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtyone.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3430,7 +3435,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_31_4,
-    "fonts/TestMORXThirtyone.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtyone.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3442,7 +3447,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_31_5,
-    "fonts/TestMORXThirtyone.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtyone.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3454,7 +3459,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_31_6,
-    "fonts/TestMORXThirtyone.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtyone.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3466,7 +3471,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_31_7,
-    "fonts/TestMORXThirtyone.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtyone.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3478,7 +3483,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_31_8,
-    "fonts/TestMORXThirtyone.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtyone.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3490,7 +3495,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_32_1,
-    "fonts/TestMORXThirtytwo.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtytwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3499,7 +3504,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_32_2,
-    "fonts/TestMORXThirtytwo.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtytwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3508,7 +3513,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_32_3,
-    "fonts/TestMORXThirtytwo.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtytwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3517,7 +3522,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_32_4,
-    "fonts/TestMORXThirtytwo.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtytwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3526,7 +3531,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_33_1,
-    "fonts/TestMORXThirtythree.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtythree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3535,7 +3540,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_33_2,
-    "fonts/TestMORXThirtythree.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtythree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3544,7 +3549,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_33_3,
-    "fonts/TestMORXThirtythree.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtythree.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3553,7 +3558,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_34_1,
-    "fonts/TestMORXThirtyfour.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtyfour.ttf",
     75,
     &[],
     &[],
@@ -3561,7 +3566,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_35_1,
-    "fonts/TestMORXThirtyfive.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtyfive.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3570,17 +3575,24 @@ shaping_test!(
 );
 shaping_test!(
     morx_35_2,
-    "fonts/TestMORXThirtyfive.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtyfive.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
     "XAY",
     &["X", "A@586,0", "B@1225,0", "C@1851,0", "E@2447,0", "Y@3003,0"]
 );
-shaping_test!(morx_36_1, "fonts/TestMORXThirtysix.ttf", 75, &[], &[], "A");
+shaping_test!(
+    morx_36_1,
+    "tests/fonts/text-rendering/TestMORXThirtysix.ttf",
+    75,
+    &[],
+    &[],
+    "A"
+);
 shaping_test!(
     morx_37_1,
-    "fonts/TestMORXThirtyseven.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtyseven.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3589,7 +3601,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_37_2,
-    "fonts/TestMORXThirtyseven.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtyseven.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3598,7 +3610,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_37_3,
-    "fonts/TestMORXThirtyseven.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtyseven.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3607,7 +3619,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_37_4,
-    "fonts/TestMORXThirtyseven.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtyseven.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3616,7 +3628,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_38_1,
-    "fonts/TestMORXThirtyeight.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtyeight.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3625,7 +3637,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_38_2,
-    "fonts/TestMORXThirtyeight.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtyeight.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3634,7 +3646,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_38_3,
-    "fonts/TestMORXThirtyeight.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtyeight.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3643,7 +3655,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_38_4,
-    "fonts/TestMORXThirtyeight.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtyeight.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3652,7 +3664,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_39_1,
-    "fonts/TestMORXThirtynine.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtynine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3661,7 +3673,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_39_2,
-    "fonts/TestMORXThirtynine.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtynine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3670,7 +3682,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_39_3,
-    "fonts/TestMORXThirtynine.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtynine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3679,7 +3691,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_39_4,
-    "fonts/TestMORXThirtynine.ttf",
+    "tests/fonts/text-rendering/TestMORXThirtynine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3688,7 +3700,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_4_1,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3706,7 +3718,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_4_2,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3724,7 +3736,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_4_3,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3743,7 +3755,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_4_4,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3762,7 +3774,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_4_5,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3781,7 +3793,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_4_6,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3800,7 +3812,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_4_7,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3819,7 +3831,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_4_8,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3839,7 +3851,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_4_9,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3859,7 +3871,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_4_10,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3879,7 +3891,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_4_11,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3899,7 +3911,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_4_12,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3920,7 +3932,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_4_13,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3941,7 +3953,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_4_14,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3962,7 +3974,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_4_15,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3983,7 +3995,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_40_1,
-    "fonts/TestMORXForty.ttf",
+    "tests/fonts/text-rendering/TestMORXForty.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -3992,7 +4004,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_40_2,
-    "fonts/TestMORXForty.ttf",
+    "tests/fonts/text-rendering/TestMORXForty.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4001,7 +4013,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_40_3,
-    "fonts/TestMORXForty.ttf",
+    "tests/fonts/text-rendering/TestMORXForty.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4010,7 +4022,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_40_4,
-    "fonts/TestMORXForty.ttf",
+    "tests/fonts/text-rendering/TestMORXForty.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4019,7 +4031,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_41_1,
-    "fonts/TestMORXFourtyone.ttf",
+    "tests/fonts/text-rendering/TestMORXFourtyone.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4028,17 +4040,24 @@ shaping_test!(
 );
 shaping_test!(
     morx_41_2,
-    "fonts/TestMORXFourtyone.ttf",
+    "tests/fonts/text-rendering/TestMORXFourtyone.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
     "bc",
     &["b_c"]
 );
-shaping_test!(morx_41_3, "fonts/TestMORXFourtyone.ttf", 75, &[], &[], "cc");
+shaping_test!(
+    morx_41_3,
+    "tests/fonts/text-rendering/TestMORXFourtyone.ttf",
+    75,
+    &[],
+    &[],
+    "cc"
+);
 shaping_test!(
     morx_41_4,
-    "fonts/TestMORXFourtyone.ttf",
+    "tests/fonts/text-rendering/TestMORXFourtyone.ttf",
     75,
     &[],
     &[],
@@ -4046,7 +4065,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_1,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4064,7 +4083,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_2,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4082,7 +4101,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_3,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4100,7 +4119,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_4,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4118,7 +4137,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_5,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4136,7 +4155,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_6,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4154,7 +4173,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_7,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4173,7 +4192,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_8,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4191,7 +4210,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_9,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4210,7 +4229,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_10,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4228,7 +4247,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_11,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4247,7 +4266,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_12,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4265,7 +4284,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_13,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4284,7 +4303,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_14,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4302,7 +4321,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_15,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4321,7 +4340,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_16,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4341,7 +4360,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_17,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4359,7 +4378,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_18,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4378,7 +4397,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_19,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4398,7 +4417,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_20,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4416,7 +4435,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_21,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4435,7 +4454,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_22,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4455,7 +4474,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_23,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4473,7 +4492,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_24,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4492,7 +4511,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_5_25,
-    "fonts/TestMORXFour.ttf",
+    "tests/fonts/text-rendering/TestMORXFour.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4512,7 +4531,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_6_1,
-    "fonts/TestMORXTwo.ttf",
+    "tests/fonts/text-rendering/TestMORXTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4539,7 +4558,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_7_1,
-    "fonts/TestMORXTwo.ttf",
+    "tests/fonts/text-rendering/TestMORXTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4548,7 +4567,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_8_1,
-    "fonts/TestMORXEight.ttf",
+    "tests/fonts/text-rendering/TestMORXEight.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4557,7 +4576,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_8_2,
-    "fonts/TestMORXEight.ttf",
+    "tests/fonts/text-rendering/TestMORXEight.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4566,7 +4585,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_8_3,
-    "fonts/TestMORXEight.ttf",
+    "tests/fonts/text-rendering/TestMORXEight.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4575,7 +4594,7 @@ shaping_test!(
 );
 shaping_test!(
     morx_9_1,
-    "fonts/TestMORXNine.ttf",
+    "tests/fonts/text-rendering/TestMORXNine.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4584,7 +4603,7 @@ shaping_test!(
 );
 shaping_test!(
     sfnt_1_1,
-    "fonts/TestSFNTOne.otf",
+    "tests/fonts/text-rendering/TestSFNTOne.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4593,7 +4612,7 @@ shaping_test!(
 );
 shaping_test!(
     sfnt_1_2,
-    "fonts/TestSFNTOne.otf",
+    "tests/fonts/text-rendering/TestSFNTOne.otf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4602,7 +4621,7 @@ shaping_test!(
 );
 shaping_test!(
     sfnt_2_1,
-    "fonts/TestSFNTTwo.ttf",
+    "tests/fonts/text-rendering/TestSFNTTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4611,7 +4630,7 @@ shaping_test!(
 );
 shaping_test!(
     sfnt_2_2,
-    "fonts/TestSFNTTwo.ttf",
+    "tests/fonts/text-rendering/TestSFNTTwo.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4620,7 +4639,7 @@ shaping_test!(
 );
 shaping_test!(
     sharan_1_1,
-    "fonts/TestShapeAran.ttf",
+    "tests/fonts/text-rendering/TestShapeAran.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4636,7 +4655,7 @@ shaping_test!(
 );
 shaping_test!(
     sharan_1_2,
-    "fonts/TestShapeAran.ttf",
+    "tests/fonts/text-rendering/TestShapeAran.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4659,7 +4678,7 @@ shaping_test!(
 );
 shaping_test!(
     sharan_1_3,
-    "fonts/TestShapeAran.ttf",
+    "tests/fonts/text-rendering/TestShapeAran.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4678,7 +4697,7 @@ shaping_test!(
 );
 shaping_test!(
     sharan_1_4,
-    "fonts/TestShapeAran.ttf",
+    "tests/fonts/text-rendering/TestShapeAran.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4704,7 +4723,7 @@ shaping_test!(
 );
 shaping_test!(
     sharan_1_5,
-    "fonts/TestShapeAran.ttf",
+    "tests/fonts/text-rendering/TestShapeAran.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4728,7 +4747,7 @@ shaping_test!(
 );
 shaping_test!(
     sharan_1_6,
-    "fonts/TestShapeAran.ttf",
+    "tests/fonts/text-rendering/TestShapeAran.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4750,7 +4769,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_1,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4759,7 +4778,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_2,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4768,7 +4787,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_3,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4777,7 +4796,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_4,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4786,7 +4805,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_5,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4795,7 +4814,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_6,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4804,7 +4823,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_7,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4813,7 +4832,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_8,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4822,7 +4841,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_9,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4831,7 +4850,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_10,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4840,7 +4859,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_11,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4849,7 +4868,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_12,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4864,7 +4883,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_13,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4873,7 +4892,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_14,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4882,7 +4901,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_15,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4891,7 +4910,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_16,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4900,7 +4919,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_17,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4909,7 +4928,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_18,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4918,7 +4937,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_19,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4927,7 +4946,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_20,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4936,7 +4955,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_21,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4945,7 +4964,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_1_22,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4954,7 +4973,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_2_1,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4963,7 +4982,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_2_2,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4972,7 +4991,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_2_3,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4981,7 +5000,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_2_4,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4990,7 +5009,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_2_5,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -4999,7 +5018,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_2_6,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5008,7 +5027,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_2_7,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5017,7 +5036,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_2_8,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5031,7 +5050,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_2_9,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5040,7 +5059,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_2_10,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5049,7 +5068,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_2_11,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5058,7 +5077,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_2_12,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5067,7 +5086,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_3_1,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5076,7 +5095,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_3_2,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5085,7 +5104,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_3_3,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5094,7 +5113,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_3_4,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5103,7 +5122,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_3_5,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5112,7 +5131,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_3_6,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5121,7 +5140,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_3_7,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5130,7 +5149,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_3_8,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5139,7 +5158,7 @@ shaping_test!(
 );
 shaping_test!(
     shbali_3_9,
-    "fonts/NotoSansBalinese-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansBalinese-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5148,7 +5167,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_1,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5157,7 +5176,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_2,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5166,7 +5185,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_3,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5175,7 +5194,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_4,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5184,7 +5203,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_5,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5193,7 +5212,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_6,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5202,7 +5221,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_7,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5211,7 +5230,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_8,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5220,7 +5239,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_9,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5229,7 +5248,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_10,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5238,7 +5257,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_11,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5247,7 +5266,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_12,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5256,7 +5275,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_13,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5265,7 +5284,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_14,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5274,7 +5293,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_15,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5283,7 +5302,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_16,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5292,7 +5311,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_17,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5301,7 +5320,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_18,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5310,7 +5329,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_19,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5319,7 +5338,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_20,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5328,7 +5347,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_21,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5337,7 +5356,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_22,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5346,7 +5365,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_23,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5355,7 +5374,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_24,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5364,7 +5383,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_25,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5373,7 +5392,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_26,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5382,7 +5401,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_27,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5391,7 +5410,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_28,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5400,7 +5419,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_29,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5409,7 +5428,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_30,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5418,7 +5437,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_31,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5427,7 +5446,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_32,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5436,7 +5455,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_33,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5445,7 +5464,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_1_34,
-    "fonts/NotoSerifKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSerifKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5454,7 +5473,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_2_1,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5463,7 +5482,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_2_2,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5472,7 +5491,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_2_3,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5481,7 +5500,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_2_4,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5490,7 +5509,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_2_5,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5505,7 +5524,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_2_6,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5520,7 +5539,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_2_7,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5535,7 +5554,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_2_8,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5552,7 +5571,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_2_9,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5568,7 +5587,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_2_10,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5577,7 +5596,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_2_11,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5586,7 +5605,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_2_12,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5595,7 +5614,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_2_13,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5604,7 +5623,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_2_14,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5613,7 +5632,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_2_15,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5622,7 +5641,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_2_16,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5631,7 +5650,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_1,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5640,7 +5659,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_2,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5649,7 +5668,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_3,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5658,7 +5677,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_4,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5667,7 +5686,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_5,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5676,7 +5695,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_6,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5685,7 +5704,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_7,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5694,7 +5713,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_8,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5703,7 +5722,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_9,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5712,7 +5731,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_10,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5721,7 +5740,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_11,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5730,7 +5749,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_12,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5739,7 +5758,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_13,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5748,7 +5767,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_14,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5757,7 +5776,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_15,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5766,7 +5785,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_16,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5775,7 +5794,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_17,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5784,7 +5803,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_18,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5793,7 +5812,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_19,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5808,7 +5827,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_20,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5817,7 +5836,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_21,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5826,7 +5845,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_22,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5835,7 +5854,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_23,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5844,7 +5863,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_24,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5853,7 +5872,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_25,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5862,7 +5881,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_26,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5871,7 +5890,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_27,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5880,7 +5899,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_28,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5889,7 +5908,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_29,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5898,7 +5917,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_30,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5907,7 +5926,7 @@ shaping_test!(
 );
 shaping_test!(
     shknda_3_31,
-    "fonts/NotoSansKannada-Regular.ttf",
+    "tests/fonts/text-rendering/NotoSansKannada-Regular.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5922,7 +5941,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_1,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5931,7 +5950,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_2,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5940,7 +5959,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_3,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5949,7 +5968,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_4,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5963,7 +5982,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_5,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5972,7 +5991,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_6,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5981,7 +6000,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_7,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5990,7 +6009,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_8,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -5999,7 +6018,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_9,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6008,7 +6027,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_10,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6017,7 +6036,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_11,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6026,7 +6045,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_12,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6035,7 +6054,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_13,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6044,7 +6063,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_14,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6053,7 +6072,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_15,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6062,7 +6081,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_16,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6071,7 +6090,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_17,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6080,7 +6099,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_18,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6089,7 +6108,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_19,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6098,7 +6117,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_20,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6107,7 +6126,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_21,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6116,7 +6135,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_22,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6125,7 +6144,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_23,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6134,7 +6153,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_24,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6149,7 +6168,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_25,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6163,7 +6182,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_26,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6178,7 +6197,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_27,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6192,7 +6211,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_28,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6206,7 +6225,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_29,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6215,7 +6234,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_30,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6224,7 +6243,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_31,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6238,7 +6257,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_32,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6247,7 +6266,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_33,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6256,7 +6275,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_34,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6272,7 +6291,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_35,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6288,7 +6307,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_36,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6297,7 +6316,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_37,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6306,7 +6325,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_38,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6320,7 +6339,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_39,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6329,7 +6348,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_40,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6338,7 +6357,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_41,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6347,7 +6366,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_42,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6356,7 +6375,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_43,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6371,7 +6390,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_44,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6385,7 +6404,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_45,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6394,7 +6413,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_46,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6403,7 +6422,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_47,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6412,7 +6431,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_48,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6421,7 +6440,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_49,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6430,7 +6449,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_50,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6439,7 +6458,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_51,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6448,7 +6467,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_1_52,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6457,7 +6476,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_1,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6466,7 +6485,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_2,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6475,7 +6494,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_3,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6484,7 +6503,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_4,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6493,7 +6512,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_5,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6515,7 +6534,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_6,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6530,7 +6549,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_7,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6539,7 +6558,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_8,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6555,7 +6574,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_9,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6569,7 +6588,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_10,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6583,7 +6602,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_11,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6598,7 +6617,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_12,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6614,7 +6633,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_13,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6623,7 +6642,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_14,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6639,7 +6658,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_15,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6655,7 +6674,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_16,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6674,7 +6693,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_17,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6693,7 +6712,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_18,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6709,7 +6728,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_19,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6725,7 +6744,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_20,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6734,7 +6753,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_21,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6751,7 +6770,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_22,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6760,7 +6779,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_23,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6769,7 +6788,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_24,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6778,7 +6797,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_25,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6792,7 +6811,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_26,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6806,7 +6825,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_27,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6822,7 +6841,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_28,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6838,7 +6857,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_29,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6854,7 +6873,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_30,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6868,7 +6887,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_31,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6877,7 +6896,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_32,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6892,7 +6911,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_33,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6907,7 +6926,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_34,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6921,7 +6940,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_35,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6936,7 +6955,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_36,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6945,7 +6964,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_37,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6959,7 +6978,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_38,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6975,7 +6994,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_39,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -6991,7 +7010,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_40,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7007,7 +7026,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_41,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7021,7 +7040,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_42,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7037,7 +7056,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_43,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7046,7 +7065,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_44,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7067,7 +7086,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_45,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7081,7 +7100,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_46,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7097,7 +7116,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_10_47,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7111,7 +7130,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_1,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7120,7 +7139,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_2,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7135,7 +7154,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_3,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7150,7 +7169,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_4,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7165,7 +7184,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_5,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7174,7 +7193,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_6,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7183,7 +7202,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_7,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7198,7 +7217,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_8,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7207,7 +7226,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_9,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7223,7 +7242,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_10,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7232,7 +7251,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_11,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7241,7 +7260,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_12,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7256,7 +7275,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_13,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7271,7 +7290,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_14,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7288,7 +7307,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_15,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7302,7 +7321,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_16,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7316,7 +7335,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_17,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7325,7 +7344,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_18,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7334,7 +7353,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_19,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7343,7 +7362,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_20,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7352,7 +7371,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_21,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7361,7 +7380,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_22,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7376,7 +7395,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_23,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7385,7 +7404,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_24,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7394,7 +7413,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_25,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7403,7 +7422,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_26,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7412,7 +7431,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_27,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7421,7 +7440,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_28,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7430,7 +7449,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_29,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7444,7 +7463,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_30,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7459,7 +7478,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_31,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7473,7 +7492,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_32,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7489,7 +7508,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_33,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7504,7 +7523,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_34,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7519,7 +7538,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_35,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7535,7 +7554,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_36,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7551,7 +7570,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_2_37,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7565,7 +7584,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_3_1,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7582,7 +7601,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_3_2,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7599,7 +7618,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_3_3,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7616,7 +7635,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_3_4,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7631,7 +7650,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_3_5,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7648,7 +7667,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_3_6,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7657,7 +7676,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_3_7,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7671,7 +7690,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_3_8,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7686,7 +7705,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_3_9,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7702,7 +7721,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_3_10,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7711,7 +7730,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_3_11,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7720,7 +7739,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_3_12,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7736,7 +7755,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_3_13,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7755,7 +7774,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_4_1,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7770,7 +7789,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_4_2,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7785,7 +7804,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_4_3,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7799,7 +7818,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_5_1,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7808,7 +7827,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_5_2,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7817,7 +7836,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_5_3,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7826,7 +7845,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_5_4,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7835,7 +7854,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_5_5,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7844,7 +7863,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_5_6,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7853,7 +7872,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_5_7,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7869,7 +7888,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_5_8,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7878,7 +7897,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_5_9,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7887,7 +7906,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_5_10,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7904,7 +7923,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_5_11,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7921,7 +7940,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_5_12,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7930,7 +7949,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_5_13,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7944,7 +7963,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_6_1,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7958,7 +7977,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_6_2,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7978,7 +7997,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_6_3,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -7993,7 +8012,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_6_4,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8009,7 +8028,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_6_5,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8024,7 +8043,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_6_6,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8040,7 +8059,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_6_7,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8056,7 +8075,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_7_1,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8070,7 +8089,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_7_2,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8079,7 +8098,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_7_3,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8094,7 +8113,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_7_4,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8108,7 +8127,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_7_5,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8122,7 +8141,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_7_6,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8137,7 +8156,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_7_7,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8151,7 +8170,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_7_8,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8165,7 +8184,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_7_9,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8179,7 +8198,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_7_10,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8188,7 +8207,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_7_11,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8202,7 +8221,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_7_12,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8216,7 +8235,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_7_13,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8231,7 +8250,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_7_14,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8245,7 +8264,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_7_15,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8259,7 +8278,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_7_16,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8268,7 +8287,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_7_17,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8283,7 +8302,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_7_18,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8298,7 +8317,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_8_1,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8312,7 +8331,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_8_2,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8327,7 +8346,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_8_3,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8336,7 +8355,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_8_4,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8345,7 +8364,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_8_5,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8363,7 +8382,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_8_6,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8378,7 +8397,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_8_7,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8394,7 +8413,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_8_8,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8403,7 +8422,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_8_9,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8417,7 +8436,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_8_10,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8426,7 +8445,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_8_11,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8440,7 +8459,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_8_12,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8454,7 +8473,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_8_13,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8463,7 +8482,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_9_1,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8478,7 +8497,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_9_2,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8492,7 +8511,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_9_3,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8506,7 +8525,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_9_4,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8520,7 +8539,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_9_5,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
@@ -8529,7 +8548,7 @@ shaping_test!(
 );
 shaping_test!(
     shlana_9_6,
-    "fonts/TestShapeLana.ttf",
+    "tests/fonts/text-rendering/TestShapeLana.ttf",
     1000,
     &[("ned", 1), ("remove-default-ignorables", 1)],
     &[("font-funcs", 0.0)],
