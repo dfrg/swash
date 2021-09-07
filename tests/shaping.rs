@@ -26,6 +26,7 @@ pub fn shape_text(
     let builder = context
         .builder(font)
         .size(font_size as f32)
+        .retain_ignorables(true)
         .variations(variations)
         .features(features)
         .script(script);
