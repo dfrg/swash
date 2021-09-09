@@ -37879,9 +37879,10 @@ shaping_test!(
     ],
     true
 );
+#[cfg(target_os = "macos")]
 shaping_test!(
     macos_1,
-    "tests\\fonts\\in-house\\System/Library/Fonts/ヒラギノ丸ゴ\\ ProN\\ W4.ttc",
+    "/System/Library/Fonts/ヒラギノ丸ゴ\\ ProN\\ W4.ttc",
     75,
     &[],
     &[("features", 0.0)],
@@ -37889,9 +37890,10 @@ shaping_test!(
     &["781=0@-78,0+842"],
     true
 );
+#[cfg(target_os = "macos")]
 shaping_test!(
     macos_2,
-    "tests\\fonts\\in-house\\System/Library/Fonts/LucidaGrande.ttc",
+    "/System/Library/Fonts/LucidaGrande.ttc",
     75,
     &[("font-funcs", 1), ("show-flags", 1)],
     &[],
@@ -37899,12 +37901,43 @@ shaping_test!(
     &["A=0+1413", "B=1+1178", "C=2+1417", "D=3+1534"],
     true
 );
-shaping_test!(macos_3, "tests\\fonts\\in-house\\System/Library/Fonts/Helvetica.dfont@c7bec2785a4c402b7809b5e35337c3d24c18e281", 75, &[("font-funcs", 1)], &[], "m\u{300}", &["m=0+1706", "gravecmb=0@-284,10+0"], true);
-shaping_test!(macos_4, "tests\\fonts\\in-house\\System/Library/Fonts/LucidaGrande.ttc@d89a9d7e57767bfe3b5a4cfd22bb1e9dbe03a062", 75, &[("font-funcs", 1)], &[], "m\u{300}", &["mgrave=0+1912"], true);
-shaping_test!(macos_5, "tests\\fonts\\in-house\\System/Library/Fonts/Times.dfont@39c954614d3f3317b28564db06d5b7b7a6ff0e39", 75, &[("font-funcs", 1)], &[], "fi", &["fi=0+1139"], true);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_3,
+    "/System/Library/Fonts/Helvetica.dfont@c7bec2785a4c402b7809b5e35337c3d24c18e281",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "m\u{300}",
+    &["m=0+1706", "gravecmb=0@-284,10+0"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_4,
+    "/System/Library/Fonts/LucidaGrande.ttc@d89a9d7e57767bfe3b5a4cfd22bb1e9dbe03a062",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "m\u{300}",
+    &["mgrave=0+1912"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_5,
+    "/System/Library/Fonts/Times.dfont@39c954614d3f3317b28564db06d5b7b7a6ff0e39",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "fi",
+    &["fi=0+1139"],
+    true
+);
+#[cfg(target_os = "macos")]
 shaping_test!(
     macos_6,
-    "tests\\fonts\\in-house\\Library/Fonts/Khmer MN.ttc@5f5b1072df99b7355d3066ea85fe82969d13c94a",
+    "/Library/Fonts/Khmer MN.ttc@5f5b1072df99b7355d3066ea85fe82969d13c94a",
     75,
     &[("font-funcs", 1)],
     &[],
@@ -37921,9 +37954,10 @@ shaping_test!(
     ],
     true
 );
+#[cfg(target_os = "macos")]
 shaping_test!(
     macos_7,
-    "tests\\fonts\\in-house\\Library/Fonts/Tamil MN.ttc@37a2020c3f86ebcc45e02c1de5fdf81e2676989d",
+    "/Library/Fonts/Tamil MN.ttc@37a2020c3f86ebcc45e02c1de5fdf81e2676989d",
     75,
     &[("font-funcs", 1)],
     &[],
@@ -37942,21 +37976,264 @@ shaping_test!(
     ],
     true
 );
-shaping_test!(macos_8, "tests\\fonts\\in-house\\System/Library/Fonts/Times.dfont@39c954614d3f3317b28564db06d5b7b7a6ff0e39", 75, &[("font-funcs", 1)], &[], "Af\u{300}fiZ", &["A=0+1479", "f=1+682", "gravecmb=1@-551,588+0", "fi=3+1139", "Z=5+1251"], true);
-shaping_test!(macos_9, "tests\\fonts\\in-house\\System/Library/Fonts/LucidaGrande.ttc@d89a9d7e57767bfe3b5a4cfd22bb1e9dbe03a062", 75, &[("font-funcs", 1)], &[], "ס\u{5b0}", &["shevahebrew=0@51,0+0", "samekhhebrew=0+1361"], true);
-shaping_test!(macos_10, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@5fc49ae9bce39e2105864323183b68ea34c9e562", 75, &[("font-funcs", 1)], &[], "Th th ll te to tr fr fu fj", &["T_h=0+2308", "space=2+569", "t_h=3+1687", "space=5+569", "l_l=6+1108", "space=8+569", "t_e=9+1408", "space=11+569", "t_o=12+1531", "space=14+569", "t_r=15+1385", "space=17+569", "f_r=18+1432", "space=20+569", "f_u=21+1733", "space=23+569", "f_j=24+1098"], true);
-shaping_test!(macos_11, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@5fc49ae9bce39e2105864323183b68ea34c9e562", 75, &[("font-funcs", 1)], &[], "Te AV Tr Va rT eT Td", &["T=0+1497", "e=1@-62,0+699", "space=2+569", "A=3+1431", "V=4@-37,0+1377", "space=5+569", "T=6+1510", "r=7@-50,0+803", "space=8+569", "V=9+1376", "a=10@-37,0+1014", "space=11+569", "r=12+853", "T=13+1560", "space=14+569", "e=15+761", "T=16+1560", "space=17+569", "T=18+1515", "d=19@-45,0+1006"], true);
-shaping_test!(macos_12, "tests\\fonts\\in-house\\System/Library/Fonts/GeezaPro.ttc@f43ee7151c2e9f1dddfbc26cfc148609eb5c5820", 75, &[("font-funcs", 1)], &[], "الأ\u{64e}ب\u{652}ج\u{64e}د\u{650}ي\u{64e}\u{651}ةـالع\u{64e}ر\u{64e}ب\u{650}ي\u{64e}\u{651}ة", &["u0629.final.tehMarbuta=26+713", "u064e_u0651.shaddaFatha=23@0,-200+0", "u064a.medial.yeh=23+656", "u0650.kasra=21@80,290+80", "u0628.initial.beh=21@-80,0+576", "u064e.fatha=19@200,-570+200", "u0631.final.reh=19@-200,0+702", "u064e.fatha=17@200,-200+200", "u0639.medial.ain=17@-200,0+738", "u0644.initial.lam=16+515", "u0627.final.alef=15+647", "u0640.tatweel=14+449", "u0629.final.tehMarbuta=13+713", "u064e_u0651.shaddaFatha=10@0,-200+0", "u064a.initial.yeh=10+656", "u0650.kasra=8@80,570+80", "u062f.final.dal=8@-80,0+822", "u064e.fatha=6@290,-160+290", "u062c.medial.jeem=6@-290,0+1069", "u0652.sukun=4@0,-200+0", "u0628.initial.beh=4+656", "u064e.fatha=1@-372,120+-372", "u0644_u0623.isolated.lamHamzaOnAlef=1@120,0+1282", "u0627.alef=0+647"], true);
-shaping_test!(macos_13, "tests\\fonts\\in-house\\System/Library/Fonts/GeezaPro.ttc@f43ee7151c2e9f1dddfbc26cfc148609eb5c5820", 75, &[("font-funcs", 1)], &[], "بي\u{64e}\u{651}ة", &["u0629.final.tehMarbuta=4+713", "u064e_u0651.shaddaFatha=1@0,-200+0", "u064a.medial.yeh=1+656", "u0628.initial.beh=0+656"], true);
-shaping_test!(macos_14, "tests\\fonts\\in-house\\System/Library/Fonts/GeezaPro.ttc@f43ee7151c2e9f1dddfbc26cfc148609eb5c5820", 75, &[("font-funcs", 1)], &[], "رب", &["u0628.beh=1+1415", "u0631.reh=0@-202,0+700"], true);
-shaping_test!(macos_15, "tests\\fonts\\in-house\\System/Library/Fonts/GeezaPro.ttc@f43ee7151c2e9f1dddfbc26cfc148609eb5c5820", 75, &[("font-funcs", 1)], &[], "ب\u{64f}", &["u064f.damma=0@250,-250+250", "u0628.beh=0@-250,0+1165"], true);
-shaping_test!(macos_16, "tests\\fonts\\in-house\\System/Library/Fonts/GeezaPro.ttc@f43ee7151c2e9f1dddfbc26cfc148609eb5c5820", 75, &[("font-funcs", 1)], &[], "ل\u{64e}م\u{64e}\u{651}ا", &["u0627.final.alef=5+647", "u064e.fatha=0@-80,160+-80", "u064e_u0651.shaddaFatha=0@490,250+490", "u0644_u0645.initial.lamMeem=0@-410,0+415"], true);
-shaping_test!(macos_17, "tests\\fonts\\in-house\\System/Library/Fonts/SFNSDisplay.ttf@92787c30716672737e9059bc367c15d04fbc1ced", 75, &[("font-funcs", 1)], &[], "Te AV Tr Va rT eT Td", &["225=0+1105", "584=1@-105,0+979", "3=2+490", "4=3+1227", "265=4@-65,0+1227", "3=5+490", "225=6+1130", "728=7@-80,0+569", "3=8+490", "265=9+1227", "505=10@-65,0+997", "3=11+490", "728=12+609", "225=13@-40,0+1170", "3=14+490", "584=15+1004", "225=16@-80,0+1130", "3=17+490", "225=18+1105", "576=19@-105,0+1068"], true);
-shaping_test!(macos_18, "tests\\fonts\\in-house\\System/Library/Fonts/SFNSDisplay.ttf@92787c30716672737e9059bc367c15d04fbc1ced", 75, &[("font-ptem", 1), ("font-funcs", 1)], &[], "Te AV Tr Va rT eT Td", &["225=0@65,0+1235", "584=1@-40,0+1109", "3=2@65,0+620", "4=3@65,0+1357", "265=4+1357", "3=5@65,0+620", "225=6@65,0+1260", "728=7@-15,0+699", "3=8@65,0+620", "265=9@65,0+1357", "505=10+1127", "3=11@65,0+620", "728=12@65,0+739", "225=13@25,0+1300", "3=14@65,0+620", "584=15@65,0+1134", "225=16@-15,0+1260", "3=17@65,0+620", "225=18@65,0+1235", "576=19@-40,0+1198"], true);
-shaping_test!(macos_19, "tests\\fonts\\in-house\\System/Library/Fonts/Apple Color Emoji.ttc@d2fe8a134483aa48a43a9d1e4b7204d37a4abdf5", 75, &[("remove-default-ignorables", 1), ("font-funcs", 1)], &[], "👨\u{200d}👩\u{200d}👧\u{200d}👦", &["u1F46A.MWGB=0+800"], true);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_8,
+    "/System/Library/Fonts/Times.dfont@39c954614d3f3317b28564db06d5b7b7a6ff0e39",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "Af\u{300}fiZ",
+    &[
+        "A=0+1479",
+        "f=1+682",
+        "gravecmb=1@-551,588+0",
+        "fi=3+1139",
+        "Z=5+1251"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_9,
+    "/System/Library/Fonts/LucidaGrande.ttc@d89a9d7e57767bfe3b5a4cfd22bb1e9dbe03a062",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "ס\u{5b0}",
+    &["shevahebrew=0@51,0+0", "samekhhebrew=0+1361"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_10,
+    "/Library/Fonts/Apple Chancery.ttf@5fc49ae9bce39e2105864323183b68ea34c9e562",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "Th th ll te to tr fr fu fj",
+    &[
+        "T_h=0+2308",
+        "space=2+569",
+        "t_h=3+1687",
+        "space=5+569",
+        "l_l=6+1108",
+        "space=8+569",
+        "t_e=9+1408",
+        "space=11+569",
+        "t_o=12+1531",
+        "space=14+569",
+        "t_r=15+1385",
+        "space=17+569",
+        "f_r=18+1432",
+        "space=20+569",
+        "f_u=21+1733",
+        "space=23+569",
+        "f_j=24+1098"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_11,
+    "/Library/Fonts/Apple Chancery.ttf@5fc49ae9bce39e2105864323183b68ea34c9e562",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "Te AV Tr Va rT eT Td",
+    &[
+        "T=0+1497",
+        "e=1@-62,0+699",
+        "space=2+569",
+        "A=3+1431",
+        "V=4@-37,0+1377",
+        "space=5+569",
+        "T=6+1510",
+        "r=7@-50,0+803",
+        "space=8+569",
+        "V=9+1376",
+        "a=10@-37,0+1014",
+        "space=11+569",
+        "r=12+853",
+        "T=13+1560",
+        "space=14+569",
+        "e=15+761",
+        "T=16+1560",
+        "space=17+569",
+        "T=18+1515",
+        "d=19@-45,0+1006"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_12,
+    "/System/Library/Fonts/GeezaPro.ttc@f43ee7151c2e9f1dddfbc26cfc148609eb5c5820",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "الأ\u{64e}ب\u{652}ج\u{64e}د\u{650}ي\u{64e}\u{651}ةـالع\u{64e}ر\u{64e}ب\u{650}ي\u{64e}\u{651}ة",
+    &[
+        "u0629.final.tehMarbuta=26+713",
+        "u064e_u0651.shaddaFatha=23@0,-200+0",
+        "u064a.medial.yeh=23+656",
+        "u0650.kasra=21@80,290+80",
+        "u0628.initial.beh=21@-80,0+576",
+        "u064e.fatha=19@200,-570+200",
+        "u0631.final.reh=19@-200,0+702",
+        "u064e.fatha=17@200,-200+200",
+        "u0639.medial.ain=17@-200,0+738",
+        "u0644.initial.lam=16+515",
+        "u0627.final.alef=15+647",
+        "u0640.tatweel=14+449",
+        "u0629.final.tehMarbuta=13+713",
+        "u064e_u0651.shaddaFatha=10@0,-200+0",
+        "u064a.initial.yeh=10+656",
+        "u0650.kasra=8@80,570+80",
+        "u062f.final.dal=8@-80,0+822",
+        "u064e.fatha=6@290,-160+290",
+        "u062c.medial.jeem=6@-290,0+1069",
+        "u0652.sukun=4@0,-200+0",
+        "u0628.initial.beh=4+656",
+        "u064e.fatha=1@-372,120+-372",
+        "u0644_u0623.isolated.lamHamzaOnAlef=1@120,0+1282",
+        "u0627.alef=0+647"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_13,
+    "/System/Library/Fonts/GeezaPro.ttc@f43ee7151c2e9f1dddfbc26cfc148609eb5c5820",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "بي\u{64e}\u{651}ة",
+    &[
+        "u0629.final.tehMarbuta=4+713",
+        "u064e_u0651.shaddaFatha=1@0,-200+0",
+        "u064a.medial.yeh=1+656",
+        "u0628.initial.beh=0+656"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_14,
+    "/System/Library/Fonts/GeezaPro.ttc@f43ee7151c2e9f1dddfbc26cfc148609eb5c5820",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "رب",
+    &["u0628.beh=1+1415", "u0631.reh=0@-202,0+700"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_15,
+    "/System/Library/Fonts/GeezaPro.ttc@f43ee7151c2e9f1dddfbc26cfc148609eb5c5820",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "ب\u{64f}",
+    &["u064f.damma=0@250,-250+250", "u0628.beh=0@-250,0+1165"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_16,
+    "/System/Library/Fonts/GeezaPro.ttc@f43ee7151c2e9f1dddfbc26cfc148609eb5c5820",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "ل\u{64e}م\u{64e}\u{651}ا",
+    &[
+        "u0627.final.alef=5+647",
+        "u064e.fatha=0@-80,160+-80",
+        "u064e_u0651.shaddaFatha=0@490,250+490",
+        "u0644_u0645.initial.lamMeem=0@-410,0+415"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_17,
+    "/System/Library/Fonts/SFNSDisplay.ttf@92787c30716672737e9059bc367c15d04fbc1ced",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "Te AV Tr Va rT eT Td",
+    &[
+        "225=0+1105",
+        "584=1@-105,0+979",
+        "3=2+490",
+        "4=3+1227",
+        "265=4@-65,0+1227",
+        "3=5+490",
+        "225=6+1130",
+        "728=7@-80,0+569",
+        "3=8+490",
+        "265=9+1227",
+        "505=10@-65,0+997",
+        "3=11+490",
+        "728=12+609",
+        "225=13@-40,0+1170",
+        "3=14+490",
+        "584=15+1004",
+        "225=16@-80,0+1130",
+        "3=17+490",
+        "225=18+1105",
+        "576=19@-105,0+1068"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_18,
+    "/System/Library/Fonts/SFNSDisplay.ttf@92787c30716672737e9059bc367c15d04fbc1ced",
+    75,
+    &[("font-ptem", 1), ("font-funcs", 1)],
+    &[],
+    "Te AV Tr Va rT eT Td",
+    &[
+        "225=0@65,0+1235",
+        "584=1@-40,0+1109",
+        "3=2@65,0+620",
+        "4=3@65,0+1357",
+        "265=4+1357",
+        "3=5@65,0+620",
+        "225=6@65,0+1260",
+        "728=7@-15,0+699",
+        "3=8@65,0+620",
+        "265=9@65,0+1357",
+        "505=10+1127",
+        "3=11@65,0+620",
+        "728=12@65,0+739",
+        "225=13@25,0+1300",
+        "3=14@65,0+620",
+        "584=15@65,0+1134",
+        "225=16@-15,0+1260",
+        "3=17@65,0+620",
+        "225=18@65,0+1235",
+        "576=19@-40,0+1198"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_19,
+    "/System/Library/Fonts/Apple Color Emoji.ttc@d2fe8a134483aa48a43a9d1e4b7204d37a4abdf5",
+    75,
+    &[("remove-default-ignorables", 1), ("font-funcs", 1)],
+    &[],
+    "👨\u{200d}👩\u{200d}👧\u{200d}👦",
+    &["u1F46A.MWGB=0+800"],
+    true
+);
+#[cfg(target_os = "macos")]
 shaping_test!(
     macos_20,
-    "tests\\fonts\\in-house\\Library/Fonts/Zapfino.ttf@9ee799ffb09516ead6b0cf6f2ca807276e150748",
+    "/Library/Fonts/Zapfino.ttf@9ee799ffb09516ead6b0cf6f2ca807276e150748",
     75,
     &[("font-funcs", 1)],
     &[],
@@ -38021,12 +38298,34 @@ shaping_test!(
     ],
     true
 );
-shaping_test!(macos_21, "tests\\fonts\\in-house\\System/Library/Fonts/ヒラキ\u{3099}ノ明朝 ProN W3.ttc@e3bd65c7209ceab2c70ef22d3ebe0967ab319ed3", 75, &[("font-funcs", 1)], &[("direction", 0.0)], "[Hello4]", &["60=0@-157,-880+0,-1000", "41=1@-398,-880+0,-1000", "70=2@-267,-880+0,-1000", "77=3@-148,-880+0,-1000", "77=4@-148,-880+0,-1000", "80=5@-291,-880+0,-1000", "21=6@-294,-880+0,-1000", "62=7@-157,-880+0,-1000"], true);
-shaping_test!(macos_22, "tests\\fonts\\in-house\\System/Library/Fonts/Times.dfont@39c954614d3f3317b28564db06d5b7b7a6ff0e39", 75, &[("font-funcs", 1)], &[], "fine", &["fi=0+1139", "n=2+1024", "e=3+909"], true);
-shaping_test!(macos_23, "tests\\fonts\\in-house\\System/Library/Fonts/Times.dfont@39c954614d3f3317b28564db06d5b7b7a6ff0e39", 75, &[("font-funcs", 1), ("features", 1)], &[], "fine", &["f=0+682", "i=1+569", "n=2+1024", "e=3+909"], true);
+#[cfg(target_os = "macos")]
+shaping_test!(macos_21, "/System/Library/Fonts/ヒラキ\u{3099}ノ明朝 ProN W3.ttc@e3bd65c7209ceab2c70ef22d3ebe0967ab319ed3", 75, &[("font-funcs", 1)], &[("direction", 0.0)], "[Hello4]", &["60=0@-157,-880+0,-1000", "41=1@-398,-880+0,-1000", "70=2@-267,-880+0,-1000", "77=3@-148,-880+0,-1000", "77=4@-148,-880+0,-1000", "80=5@-291,-880+0,-1000", "21=6@-294,-880+0,-1000", "62=7@-157,-880+0,-1000"], true);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_22,
+    "/System/Library/Fonts/Times.dfont@39c954614d3f3317b28564db06d5b7b7a6ff0e39",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "fine",
+    &["fi=0+1139", "n=2+1024", "e=3+909"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_23,
+    "/System/Library/Fonts/Times.dfont@39c954614d3f3317b28564db06d5b7b7a6ff0e39",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "fine",
+    &["f=0+682", "i=1+569", "n=2+1024", "e=3+909"],
+    true
+);
+#[cfg(target_os = "macos")]
 shaping_test!(
     macos_24,
-    "tests\\fonts\\in-house\\Library/Fonts/Kokonor.ttf@fe9d518bb4e20e77f7a0444c82f4d41467dd714d",
+    "/Library/Fonts/Kokonor.ttf@fe9d518bb4e20e77f7a0444c82f4d41467dd714d",
     75,
     &[("font-funcs", 1)],
     &[],
@@ -38034,9 +38333,10 @@ shaping_test!(
     &["r_g_y_u=0+1579"],
     true
 );
+#[cfg(target_os = "macos")]
 shaping_test!(
     macos_25,
-    "tests\\fonts\\in-house\\Library/Fonts/Kokonor.ttf@fe9d518bb4e20e77f7a0444c82f4d41467dd714d",
+    "/Library/Fonts/Kokonor.ttf@fe9d518bb4e20e77f7a0444c82f4d41467dd714d",
     75,
     &[("font-funcs", 1), ("features", 1)],
     &[],
@@ -38044,19 +38344,126 @@ shaping_test!(
     &["r_g_y_u=0+1579"],
     true
 );
-shaping_test!(macos_26, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@5fc49ae9bce39e2105864323183b68ea34c9e562", 75, &[("font-funcs", 1)], &[], "first", &["f_i=0+1097", "r=2+853", "s=3+728", "t=4+725"], true);
-shaping_test!(macos_27, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@5fc49ae9bce39e2105864323183b68ea34c9e562", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f_i=0+1097", "r=2+853", "s_t=3+1438"], true);
-shaping_test!(macos_28, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@5fc49ae9bce39e2105864323183b68ea34c9e562", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"], true);
-shaping_test!(macos_29, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@5fc49ae9bce39e2105864323183b68ea34c9e562", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f_i=0+1097", "r=2+853", "s_t=3+1438"], true);
-shaping_test!(macos_30, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@5fc49ae9bce39e2105864323183b68ea34c9e562", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"], true);
-shaping_test!(macos_31, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@5fc49ae9bce39e2105864323183b68ea34c9e562", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["F.small=0+903", "I.small=1+634", "R.small=2+1113", "S.small=3+911", "T.small=4+1075"], true);
-shaping_test!(macos_32, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@5fc49ae9bce39e2105864323183b68ea34c9e562", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f=0+639", "i=1+606", "r=2+853", "s_t=3+1438"], true);
-shaping_test!(macos_33, "tests\\fonts\\in-house\\System/Library/Fonts/Helvetica.ttc@8a928f9866299d2455f41360202b7a3b48503a5e", 75, &[("font-funcs", 1)], &[], "m\u{300}", &["m=0+1706", "gravecmb=0@-284,10+0"], true);
-shaping_test!(macos_34, "tests\\fonts\\in-house\\System/Library/Fonts/LucidaGrande.ttc@63ba1b1de4709bd832ca76bd62368dd99fc34269", 75, &[("font-funcs", 1)], &[], "m\u{300}", &["mgrave=0+1912"], true);
-shaping_test!(macos_35, "tests\\fonts\\in-house\\System/Library/Fonts/Times.ttc@896098b6979306ad84355025459f7c68b029139c", 75, &[("font-funcs", 1)], &[], "fi", &["fi=0+1139"], true);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_26,
+    "/Library/Fonts/Apple Chancery.ttf@5fc49ae9bce39e2105864323183b68ea34c9e562",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "first",
+    &["f_i=0+1097", "r=2+853", "s=3+728", "t=4+725"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_27,
+    "/Library/Fonts/Apple Chancery.ttf@5fc49ae9bce39e2105864323183b68ea34c9e562",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "first",
+    &["f_i=0+1097", "r=2+853", "s_t=3+1438"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_28,
+    "/Library/Fonts/Apple Chancery.ttf@5fc49ae9bce39e2105864323183b68ea34c9e562",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "first",
+    &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_29,
+    "/Library/Fonts/Apple Chancery.ttf@5fc49ae9bce39e2105864323183b68ea34c9e562",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "first",
+    &["f_i=0+1097", "r=2+853", "s_t=3+1438"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_30,
+    "/Library/Fonts/Apple Chancery.ttf@5fc49ae9bce39e2105864323183b68ea34c9e562",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "first",
+    &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_31,
+    "/Library/Fonts/Apple Chancery.ttf@5fc49ae9bce39e2105864323183b68ea34c9e562",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "first",
+    &[
+        "F.small=0+903",
+        "I.small=1+634",
+        "R.small=2+1113",
+        "S.small=3+911",
+        "T.small=4+1075"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_32,
+    "/Library/Fonts/Apple Chancery.ttf@5fc49ae9bce39e2105864323183b68ea34c9e562",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "first",
+    &["f=0+639", "i=1+606", "r=2+853", "s_t=3+1438"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_33,
+    "/System/Library/Fonts/Helvetica.ttc@8a928f9866299d2455f41360202b7a3b48503a5e",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "m\u{300}",
+    &["m=0+1706", "gravecmb=0@-284,10+0"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_34,
+    "/System/Library/Fonts/LucidaGrande.ttc@63ba1b1de4709bd832ca76bd62368dd99fc34269",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "m\u{300}",
+    &["mgrave=0+1912"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_35,
+    "/System/Library/Fonts/Times.ttc@896098b6979306ad84355025459f7c68b029139c",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "fi",
+    &["fi=0+1139"],
+    true
+);
+#[cfg(target_os = "macos")]
 shaping_test!(
     macos_36,
-    "tests\\fonts\\in-house\\Library/Fonts/Khmer MN.ttc@782ba6cf3fca0512ab348dfe08345a2d5dc5bf2c",
+    "/Library/Fonts/Khmer MN.ttc@782ba6cf3fca0512ab348dfe08345a2d5dc5bf2c",
     75,
     &[("font-funcs", 1)],
     &[],
@@ -38073,9 +38480,10 @@ shaping_test!(
     ],
     true
 );
+#[cfg(target_os = "macos")]
 shaping_test!(
     macos_37,
-    "tests\\fonts\\in-house\\Library/Fonts/Tamil MN.ttc@3de37f3f8f3cb6015b093fbd6e9d323daaf6fb1d",
+    "/Library/Fonts/Tamil MN.ttc@3de37f3f8f3cb6015b093fbd6e9d323daaf6fb1d",
     75,
     &[("font-funcs", 1)],
     &[],
@@ -38094,21 +38502,264 @@ shaping_test!(
     ],
     true
 );
-shaping_test!(macos_38, "tests\\fonts\\in-house\\System/Library/Fonts/Times.ttc@896098b6979306ad84355025459f7c68b029139c", 75, &[("font-funcs", 1)], &[], "Af\u{300}fiZ", &["A=0+1479", "f=1+682", "gravecmb=1@-551,588+0", "fi=3+1139", "Z=5+1251"], true);
-shaping_test!(macos_39, "tests\\fonts\\in-house\\System/Library/Fonts/LucidaGrande.ttc@63ba1b1de4709bd832ca76bd62368dd99fc34269", 75, &[("font-funcs", 1)], &[], "ס\u{5b0}", &["shevahebrew=0@51,0+0", "samekhhebrew=0+1361"], true);
-shaping_test!(macos_40, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1)], &[], "Th th ll te to tr fr fu fj", &["T_h=0+2308", "space=2+569", "t_h=3+1687", "space=5+569", "l_l=6+1108", "space=8+569", "t_e=9+1408", "space=11+569", "t_o=12+1531", "space=14+569", "t_r=15+1385", "space=17+569", "f_r=18+1432", "space=20+569", "f_u=21+1733", "space=23+569", "f_j=24+1098"], true);
-shaping_test!(macos_41, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1)], &[], "Te AV Tr Va rT eT Td", &["T=0+1497", "e=1@-62,0+699", "space=2+569", "A=3+1431", "V=4@-37,0+1377", "space=5+569", "T=6+1510", "r=7@-50,0+803", "space=8+569", "V=9+1376", "a=10@-37,0+1014", "space=11+569", "r=12+853", "T=13+1560", "space=14+569", "e=15+761", "T=16+1560", "space=17+569", "T=18+1515", "d=19@-45,0+1006"], true);
-shaping_test!(macos_42, "tests\\fonts\\in-house\\System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334", 75, &[("font-funcs", 1)], &[], "الأ\u{64e}ب\u{652}ج\u{64e}د\u{650}ي\u{64e}\u{651}ةـالع\u{64e}ر\u{64e}ب\u{650}ي\u{64e}\u{651}ة", &["u0629.final.tehMarbuta=26+713", "u064e_u0651.shaddaFatha=23@0,-200+0", "u064a.medial.yeh=23+656", "u0650.kasra=21@80,290+80", "u0628.initial.beh=21@-80,0+576", "u064e.fatha=19@200,-570+200", "u0631.final.reh=19@-200,0+702", "u064e.fatha=17@200,-200+200", "u0639.medial.ain=17@-200,0+738", "u0644.initial.lam=16+515", "u0627.final.alef=15+647", "u0640.tatweel=14+449", "u0629.final.tehMarbuta=13+713", "u064e_u0651.shaddaFatha=10@0,-200+0", "u064a.initial.yeh=10+656", "u0650.kasra=8@80,570+80", "u062f.final.dal=8@-80,0+822", "u064e.fatha=6@290,-160+290", "u062c.medial.jeem=6@-290,0+1069", "u0652.sukun=4@0,-200+0", "u0628.initial.beh=4+656", "u064e.fatha=1@-372,120+-372", "u0644_u0623.isolated.lamHamzaOnAlef=1@120,0+1282", "u0627.alef=0+647"], true);
-shaping_test!(macos_43, "tests\\fonts\\in-house\\System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334", 75, &[("font-funcs", 1)], &[], "بي\u{64e}\u{651}ة", &["u0629.final.tehMarbuta=4+713", "u064e_u0651.shaddaFatha=1@0,-200+0", "u064a.medial.yeh=1+656", "u0628.initial.beh=0+656"], true);
-shaping_test!(macos_44, "tests\\fonts\\in-house\\System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334", 75, &[("font-funcs", 1)], &[], "رب", &["u0628.beh=1+1415", "u0631.reh=0@-202,0+700"], true);
-shaping_test!(macos_45, "tests\\fonts\\in-house\\System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334", 75, &[("font-funcs", 1)], &[], "ب\u{64f}", &["u064f.damma=0@250,-250+250", "u0628.beh=0@-250,0+1165"], true);
-shaping_test!(macos_46, "tests\\fonts\\in-house\\System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334", 75, &[("font-funcs", 1)], &[], "ل\u{64e}م\u{64e}\u{651}ا", &["u0627.final.alef=5+647", "u064e.fatha=0@-80,160+-80", "u064e_u0651.shaddaFatha=0@490,250+490", "u0644_u0645.initial.lamMeem=0@-410,0+415"], true);
-shaping_test!(macos_47, "tests\\fonts\\in-house\\System/Library/Fonts/SFNSDisplay.ttf@c8948f464ff822a5f9bbf2e12d0e4e32268815aa", 75, &[("font-funcs", 1)], &[], "Te AV Tr Va rT eT Td", &["282=0+1055", "658=1@-135,0+914", "3=2+420", "4=3+1227", "332=4@-65,0+1227", "3=5+420", "282=6+1075", "813=7@-115,0+516", "3=8+420", "332=9+1217", "572=10@-75,0+953", "3=11+420", "813=12+546", "282=13@-85,0+1105", "3=14+420", "658=15+914", "282=16@-135,0+1055", "3=17+420", "282=18+1055", "649=19@-135,0+999"], true);
-shaping_test!(macos_48, "tests\\fonts\\in-house\\System/Library/Fonts/SFNSDisplay.ttf@c8948f464ff822a5f9bbf2e12d0e4e32268815aa", 75, &[("font-ptem", 1), ("font-funcs", 1)], &[], "Te AV Tr Va rT eT Td", &["282=0@65,0+1185", "658=1@-70,0+1044", "3=2@65,0+550", "4=3@65,0+1357", "332=4+1357", "3=5@65,0+550", "282=6@65,0+1205", "813=7@-50,0+646", "3=8@65,0+550", "332=9@65,0+1347", "572=10@-10,0+1083", "3=11@65,0+550", "813=12@65,0+676", "282=13@-20,0+1235", "3=14@65,0+550", "658=15@65,0+1044", "282=16@-70,0+1185", "3=17@65,0+550", "282=18@65,0+1185", "649=19@-70,0+1129"], true);
-shaping_test!(macos_49, "tests\\fonts\\in-house\\System/Library/Fonts/Apple Color Emoji.ttc@2e09b1f3d42c3821cc6c4ac5b6ce16237ab0d496", 75, &[("remove-default-ignorables", 1), ("font-funcs", 1)], &[], "👨\u{200d}👩\u{200d}👧\u{200d}👦", &["u1F46A.MWGB=0+800"], true);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_38,
+    "/System/Library/Fonts/Times.ttc@896098b6979306ad84355025459f7c68b029139c",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "Af\u{300}fiZ",
+    &[
+        "A=0+1479",
+        "f=1+682",
+        "gravecmb=1@-551,588+0",
+        "fi=3+1139",
+        "Z=5+1251"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_39,
+    "/System/Library/Fonts/LucidaGrande.ttc@63ba1b1de4709bd832ca76bd62368dd99fc34269",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "ס\u{5b0}",
+    &["shevahebrew=0@51,0+0", "samekhhebrew=0+1361"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_40,
+    "/Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "Th th ll te to tr fr fu fj",
+    &[
+        "T_h=0+2308",
+        "space=2+569",
+        "t_h=3+1687",
+        "space=5+569",
+        "l_l=6+1108",
+        "space=8+569",
+        "t_e=9+1408",
+        "space=11+569",
+        "t_o=12+1531",
+        "space=14+569",
+        "t_r=15+1385",
+        "space=17+569",
+        "f_r=18+1432",
+        "space=20+569",
+        "f_u=21+1733",
+        "space=23+569",
+        "f_j=24+1098"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_41,
+    "/Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "Te AV Tr Va rT eT Td",
+    &[
+        "T=0+1497",
+        "e=1@-62,0+699",
+        "space=2+569",
+        "A=3+1431",
+        "V=4@-37,0+1377",
+        "space=5+569",
+        "T=6+1510",
+        "r=7@-50,0+803",
+        "space=8+569",
+        "V=9+1376",
+        "a=10@-37,0+1014",
+        "space=11+569",
+        "r=12+853",
+        "T=13+1560",
+        "space=14+569",
+        "e=15+761",
+        "T=16+1560",
+        "space=17+569",
+        "T=18+1515",
+        "d=19@-45,0+1006"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_42,
+    "/System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "الأ\u{64e}ب\u{652}ج\u{64e}د\u{650}ي\u{64e}\u{651}ةـالع\u{64e}ر\u{64e}ب\u{650}ي\u{64e}\u{651}ة",
+    &[
+        "u0629.final.tehMarbuta=26+713",
+        "u064e_u0651.shaddaFatha=23@0,-200+0",
+        "u064a.medial.yeh=23+656",
+        "u0650.kasra=21@80,290+80",
+        "u0628.initial.beh=21@-80,0+576",
+        "u064e.fatha=19@200,-570+200",
+        "u0631.final.reh=19@-200,0+702",
+        "u064e.fatha=17@200,-200+200",
+        "u0639.medial.ain=17@-200,0+738",
+        "u0644.initial.lam=16+515",
+        "u0627.final.alef=15+647",
+        "u0640.tatweel=14+449",
+        "u0629.final.tehMarbuta=13+713",
+        "u064e_u0651.shaddaFatha=10@0,-200+0",
+        "u064a.initial.yeh=10+656",
+        "u0650.kasra=8@80,570+80",
+        "u062f.final.dal=8@-80,0+822",
+        "u064e.fatha=6@290,-160+290",
+        "u062c.medial.jeem=6@-290,0+1069",
+        "u0652.sukun=4@0,-200+0",
+        "u0628.initial.beh=4+656",
+        "u064e.fatha=1@-372,120+-372",
+        "u0644_u0623.isolated.lamHamzaOnAlef=1@120,0+1282",
+        "u0627.alef=0+647"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_43,
+    "/System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "بي\u{64e}\u{651}ة",
+    &[
+        "u0629.final.tehMarbuta=4+713",
+        "u064e_u0651.shaddaFatha=1@0,-200+0",
+        "u064a.medial.yeh=1+656",
+        "u0628.initial.beh=0+656"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_44,
+    "/System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "رب",
+    &["u0628.beh=1+1415", "u0631.reh=0@-202,0+700"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_45,
+    "/System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "ب\u{64f}",
+    &["u064f.damma=0@250,-250+250", "u0628.beh=0@-250,0+1165"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_46,
+    "/System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "ل\u{64e}م\u{64e}\u{651}ا",
+    &[
+        "u0627.final.alef=5+647",
+        "u064e.fatha=0@-80,160+-80",
+        "u064e_u0651.shaddaFatha=0@490,250+490",
+        "u0644_u0645.initial.lamMeem=0@-410,0+415"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_47,
+    "/System/Library/Fonts/SFNSDisplay.ttf@c8948f464ff822a5f9bbf2e12d0e4e32268815aa",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "Te AV Tr Va rT eT Td",
+    &[
+        "282=0+1055",
+        "658=1@-135,0+914",
+        "3=2+420",
+        "4=3+1227",
+        "332=4@-65,0+1227",
+        "3=5+420",
+        "282=6+1075",
+        "813=7@-115,0+516",
+        "3=8+420",
+        "332=9+1217",
+        "572=10@-75,0+953",
+        "3=11+420",
+        "813=12+546",
+        "282=13@-85,0+1105",
+        "3=14+420",
+        "658=15+914",
+        "282=16@-135,0+1055",
+        "3=17+420",
+        "282=18+1055",
+        "649=19@-135,0+999"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_48,
+    "/System/Library/Fonts/SFNSDisplay.ttf@c8948f464ff822a5f9bbf2e12d0e4e32268815aa",
+    75,
+    &[("font-ptem", 1), ("font-funcs", 1)],
+    &[],
+    "Te AV Tr Va rT eT Td",
+    &[
+        "282=0@65,0+1185",
+        "658=1@-70,0+1044",
+        "3=2@65,0+550",
+        "4=3@65,0+1357",
+        "332=4+1357",
+        "3=5@65,0+550",
+        "282=6@65,0+1205",
+        "813=7@-50,0+646",
+        "3=8@65,0+550",
+        "332=9@65,0+1347",
+        "572=10@-10,0+1083",
+        "3=11@65,0+550",
+        "813=12@65,0+676",
+        "282=13@-20,0+1235",
+        "3=14@65,0+550",
+        "658=15@65,0+1044",
+        "282=16@-70,0+1185",
+        "3=17@65,0+550",
+        "282=18@65,0+1185",
+        "649=19@-70,0+1129"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_49,
+    "/System/Library/Fonts/Apple Color Emoji.ttc@2e09b1f3d42c3821cc6c4ac5b6ce16237ab0d496",
+    75,
+    &[("remove-default-ignorables", 1), ("font-funcs", 1)],
+    &[],
+    "👨\u{200d}👩\u{200d}👧\u{200d}👦",
+    &["u1F46A.MWGB=0+800"],
+    true
+);
+#[cfg(target_os = "macos")]
 shaping_test!(
     macos_50,
-    "tests\\fonts\\in-house\\Library/Fonts/Zapfino.ttf@99a1e15163c3e9567d5b1019c45e9254dae63b08",
+    "/Library/Fonts/Zapfino.ttf@99a1e15163c3e9567d5b1019c45e9254dae63b08",
     75,
     &[("font-funcs", 1)],
     &[],
@@ -38173,12 +38824,46 @@ shaping_test!(
     ],
     true
 );
-shaping_test!(macos_51, "tests\\fonts\\in-house\\System/Library/Fonts/Thonburi.ttc@bb080e01e45f7f6699d2df09a03b3b6d13804897", 75, &[("font-funcs", 1)], &[], "ท\u{e35}\u{e48}\u{e4a}", &["thothahanthai_saraiithai_maiekthai=0+1616", "maitrithai.key=0+1300"], true);
-shaping_test!(macos_52, "tests\\fonts\\in-house\\System/Library/Fonts/Times.ttc@896098b6979306ad84355025459f7c68b029139c", 75, &[("font-funcs", 1)], &[], "fine", &["fi=0+1139", "n=2+1024", "e=3+909"], true);
-shaping_test!(macos_53, "tests\\fonts\\in-house\\System/Library/Fonts/Times.ttc@896098b6979306ad84355025459f7c68b029139c", 75, &[("font-funcs", 1), ("features", 1)], &[], "fine", &["f=0+682", "i=1+569", "n=2+1024", "e=3+909"], true);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_51,
+    "/System/Library/Fonts/Thonburi.ttc@bb080e01e45f7f6699d2df09a03b3b6d13804897",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "ท\u{e35}\u{e48}\u{e4a}",
+    &[
+        "thothahanthai_saraiithai_maiekthai=0+1616",
+        "maitrithai.key=0+1300"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_52,
+    "/System/Library/Fonts/Times.ttc@896098b6979306ad84355025459f7c68b029139c",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "fine",
+    &["fi=0+1139", "n=2+1024", "e=3+909"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_53,
+    "/System/Library/Fonts/Times.ttc@896098b6979306ad84355025459f7c68b029139c",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "fine",
+    &["f=0+682", "i=1+569", "n=2+1024", "e=3+909"],
+    true
+);
+#[cfg(target_os = "macos")]
 shaping_test!(
     macos_54,
-    "tests\\fonts\\in-house\\Library/Fonts/Kokonor.ttf@14a5c850ba917d9ec9f6bb9b1fc59b1d95512da4",
+    "/Library/Fonts/Kokonor.ttf@14a5c850ba917d9ec9f6bb9b1fc59b1d95512da4",
     75,
     &[("font-funcs", 1)],
     &[],
@@ -38186,9 +38871,10 @@ shaping_test!(
     &["r_g_y_u=0+1579"],
     true
 );
+#[cfg(target_os = "macos")]
 shaping_test!(
     macos_55,
-    "tests\\fonts\\in-house\\Library/Fonts/Kokonor.ttf@14a5c850ba917d9ec9f6bb9b1fc59b1d95512da4",
+    "/Library/Fonts/Kokonor.ttf@14a5c850ba917d9ec9f6bb9b1fc59b1d95512da4",
     75,
     &[("font-funcs", 1), ("features", 1)],
     &[],
@@ -38196,19 +38882,126 @@ shaping_test!(
     &["r_g_y_u=0+1579"],
     true
 );
-shaping_test!(macos_56, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1)], &[], "first", &["f_i=0+1097", "r=2+853", "s=3+728", "t=4+725"], true);
-shaping_test!(macos_57, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f_i=0+1097", "r=2+853", "s_t=3+1438"], true);
-shaping_test!(macos_58, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"], true);
-shaping_test!(macos_59, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f_i=0+1097", "r=2+853", "s_t=3+1438"], true);
-shaping_test!(macos_60, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"], true);
-shaping_test!(macos_61, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["F.small=0+903", "I.small=1+634", "R.small=2+1113", "S.small=3+911", "T.small=4+1075"], true);
-shaping_test!(macos_62, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f=0+639", "i=1+606", "r=2+853", "s_t=3+1438"], true);
-shaping_test!(macos_63, "tests\\fonts\\in-house\\System/Library/Fonts/Helvetica.ttc@992d29a0fa4ed91773457c29b661e94843619cde", 75, &[("font-funcs", 1)], &[], "m\u{300}", &["m=0+1706", "gravecmb=0@-284,10+0"], true);
-shaping_test!(macos_64, "tests\\fonts\\in-house\\System/Library/Fonts/LucidaGrande.ttc@63ba1b1de4709bd832ca76bd62368dd99fc34269", 75, &[("font-funcs", 1)], &[], "m\u{300}", &["mgrave=0+1912"], true);
-shaping_test!(macos_65, "tests\\fonts\\in-house\\System/Library/Fonts/Times.ttc@ebb050e4fcaaebe9992efbc7b5660b60ba18b518", 75, &[("font-funcs", 1)], &[], "fi", &["fi=0+1139"], true);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_56,
+    "/Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "first",
+    &["f_i=0+1097", "r=2+853", "s=3+728", "t=4+725"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_57,
+    "/Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "first",
+    &["f_i=0+1097", "r=2+853", "s_t=3+1438"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_58,
+    "/Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "first",
+    &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_59,
+    "/Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "first",
+    &["f_i=0+1097", "r=2+853", "s_t=3+1438"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_60,
+    "/Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "first",
+    &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_61,
+    "/Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "first",
+    &[
+        "F.small=0+903",
+        "I.small=1+634",
+        "R.small=2+1113",
+        "S.small=3+911",
+        "T.small=4+1075"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_62,
+    "/Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "first",
+    &["f=0+639", "i=1+606", "r=2+853", "s_t=3+1438"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_63,
+    "/System/Library/Fonts/Helvetica.ttc@992d29a0fa4ed91773457c29b661e94843619cde",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "m\u{300}",
+    &["m=0+1706", "gravecmb=0@-284,10+0"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_64,
+    "/System/Library/Fonts/LucidaGrande.ttc@63ba1b1de4709bd832ca76bd62368dd99fc34269",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "m\u{300}",
+    &["mgrave=0+1912"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_65,
+    "/System/Library/Fonts/Times.ttc@ebb050e4fcaaebe9992efbc7b5660b60ba18b518",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "fi",
+    &["fi=0+1139"],
+    true
+);
+#[cfg(target_os = "macos")]
 shaping_test!(
     macos_66,
-    "tests\\fonts\\in-house\\Library/Fonts/Khmer MN.ttc@37687fe0bd2548e08e29c92a30e476367ae6356b",
+    "/Library/Fonts/Khmer MN.ttc@37687fe0bd2548e08e29c92a30e476367ae6356b",
     75,
     &[("font-funcs", 1)],
     &[],
@@ -38225,9 +39018,10 @@ shaping_test!(
     ],
     true
 );
+#[cfg(target_os = "macos")]
 shaping_test!(
     macos_67,
-    "tests\\fonts\\in-house\\Library/Fonts/Tamil MN.ttc@e1df5e056be08937fd65990efbafff0814c03677",
+    "/Library/Fonts/Tamil MN.ttc@e1df5e056be08937fd65990efbafff0814c03677",
     75,
     &[("font-funcs", 1)],
     &[],
@@ -38246,21 +39040,264 @@ shaping_test!(
     ],
     true
 );
-shaping_test!(macos_68, "tests\\fonts\\in-house\\System/Library/Fonts/Times.ttc@ebb050e4fcaaebe9992efbc7b5660b60ba18b518", 75, &[("font-funcs", 1)], &[], "Af\u{300}fiZ", &["A=0+1479", "f=1+682", "gravecmb=1@-551,588+0", "fi=3+1139", "Z=5+1251"], true);
-shaping_test!(macos_69, "tests\\fonts\\in-house\\System/Library/Fonts/LucidaGrande.ttc@63ba1b1de4709bd832ca76bd62368dd99fc34269", 75, &[("font-funcs", 1)], &[], "ס\u{5b0}", &["shevahebrew=0@51,0+0", "samekhhebrew=0+1361"], true);
-shaping_test!(macos_70, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1)], &[], "Th th ll te to tr fr fu fj", &["T_h=0+2308", "space=2+569", "t_h=3+1687", "space=5+569", "l_l=6+1108", "space=8+569", "t_e=9+1408", "space=11+569", "t_o=12+1531", "space=14+569", "t_r=15+1385", "space=17+569", "f_r=18+1432", "space=20+569", "f_u=21+1733", "space=23+569", "f_j=24+1098"], true);
-shaping_test!(macos_71, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1)], &[], "Te AV Tr Va rT eT Td", &["T=0+1497", "e=1@-62,0+699", "space=2+569", "A=3+1431", "V=4@-37,0+1377", "space=5+569", "T=6+1510", "r=7@-50,0+803", "space=8+569", "V=9+1376", "a=10@-37,0+1014", "space=11+569", "r=12+853", "T=13+1560", "space=14+569", "e=15+761", "T=16+1560", "space=17+569", "T=18+1515", "d=19@-45,0+1006"], true);
-shaping_test!(macos_72, "tests\\fonts\\in-house\\System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334", 75, &[("font-funcs", 1)], &[], "الأ\u{64e}ب\u{652}ج\u{64e}د\u{650}ي\u{64e}\u{651}ةـالع\u{64e}ر\u{64e}ب\u{650}ي\u{64e}\u{651}ة", &["u0629.final.tehMarbuta=26+713", "u064e_u0651.shaddaFatha=23@0,-200+0", "u064a.medial.yeh=23+656", "u0650.kasra=21@80,290+80", "u0628.initial.beh=21@-80,0+576", "u064e.fatha=19@200,-570+200", "u0631.final.reh=19@-200,0+702", "u064e.fatha=17@200,-200+200", "u0639.medial.ain=17@-200,0+738", "u0644.initial.lam=16+515", "u0627.final.alef=15+647", "u0640.tatweel=14+449", "u0629.final.tehMarbuta=13+713", "u064e_u0651.shaddaFatha=10@0,-200+0", "u064a.initial.yeh=10+656", "u0650.kasra=8@80,570+80", "u062f.final.dal=8@-80,0+822", "u064e.fatha=6@290,-160+290", "u062c.medial.jeem=6@-290,0+1069", "u0652.sukun=4@0,-200+0", "u0628.initial.beh=4+656", "u064e.fatha=1@-372,120+-372", "u0644_u0623.isolated.lamHamzaOnAlef=1@120,0+1282", "u0627.alef=0+647"], true);
-shaping_test!(macos_73, "tests\\fonts\\in-house\\System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334", 75, &[("font-funcs", 1)], &[], "بي\u{64e}\u{651}ة", &["u0629.final.tehMarbuta=4+713", "u064e_u0651.shaddaFatha=1@0,-200+0", "u064a.medial.yeh=1+656", "u0628.initial.beh=0+656"], true);
-shaping_test!(macos_74, "tests\\fonts\\in-house\\System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334", 75, &[("font-funcs", 1)], &[], "رب", &["u0628.beh=1+1415", "u0631.reh=0@-202,0+700"], true);
-shaping_test!(macos_75, "tests\\fonts\\in-house\\System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334", 75, &[("font-funcs", 1)], &[], "ب\u{64f}", &["u064f.damma=0@250,-250+250", "u0628.beh=0@-250,0+1165"], true);
-shaping_test!(macos_76, "tests\\fonts\\in-house\\System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334", 75, &[("font-funcs", 1)], &[], "ل\u{64e}م\u{64e}\u{651}ا", &["u0627.final.alef=5+647", "u064e.fatha=0@-80,160+-80", "u064e_u0651.shaddaFatha=0@490,250+490", "u0644_u0645.initial.lamMeem=0@-410,0+415"], true);
-shaping_test!(macos_77, "tests\\fonts\\in-house\\System/Library/Fonts/SFNSDisplay.ttf@6e9677c443f6583228a63fd147663cfc635924d9", 75, &[("font-funcs", 1)], &[], "Te AV Tr Va rT eT Td", &["283=0+1055", "659=1@-135,0+914", "3=2+420", "4=3+1227", "333=4@-65,0+1227", "3=5+420", "283=6+1075", "815=7@-115,0+516", "3=8+420", "333=9+1217", "573=10@-75,0+953", "3=11+420", "815=12+546", "283=13@-85,0+1105", "3=14+420", "659=15+914", "283=16@-135,0+1055", "3=17+420", "283=18+1055", "650=19@-135,0+999"], true);
-shaping_test!(macos_78, "tests\\fonts\\in-house\\System/Library/Fonts/SFNSDisplay.ttf@6e9677c443f6583228a63fd147663cfc635924d9", 75, &[("font-ptem", 1), ("font-funcs", 1)], &[], "Te AV Tr Va rT eT Td", &["283=0@65,0+1185", "659=1@-70,0+1044", "3=2@65,0+550", "4=3@65,0+1357", "333=4+1357", "3=5@65,0+550", "283=6@65,0+1205", "815=7@-50,0+646", "3=8@65,0+550", "333=9@65,0+1347", "573=10@-10,0+1083", "3=11@65,0+550", "815=12@65,0+676", "283=13@-20,0+1235", "3=14@65,0+550", "659=15@65,0+1044", "283=16@-70,0+1185", "3=17@65,0+550", "283=18@65,0+1185", "650=19@-70,0+1129"], true);
-shaping_test!(macos_79, "tests\\fonts\\in-house\\System/Library/Fonts/Apple Color Emoji.ttc@60f77161021b1b87e99c3690e1a9b56341cf8792", 75, &[("remove-default-ignorables", 1), ("font-funcs", 1)], &[], "👨\u{200d}👩\u{200d}👧\u{200d}👦", &["u1F46A.MWGB=0+800"], true);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_68,
+    "/System/Library/Fonts/Times.ttc@ebb050e4fcaaebe9992efbc7b5660b60ba18b518",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "Af\u{300}fiZ",
+    &[
+        "A=0+1479",
+        "f=1+682",
+        "gravecmb=1@-551,588+0",
+        "fi=3+1139",
+        "Z=5+1251"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_69,
+    "/System/Library/Fonts/LucidaGrande.ttc@63ba1b1de4709bd832ca76bd62368dd99fc34269",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "ס\u{5b0}",
+    &["shevahebrew=0@51,0+0", "samekhhebrew=0+1361"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_70,
+    "/Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "Th th ll te to tr fr fu fj",
+    &[
+        "T_h=0+2308",
+        "space=2+569",
+        "t_h=3+1687",
+        "space=5+569",
+        "l_l=6+1108",
+        "space=8+569",
+        "t_e=9+1408",
+        "space=11+569",
+        "t_o=12+1531",
+        "space=14+569",
+        "t_r=15+1385",
+        "space=17+569",
+        "f_r=18+1432",
+        "space=20+569",
+        "f_u=21+1733",
+        "space=23+569",
+        "f_j=24+1098"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_71,
+    "/Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "Te AV Tr Va rT eT Td",
+    &[
+        "T=0+1497",
+        "e=1@-62,0+699",
+        "space=2+569",
+        "A=3+1431",
+        "V=4@-37,0+1377",
+        "space=5+569",
+        "T=6+1510",
+        "r=7@-50,0+803",
+        "space=8+569",
+        "V=9+1376",
+        "a=10@-37,0+1014",
+        "space=11+569",
+        "r=12+853",
+        "T=13+1560",
+        "space=14+569",
+        "e=15+761",
+        "T=16+1560",
+        "space=17+569",
+        "T=18+1515",
+        "d=19@-45,0+1006"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_72,
+    "/System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "الأ\u{64e}ب\u{652}ج\u{64e}د\u{650}ي\u{64e}\u{651}ةـالع\u{64e}ر\u{64e}ب\u{650}ي\u{64e}\u{651}ة",
+    &[
+        "u0629.final.tehMarbuta=26+713",
+        "u064e_u0651.shaddaFatha=23@0,-200+0",
+        "u064a.medial.yeh=23+656",
+        "u0650.kasra=21@80,290+80",
+        "u0628.initial.beh=21@-80,0+576",
+        "u064e.fatha=19@200,-570+200",
+        "u0631.final.reh=19@-200,0+702",
+        "u064e.fatha=17@200,-200+200",
+        "u0639.medial.ain=17@-200,0+738",
+        "u0644.initial.lam=16+515",
+        "u0627.final.alef=15+647",
+        "u0640.tatweel=14+449",
+        "u0629.final.tehMarbuta=13+713",
+        "u064e_u0651.shaddaFatha=10@0,-200+0",
+        "u064a.initial.yeh=10+656",
+        "u0650.kasra=8@80,570+80",
+        "u062f.final.dal=8@-80,0+822",
+        "u064e.fatha=6@290,-160+290",
+        "u062c.medial.jeem=6@-290,0+1069",
+        "u0652.sukun=4@0,-200+0",
+        "u0628.initial.beh=4+656",
+        "u064e.fatha=1@-372,120+-372",
+        "u0644_u0623.isolated.lamHamzaOnAlef=1@120,0+1282",
+        "u0627.alef=0+647"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_73,
+    "/System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "بي\u{64e}\u{651}ة",
+    &[
+        "u0629.final.tehMarbuta=4+713",
+        "u064e_u0651.shaddaFatha=1@0,-200+0",
+        "u064a.medial.yeh=1+656",
+        "u0628.initial.beh=0+656"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_74,
+    "/System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "رب",
+    &["u0628.beh=1+1415", "u0631.reh=0@-202,0+700"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_75,
+    "/System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "ب\u{64f}",
+    &["u064f.damma=0@250,-250+250", "u0628.beh=0@-250,0+1165"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_76,
+    "/System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "ل\u{64e}م\u{64e}\u{651}ا",
+    &[
+        "u0627.final.alef=5+647",
+        "u064e.fatha=0@-80,160+-80",
+        "u064e_u0651.shaddaFatha=0@490,250+490",
+        "u0644_u0645.initial.lamMeem=0@-410,0+415"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_77,
+    "/System/Library/Fonts/SFNSDisplay.ttf@6e9677c443f6583228a63fd147663cfc635924d9",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "Te AV Tr Va rT eT Td",
+    &[
+        "283=0+1055",
+        "659=1@-135,0+914",
+        "3=2+420",
+        "4=3+1227",
+        "333=4@-65,0+1227",
+        "3=5+420",
+        "283=6+1075",
+        "815=7@-115,0+516",
+        "3=8+420",
+        "333=9+1217",
+        "573=10@-75,0+953",
+        "3=11+420",
+        "815=12+546",
+        "283=13@-85,0+1105",
+        "3=14+420",
+        "659=15+914",
+        "283=16@-135,0+1055",
+        "3=17+420",
+        "283=18+1055",
+        "650=19@-135,0+999"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_78,
+    "/System/Library/Fonts/SFNSDisplay.ttf@6e9677c443f6583228a63fd147663cfc635924d9",
+    75,
+    &[("font-ptem", 1), ("font-funcs", 1)],
+    &[],
+    "Te AV Tr Va rT eT Td",
+    &[
+        "283=0@65,0+1185",
+        "659=1@-70,0+1044",
+        "3=2@65,0+550",
+        "4=3@65,0+1357",
+        "333=4+1357",
+        "3=5@65,0+550",
+        "283=6@65,0+1205",
+        "815=7@-50,0+646",
+        "3=8@65,0+550",
+        "333=9@65,0+1347",
+        "573=10@-10,0+1083",
+        "3=11@65,0+550",
+        "815=12@65,0+676",
+        "283=13@-20,0+1235",
+        "3=14@65,0+550",
+        "659=15@65,0+1044",
+        "283=16@-70,0+1185",
+        "3=17@65,0+550",
+        "283=18@65,0+1185",
+        "650=19@-70,0+1129"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_79,
+    "/System/Library/Fonts/Apple Color Emoji.ttc@60f77161021b1b87e99c3690e1a9b56341cf8792",
+    75,
+    &[("remove-default-ignorables", 1), ("font-funcs", 1)],
+    &[],
+    "👨\u{200d}👩\u{200d}👧\u{200d}👦",
+    &["u1F46A.MWGB=0+800"],
+    true
+);
+#[cfg(target_os = "macos")]
 shaping_test!(
     macos_80,
-    "tests\\fonts\\in-house\\Library/Fonts/Zapfino.ttf@99a1e15163c3e9567d5b1019c45e9254dae63b08",
+    "/Library/Fonts/Zapfino.ttf@99a1e15163c3e9567d5b1019c45e9254dae63b08",
     75,
     &[("font-funcs", 1)],
     &[],
@@ -38325,12 +39362,46 @@ shaping_test!(
     ],
     true
 );
-shaping_test!(macos_81, "tests\\fonts\\in-house\\System/Library/Fonts/Thonburi.ttc@bb080e01e45f7f6699d2df09a03b3b6d13804897", 75, &[("font-funcs", 1)], &[], "ท\u{e35}\u{e48}\u{e4a}", &["thothahanthai_saraiithai_maiekthai=0+1616", "maitrithai.key=0+1300"], true);
-shaping_test!(macos_82, "tests\\fonts\\in-house\\System/Library/Fonts/Times.ttc@ebb050e4fcaaebe9992efbc7b5660b60ba18b518", 75, &[("font-funcs", 1)], &[], "fine", &["fi=0+1139", "n=2+1024", "e=3+909"], true);
-shaping_test!(macos_83, "tests\\fonts\\in-house\\System/Library/Fonts/Times.ttc@ebb050e4fcaaebe9992efbc7b5660b60ba18b518", 75, &[("font-funcs", 1), ("features", 1)], &[], "fine", &["f=0+682", "i=1+569", "n=2+1024", "e=3+909"], true);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_81,
+    "/System/Library/Fonts/Thonburi.ttc@bb080e01e45f7f6699d2df09a03b3b6d13804897",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "ท\u{e35}\u{e48}\u{e4a}",
+    &[
+        "thothahanthai_saraiithai_maiekthai=0+1616",
+        "maitrithai.key=0+1300"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_82,
+    "/System/Library/Fonts/Times.ttc@ebb050e4fcaaebe9992efbc7b5660b60ba18b518",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "fine",
+    &["fi=0+1139", "n=2+1024", "e=3+909"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_83,
+    "/System/Library/Fonts/Times.ttc@ebb050e4fcaaebe9992efbc7b5660b60ba18b518",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "fine",
+    &["f=0+682", "i=1+569", "n=2+1024", "e=3+909"],
+    true
+);
+#[cfg(target_os = "macos")]
 shaping_test!(
     macos_84,
-    "tests\\fonts\\in-house\\Library/Fonts/Kokonor.ttf@14a5c850ba917d9ec9f6bb9b1fc59b1d95512da4",
+    "/Library/Fonts/Kokonor.ttf@14a5c850ba917d9ec9f6bb9b1fc59b1d95512da4",
     75,
     &[("font-funcs", 1)],
     &[],
@@ -38338,9 +39409,10 @@ shaping_test!(
     &["r_g_y_u=0+1579"],
     true
 );
+#[cfg(target_os = "macos")]
 shaping_test!(
     macos_85,
-    "tests\\fonts\\in-house\\Library/Fonts/Kokonor.ttf@14a5c850ba917d9ec9f6bb9b1fc59b1d95512da4",
+    "/Library/Fonts/Kokonor.ttf@14a5c850ba917d9ec9f6bb9b1fc59b1d95512da4",
     75,
     &[("font-funcs", 1), ("features", 1)],
     &[],
@@ -38348,46 +39420,530 @@ shaping_test!(
     &["r_g_y_u=0+1579"],
     true
 );
-shaping_test!(macos_86, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1)], &[], "first", &["f_i=0+1097", "r=2+853", "s=3+728", "t=4+725"], true);
-shaping_test!(macos_87, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f_i=0+1097", "r=2+853", "s_t=3+1438"], true);
-shaping_test!(macos_88, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"], true);
-shaping_test!(macos_89, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f_i=0+1097", "r=2+853", "s_t=3+1438"], true);
-shaping_test!(macos_90, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"], true);
-shaping_test!(macos_91, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["F.small=0+903", "I.small=1+634", "R.small=2+1113", "S.small=3+911", "T.small=4+1075"], true);
-shaping_test!(macos_92, "tests\\fonts\\in-house\\Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f=0+639", "i=1+606", "r=2+853", "s_t=3+1438"], true);
-shaping_test!(macos_93, "tests\\fonts\\in-house\\System/Library/Fonts/Helvetica.ttc@98c12f0d63168b20635fb51d638929753b4e6aed", 75, &[("font-funcs", 1)], &[], "m\u{300}", &["m=0+1706", "gravecmb=0@-284,10+0"], true);
-shaping_test!(macos_94, "tests\\fonts\\in-house\\System/Library/Fonts/LucidaGrande.ttc@b2b9aa73d0d9ddabbe73549949fc7444b8528cc2", 75, &[("font-funcs", 1)], &[], "m\u{300}", &["mgrave=0+1912"], true);
-shaping_test!(macos_95, "tests\\fonts\\in-house\\System/Library/Fonts/Times.ttc@e9b4f626133de3b22787ee025218c6c799cc3ceb", 75, &[("font-funcs", 1)], &[], "fi", &["fi=0+1139"], true);
-shaping_test!(macos_96, "tests\\fonts\\in-house\\System/Library/Fonts/Supplemental/Khmer MN.ttc@37687fe0bd2548e08e29c92a30e476367ae6356b", 75, &[("font-funcs", 1)], &[], "អក\u{17d2}សរខ\u{17d2}មែរ", &["km_qa=0+1230", "km_ka=1+1230", "km_sa.sub=1+620", "km_ro=4+712", "km_vs_ae=5+726", "km_kha=5+1230", "km_mo.sub=5+0", "km_ro=9+712"], true);
-shaping_test!(macos_97, "tests\\fonts\\in-house\\System/Library/Fonts/Supplemental/Tamil MN.ttc@e1df5e056be08937fd65990efbafff0814c03677", 75, &[("font-funcs", 1)], &[], "தொகுக\u{bcd}கப\u{bcd}பட\u{bcd}டு", &["tgm_e=0+1702", "tgc_ta=0+1598", "tgm_aa=0+1149", "tgc_ku=2+1962", "tgc_k=4+1592", "tgc_ka=6+1592", "tgc_p=7+1370", "tgc_pa=9+1370", "tgc_tt=10+1596", "tgc_ttu=12+1833"], true);
-shaping_test!(macos_98, "tests\\fonts\\in-house\\System/Library/Fonts/Times.ttc@e9b4f626133de3b22787ee025218c6c799cc3ceb", 75, &[("font-funcs", 1)], &[], "Af\u{300}fiZ", &["A=0+1479", "f=1+682", "gravecmb=1@-551,588+0", "fi=3+1139", "Z=5+1251"], true);
-shaping_test!(macos_99, "tests\\fonts\\in-house\\System/Library/Fonts/LucidaGrande.ttc@b2b9aa73d0d9ddabbe73549949fc7444b8528cc2", 75, &[("font-funcs", 1)], &[], "ס\u{5b0}", &["shevahebrew=0@51,0+0", "samekhhebrew=0+1361"], true);
-shaping_test!(macos_100, "tests\\fonts\\in-house\\System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1)], &[], "Th th ll te to tr fr fu fj", &["T_h=0+2308", "space=2+569", "t_h=3+1687", "space=5+569", "l_l=6+1108", "space=8+569", "t_e=9+1408", "space=11+569", "t_o=12+1531", "space=14+569", "t_r=15+1385", "space=17+569", "f_r=18+1432", "space=20+569", "f_u=21+1733", "space=23+569", "f_j=24+1098"], true);
-shaping_test!(macos_101, "tests\\fonts\\in-house\\System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1)], &[], "Te AV Tr Va rT eT Td", &["T=0+1497", "e=1@-62,0+699", "space=2+569", "A=3+1431", "V=4@-37,0+1377", "space=5+569", "T=6+1510", "r=7@-50,0+803", "space=8+569", "V=9+1376", "a=10@-37,0+1014", "space=11+569", "r=12+853", "T=13+1560", "space=14+569", "e=15+761", "T=16+1560", "space=17+569", "T=18+1515", "d=19@-45,0+1006"], true);
-shaping_test!(macos_102, "tests\\fonts\\in-house\\System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334", 75, &[("font-funcs", 1)], &[], "الأ\u{64e}ب\u{652}ج\u{64e}د\u{650}ي\u{64e}\u{651}ةـالع\u{64e}ر\u{64e}ب\u{650}ي\u{64e}\u{651}ة", &["u0629.final.tehMarbuta=26+713", "u064e_u0651.shaddaFatha=23@0,-200+0", "u064a.medial.yeh=23+656", "u0650.kasra=21@80,290+80", "u0628.initial.beh=21@-80,0+576", "u064e.fatha=19@200,-570+200", "u0631.final.reh=19@-200,0+702", "u064e.fatha=17@200,-200+200", "u0639.medial.ain=17@-200,0+738", "u0644.initial.lam=16+515", "u0627.final.alef=15+647", "u0640.tatweel=14+449", "u0629.final.tehMarbuta=13+713", "u064e_u0651.shaddaFatha=10@0,-200+0", "u064a.initial.yeh=10+656", "u0650.kasra=8@80,570+80", "u062f.final.dal=8@-80,0+822", "u064e.fatha=6@290,-160+290", "u062c.medial.jeem=6@-290,0+1069", "u0652.sukun=4@0,-200+0", "u0628.initial.beh=4+656", "u064e.fatha=1@-372,120+-372", "u0644_u0623.isolated.lamHamzaOnAlef=1@120,0+1282", "u0627.alef=0+647"], true);
-shaping_test!(macos_103, "tests\\fonts\\in-house\\System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334", 75, &[("font-funcs", 1)], &[], "بي\u{64e}\u{651}ة", &["u0629.final.tehMarbuta=4+713", "u064e_u0651.shaddaFatha=1@0,-200+0", "u064a.medial.yeh=1+656", "u0628.initial.beh=0+656"], true);
-shaping_test!(macos_104, "tests\\fonts\\in-house\\System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334", 75, &[("font-funcs", 1)], &[], "رب", &["u0628.beh=1+1415", "u0631.reh=0@-202,0+700"], true);
-shaping_test!(macos_105, "tests\\fonts\\in-house\\System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334", 75, &[("font-funcs", 1)], &[], "ب\u{64f}", &["u064f.damma=0@250,-250+250", "u0628.beh=0@-250,0+1165"], true);
-shaping_test!(macos_106, "tests\\fonts\\in-house\\System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334", 75, &[("font-funcs", 1)], &[], "ل\u{64e}م\u{64e}\u{651}ا", &["u0627.final.alef=5+647", "u064e.fatha=0@-80,160+-80", "u064e_u0651.shaddaFatha=0@490,250+490", "u0644_u0645.initial.lamMeem=0@-410,0+415"], true);
-shaping_test!(macos_107, "tests\\fonts\\in-house\\System/Library/Fonts/SFNS.ttf@253b4b28662acc1de4a86350fd2b26d620ea213c", 75, &[("font-funcs", 1)], &[], "Te AV Tr Va rT eT Td", &["T=0+920", "e=1+1049", "space=2+420", "A=3+1162", "V=4+1292", "space=5+420", "T=6+960", "r=7+631", "space=8+420", "V=9+1142", "a=10+1028", "space=11+420", "r=12+461", "T=13+1190", "space=14+420", "e=15+779", "T=16+1190", "space=17+420", "T=18+920", "d=19+1134"], true);
-shaping_test!(macos_108, "tests\\fonts\\in-house\\System/Library/Fonts/SFNS.ttf@253b4b28662acc1de4a86350fd2b26d620ea213c", 75, &[("font-ptem", 1), ("font-funcs", 1)], &[], "Te AV Tr Va rT eT Td", &["T=0@19,0+958", "e=1@19,0+1087", "space=2@19,0+458", "A=3@19,0+1200", "V=4@19,0+1330", "space=5@19,0+458", "T=6@19,0+998", "r=7@19,0+669", "space=8@19,0+458", "V=9@19,0+1180", "a=10@19,0+1066", "space=11@19,0+458", "r=12@19,0+499", "T=13@19,0+1228", "space=14@19,0+458", "e=15@19,0+817", "T=16@19,0+1228", "space=17@19,0+458", "T=18@19,0+958", "d=19@19,0+1172"], true);
-shaping_test!(macos_109, "tests\\fonts\\in-house\\System/Library/Fonts/Apple Color Emoji.ttc@ef22d55c551e2af0193d75105346c6e7e21af389", 75, &[("remove-default-ignorables", 1), ("font-funcs", 1)], &[], "👨\u{200d}👩\u{200d}👧\u{200d}👦", &["u1F46A.MWGB=0+800"], true);
-shaping_test!(macos_110, "tests\\fonts\\in-house\\System/Library/Fonts/Supplemental/Zapfino.ttf@99a1e15163c3e9567d5b1019c45e9254dae63b08", 75, &[("font-funcs", 1)], &[], "ZapfinZapfinZapfinZapfinZapfinZapfinZapfinZapfinZapfinZapfinZapfinZapfino", &["Z=0+416", "a=1@-21,0+264", "p_f=2+433", "i=4+181", "n=5+261", "Z=6+416", "a=7@-21,0+264", "p_f=8+433", "i=10+181", "n=11+261", "Z=12+416", "a=13@-21,0+264", "p_f=14+433", "i=16+181", "n=17+261", "Z=18+416", "a=19@-21,0+264", "p_f=20+433", "i=22+181", "n=23+261", "Z=24+416", "a=25@-21,0+264", "p_f=26+433", "i=28+181", "n=29+261", "Z=30+416", "a=31@-21,0+264", "p_f=32+433", "i=34+181", "n=35+261", "Z=36+416", "a=37@-21,0+264", "p_f=38+433", "i=40+181", "n=41+261", "Z=42+416", "a=43@-21,0+264", "p_f=44+433", "i=46+181", "n=47+261", "Z=48+416", "a=49@-21,0+264", "p_f=50+433", "i=52+181", "n=53+261", "Z=54+416", "a=55@-21,0+264", "p_f=56+433", "i=58+181", "n=59+261", "Z=60+416", "a=61@-21,0+264", "p_f=62+433", "i=64+181", "n=65+261", "Z_a_p_f_i_n_o=66+2333"], true);
-shaping_test!(macos_111, "tests\\fonts\\in-house\\System/Library/Fonts/Thonburi.ttc@bb080e01e45f7f6699d2df09a03b3b6d13804897", 75, &[("font-funcs", 1)], &[], "ท\u{e35}\u{e48}\u{e4a}", &["thothahanthai_saraiithai_maiekthai=0+1616", "maitrithai.key=0+1300"], true);
-shaping_test!(macos_112, "tests\\fonts\\in-house\\System/Library/Fonts/Times.ttc@e9b4f626133de3b22787ee025218c6c799cc3ceb", 75, &[("font-funcs", 1)], &[], "fine", &["fi=0+1139", "n=2+1024", "e=3+909"], true);
-shaping_test!(macos_113, "tests\\fonts\\in-house\\System/Library/Fonts/Times.ttc@e9b4f626133de3b22787ee025218c6c799cc3ceb", 75, &[("font-funcs", 1), ("features", 1)], &[], "fine", &["f=0+682", "i=1+569", "n=2+1024", "e=3+909"], true);
-shaping_test!(macos_114, "tests\\fonts\\in-house\\System/Library/Fonts/Supplemental/Kokonor.ttf@14a5c850ba917d9ec9f6bb9b1fc59b1d95512da4", 75, &[("font-funcs", 1)], &[], "ར\u{f92}\u{fb1}\u{f74}", &["r_g_y_u=0+1579"], true);
-shaping_test!(macos_115, "tests\\fonts\\in-house\\System/Library/Fonts/Supplemental/Kokonor.ttf@14a5c850ba917d9ec9f6bb9b1fc59b1d95512da4", 75, &[("font-funcs", 1), ("features", 1)], &[], "ར\u{f92}\u{fb1}\u{f74}", &["r_g_y_u=0+1579"], true);
-shaping_test!(macos_116, "tests\\fonts\\in-house\\System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1)], &[], "first", &["f_i=0+1097", "r=2+853", "s=3+728", "t=4+725"], true);
-shaping_test!(macos_117, "tests\\fonts\\in-house\\System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f_i=0+1097", "r=2+853", "s_t=3+1438"], true);
-shaping_test!(macos_118, "tests\\fonts\\in-house\\System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"], true);
-shaping_test!(macos_119, "tests\\fonts\\in-house\\System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f_i=0+1097", "r=2+853", "s_t=3+1438"], true);
-shaping_test!(macos_120, "tests\\fonts\\in-house\\System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"], true);
-shaping_test!(macos_121, "tests\\fonts\\in-house\\System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["F.small=0+903", "I.small=1+634", "R.small=2+1113", "S.small=3+911", "T.small=4+1075"], true);
-shaping_test!(macos_122, "tests\\fonts\\in-house\\System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f=0+639", "i=1+606", "r=2+853", "s_t=3+1438"], true);
-shaping_test!(macos_123, "tests\\fonts\\in-house\\System/Library/Fonts/Supplemental/Skia.ttf@caee56fc4085009c1a29a863500908050ea6248f", 75, &[("font-funcs", 1)], &[], "AV", &["A=0+1345", "V=1@-12,0+1346"], true);
-shaping_test!(macos_124, "tests\\fonts\\in-house\\System/Library/Fonts/Supplemental/Devanagari Sangam MN.ttc@214b7ffa672bc936745df5a72644f2b705b24b4b", 75, &[("font-funcs", 1)], &[], "भ\u{941}", &["dn_bha=0+1339", "dn_u_matra.mrk=0@-296,11+0"], true);
-shaping_test!(macos_125, "tests\\fonts\\in-house\\System/Library/Fonts/Apple Color Emoji.ttc@6b0fa4926a1c8a32267e93e18c5eff21558de83a", 75, &[("font-funcs", 1)], &[], "👩🏽\u{200d}🤝\u{200d}👨🏾", &["u1F469.3.L=0+0", "space=0+0", "space=0+0", "u1F468.4.RA=0+800"], true);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_86,
+    "/Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "first",
+    &["f_i=0+1097", "r=2+853", "s=3+728", "t=4+725"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_87,
+    "/Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "first",
+    &["f_i=0+1097", "r=2+853", "s_t=3+1438"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_88,
+    "/Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "first",
+    &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_89,
+    "/Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "first",
+    &["f_i=0+1097", "r=2+853", "s_t=3+1438"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_90,
+    "/Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "first",
+    &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_91,
+    "/Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "first",
+    &[
+        "F.small=0+903",
+        "I.small=1+634",
+        "R.small=2+1113",
+        "S.small=3+911",
+        "T.small=4+1075"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_92,
+    "/Library/Fonts/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "first",
+    &["f=0+639", "i=1+606", "r=2+853", "s_t=3+1438"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_93,
+    "/System/Library/Fonts/Helvetica.ttc@98c12f0d63168b20635fb51d638929753b4e6aed",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "m\u{300}",
+    &["m=0+1706", "gravecmb=0@-284,10+0"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_94,
+    "/System/Library/Fonts/LucidaGrande.ttc@b2b9aa73d0d9ddabbe73549949fc7444b8528cc2",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "m\u{300}",
+    &["mgrave=0+1912"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_95,
+    "/System/Library/Fonts/Times.ttc@e9b4f626133de3b22787ee025218c6c799cc3ceb",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "fi",
+    &["fi=0+1139"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_96,
+    "/System/Library/Fonts/Supplemental/Khmer MN.ttc@37687fe0bd2548e08e29c92a30e476367ae6356b",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "អក\u{17d2}សរខ\u{17d2}មែរ",
+    &[
+        "km_qa=0+1230",
+        "km_ka=1+1230",
+        "km_sa.sub=1+620",
+        "km_ro=4+712",
+        "km_vs_ae=5+726",
+        "km_kha=5+1230",
+        "km_mo.sub=5+0",
+        "km_ro=9+712"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_97,
+    "/System/Library/Fonts/Supplemental/Tamil MN.ttc@e1df5e056be08937fd65990efbafff0814c03677",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "தொகுக\u{bcd}கப\u{bcd}பட\u{bcd}டு",
+    &[
+        "tgm_e=0+1702",
+        "tgc_ta=0+1598",
+        "tgm_aa=0+1149",
+        "tgc_ku=2+1962",
+        "tgc_k=4+1592",
+        "tgc_ka=6+1592",
+        "tgc_p=7+1370",
+        "tgc_pa=9+1370",
+        "tgc_tt=10+1596",
+        "tgc_ttu=12+1833"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_98,
+    "/System/Library/Fonts/Times.ttc@e9b4f626133de3b22787ee025218c6c799cc3ceb",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "Af\u{300}fiZ",
+    &[
+        "A=0+1479",
+        "f=1+682",
+        "gravecmb=1@-551,588+0",
+        "fi=3+1139",
+        "Z=5+1251"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_99,
+    "/System/Library/Fonts/LucidaGrande.ttc@b2b9aa73d0d9ddabbe73549949fc7444b8528cc2",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "ס\u{5b0}",
+    &["shevahebrew=0@51,0+0", "samekhhebrew=0+1361"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(macos_100, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1)], &[], "Th th ll te to tr fr fu fj", &["T_h=0+2308", "space=2+569", "t_h=3+1687", "space=5+569", "l_l=6+1108", "space=8+569", "t_e=9+1408", "space=11+569", "t_o=12+1531", "space=14+569", "t_r=15+1385", "space=17+569", "f_r=18+1432", "space=20+569", "f_u=21+1733", "space=23+569", "f_j=24+1098"], true);
+#[cfg(target_os = "macos")]
+shaping_test!(macos_101, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1)], &[], "Te AV Tr Va rT eT Td", &["T=0+1497", "e=1@-62,0+699", "space=2+569", "A=3+1431", "V=4@-37,0+1377", "space=5+569", "T=6+1510", "r=7@-50,0+803", "space=8+569", "V=9+1376", "a=10@-37,0+1014", "space=11+569", "r=12+853", "T=13+1560", "space=14+569", "e=15+761", "T=16+1560", "space=17+569", "T=18+1515", "d=19@-45,0+1006"], true);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_102,
+    "/System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "الأ\u{64e}ب\u{652}ج\u{64e}د\u{650}ي\u{64e}\u{651}ةـالع\u{64e}ر\u{64e}ب\u{650}ي\u{64e}\u{651}ة",
+    &[
+        "u0629.final.tehMarbuta=26+713",
+        "u064e_u0651.shaddaFatha=23@0,-200+0",
+        "u064a.medial.yeh=23+656",
+        "u0650.kasra=21@80,290+80",
+        "u0628.initial.beh=21@-80,0+576",
+        "u064e.fatha=19@200,-570+200",
+        "u0631.final.reh=19@-200,0+702",
+        "u064e.fatha=17@200,-200+200",
+        "u0639.medial.ain=17@-200,0+738",
+        "u0644.initial.lam=16+515",
+        "u0627.final.alef=15+647",
+        "u0640.tatweel=14+449",
+        "u0629.final.tehMarbuta=13+713",
+        "u064e_u0651.shaddaFatha=10@0,-200+0",
+        "u064a.initial.yeh=10+656",
+        "u0650.kasra=8@80,570+80",
+        "u062f.final.dal=8@-80,0+822",
+        "u064e.fatha=6@290,-160+290",
+        "u062c.medial.jeem=6@-290,0+1069",
+        "u0652.sukun=4@0,-200+0",
+        "u0628.initial.beh=4+656",
+        "u064e.fatha=1@-372,120+-372",
+        "u0644_u0623.isolated.lamHamzaOnAlef=1@120,0+1282",
+        "u0627.alef=0+647"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_103,
+    "/System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "بي\u{64e}\u{651}ة",
+    &[
+        "u0629.final.tehMarbuta=4+713",
+        "u064e_u0651.shaddaFatha=1@0,-200+0",
+        "u064a.medial.yeh=1+656",
+        "u0628.initial.beh=0+656"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_104,
+    "/System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "رب",
+    &["u0628.beh=1+1415", "u0631.reh=0@-202,0+700"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_105,
+    "/System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "ب\u{64f}",
+    &["u064f.damma=0@250,-250+250", "u0628.beh=0@-250,0+1165"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_106,
+    "/System/Library/Fonts/GeezaPro.ttc@ab26ea45dcaa5e1c5a958e42af10e10d330e7334",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "ل\u{64e}م\u{64e}\u{651}ا",
+    &[
+        "u0627.final.alef=5+647",
+        "u064e.fatha=0@-80,160+-80",
+        "u064e_u0651.shaddaFatha=0@490,250+490",
+        "u0644_u0645.initial.lamMeem=0@-410,0+415"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_107,
+    "/System/Library/Fonts/SFNS.ttf@253b4b28662acc1de4a86350fd2b26d620ea213c",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "Te AV Tr Va rT eT Td",
+    &[
+        "T=0+920",
+        "e=1+1049",
+        "space=2+420",
+        "A=3+1162",
+        "V=4+1292",
+        "space=5+420",
+        "T=6+960",
+        "r=7+631",
+        "space=8+420",
+        "V=9+1142",
+        "a=10+1028",
+        "space=11+420",
+        "r=12+461",
+        "T=13+1190",
+        "space=14+420",
+        "e=15+779",
+        "T=16+1190",
+        "space=17+420",
+        "T=18+920",
+        "d=19+1134"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_108,
+    "/System/Library/Fonts/SFNS.ttf@253b4b28662acc1de4a86350fd2b26d620ea213c",
+    75,
+    &[("font-ptem", 1), ("font-funcs", 1)],
+    &[],
+    "Te AV Tr Va rT eT Td",
+    &[
+        "T=0@19,0+958",
+        "e=1@19,0+1087",
+        "space=2@19,0+458",
+        "A=3@19,0+1200",
+        "V=4@19,0+1330",
+        "space=5@19,0+458",
+        "T=6@19,0+998",
+        "r=7@19,0+669",
+        "space=8@19,0+458",
+        "V=9@19,0+1180",
+        "a=10@19,0+1066",
+        "space=11@19,0+458",
+        "r=12@19,0+499",
+        "T=13@19,0+1228",
+        "space=14@19,0+458",
+        "e=15@19,0+817",
+        "T=16@19,0+1228",
+        "space=17@19,0+458",
+        "T=18@19,0+958",
+        "d=19@19,0+1172"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_109,
+    "/System/Library/Fonts/Apple Color Emoji.ttc@ef22d55c551e2af0193d75105346c6e7e21af389",
+    75,
+    &[("remove-default-ignorables", 1), ("font-funcs", 1)],
+    &[],
+    "👨\u{200d}👩\u{200d}👧\u{200d}👦",
+    &["u1F46A.MWGB=0+800"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_110,
+    "/System/Library/Fonts/Supplemental/Zapfino.ttf@99a1e15163c3e9567d5b1019c45e9254dae63b08",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "ZapfinZapfinZapfinZapfinZapfinZapfinZapfinZapfinZapfinZapfinZapfinZapfino",
+    &[
+        "Z=0+416",
+        "a=1@-21,0+264",
+        "p_f=2+433",
+        "i=4+181",
+        "n=5+261",
+        "Z=6+416",
+        "a=7@-21,0+264",
+        "p_f=8+433",
+        "i=10+181",
+        "n=11+261",
+        "Z=12+416",
+        "a=13@-21,0+264",
+        "p_f=14+433",
+        "i=16+181",
+        "n=17+261",
+        "Z=18+416",
+        "a=19@-21,0+264",
+        "p_f=20+433",
+        "i=22+181",
+        "n=23+261",
+        "Z=24+416",
+        "a=25@-21,0+264",
+        "p_f=26+433",
+        "i=28+181",
+        "n=29+261",
+        "Z=30+416",
+        "a=31@-21,0+264",
+        "p_f=32+433",
+        "i=34+181",
+        "n=35+261",
+        "Z=36+416",
+        "a=37@-21,0+264",
+        "p_f=38+433",
+        "i=40+181",
+        "n=41+261",
+        "Z=42+416",
+        "a=43@-21,0+264",
+        "p_f=44+433",
+        "i=46+181",
+        "n=47+261",
+        "Z=48+416",
+        "a=49@-21,0+264",
+        "p_f=50+433",
+        "i=52+181",
+        "n=53+261",
+        "Z=54+416",
+        "a=55@-21,0+264",
+        "p_f=56+433",
+        "i=58+181",
+        "n=59+261",
+        "Z=60+416",
+        "a=61@-21,0+264",
+        "p_f=62+433",
+        "i=64+181",
+        "n=65+261",
+        "Z_a_p_f_i_n_o=66+2333"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_111,
+    "/System/Library/Fonts/Thonburi.ttc@bb080e01e45f7f6699d2df09a03b3b6d13804897",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "ท\u{e35}\u{e48}\u{e4a}",
+    &[
+        "thothahanthai_saraiithai_maiekthai=0+1616",
+        "maitrithai.key=0+1300"
+    ],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_112,
+    "/System/Library/Fonts/Times.ttc@e9b4f626133de3b22787ee025218c6c799cc3ceb",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "fine",
+    &["fi=0+1139", "n=2+1024", "e=3+909"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_113,
+    "/System/Library/Fonts/Times.ttc@e9b4f626133de3b22787ee025218c6c799cc3ceb",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "fine",
+    &["f=0+682", "i=1+569", "n=2+1024", "e=3+909"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_114,
+    "/System/Library/Fonts/Supplemental/Kokonor.ttf@14a5c850ba917d9ec9f6bb9b1fc59b1d95512da4",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "ར\u{f92}\u{fb1}\u{f74}",
+    &["r_g_y_u=0+1579"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_115,
+    "/System/Library/Fonts/Supplemental/Kokonor.ttf@14a5c850ba917d9ec9f6bb9b1fc59b1d95512da4",
+    75,
+    &[("font-funcs", 1), ("features", 1)],
+    &[],
+    "ར\u{f92}\u{fb1}\u{f74}",
+    &["r_g_y_u=0+1579"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(macos_116, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1)], &[], "first", &["f_i=0+1097", "r=2+853", "s=3+728", "t=4+725"], true);
+#[cfg(target_os = "macos")]
+shaping_test!(macos_117, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f_i=0+1097", "r=2+853", "s_t=3+1438"], true);
+#[cfg(target_os = "macos")]
+shaping_test!(macos_118, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"], true);
+#[cfg(target_os = "macos")]
+shaping_test!(macos_119, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f_i=0+1097", "r=2+853", "s_t=3+1438"], true);
+#[cfg(target_os = "macos")]
+shaping_test!(macos_120, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"], true);
+#[cfg(target_os = "macos")]
+shaping_test!(macos_121, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["F.small=0+903", "I.small=1+634", "R.small=2+1113", "S.small=3+911", "T.small=4+1075"], true);
+#[cfg(target_os = "macos")]
+shaping_test!(macos_122, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f=0+639", "i=1+606", "r=2+853", "s_t=3+1438"], true);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_123,
+    "/System/Library/Fonts/Supplemental/Skia.ttf@caee56fc4085009c1a29a863500908050ea6248f",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "AV",
+    &["A=0+1345", "V=1@-12,0+1346"],
+    true
+);
+#[cfg(target_os = "macos")]
+shaping_test!(macos_124, "/System/Library/Fonts/Supplemental/Devanagari Sangam MN.ttc@214b7ffa672bc936745df5a72644f2b705b24b4b", 75, &[("font-funcs", 1)], &[], "भ\u{941}", &["dn_bha=0+1339", "dn_u_matra.mrk=0@-296,11+0"], true);
+#[cfg(target_os = "macos")]
+shaping_test!(
+    macos_125,
+    "/System/Library/Fonts/Apple Color Emoji.ttc@6b0fa4926a1c8a32267e93e18c5eff21558de83a",
+    75,
+    &[("font-funcs", 1)],
+    &[],
+    "👩🏽\u{200d}🤝\u{200d}👨🏾",
+    &[
+        "u1F469.3.L=0+0",
+        "space=0+0",
+        "space=0+0",
+        "u1F468.4.RA=0+800"
+    ],
+    true
+);
 shaping_test!(
     mark_attachment_1,
     "tests\\fonts\\in-house\\98b7887cff91f722b92a8ff800120954606354f9.ttf",
