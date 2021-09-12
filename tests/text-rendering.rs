@@ -8,7 +8,7 @@ shaping_test!(
     "⨁",
     &["1"],
     true,
-    false
+    true
 );
 shaping_test!(
     avar_1_2,
@@ -19,7 +19,7 @@ shaping_test!(
     "⨁",
     &["1"],
     true,
-    false
+    true
 );
 shaping_test!(
     avar_1_3,
@@ -30,7 +30,7 @@ shaping_test!(
     "⨁",
     &["1"],
     true,
-    false
+    true
 );
 shaping_test!(
     avar_1_4,
@@ -41,7 +41,7 @@ shaping_test!(
     "⨁",
     &["1"],
     true,
-    false
+    true
 );
 shaping_test!(
     avar_1_5,
@@ -52,7 +52,7 @@ shaping_test!(
     "⨁",
     &["1"],
     true,
-    false
+    true
 );
 shaping_test!(
     avar_1_6,
@@ -63,7 +63,7 @@ shaping_test!(
     "⨁",
     &["1"],
     true,
-    false
+    true
 );
 shaping_test!(
     avar_1_7,
@@ -74,7 +74,7 @@ shaping_test!(
     "⨁",
     &["1"],
     true,
-    false
+    true
 );
 shaping_test!(
     avar_1_8,
@@ -85,7 +85,7 @@ shaping_test!(
     "⨁",
     &["1"],
     true,
-    false
+    true
 );
 shaping_test!(
     avar_1_9,
@@ -96,7 +96,7 @@ shaping_test!(
     "⨁",
     &["1"],
     true,
-    false
+    true
 );
 shaping_test!(
     avar_1_10,
@@ -107,7 +107,7 @@ shaping_test!(
     "⨁",
     &["1"],
     true,
-    false
+    true
 );
 shaping_test!(
     avar_1_11,
@@ -118,7 +118,7 @@ shaping_test!(
     "⨁",
     &["1"],
     true,
-    false
+    true
 );
 shaping_test!(
     avar_1_12,
@@ -129,7 +129,7 @@ shaping_test!(
     "⨁",
     &["1"],
     true,
-    false
+    true
 );
 shaping_test!(
     avar_1_13,
@@ -140,7 +140,7 @@ shaping_test!(
     "⨁",
     &["1"],
     true,
-    false
+    true
 );
 shaping_test!(
     avar_1_14,
@@ -151,7 +151,7 @@ shaping_test!(
     "⨁",
     &["1"],
     true,
-    false
+    true
 );
 shaping_test!(
     avar_1_15,
@@ -162,7 +162,7 @@ shaping_test!(
     "⨁",
     &["1"],
     true,
-    false
+    true
 );
 shaping_test!(
     avar_1_16,
@@ -173,7 +173,7 @@ shaping_test!(
     "⨁",
     &["1"],
     true,
-    false
+    true
 );
 shaping_test!(
     avar_1_17,
@@ -184,7 +184,7 @@ shaping_test!(
     "⨁",
     &["1"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_1_1,
@@ -195,7 +195,7 @@ shaping_test!(
     "A",
     &["66"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_1_2,
@@ -206,7 +206,7 @@ shaping_test!(
     "ℝ",
     &["30"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_1_3,
@@ -217,7 +217,7 @@ shaping_test!(
     "⓪",
     &["235"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_1_4,
@@ -228,7 +228,7 @@ shaping_test!(
     "①",
     &["97"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_1_5,
@@ -239,7 +239,7 @@ shaping_test!(
     "②",
     &["98"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_1_6,
@@ -250,7 +250,7 @@ shaping_test!(
     "仿",
     &["256"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_1_7,
@@ -261,7 +261,7 @@ shaping_test!(
     "Ａ",
     &["34"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_1_8,
@@ -272,7 +272,7 @@ shaping_test!(
     "𐄳",
     &["52"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_1_9,
@@ -283,7 +283,7 @@ shaping_test!(
     "𝓐",
     &["209"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_1_10,
@@ -294,7 +294,7 @@ shaping_test!(
     "🌺",
     &["59"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_1_11,
@@ -305,7 +305,7 @@ shaping_test!(
     "🌻",
     &["60"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_1_12,
@@ -316,7 +316,7 @@ shaping_test!(
     "💧",
     &["168"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_1_13,
@@ -327,7 +327,7 @@ shaping_test!(
     "🥝",
     &["94"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_2_1,
@@ -338,7 +338,7 @@ shaping_test!(
     "A",
     &["66"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_2_2,
@@ -349,7 +349,7 @@ shaping_test!(
     "ℝ",
     &["8478"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_2_3,
@@ -360,7 +360,7 @@ shaping_test!(
     "⓪",
     &["9451"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_2_4,
@@ -371,7 +371,7 @@ shaping_test!(
     "①",
     &["9313"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_2_5,
@@ -382,7 +382,7 @@ shaping_test!(
     "②",
     &["9314"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_2_6,
@@ -393,7 +393,7 @@ shaping_test!(
     "仿",
     &["20224"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_2_7,
@@ -404,7 +404,7 @@ shaping_test!(
     "Ａ",
     &["65314"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_2_8,
@@ -415,7 +415,7 @@ shaping_test!(
     "𐄳",
     &["308"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_2_9,
@@ -426,7 +426,7 @@ shaping_test!(
     "𝓐",
     &["54481"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_2_10,
@@ -437,7 +437,7 @@ shaping_test!(
     "🌺",
     &["62267"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_2_11,
@@ -448,7 +448,7 @@ shaping_test!(
     "🌻",
     &["62268"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_2_12,
@@ -459,7 +459,7 @@ shaping_test!(
     "💧",
     &["62632"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff_2_13,
@@ -470,7 +470,7 @@ shaping_test!(
     "🥝",
     &["63838"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff2_1_1,
@@ -481,7 +481,7 @@ shaping_test!(
     "$",
     &["dollar"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff2_1_2,
@@ -492,7 +492,7 @@ shaping_test!(
     "$",
     &["dollar"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff2_1_3,
@@ -503,7 +503,7 @@ shaping_test!(
     "$",
     &["dollar"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff2_1_4,
@@ -514,7 +514,7 @@ shaping_test!(
     "$",
     &["dollar"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff2_1_5,
@@ -525,7 +525,7 @@ shaping_test!(
     "$",
     &["dollar"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff2_1_6,
@@ -536,7 +536,7 @@ shaping_test!(
     "$",
     &["dollar"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff2_1_7,
@@ -547,7 +547,7 @@ shaping_test!(
     "$",
     &["dollar"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff2_1_8,
@@ -558,7 +558,7 @@ shaping_test!(
     "$",
     &["dollar.nostroke"],
     true,
-    false
+    true
 );
 shaping_test!(
     cff2_1_9,
@@ -569,7 +569,7 @@ shaping_test!(
     "$",
     &["dollar.nostroke"],
     true,
-    false
+    true
 );
 shaping_test!(
     cmap_1_1,
@@ -580,7 +580,7 @@ shaping_test!(
     "芦",
     &["uni82A6_uE0100"],
     true,
-    false
+    true
 );
 shaping_test!(
     cmap_1_2,
@@ -591,7 +591,7 @@ shaping_test!(
     "芦\u{e0100}",
     &["uni82A6_uE0100"],
     true,
-    false
+    true
 );
 shaping_test!(
     cmap_1_3,
@@ -602,7 +602,7 @@ shaping_test!(
     "芦\u{e0101}",
     &["uni82A6_uE0101"],
     true,
-    false
+    true
 );
 shaping_test!(
     cmap_1_4,
@@ -613,7 +613,7 @@ shaping_test!(
     "芦\u{e0102}",
     &["uni82A6_uE0100"],
     true,
-    false
+    true
 );
 shaping_test!(
     cmap_2_1,
@@ -624,7 +624,7 @@ shaping_test!(
     "≩",
     &["uni2269"],
     true,
-    false
+    true
 );
 shaping_test!(
     cmap_2_2,
@@ -635,7 +635,7 @@ shaping_test!(
     "≩\u{fe00}",
     &["uni2269FE00"],
     true,
-    false
+    true
 );
 shaping_test!(
     cvar_1_1,
@@ -646,7 +646,7 @@ shaping_test!(
     "hon",
     &["uni0068", "uni006F@595,0", "uni006E@1126,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     cvar_1_2,
@@ -657,7 +657,7 @@ shaping_test!(
     "hon",
     &["uni0068", "uni006F@635,0", "uni006E@1212,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     cvar_1_3,
@@ -668,7 +668,7 @@ shaping_test!(
     "hon",
     &["uni0068", "uni006F@691,0", "uni006E@1331,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     cvar_2_1,
@@ -679,7 +679,7 @@ shaping_test!(
     "hon",
     &["uni0068", "uni006F@595,0", "uni006E@1126,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     cvar_2_2,
@@ -690,7 +690,7 @@ shaping_test!(
     "hon",
     &["uni0068", "uni006F@635,0", "uni006E@1212,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     cvar_2_3,
@@ -701,7 +701,7 @@ shaping_test!(
     "hon",
     &["uni0068", "uni006F@691,0", "uni006E@1331,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     glyf_1_1,
@@ -712,7 +712,7 @@ shaping_test!(
     "ģ",
     &["gcommaabove"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_1_1,
@@ -723,7 +723,7 @@ shaping_test!(
     "ĄJ",
     &["Aogonek", "J@732,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_1_2,
@@ -734,7 +734,7 @@ shaping_test!(
     "Ąg",
     &["Aogonek", "g@692,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_1_3,
@@ -745,7 +745,7 @@ shaping_test!(
     "Ąģ",
     &["Aogonek", "gcommaabove@692,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_1_4,
@@ -756,7 +756,7 @@ shaping_test!(
     "Ąj",
     &["Aogonek", "j@752,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_1_5,
@@ -767,7 +767,7 @@ shaping_test!(
     "Ąȷ",
     &["Aogonek", "dotlessj@752,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_1_6,
@@ -778,7 +778,7 @@ shaping_test!(
     "Qȷ",
     &["Q", "dotlessj@734,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_1_7,
@@ -789,7 +789,7 @@ shaping_test!(
     "ąj",
     &["aogonek", "j@588,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_1_8,
@@ -800,7 +800,7 @@ shaping_test!(
     "ąȷ",
     &["aogonek", "dotlessj@588,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_1_9,
@@ -811,7 +811,7 @@ shaping_test!(
     "gȷ",
     &["g", "dotlessj@563,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_1_10,
@@ -822,7 +822,7 @@ shaping_test!(
     "ģȷ",
     &["gcommaabove", "dotlessj@563,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_1_11,
@@ -833,7 +833,7 @@ shaping_test!(
     "ıȷ",
     &["dotlessi", "dotlessj@334,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_1_12,
@@ -844,7 +844,7 @@ shaping_test!(
     "ųȷ",
     &["uogonek", "dotlessj@656,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_1_13,
@@ -855,7 +855,7 @@ shaping_test!(
     "vȷ",
     &["v", "dotlessj@587,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_1_14,
@@ -866,7 +866,7 @@ shaping_test!(
     "Va",
     &["V", "a@594,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_1_15,
@@ -877,7 +877,7 @@ shaping_test!(
     "Vá",
     &["V", "aacute@594,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_1_16,
@@ -888,7 +888,7 @@ shaping_test!(
     "Vą",
     &["V", "aogonek@594,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_1_17,
@@ -899,7 +899,7 @@ shaping_test!(
     "Vf",
     &["V", "f@634,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_1_18,
@@ -910,7 +910,7 @@ shaping_test!(
     "Vﬂ",
     &["V", "fl@634,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_1_19,
@@ -921,7 +921,7 @@ shaping_test!(
     "V.",
     &["V", "period@504,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_2_1,
@@ -932,7 +932,7 @@ shaping_test!(
     "◯",
     &["uni25EF"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_2_2,
@@ -943,7 +943,7 @@ shaping_test!(
     "☼",
     &["sun"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_2_3,
@@ -954,7 +954,7 @@ shaping_test!(
     "◯☼",
     &["uni25EF", "sun"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_3_1,
@@ -965,7 +965,7 @@ shaping_test!(
     "ለ",
     &["uni1208"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_3_2,
@@ -976,7 +976,7 @@ shaping_test!(
     "ለ\u{135e}",
     &["uni1208", "uni135E@303,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_3_3,
@@ -987,7 +987,7 @@ shaping_test!(
     "ለ\u{135f}",
     &["uni1208", "uni135F@303,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_3_4,
@@ -998,7 +998,7 @@ shaping_test!(
     "ለ\u{135d}",
     &["uni1208", "uni135D@303,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_4_1,
@@ -1009,7 +1009,7 @@ shaping_test!(
     "u\u{308}\u{301}",
     &["u", "uni0308@529,-31", "acutecomb@537,138"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_4_2,
@@ -1020,7 +1020,7 @@ shaping_test!(
     "u\u{308}\u{304}",
     &["u", "uni0308@529,-31", "uni0304@526,138"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_4_3,
@@ -1031,7 +1031,7 @@ shaping_test!(
     "u\u{308}\u{308}",
     &["u", "uni0308@529,-31", "uni0308@529,138"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_4_4,
@@ -1042,7 +1042,7 @@ shaping_test!(
     "u\u{308}\u{308}\u{308}",
     &["u", "uni0308@529,-31", "uni0308@529,138", "uni0308@529,307"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_5_1,
@@ -1053,7 +1053,7 @@ shaping_test!(
     "ش\u{652}",
     &["uni0652@663,144", "uni0634"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_5_2,
@@ -1064,7 +1064,7 @@ shaping_test!(
     "ش\u{652}",
     &["uni0652@680,165", "uni0634"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_5_3,
@@ -1075,7 +1075,7 @@ shaping_test!(
     "ش\u{652}",
     &["uni0652@730,246", "uni0634"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_5_4,
@@ -1086,7 +1086,7 @@ shaping_test!(
     "ش\u{652}",
     &["uni0652@750,282", "uni0634"],
     true,
-    false
+    true
 );
 shaping_test!(
     gpos_5_5,
@@ -1097,7 +1097,7 @@ shaping_test!(
     "ش\u{652}",
     &["uni0652@784,351", "uni0634"],
     true,
-    false
+    true
 );
 shaping_test!(
     gsub_1_1,
@@ -1108,7 +1108,7 @@ shaping_test!(
     "a a",
     &["a.alt", "space@500,0", "a@1000,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gsub_2_1,
@@ -1119,7 +1119,7 @@ shaping_test!(
     "፳",
     &["uni1373"],
     true,
-    false
+    true
 );
 shaping_test!(
     gsub_2_2,
@@ -1130,7 +1130,7 @@ shaping_test!(
     "፫",
     &["uni136B"],
     true,
-    false
+    true
 );
 shaping_test!(
     gsub_2_3,
@@ -1141,7 +1141,7 @@ shaping_test!(
     "፵",
     &["uni1375"],
     true,
-    false
+    true
 );
 shaping_test!(
     gsub_2_4,
@@ -1152,7 +1152,7 @@ shaping_test!(
     "፭",
     &["uni136D"],
     true,
-    false
+    true
 );
 shaping_test!(
     gsub_2_5,
@@ -1163,7 +1163,7 @@ shaping_test!(
     "፳፫",
     &["uni1373.init", "uni136B.fina@621,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gsub_2_6,
@@ -1174,7 +1174,7 @@ shaping_test!(
     "፵፭",
     &["uni1375.init", "uni136D.fina@662,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gsub_2_7,
@@ -1185,7 +1185,7 @@ shaping_test!(
     "፻",
     &["uni137B"],
     true,
-    false
+    true
 );
 shaping_test!(
     gsub_2_8,
@@ -1196,7 +1196,7 @@ shaping_test!(
     "፳፫፻",
     &["uni1373.init", "uni136B.medi@621,0", "uni137B.fina@1102,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gsub_2_9,
@@ -1213,7 +1213,7 @@ shaping_test!(
         "uni136B.fina@2110,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     gsub_2_10,
@@ -1230,7 +1230,7 @@ shaping_test!(
         "uni136D.fina@2157,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     gsub_2_11,
@@ -1247,7 +1247,7 @@ shaping_test!(
         "uni136B.fina@2211,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     gsub_3_1,
@@ -1266,7 +1266,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_1_2,
@@ -1277,7 +1277,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_1_3,
@@ -1288,7 +1288,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_1_4,
@@ -1299,7 +1299,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_1_5,
@@ -1310,7 +1310,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_1_6,
@@ -1321,7 +1321,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_1_7,
@@ -1332,7 +1332,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_1_8,
@@ -1343,7 +1343,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_1_9,
@@ -1354,7 +1354,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_2_1,
@@ -1365,7 +1365,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_2_2,
@@ -1376,7 +1376,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_2_3,
@@ -1387,7 +1387,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_2_4,
@@ -1398,7 +1398,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_2_5,
@@ -1409,7 +1409,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_2_6,
@@ -1420,7 +1420,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_2_7,
@@ -1431,7 +1431,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_2_8,
@@ -1442,7 +1442,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_2_9,
@@ -1453,7 +1453,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_3_1,
@@ -1464,7 +1464,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_3_2,
@@ -1475,7 +1475,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_3_3,
@@ -1486,7 +1486,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_3_4,
@@ -1497,7 +1497,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_3_5,
@@ -1508,7 +1508,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_3_6,
@@ -1519,7 +1519,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_3_7,
@@ -1530,7 +1530,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_3_8,
@@ -1541,7 +1541,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_3_9,
@@ -1552,7 +1552,7 @@ shaping_test!(
     "彌",
     &["2"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_4_1,
@@ -1563,7 +1563,7 @@ shaping_test!(
     "🦎",
     &["5"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_4_2,
@@ -1574,7 +1574,7 @@ shaping_test!(
     "🦎",
     &["5"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_4_3,
@@ -1585,7 +1585,7 @@ shaping_test!(
     "🦎",
     &["5"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_4_4,
@@ -1596,7 +1596,7 @@ shaping_test!(
     "🦎",
     &["5"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_4_5,
@@ -1607,7 +1607,7 @@ shaping_test!(
     "🦎",
     &["5"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_4_6,
@@ -1618,7 +1618,7 @@ shaping_test!(
     "🦎",
     &["5"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_4_7,
@@ -1629,7 +1629,7 @@ shaping_test!(
     "🦎",
     &["5"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_4_8,
@@ -1640,7 +1640,7 @@ shaping_test!(
     "🦎",
     &["5"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_4_9,
@@ -1651,7 +1651,7 @@ shaping_test!(
     "🦎",
     &["5"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_4_10,
@@ -1662,7 +1662,7 @@ shaping_test!(
     "🦎",
     &["5"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_4_11,
@@ -1673,7 +1673,7 @@ shaping_test!(
     "🦎",
     &["5"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_5_1,
@@ -1684,7 +1684,7 @@ shaping_test!(
     "🌝",
     &["15"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_5_2,
@@ -1695,7 +1695,7 @@ shaping_test!(
     "🌝",
     &["15"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_5_3,
@@ -1706,7 +1706,7 @@ shaping_test!(
     "🌝",
     &["15"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_5_4,
@@ -1717,7 +1717,7 @@ shaping_test!(
     "🌝",
     &["15"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_5_5,
@@ -1728,7 +1728,7 @@ shaping_test!(
     "🌝",
     &["15"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_5_6,
@@ -1739,7 +1739,7 @@ shaping_test!(
     "🌝",
     &["15"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_5_7,
@@ -1750,7 +1750,7 @@ shaping_test!(
     "🌝",
     &["15"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_5_8,
@@ -1761,7 +1761,7 @@ shaping_test!(
     "🌝",
     &["15"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_5_9,
@@ -1772,7 +1772,7 @@ shaping_test!(
     "🌝",
     &["15"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_5_10,
@@ -1783,7 +1783,7 @@ shaping_test!(
     "🌝",
     &["15"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_5_11,
@@ -1794,7 +1794,7 @@ shaping_test!(
     "🌝",
     &["15"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_6_1,
@@ -1805,7 +1805,7 @@ shaping_test!(
     "🐢",
     &["12"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_6_2,
@@ -1816,7 +1816,7 @@ shaping_test!(
     "🐢",
     &["12"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_6_3,
@@ -1827,7 +1827,7 @@ shaping_test!(
     "🐢",
     &["12"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_6_4,
@@ -1838,7 +1838,7 @@ shaping_test!(
     "🐢",
     &["12"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_6_5,
@@ -1849,7 +1849,7 @@ shaping_test!(
     "🐢",
     &["12"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_6_6,
@@ -1860,7 +1860,7 @@ shaping_test!(
     "🐢",
     &["12"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_6_7,
@@ -1871,7 +1871,7 @@ shaping_test!(
     "🐢",
     &["12"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_6_8,
@@ -1882,7 +1882,7 @@ shaping_test!(
     "🐢",
     &["12"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_6_9,
@@ -1893,7 +1893,7 @@ shaping_test!(
     "🐢",
     &["12"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_6_10,
@@ -1904,7 +1904,7 @@ shaping_test!(
     "🐢",
     &["12"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_6_11,
@@ -1915,7 +1915,7 @@ shaping_test!(
     "🐢",
     &["12"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_7_1,
@@ -1926,7 +1926,7 @@ shaping_test!(
     "OIO",
     &["uni004F", "uni0049@706,0", "uni004F@1072,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_7_2,
@@ -1937,7 +1937,7 @@ shaping_test!(
     "OIO",
     &["uni004F", "uni0049@707,0", "uni004F@1074,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_7_3,
@@ -1948,7 +1948,7 @@ shaping_test!(
     "OIO",
     &["uni004F", "uni0049@707,0", "uni004F@1075,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_7_4,
@@ -1959,7 +1959,7 @@ shaping_test!(
     "OIO",
     &["uni004F", "uni0049@707,0", "uni004F@1076,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_7_5,
@@ -1970,7 +1970,7 @@ shaping_test!(
     "OIO",
     &["uni004F", "uni0049@707,0", "uni004F@1077,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_7_6,
@@ -1981,7 +1981,7 @@ shaping_test!(
     "OIO",
     &["uni004F", "uni0049@707,0", "uni004F@1078,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_7_7,
@@ -1992,7 +1992,7 @@ shaping_test!(
     "OIO",
     &["uni004F", "uni0049@706,0", "uni004F@1079,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_8_1,
@@ -2003,7 +2003,7 @@ shaping_test!(
     "H",
     &["H"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_8_2,
@@ -2014,7 +2014,7 @@ shaping_test!(
     "H",
     &["H"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_8_3,
@@ -2025,7 +2025,7 @@ shaping_test!(
     "H",
     &["H"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_8_4,
@@ -2036,7 +2036,7 @@ shaping_test!(
     "H",
     &["H"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_8_5,
@@ -2047,7 +2047,7 @@ shaping_test!(
     "H",
     &["H"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_8_6,
@@ -2058,7 +2058,7 @@ shaping_test!(
     "H",
     &["H"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_9_1,
@@ -2069,7 +2069,7 @@ shaping_test!(
     "A",
     &["A"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_9_2,
@@ -2080,7 +2080,7 @@ shaping_test!(
     "A",
     &["A"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_9_3,
@@ -2091,7 +2091,7 @@ shaping_test!(
     "A",
     &["A"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_9_4,
@@ -2102,7 +2102,7 @@ shaping_test!(
     "A",
     &["A"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_9_5,
@@ -2113,7 +2113,7 @@ shaping_test!(
     "A",
     &["A"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_9_6,
@@ -2124,7 +2124,7 @@ shaping_test!(
     "A",
     &["A"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_9_7,
@@ -2135,7 +2135,7 @@ shaping_test!(
     "A",
     &["A"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_9_8,
@@ -2146,7 +2146,7 @@ shaping_test!(
     "A",
     &["A"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_9_9,
@@ -2157,7 +2157,7 @@ shaping_test!(
     "A",
     &["A"],
     true,
-    false
+    true
 );
 shaping_test!(
     gvar_9_10,
@@ -2168,7 +2168,7 @@ shaping_test!(
     "A",
     &["A"],
     true,
-    false
+    true
 );
 shaping_test!(
     hvar_1_1,
@@ -2179,7 +2179,7 @@ shaping_test!(
     "ABC",
     &["A", "B@520,0", "C@1094,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     hvar_1_2,
@@ -2190,7 +2190,7 @@ shaping_test!(
     "ABC",
     &["A", "B@533,0", "C@1115,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     hvar_1_3,
@@ -2201,7 +2201,7 @@ shaping_test!(
     "ABC",
     &["A", "B@546,0", "C@1135,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     hvar_1_4,
@@ -2212,7 +2212,7 @@ shaping_test!(
     "ABC",
     &["A", "B@558,0", "C@1155,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     hvar_1_5,
@@ -2223,7 +2223,7 @@ shaping_test!(
     "ABC",
     &["A", "B@571,0", "C@1175,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     hvar_1_6,
@@ -2234,7 +2234,7 @@ shaping_test!(
     "ABC",
     &["A", "B@584,0", "C@1196,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     hvar_2_1,
@@ -2245,7 +2245,7 @@ shaping_test!(
     "AB",
     &["uni0041", "uni0042@450,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     hvar_2_2,
@@ -2256,7 +2256,7 @@ shaping_test!(
     "AB",
     &["uni0041", "uni0042@515,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     hvar_2_3,
@@ -2267,7 +2267,7 @@ shaping_test!(
     "AB",
     &["uni0041", "uni0042@584,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     hvar_2_4,
@@ -2278,7 +2278,7 @@ shaping_test!(
     "AB",
     &["uni0041", "uni0042@673,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     hvar_2_5,
@@ -2289,7 +2289,7 @@ shaping_test!(
     "AB",
     &["uni0041", "uni0042@761,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     hvar_2_6,
@@ -2300,7 +2300,7 @@ shaping_test!(
     "AB",
     &["uni0041", "uni0042@850,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     kern_1_1,
@@ -2319,7 +2319,7 @@ shaping_test!(
         "dotlessi@1600,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     kern_2_1,
@@ -2341,7 +2341,7 @@ shaping_test!(
         "u@3500,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_1_1,
@@ -2352,7 +2352,7 @@ shaping_test!(
     "ABC",
     &["A.alt", "B@1000,0", "C.alt@2000,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_10_1,
@@ -2363,7 +2363,7 @@ shaping_test!(
     "ABABAB",
     &["A", "B@638,0", "A@1288,0", "B@1926,0", "B@2576,0", "A@3226,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_11_1,
@@ -2374,7 +2374,7 @@ shaping_test!(
     "BABBAABX",
     &["B", "A@650,0", "B@1288,0", "B@1938,0", "A@2588,0", "X@3226,0", "A@3812,0", "B@4450,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_12_1,
@@ -2392,7 +2392,7 @@ shaping_test!(
         "one@3116,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_12_2,
@@ -2410,7 +2410,7 @@ shaping_test!(
         "two@3116,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_12_3,
@@ -2428,7 +2428,7 @@ shaping_test!(
         "three@3116,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_13_1,
@@ -2439,7 +2439,7 @@ shaping_test!(
     "ABCDE",
     &["B", "C@626,0", "D@1222,0", "E@1896,0", "A@2452,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_14_1,
@@ -2450,7 +2450,7 @@ shaping_test!(
     "ABCDE",
     &["B", "C@626,0", "D@1222,0", "E@1896,0", "A@2452,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_14_2,
@@ -2469,7 +2469,7 @@ shaping_test!(
     "ABCDE",
     &["B", "C@626,0", "D@1222,0", "E@1896,0", "A@2452,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_17_1,
@@ -2480,7 +2480,7 @@ shaping_test!(
     "AB",
     &["B", "A@626,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_18_1,
@@ -2491,7 +2491,7 @@ shaping_test!(
     "ABCDE",
     &["A", "B.alt@639,0", "C@1639,0", "D.alt1@2235,0", "E@3235,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_18_2,
@@ -2509,7 +2509,7 @@ shaping_test!(
         "E@3891,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_18_3,
@@ -2520,7 +2520,7 @@ shaping_test!(
     "ABDE",
     &["A", "B.alt@639,0", "D.alt1@1639,0", "E@2639,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_18_4,
@@ -2531,7 +2531,7 @@ shaping_test!(
     "ABE",
     &["A", "B@639,0", "E@1265,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_19_1,
@@ -2542,7 +2542,7 @@ shaping_test!(
     "ACDE",
     &["A.alt", "C@1000,0", "D.alt1@1596,0", "E@2596,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_19_2,
@@ -2553,7 +2553,7 @@ shaping_test!(
     "D",
     &["D.alt"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_2_1,
@@ -2579,7 +2579,7 @@ shaping_test!(
         "zero@8318,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_2_2,
@@ -2605,7 +2605,7 @@ shaping_test!(
         "one@8318,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_2_3,
@@ -2631,7 +2631,7 @@ shaping_test!(
         "two@8318,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_2_4,
@@ -2657,7 +2657,7 @@ shaping_test!(
         "three@8318,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_2_5,
@@ -2683,7 +2683,7 @@ shaping_test!(
         "four@8318,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_2_6,
@@ -2709,7 +2709,7 @@ shaping_test!(
         "five@8318,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_2_7,
@@ -2735,7 +2735,7 @@ shaping_test!(
         "six@8318,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_2_8,
@@ -2761,7 +2761,7 @@ shaping_test!(
         "seven@8318,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_2_9,
@@ -2787,7 +2787,7 @@ shaping_test!(
         "eight@8318,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_2_10,
@@ -2813,7 +2813,7 @@ shaping_test!(
         "nine@8318,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_2_11,
@@ -2839,7 +2839,7 @@ shaping_test!(
         "one_zero@8318,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_2_12,
@@ -2865,7 +2865,7 @@ shaping_test!(
         "one_one@8318,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_2_13,
@@ -2891,7 +2891,7 @@ shaping_test!(
         "one_two@8318,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_2_14,
@@ -2917,7 +2917,7 @@ shaping_test!(
         "one_three@8318,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_2_15,
@@ -2943,7 +2943,7 @@ shaping_test!(
         "one_four@8318,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_2_16,
@@ -2969,7 +2969,7 @@ shaping_test!(
         "one_five@8318,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_20_1,
@@ -2980,7 +2980,7 @@ shaping_test!(
     "ABCDE",
     &["A", "B@639,0", "C.alt@1265,0", "D@2265,0", "E.alt1@2939,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_20_2,
@@ -2991,7 +2991,7 @@ shaping_test!(
     "ABC",
     &["A", "B@639,0", "C.alt@1265,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_20_3,
@@ -3002,7 +3002,7 @@ shaping_test!(
     "ABE",
     &["A", "B.alt@639,0", "E.alt1@1639,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_20_4,
@@ -3013,7 +3013,7 @@ shaping_test!(
     "AE",
     &["A.alt", "E.alt1@1000,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_20_5,
@@ -3024,7 +3024,7 @@ shaping_test!(
     "EE",
     &["E", "E@556,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_20_6,
@@ -3035,7 +3035,7 @@ shaping_test!(
     "A",
     &["A.alt"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_20_7,
@@ -3046,7 +3046,7 @@ shaping_test!(
     "E",
     &["E"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_21_1,
@@ -3057,7 +3057,7 @@ shaping_test!(
     "ABCDE",
     &["A", "B.alt@639,0", "C@1639,0", "D@2235,0", "E@2909,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_22_1,
@@ -3068,7 +3068,7 @@ shaping_test!(
     "A",
     &["C"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_23_1,
@@ -3079,7 +3079,7 @@ shaping_test!(
     "ABCDE",
     &["E", "E@556,0", "E@1112,0", "E@1668,0", "E@2224,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_24_1,
@@ -3104,7 +3104,7 @@ shaping_test!(
         "E.alt@4000,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_25_2,
@@ -3115,7 +3115,7 @@ shaping_test!(
     "EBCDA",
     &["E", "B@556,0", "C@1182,0", "D@1778,0", "A@2452,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_25_3,
@@ -3132,7 +3132,7 @@ shaping_test!(
         "C.alt@3222,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_25_4,
@@ -3143,7 +3143,7 @@ shaping_test!(
     "ABC",
     &["A.alt", "B.alt@1000,0", "C.alt@2000,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_25_5,
@@ -3154,7 +3154,7 @@ shaping_test!(
     "CBA",
     &["C", "B@596,0", "A@1222,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_25_6,
@@ -3165,7 +3165,7 @@ shaping_test!(
     "AB",
     &["A.alt", "B.alt@1000,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_25_7,
@@ -3176,7 +3176,7 @@ shaping_test!(
     "BA",
     &["B", "A@626,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_25_8,
@@ -3187,7 +3187,7 @@ shaping_test!(
     "A",
     &["A"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_25_9,
@@ -3198,7 +3198,7 @@ shaping_test!(
     "B",
     &["B"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_26_1,
@@ -3209,7 +3209,7 @@ shaping_test!(
     "AB",
     &["A", "B@639,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_26_2,
@@ -3220,7 +3220,7 @@ shaping_test!(
     "B",
     &["B.alt"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_27_1,
@@ -3231,7 +3231,7 @@ shaping_test!(
     "AEB",
     &["A_E_B"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_27_2,
@@ -3242,7 +3242,7 @@ shaping_test!(
     "AEC",
     &["A_E_C"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_27_3,
@@ -3253,7 +3253,7 @@ shaping_test!(
     "AED",
     &["A_E_D"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_28_1,
@@ -3264,7 +3264,7 @@ shaping_test!(
     "AED",
     &["A_E_D"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_28_2,
@@ -3275,7 +3275,7 @@ shaping_test!(
     "AxED",
     &["A_E_D", "x@1394,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_28_3,
@@ -3286,7 +3286,7 @@ shaping_test!(
     "AEyD",
     &["A_E_D", "y@1394,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_28_4,
@@ -3297,7 +3297,7 @@ shaping_test!(
     "AxEyD",
     &["A_E_D", "x@1394,0", "y@1923,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_28_5,
@@ -3308,7 +3308,7 @@ shaping_test!(
     "AxxxEyyyD",
     &["A_E_D", "x@1394,0", "x@1923,0", "x@2452,0", "y@2981,0", "y@3491,0", "y@4001,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_29_1,
@@ -3323,7 +3323,7 @@ shaping_test!(
         "Z@9082,0", "Z@9404,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_29_2,
@@ -3338,7 +3338,7 @@ shaping_test!(
         "Z@9082,0", "Z@9404,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_29_3,
@@ -3353,7 +3353,7 @@ shaping_test!(
         "Z@9082,0", "Z@9404,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_29_4,
@@ -3368,7 +3368,7 @@ shaping_test!(
         "Z@9082,0", "Z@9404,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_3_1,
@@ -3386,7 +3386,7 @@ shaping_test!(
         "zero@1793,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_3_2,
@@ -3404,7 +3404,7 @@ shaping_test!(
         "one@1793,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_3_3,
@@ -3422,7 +3422,7 @@ shaping_test!(
         "two@1793,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_3_4,
@@ -3440,7 +3440,7 @@ shaping_test!(
         "three@1793,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_3_5,
@@ -3458,7 +3458,7 @@ shaping_test!(
         "four@1793,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_3_6,
@@ -3476,7 +3476,7 @@ shaping_test!(
         "five@1793,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_3_7,
@@ -3494,7 +3494,7 @@ shaping_test!(
         "six@1793,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_3_8,
@@ -3512,7 +3512,7 @@ shaping_test!(
         "seven@1793,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_3_9,
@@ -3530,7 +3530,7 @@ shaping_test!(
         "eight@1793,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_3_10,
@@ -3548,7 +3548,7 @@ shaping_test!(
         "nine@1793,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_3_11,
@@ -3566,7 +3566,7 @@ shaping_test!(
         "one_zero@1793,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_3_12,
@@ -3584,7 +3584,7 @@ shaping_test!(
         "one_one@1793,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_3_13,
@@ -3602,7 +3602,7 @@ shaping_test!(
         "one_two@1793,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_3_14,
@@ -3620,7 +3620,7 @@ shaping_test!(
         "one_three@1793,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_3_15,
@@ -3638,7 +3638,7 @@ shaping_test!(
         "one_four@1793,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_3_16,
@@ -3656,7 +3656,7 @@ shaping_test!(
         "one_five@1793,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_30_1,
@@ -3688,7 +3688,7 @@ shaping_test!(
         "Z@11428,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_30_2,
@@ -3720,7 +3720,7 @@ shaping_test!(
         "Z@11428,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_30_3,
@@ -3752,7 +3752,7 @@ shaping_test!(
         "Z@11428,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_30_4,
@@ -3784,7 +3784,7 @@ shaping_test!(
         "Z@11428,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_31_1,
@@ -3798,7 +3798,7 @@ shaping_test!(
         "A@5708,0", "Y@6538,0", "Y@6870,0", "A@7202,0", "Z@8032,0", "Z@8354,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_31_2,
@@ -3812,7 +3812,7 @@ shaping_test!(
         "A@5708,0", "Y@6538,0", "Y@6870,0", "B@7202,0", "Y@8032,0", "Y@8364,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_31_3,
@@ -3826,7 +3826,7 @@ shaping_test!(
         "B@5708,0", "Y@6538,0", "Y@6870,0", "A@7202,0", "Z@8032,0", "Z@8354,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_31_4,
@@ -3840,7 +3840,7 @@ shaping_test!(
         "B@5708,0", "Y@6538,0", "Y@6870,0", "B@7202,0", "Z@8032,0", "Z@8354,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_31_5,
@@ -3854,7 +3854,7 @@ shaping_test!(
         "Q@6143,0", "R@6509,0", "A@6860,0", "X@7690,0", "Y@8054,0", "Z@8386,0", "A@8708,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_31_6,
@@ -3868,7 +3868,7 @@ shaping_test!(
         "Q@6143,0", "R@6509,0", "A@6860,0", "X@7690,0", "Y@8054,0", "Z@8386,0", "B@8708,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_31_7,
@@ -3882,7 +3882,7 @@ shaping_test!(
         "Q@6143,0", "R@6509,0", "B@6860,0", "X@7690,0", "Y@8054,0", "Z@8386,0", "A@8708,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_31_8,
@@ -3896,7 +3896,7 @@ shaping_test!(
         "Q@6143,0", "R@6509,0", "B@6860,0", "X@7690,0", "Y@8054,0", "Z@8386,0", "B@8708,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_32_1,
@@ -3907,7 +3907,7 @@ shaping_test!(
     "A",
     &["I", "N@830,0", "S@1660,0", "A@2490,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_32_2,
@@ -3918,7 +3918,7 @@ shaping_test!(
     "XAY",
     &["I", "N@830,0", "S@1660,0", "X@2490,0", "A@2854,0", "Y@3684,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_32_3,
@@ -3929,7 +3929,7 @@ shaping_test!(
     "B",
     &["B", "I@830,0", "N@1660,0", "S@2490,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_32_4,
@@ -3940,7 +3940,7 @@ shaping_test!(
     "XBY",
     &["X", "I@364,0", "N@1194,0", "S@2024,0", "B@2854,0", "Y@3684,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_33_1,
@@ -3951,7 +3951,7 @@ shaping_test!(
     "ha",
     &["h", "a@618,0", "h@1179,0", "a@1797,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_33_2,
@@ -3962,7 +3962,7 @@ shaping_test!(
     "haha",
     &["h", "a@618,0", "h@1179,0", "a@1797,0", "h@2358,0", "a@2976,0", "h@3537,0", "a@4155,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_33_3,
@@ -3973,7 +3973,7 @@ shaping_test!(
     "ah",
     &["a", "h@561,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_34_1,
@@ -3992,7 +3992,7 @@ shaping_test!(
     "A",
     &["A", "B@639,0", "C@1265,0", "E@1861,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_35_2,
@@ -4003,7 +4003,7 @@ shaping_test!(
     "XAY",
     &["X", "A@586,0", "B@1225,0", "C@1851,0", "E@2447,0", "Y@3003,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_36_1,
@@ -4022,7 +4022,7 @@ shaping_test!(
     "AB",
     &["A.alt", "B.alt@1000,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_37_2,
@@ -4033,7 +4033,7 @@ shaping_test!(
     "BA",
     &["B", "A@650,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_37_3,
@@ -4044,7 +4044,7 @@ shaping_test!(
     "אב",
     &["uni05D1", "uni05D0@542,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_37_4,
@@ -4055,7 +4055,7 @@ shaping_test!(
     "בא",
     &["uni05D0.alt", "uni05D1.alt@1000,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_38_1,
@@ -4066,7 +4066,7 @@ shaping_test!(
     "AB",
     &["A.alt", "B.alt@1000,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_38_2,
@@ -4077,7 +4077,7 @@ shaping_test!(
     "BA",
     &["B", "A@650,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_38_3,
@@ -4088,7 +4088,7 @@ shaping_test!(
     "אב",
     &["uni05D1.alt", "uni05D0.alt@1000,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_38_4,
@@ -4099,7 +4099,7 @@ shaping_test!(
     "בא",
     &["uni05D0", "uni05D1@606,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_39_1,
@@ -4110,7 +4110,7 @@ shaping_test!(
     "AB",
     &["A", "B@639,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_39_2,
@@ -4121,7 +4121,7 @@ shaping_test!(
     "BA",
     &["B.alt", "A.alt@1000,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_39_3,
@@ -4132,7 +4132,7 @@ shaping_test!(
     "אב",
     &["uni05D1.alt", "uni05D0.alt@1000,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_39_4,
@@ -4143,7 +4143,7 @@ shaping_test!(
     "בא",
     &["uni05D0", "uni05D1@606,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_4_1,
@@ -4163,7 +4163,7 @@ shaping_test!(
         "one@2898,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_4_2,
@@ -4183,7 +4183,7 @@ shaping_test!(
         "two@2898,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_4_3,
@@ -4204,7 +4204,7 @@ shaping_test!(
         "three@3728,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_4_4,
@@ -4225,7 +4225,7 @@ shaping_test!(
         "four@3728,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_4_5,
@@ -4246,7 +4246,7 @@ shaping_test!(
         "five@3728,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_4_6,
@@ -4267,7 +4267,7 @@ shaping_test!(
         "six@3728,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_4_7,
@@ -4288,7 +4288,7 @@ shaping_test!(
         "seven@3728,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_4_8,
@@ -4310,7 +4310,7 @@ shaping_test!(
         "eight@4558,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_4_9,
@@ -4332,7 +4332,7 @@ shaping_test!(
         "nine@4558,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_4_10,
@@ -4354,7 +4354,7 @@ shaping_test!(
         "one_zero@4558,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_4_11,
@@ -4376,7 +4376,7 @@ shaping_test!(
         "one_one@4558,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_4_12,
@@ -4399,7 +4399,7 @@ shaping_test!(
         "one_two@5388,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_4_13,
@@ -4422,7 +4422,7 @@ shaping_test!(
         "one_three@5388,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_4_14,
@@ -4445,7 +4445,7 @@ shaping_test!(
         "one_four@5388,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_4_15,
@@ -4468,7 +4468,7 @@ shaping_test!(
         "one_five@5388,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_40_1,
@@ -4479,7 +4479,7 @@ shaping_test!(
     "AB",
     &["A", "B@639,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_40_2,
@@ -4490,7 +4490,7 @@ shaping_test!(
     "BA",
     &["B.alt", "A.alt@1000,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_40_3,
@@ -4501,7 +4501,7 @@ shaping_test!(
     "אב",
     &["uni05D1", "uni05D0@542,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_40_4,
@@ -4512,7 +4512,7 @@ shaping_test!(
     "בא",
     &["uni05D0.alt", "uni05D1.alt@1000,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_41_1,
@@ -4523,7 +4523,7 @@ shaping_test!(
     "ac",
     &["a_c"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_41_2,
@@ -4534,7 +4534,7 @@ shaping_test!(
     "bc",
     &["b_c"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_41_3,
@@ -4570,7 +4570,7 @@ shaping_test!(
         "three@2898,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_2,
@@ -4590,7 +4590,7 @@ shaping_test!(
         "four@2898,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_3,
@@ -4610,7 +4610,7 @@ shaping_test!(
         "five@2898,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_4,
@@ -4630,7 +4630,7 @@ shaping_test!(
         "six@2898,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_5,
@@ -4650,7 +4650,7 @@ shaping_test!(
         "seven@2898,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_6,
@@ -4670,7 +4670,7 @@ shaping_test!(
         "eight@2898,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_7,
@@ -4691,7 +4691,7 @@ shaping_test!(
         "eight@3728,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_8,
@@ -4711,7 +4711,7 @@ shaping_test!(
         "nine@2898,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_9,
@@ -4732,7 +4732,7 @@ shaping_test!(
         "nine@3728,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_10,
@@ -4752,7 +4752,7 @@ shaping_test!(
         "one_zero@2898,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_11,
@@ -4773,7 +4773,7 @@ shaping_test!(
         "one_zero@3728,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_12,
@@ -4793,7 +4793,7 @@ shaping_test!(
         "one_one@2898,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_13,
@@ -4814,7 +4814,7 @@ shaping_test!(
         "one_one@3728,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_14,
@@ -4834,7 +4834,7 @@ shaping_test!(
         "one_two@2898,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_15,
@@ -4855,7 +4855,7 @@ shaping_test!(
         "one_two@3728,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_16,
@@ -4877,7 +4877,7 @@ shaping_test!(
         "one_two@4558,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_17,
@@ -4897,7 +4897,7 @@ shaping_test!(
         "one_three@2898,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_18,
@@ -4918,7 +4918,7 @@ shaping_test!(
         "one_three@3728,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_19,
@@ -4940,7 +4940,7 @@ shaping_test!(
         "one_three@4558,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_20,
@@ -4960,7 +4960,7 @@ shaping_test!(
         "one_four@2898,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_21,
@@ -4981,7 +4981,7 @@ shaping_test!(
         "one_four@3728,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_22,
@@ -5003,7 +5003,7 @@ shaping_test!(
         "one_four@4558,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_23,
@@ -5023,7 +5023,7 @@ shaping_test!(
         "one_five@2898,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_24,
@@ -5044,7 +5044,7 @@ shaping_test!(
         "one_five@3728,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_5_25,
@@ -5066,7 +5066,7 @@ shaping_test!(
         "one_five@4558,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_6_1,
@@ -5095,7 +5095,7 @@ shaping_test!(
         "one@10868,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_7_1,
@@ -5106,7 +5106,7 @@ shaping_test!(
     "OBCD1",
     &["B", "C@830,0", "D@1660,0", "O@2490,0", "one@2908,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_8_1,
@@ -5117,7 +5117,7 @@ shaping_test!(
     "0ABC",
     &["zero", "A@914,0", "B@1552,0", "C@2202,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_8_2,
@@ -5128,7 +5128,7 @@ shaping_test!(
     "1ABC",
     &["one", "B@914,0", "C@1564,0", "A@2196,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_8_3,
@@ -5139,7 +5139,7 @@ shaping_test!(
     "2ABC",
     &["two", "C@914,0", "A@1546,0", "B@2184,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     morx_9_1,
@@ -5150,7 +5150,7 @@ shaping_test!(
     "ABXAB",
     &["B", "A@650,0", "X@1288,0", "A@1874,0", "B@2512,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     sfnt_1_1,
@@ -5161,7 +5161,7 @@ shaping_test!(
     "A",
     &["A"],
     true,
-    false
+    true
 );
 shaping_test!(
     sfnt_1_2,
@@ -5172,7 +5172,7 @@ shaping_test!(
     "B",
     &["B"],
     true,
-    false
+    true
 );
 shaping_test!(
     sfnt_2_1,
@@ -5183,7 +5183,7 @@ shaping_test!(
     "A",
     &["A"],
     true,
-    false
+    true
 );
 shaping_test!(
     sfnt_2_2,
@@ -5194,7 +5194,7 @@ shaping_test!(
     "B",
     &["B"],
     true,
-    false
+    true
 );
 shaping_test!(
     sharan_1_1,
@@ -5212,7 +5212,7 @@ shaping_test!(
         "LamIni.outT2@1664,223"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     sharan_1_2,
@@ -5237,7 +5237,7 @@ shaping_test!(
         "BehxIni.outD2WQ@1758,323"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     sharan_1_3,
@@ -5258,7 +5258,7 @@ shaping_test!(
         "FehxIni.outD2WQ@1599,237"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     sharan_1_4,
@@ -5286,7 +5286,7 @@ shaping_test!(
         "BehxIni.A@3295,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     sharan_1_5,
@@ -5312,7 +5312,7 @@ shaping_test!(
         "FehxIni.outT2N@3208,336"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     sharan_1_6,
@@ -5336,7 +5336,7 @@ shaping_test!(
         "BehxIni.outT2tall@2434,952"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_1,
@@ -5347,7 +5347,7 @@ shaping_test!(
     "ᬓ\u{1b38}\u{1b00}",
     &["23", "60@1113,0", "4@1064,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_2,
@@ -5358,7 +5358,7 @@ shaping_test!(
     "ᬕ᭄ᬖ\u{1b02}",
     &["25", "132@1092,0", "6@942,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_3,
@@ -5369,7 +5369,7 @@ shaping_test!(
     "ᬘᬻ",
     &["28", "62@796,0", "57@794,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_4,
@@ -5380,7 +5380,7 @@ shaping_test!(
     "ᬙᭀ",
     &["66", "29@483,0", "57@1536,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_5,
@@ -5391,7 +5391,7 @@ shaping_test!(
     "ᬚᬿ",
     &["67", "30@483,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_6,
@@ -5402,7 +5402,7 @@ shaping_test!(
     "ᬔ\u{1b36}",
     &["24", "58@828,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_7,
@@ -5413,7 +5413,7 @@ shaping_test!(
     "ᬓ᭄ᬓ\u{1b01}",
     &["23", "129@1111,0", "5@1064,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_8,
@@ -5424,7 +5424,7 @@ shaping_test!(
     "ᬓ᭄ᬛ\u{1b01}",
     &["23", "137@1111,0", "5@1379,181"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_9,
@@ -5435,7 +5435,7 @@ shaping_test!(
     "ᬓ᭄ᬦ\u{1b03}",
     &["23", "148@1111,0", "7@991,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_10,
@@ -5446,7 +5446,7 @@ shaping_test!(
     "ᬓ᭄ᬓ\u{1b38}",
     &["23", "129@1111,0", "60@1111,-488"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_11,
@@ -5457,7 +5457,7 @@ shaping_test!(
     "ᬓ᭄ᬓ\u{1b3c}",
     &["23", "129@1111,0", "70@1128,0", "170@1113,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_12,
@@ -5468,7 +5468,7 @@ shaping_test!(
     "ᬓ᭄ᬓᬽ",
     &["23", "129@1111,0", "70@1128,0", "170@1113,0", "57@1111,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_13,
@@ -5479,7 +5479,7 @@ shaping_test!(
     "ᬓᬾ",
     &["66", "23@483,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_14,
@@ -5490,7 +5490,7 @@ shaping_test!(
     "ᬓ\u{1b36}ᬾ",
     &["23", "58@1064,0", "66@1111,0", "128@1594,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_15,
@@ -5501,7 +5501,7 @@ shaping_test!(
     "ᬓ\u{1b38}ᬾ",
     &["23", "60@1113,0", "66@1111,0", "128@1594,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_16,
@@ -5512,7 +5512,7 @@ shaping_test!(
     "ᬓ᭄ᬕᬾ",
     &["66", "23@483,0", "131@1594,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_17,
@@ -5523,7 +5523,7 @@ shaping_test!(
     "ᬓᭀ",
     &["66", "23@483,0", "57@1594,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_18,
@@ -5534,7 +5534,7 @@ shaping_test!(
     "ᬓᬾ",
     &["66", "23@483,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_19,
@@ -5545,7 +5545,7 @@ shaping_test!(
     "ᬓᬾ\u{1b36}",
     &["66", "23@483,0", "58@1548,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_20,
@@ -5556,7 +5556,7 @@ shaping_test!(
     "ᬓᬾ\u{1b38}",
     &["66", "23@483,0", "60@1597,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_21,
@@ -5567,7 +5567,7 @@ shaping_test!(
     "ᬓ᭄ᬕᬾ",
     &["66", "23@483,0", "131@1594,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_1_22,
@@ -5578,7 +5578,7 @@ shaping_test!(
     "ᬓᭀ",
     &["66", "23@483,0", "57@1594,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_2_1,
@@ -5589,7 +5589,7 @@ shaping_test!(
     "ᬓ᭄ᬧᬾ",
     &["66", "23@483,0", "149@1594,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_2_2,
@@ -5600,7 +5600,7 @@ shaping_test!(
     "ᬓ᭄ᬨᬿ",
     &["67", "23@483,0", "150@1594,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_2_3,
@@ -5611,7 +5611,7 @@ shaping_test!(
     "ᬓ᭄ᬱᬾ",
     &["66", "23@483,0", "159@1594,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_2_4,
@@ -5622,7 +5622,7 @@ shaping_test!(
     "ᬓ᭄ᬲᬾ",
     &["66", "23@483,0", "60@1597,0", "149@1594,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_2_5,
@@ -5633,7 +5633,7 @@ shaping_test!(
     "ᬓ᭄ᭊᬾ",
     &["66", "23@483,0", "60@1597,0", "165@1594,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_2_6,
@@ -5644,7 +5644,7 @@ shaping_test!(
     "ᬛ᭄ᬓ",
     &["181", "129@1064,-195"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_2_7,
@@ -5655,7 +5655,7 @@ shaping_test!(
     "ᬛ᭄ᬓᬾ",
     &["66", "181@483,0", "129@1548,-195"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_2_8,
@@ -5666,7 +5666,7 @@ shaping_test!(
     "ᬛ᭄ᬓ\u{1b38}\u{1b00}",
     &["181", "129@1064,-195", "60@1064,-684", "4@855,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_2_9,
@@ -5677,7 +5677,7 @@ shaping_test!(
     "ᬓ᭄ᬓ\u{1b38}",
     &["23", "129@1111,0", "60@1111,-488"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_2_10,
@@ -5688,7 +5688,7 @@ shaping_test!(
     "ᬓ᭄ᬛ\u{1b39}",
     &["23", "137@1111,0", "61@1261,-488"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_2_11,
@@ -5699,7 +5699,7 @@ shaping_test!(
     "ᬓ᭄ᬱ\u{1b3a}",
     &["23", "159@1111,0", "62@1753,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_2_12,
@@ -5710,7 +5710,7 @@ shaping_test!(
     "ᬓ᭄ᭅ\u{1b38}",
     &["23", "162@1111,0", "60@1111,-488"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_3_1,
@@ -5721,7 +5721,7 @@ shaping_test!(
     "᭦\u{1b6b}",
     &["102", "107@560,-10"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_3_2,
@@ -5732,7 +5732,7 @@ shaping_test!(
     "᭦\u{1b6c}",
     &["102", "108@573,49"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_3_3,
@@ -5743,7 +5743,7 @@ shaping_test!(
     "᭦\u{1b6d}",
     &["102", "109@652,-10"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_3_4,
@@ -5754,7 +5754,7 @@ shaping_test!(
     "᭦\u{1b6e}",
     &["102", "110@652,-98"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_3_5,
@@ -5765,7 +5765,7 @@ shaping_test!(
     "᭦\u{1b6f}",
     &["102", "111@667,-10"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_3_6,
@@ -5776,7 +5776,7 @@ shaping_test!(
     "᭦\u{1b70}",
     &["102", "112@667,-10"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_3_7,
@@ -5787,7 +5787,7 @@ shaping_test!(
     "᭦\u{1b71}",
     &["102", "113@667,-10"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_3_8,
@@ -5798,7 +5798,7 @@ shaping_test!(
     "᭦\u{1b72}",
     &["102", "114@667,-10"],
     true,
-    false
+    true
 );
 shaping_test!(
     shbali_3_9,
@@ -5809,7 +5809,7 @@ shaping_test!(
     "᭦\u{1b73}",
     &["102", "115@599,-10"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_1,
@@ -5820,7 +5820,7 @@ shaping_test!(
     "ಲ\u{ccd}ಲ\u{cbf}",
     &["knLI", "knLAc2@757,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_2,
@@ -5831,7 +5831,7 @@ shaping_test!(
     "ಟ\u{ccd}ಸ\u{ccd}",
     &["knTT", "knSAc2@1021,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_3,
@@ -5842,7 +5842,7 @@ shaping_test!(
     "ಳ\u{cbf}",
     &["knLLI"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_4,
@@ -5853,7 +5853,7 @@ shaping_test!(
     "ಡ\u{cbf}",
     &["knDDI"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_5,
@@ -5864,7 +5864,7 @@ shaping_test!(
     "ಮ\u{cc6}",
     &["knME"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_6,
@@ -5875,7 +5875,7 @@ shaping_test!(
     "ರ\u{cbf}",
     &["knRI"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_7,
@@ -5886,7 +5886,7 @@ shaping_test!(
     "ಖ\u{ccd}ಯ\u{cc6}",
     &["knKHE", "knYAc2@846,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_8,
@@ -5897,7 +5897,7 @@ shaping_test!(
     "ಫ\u{ccd}ರ\u{cbf}",
     &["knPHI", "knRAc2@735,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_9,
@@ -5908,7 +5908,7 @@ shaping_test!(
     "ನ\u{cc6}",
     &["knNE"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_10,
@@ -5919,7 +5919,7 @@ shaping_test!(
     "ಗ\u{cbf}",
     &["knGI"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_11,
@@ -5930,7 +5930,7 @@ shaping_test!(
     "ಷ\u{ccd}ಟ\u{cbf}",
     &["knSSI", "knTTAc2@746,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_12,
@@ -5941,7 +5941,7 @@ shaping_test!(
     "ಯ\u{cbf}ಂ",
     &["knYI", "knAnusvara@1252,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_13,
@@ -5952,7 +5952,7 @@ shaping_test!(
     "ಚೀ",
     &["knCI", "knLengthmark@766,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_14,
@@ -5963,7 +5963,7 @@ shaping_test!(
     "ನ\u{cbf}",
     &["knNI"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_15,
@@ -5974,7 +5974,7 @@ shaping_test!(
     "ಗ\u{ccd}ಲ\u{cbf}",
     &["knGI", "knLAc2@621,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_16,
@@ -5985,7 +5985,7 @@ shaping_test!(
     "ಷ\u{cbf}",
     &["knSSI"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_17,
@@ -5996,7 +5996,7 @@ shaping_test!(
     "ಗ\u{cc6}",
     &["knGE"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_18,
@@ -6007,7 +6007,7 @@ shaping_test!(
     "ದ\u{ccd}ವ\u{cbf}",
     &["knDI", "knVAc2@740,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_19,
@@ -6018,7 +6018,7 @@ shaping_test!(
     "ತೀ",
     &["knTI", "knLengthmark@613,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_20,
@@ -6029,7 +6029,7 @@ shaping_test!(
     "ಮ\u{cbf}",
     &["knMI"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_21,
@@ -6040,7 +6040,7 @@ shaping_test!(
     "ಲ\u{cbf}",
     &["knLI"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_22,
@@ -6051,7 +6051,7 @@ shaping_test!(
     "ಗ\u{cbf}",
     &["knGI"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_23,
@@ -6062,7 +6062,7 @@ shaping_test!(
     "ನ\u{ccd}",
     &["knN"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_24,
@@ -6073,7 +6073,7 @@ shaping_test!(
     "ಬ\u{cbf}",
     &["knBI"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_25,
@@ -6084,7 +6084,7 @@ shaping_test!(
     "ಲ\u{cbf}",
     &["knLI"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_26,
@@ -6095,7 +6095,7 @@ shaping_test!(
     "ನ\u{ccd}ನ\u{cbf}ಂ",
     &["knNI", "knNAc2@678,0", "knAnusvara@755,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_27,
@@ -6106,7 +6106,7 @@ shaping_test!(
     "ಲ\u{ccd}ಲ\u{cbf}",
     &["knLI", "knLAc2@757,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_28,
@@ -6117,7 +6117,7 @@ shaping_test!(
     "ಧ\u{cbf}",
     &["knDHI"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_29,
@@ -6128,7 +6128,7 @@ shaping_test!(
     "ಪ\u{ccc}",
     &["knPA.base", "knmAU@739,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_30,
@@ -6139,7 +6139,7 @@ shaping_test!(
     "ವ\u{cbf}ಂ",
     &["knVI", "knAnusvara@749,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_31,
@@ -6150,7 +6150,7 @@ shaping_test!(
     "ಡ\u{cbf}",
     &["knDDI"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_32,
@@ -6161,7 +6161,7 @@ shaping_test!(
     "ಟ\u{cbf}",
     &["knTTI"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_33,
@@ -6172,7 +6172,7 @@ shaping_test!(
     "ನ\u{cbf}",
     &["knNI"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_1_34,
@@ -6183,7 +6183,7 @@ shaping_test!(
     "ಧ\u{cbf}",
     &["knDHI"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_2_1,
@@ -6194,7 +6194,7 @@ shaping_test!(
     "ನ\u{ccd}ನಾ",
     &["150", "57@711,0", "116@1160,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_2_2,
@@ -6205,7 +6205,7 @@ shaping_test!(
     "ನ\u{ccd}ನಾ",
     &["150", "57@711,0", "116@1160,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_2_3,
@@ -6216,7 +6216,7 @@ shaping_test!(
     "ತ\u{ccd}ತಾ",
     &["146", "57@623,0", "112@1071,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_2_4,
@@ -6227,7 +6227,7 @@ shaping_test!(
     "ಟ\u{ccd}ಟಾ",
     &["141", "57@815,0", "107@1264,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_2_5,
@@ -6238,7 +6238,7 @@ shaping_test!(
     "ಡೋಂಗ\u{cbf}",
     &["249", "61@768,0", "71@1513,0", "4@1925,0", "207@2475,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_2_6,
@@ -6249,7 +6249,7 @@ shaping_test!(
     "ಜ\u{cbf}\u{cbc}\u{cd5}ಬ\u{cc6}ನ\u{ccd}",
     &["211", "55@652,0", "71@776,0", "259@1188,0", "186@1994,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_2_7,
@@ -6260,7 +6260,7 @@ shaping_test!(
     "ಜಾ\u{cbc}ಕ\u{cbf}ರ\u{ccd}",
     &["139", "57@776,0", "55@652,0", "205@1225,0", "193@1799,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_2_8,
@@ -6279,7 +6279,7 @@ shaping_test!(
         "195@3263,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_2_9,
@@ -6297,7 +6297,7 @@ shaping_test!(
         "186@2552,0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_2_10,
@@ -6308,7 +6308,7 @@ shaping_test!(
     "ದಟ\u{ccd}ಸ\u{ccd}",
     &["37", "177@765,0", "130@1814,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_2_11,
@@ -6319,7 +6319,7 @@ shaping_test!(
     "ಎಕ\u{ccd}ಸ\u{ccd}",
     &["14", "167@787,0", "130@1596,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_2_12,
@@ -6330,7 +6330,7 @@ shaping_test!(
     "ಮಾರ\u{ccd}ಚ\u{ccd}",
     &["155", "57@1156,0", "172@1605,0", "94@2718,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_2_13,
@@ -6341,7 +6341,7 @@ shaping_test!(
     "ಟ\u{cc6}ಕ\u{ccd}ಸ\u{ccd}ಟ\u{ccd}",
     &["247", "167@815,0", "130@1624,0", "317@1792,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_2_14,
@@ -6352,7 +6352,7 @@ shaping_test!(
     "ಬುಕ\u{ccd}ಸ\u{ccd}",
     &["42", "60@801,0", "167@1165,0", "130@1974,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_2_15,
@@ -6363,7 +6363,7 @@ shaping_test!(
     "ಸಾಫ\u{ccd}ಟ\u{ccd}",
     &["163", "57@709,0", "188@1158,0", "107@2184,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_2_16,
@@ -6374,7 +6374,7 @@ shaping_test!(
     "ಜಸ\u{ccd}ಟ\u{ccd}",
     &["27", "200@776,0", "107@1720,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_1,
@@ -6385,7 +6385,7 @@ shaping_test!(
     "ಕೋಂ",
     &["239", "61@574,0", "71@1319,0", "4@1731,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_2,
@@ -6396,7 +6396,7 @@ shaping_test!(
     "ಖೋಂ",
     &["240", "61@865,0", "71@1610,0", "4@2022,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_3,
@@ -6407,7 +6407,7 @@ shaping_test!(
     "ಗೋಂ",
     &["241", "61@648,0", "71@1393,0", "4@1805,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_4,
@@ -6418,7 +6418,7 @@ shaping_test!(
     "ಘೋಂ",
     &["242", "279@997,0", "71@1742,0", "4@2153,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_5,
@@ -6429,7 +6429,7 @@ shaping_test!(
     "ಙೋಂ",
     &["24", "67@737,0", "71@1718,0", "4@2130,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_6,
@@ -6440,7 +6440,7 @@ shaping_test!(
     "ಚೋಂ",
     &["243", "61@795,0", "71@1540,0", "4@1952,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_7,
@@ -6451,7 +6451,7 @@ shaping_test!(
     "ಛೋಂ",
     &["244", "61@843,0", "71@1588,0", "4@2000,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_8,
@@ -6462,7 +6462,7 @@ shaping_test!(
     "ಜೋಂ",
     &["245", "61@776,0", "71@1522,0", "4@1933,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_9,
@@ -6473,7 +6473,7 @@ shaping_test!(
     "ಝೋಂ",
     &["246", "61@1379,0", "71@2124,0", "4@2536,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_10,
@@ -6484,7 +6484,7 @@ shaping_test!(
     "ಞೋಂ",
     &["29", "67@968,0", "71@1949,0", "4@2360,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_11,
@@ -6495,7 +6495,7 @@ shaping_test!(
     "ಟೋಂ",
     &["247", "61@815,0", "71@1560,0", "4@1972,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_12,
@@ -6506,7 +6506,7 @@ shaping_test!(
     "ಠೋಂ",
     &["248", "61@651,0", "71@1397,0", "4@1808,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_13,
@@ -6517,7 +6517,7 @@ shaping_test!(
     "ಡೋಂ",
     &["249", "61@768,0", "71@1513,0", "4@1925,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_14,
@@ -6528,7 +6528,7 @@ shaping_test!(
     "ಢೋಂ",
     &["250", "61@768,0", "71@1513,0", "4@1925,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_15,
@@ -6539,7 +6539,7 @@ shaping_test!(
     "ಣೋಂ",
     &["251", "61@867,0", "71@1612,0", "4@2023,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_16,
@@ -6550,7 +6550,7 @@ shaping_test!(
     "ತೋಂ",
     &["252", "61@623,0", "71@1368,0", "4@1779,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_17,
@@ -6561,7 +6561,7 @@ shaping_test!(
     "ಥೋಂ",
     &["253", "61@765,0", "71@1510,0", "4@1921,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_18,
@@ -6572,7 +6572,7 @@ shaping_test!(
     "ದೋಂ",
     &["254", "61@765,0", "71@1510,0", "4@1921,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_19,
@@ -6583,7 +6583,7 @@ shaping_test!(
     "ಧೋಂ ",
     &["255", "61@765,0", "71@1510,0", "4@1921,0", "3@2472,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_20,
@@ -6594,7 +6594,7 @@ shaping_test!(
     "ನೋಂ",
     &["256", "61@711,0", "71@1456,0", "4@1868,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_21,
@@ -6605,7 +6605,7 @@ shaping_test!(
     "ಪೋಂ",
     &["257", "275@792,0", "71@1434,0", "4@1846,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_22,
@@ -6616,7 +6616,7 @@ shaping_test!(
     "ಫೋಂ",
     &["258", "277@792,0", "71@1434,0", "4@1846,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_23,
@@ -6627,7 +6627,7 @@ shaping_test!(
     "ಬೋಂ",
     &["259", "61@806,0", "71@1551,0", "4@1963,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_24,
@@ -6638,7 +6638,7 @@ shaping_test!(
     "ಭೋಂ",
     &["260", "61@806,0", "71@1551,0", "4@1963,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_25,
@@ -6649,7 +6649,7 @@ shaping_test!(
     "ಮೋಂ",
     &["280", "71@1539,0", "4@1951,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_26,
@@ -6660,7 +6660,7 @@ shaping_test!(
     "ಯೋಂ",
     &["281", "71@1712,0", "4@2124,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_27,
@@ -6671,7 +6671,7 @@ shaping_test!(
     "ರೋಂ",
     &["263", "61@651,0", "71@1397,0", "4@1808,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_28,
@@ -6682,7 +6682,7 @@ shaping_test!(
     "ಱೋಂ",
     &["47", "67@831,0", "71@1812,0", "4@2223,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_29,
@@ -6693,7 +6693,7 @@ shaping_test!(
     "ಲೋಂ",
     &["264", "61@769,0", "71@1514,0", "4@1925,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_30,
@@ -6704,7 +6704,7 @@ shaping_test!(
     "ವೋಂ",
     &["266", "275@794,0", "71@1437,0", "4@1848,0"],
     true,
-    false
+    true
 );
 shaping_test!(
     shknda_3_31,
@@ -6715,5 +6715,5 @@ shaping_test!(
     "ಆ\u{ccd}ಯಕ\u{ccd}ಷ\u{cbf}ಸ\u{ccd}\u{200c}",
     &["7", "122@838,0", "285@1098,0", "200@1672,0", "3@2694,0"],
     true,
-    false
+    true
 );

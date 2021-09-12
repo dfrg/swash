@@ -8,7 +8,7 @@ shaping_test!(
     "AxEyDyy",
     &["A_E_D=0+1394", "x=0+529", "y=0+510", "y=5+510", "y=6+510"],
     true,
-    false
+    true
 );
 shaping_test!(
     aat_trak_1,
@@ -19,7 +19,7 @@ shaping_test!(
     "ABC",
     &["A.alt=0+1000", "B=1+1000", "C.alt=2+1000"],
     true,
-    false
+    true
 );
 shaping_test!(
     aat_trak_2,
@@ -30,7 +30,7 @@ shaping_test!(
     "ABC",
     &["A.alt=0@100,0+1200", "B=1@100,0+1200", "C.alt=2@100,0+1200"],
     true,
-    false
+    true
 );
 shaping_test!(
     aat_trak_3,
@@ -41,7 +41,7 @@ shaping_test!(
     "ABC",
     &["A.alt=0@100,0+1200", "B=1@100,0+1200", "C.alt=2@100,0+1200"],
     true,
-    false
+    true
 );
 shaping_test!(
     aat_trak_4,
@@ -52,7 +52,7 @@ shaping_test!(
     "ABC",
     &["A.alt=0@100,0+1200", "B=1@100,0+1200", "C.alt=2@100,0+1200"],
     true,
-    false
+    true
 );
 shaping_test!(
     aat_trak_5,
@@ -63,7 +63,7 @@ shaping_test!(
     "ABC",
     &["A.alt=0@30,0+1060", "B=1@30,0+1060", "C.alt=2@30,0+1060"],
     true,
-    false
+    true
 );
 shaping_test!(
     aat_trak_6,
@@ -74,7 +74,7 @@ shaping_test!(
     "ABC",
     &["A.alt=0@-7,0+986", "B=1@-7,0+986", "C.alt=2@-7,0+986"],
     true,
-    false
+    true
 );
 shaping_test!(
     aat_trak_7,
@@ -85,7 +85,7 @@ shaping_test!(
     "ABC",
     &["A.alt=0@-35,0+929", "B=1@-35,0+929", "C.alt=2@-35,0+929"],
     true,
-    false
+    true
 );
 shaping_test!(
     aat_trak_8,
@@ -96,7 +96,7 @@ shaping_test!(
     "ABC",
     &["A.alt=0@-78,0+843", "B=1@-78,0+843", "C.alt=2@-78,0+843"],
     true,
-    false
+    true
 );
 shaping_test!(
     aat_trak_9,
@@ -107,7 +107,7 @@ shaping_test!(
     "ABC",
     &["A.alt=0@-78,0+843", "B=1@-78,0+843", "C.alt=2@-78,0+843"],
     true,
-    false
+    true
 );
 shaping_test!(
     aat_trak_10,
@@ -118,7 +118,7 @@ shaping_test!(
     "ABC",
     &["A.alt=0+1000", "B=1+1000", "C.alt=2+1000"],
     true,
-    false
+    true
 );
 shaping_test!(
     aat_trak_11,
@@ -136,7 +136,7 @@ shaping_test!(
         "C.alt=5@-78,0+843"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_fallback_shaping_1,
@@ -158,7 +158,7 @@ shaping_test!(
         "uni0633.init=0+1585"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_feature_order_1,
@@ -169,7 +169,7 @@ shaping_test!(
     "ᠠ\u{180b}",
     &["uni2048.E81A=0+1550"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_feature_order_2,
@@ -180,7 +180,7 @@ shaping_test!(
     "ᠠ\u{180b}",
     &["uni2048.E81A=0+1550"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_feature_order_3,
@@ -191,7 +191,7 @@ shaping_test!(
     "لله",
     &["Lellah=0+1503"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_feature_order_4,
@@ -207,7 +207,7 @@ shaping_test!(
         "afii57444.calt=0+1065"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_like_joining_1,
@@ -253,7 +253,7 @@ shaping_test!(
         "alif_adlam.init=0+597"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_mark_attach_1,
@@ -272,7 +272,7 @@ shaping_test!(
         "afii57450.zz21=0+345"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_mark_order_1,
@@ -291,9 +291,9 @@ shaping_test!(
         "afii57450.calt=0+1331"
     ],
     true,
-    false
+    true
 );
-shaping_test!(arabic_mark_order_2, "tests\\fonts\\in-house\\24b8d24d00ae86f49791b746da4c9d3f717a51a8.ttf", 75, &[], &[], "ب\u{618}\u{619}\u{64e}\u{64f}\u{654}\u{658}\u{653}\u{654}\u{651}\u{656}\u{651}\u{65c}\u{655}\u{650}", &["uni0653.small=0@266,2508+0", "uni0654=0@308,2151+0", "uni0655=0@518,-1544+0", "uni065C=0@501,-1453+0", "uni0656=0@573,-659+0", "uni0650=0@500,133+0", "uni0619=0@300,1807+0", "uni0618=0@357,1674+0", "uni0651064E=0@387,1178+0", "uni0651=0@402,764+0", "uni0658=0@424,404+0", "uni0654064F=0@540,-435+0", "uni0628=0+1352"], true, false);
+shaping_test!(arabic_mark_order_2, "tests\\fonts\\in-house\\24b8d24d00ae86f49791b746da4c9d3f717a51a8.ttf", 75, &[], &[], "ب\u{618}\u{619}\u{64e}\u{64f}\u{654}\u{658}\u{653}\u{654}\u{651}\u{656}\u{651}\u{65c}\u{655}\u{650}", &["uni0653.small=0@266,2508+0", "uni0654=0@308,2151+0", "uni0655=0@518,-1544+0", "uni065C=0@501,-1453+0", "uni0656=0@573,-659+0", "uni0650=0@500,133+0", "uni0619=0@300,1807+0", "uni0618=0@357,1674+0", "uni0651064E=0@387,1178+0", "uni0651=0@402,764+0", "uni0658=0@424,404+0", "uni0654064F=0@540,-435+0", "uni0628=0+1352"], true, true);
 shaping_test!(
     arabic_mark_order_3,
     "tests\\fonts\\in-house\\21b7fb9c1eeae260473809fbc1fe330f66a507cd.ttf",
@@ -308,7 +308,7 @@ shaping_test!(
         "uni0649=0+1566"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_mark_order_4,
@@ -323,7 +323,7 @@ shaping_test!(
         "uni0649=0+1566"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_mark_order_5,
@@ -338,7 +338,7 @@ shaping_test!(
         "uni0649=0+1566"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_mark_order_6,
@@ -354,7 +354,7 @@ shaping_test!(
         "uni0649=0+1566"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_1,
@@ -365,7 +365,7 @@ shaping_test!(
     "آ",
     &["uni0622=0+217"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_2,
@@ -376,7 +376,7 @@ shaping_test!(
     "ا\u{653}",
     &["uni0622=0+217"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_3,
@@ -387,7 +387,7 @@ shaping_test!(
     "بآ",
     &["uni0622.fina=1+327", "uni0628.init=0+190"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_4,
@@ -398,7 +398,7 @@ shaping_test!(
     "با\u{653}",
     &["uni0622.fina=1+327", "uni0628.init=0+190"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_5,
@@ -409,7 +409,7 @@ shaping_test!(
     "أ",
     &["uni0623=0+234"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_6,
@@ -420,7 +420,7 @@ shaping_test!(
     "ا\u{654}",
     &["uni0623=0+234"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_7,
@@ -431,7 +431,7 @@ shaping_test!(
     "بأ",
     &["uni0623.fina=1+289", "uni0628.init=0+190"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_8,
@@ -442,7 +442,7 @@ shaping_test!(
     "با\u{654}",
     &["uni0623.fina=1+289", "uni0628.init=0+190"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_9,
@@ -453,7 +453,7 @@ shaping_test!(
     "ؤ",
     &["uni0624=0+400"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_10,
@@ -464,7 +464,7 @@ shaping_test!(
     "و\u{654}",
     &["uni0624=0+400"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_11,
@@ -475,7 +475,7 @@ shaping_test!(
     "بؤ",
     &["uni0624.fina=1+345", "uni0628.init=0+190"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_12,
@@ -486,7 +486,7 @@ shaping_test!(
     "بو\u{654}",
     &["uni0624.fina=1+345", "uni0628.init=0+190"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_13,
@@ -497,7 +497,7 @@ shaping_test!(
     "إ",
     &["uni0625=0+217"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_14,
@@ -508,7 +508,7 @@ shaping_test!(
     "ا\u{655}",
     &["uni0625=0+217"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_15,
@@ -519,7 +519,7 @@ shaping_test!(
     "بإ",
     &["uni0625.fina=1+229", "uni0628.init_Wide=0+285"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_16,
@@ -530,7 +530,7 @@ shaping_test!(
     "با\u{655}",
     &["uni0625.fina=1+229", "uni0628.init_Wide=0+285"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_17,
@@ -541,7 +541,7 @@ shaping_test!(
     "ئ",
     &["uni0626=0+764"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_18,
@@ -552,7 +552,7 @@ shaping_test!(
     "ي\u{654}",
     &["uni0626=0+764"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_19,
@@ -567,7 +567,7 @@ shaping_test!(
         "uni0626.init_BaaBaaYaa=0+203"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_20,
@@ -582,7 +582,7 @@ shaping_test!(
         "uni0626.init_BaaBaaYaa=0+203"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_21,
@@ -593,7 +593,7 @@ shaping_test!(
     "ۀ",
     &["uni06C0=0+369"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_22,
@@ -604,7 +604,7 @@ shaping_test!(
     "ە\u{654}",
     &["uni06C0=0+369"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_23,
@@ -619,7 +619,7 @@ shaping_test!(
         "uni0628.init=0+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_24,
@@ -634,7 +634,7 @@ shaping_test!(
         "uni0628.init=0+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_25,
@@ -645,7 +645,7 @@ shaping_test!(
     "ۂ",
     &["uni06C2=0+369"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_26,
@@ -656,7 +656,7 @@ shaping_test!(
     "ہ\u{654}",
     &["uni06C2=0+369"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_27,
@@ -671,7 +671,7 @@ shaping_test!(
         "uni0628.init=0+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_28,
@@ -686,7 +686,7 @@ shaping_test!(
         "uni0628.init=0+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_29,
@@ -697,7 +697,7 @@ shaping_test!(
     "ۓ",
     &["uni06D3=0+1159"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_30,
@@ -708,7 +708,7 @@ shaping_test!(
     "ے\u{654}",
     &["uni06D3=0+1159"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_31,
@@ -723,7 +723,7 @@ shaping_test!(
         "uni0628.init_BaaBaaYaaBari=0+642"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_32,
@@ -738,7 +738,7 @@ shaping_test!(
         "uni0628.init_BaaBaaYaaBari=0+642"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_33,
@@ -749,7 +749,7 @@ shaping_test!(
     "آ",
     &["MaddaNS=0@211,18+0", "AlefSep=0+330"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_34,
@@ -766,7 +766,7 @@ shaping_test!(
         "BehxIni.A=0+236"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_35,
@@ -777,7 +777,7 @@ shaping_test!(
     "أ",
     &["HamzaAboveNS=0@211,57+0", "AlefSep=0+330"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_36,
@@ -794,7 +794,7 @@ shaping_test!(
         "BehxIni.A=0+236"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_37,
@@ -805,7 +805,7 @@ shaping_test!(
     "ؤ",
     &["HamzaAboveNS=0@216,-309+0", "WawSep=0+422"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_38,
@@ -822,7 +822,7 @@ shaping_test!(
         "BehxIni.outD2WQ=0@0,323+158"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_39,
@@ -833,7 +833,7 @@ shaping_test!(
     "إ",
     &["HamzaBelowNS=0@103,102+0", "AlefSep=0+330"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_40,
@@ -850,7 +850,7 @@ shaping_test!(
         "BehxIni.A=0+236"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_41,
@@ -861,7 +861,7 @@ shaping_test!(
     "ئ",
     &["HamzaAboveNS=0@274,-374+0", "YehxSep=0+860"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_42,
@@ -880,7 +880,7 @@ shaping_test!(
         "BehxIni.outT2=0@0,429+156"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_43,
@@ -891,7 +891,7 @@ shaping_test!(
     "ۀ",
     &["HamzaAboveNS=0@159,-266+0", "HehSep=0+314"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_44,
@@ -908,7 +908,7 @@ shaping_test!(
         "BehxIni.outS1=0@0,-34+235"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_45,
@@ -919,7 +919,7 @@ shaping_test!(
     "ۂ",
     &["HamzaAboveNS=0@159,-266+0", "HehSep=0+314"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_46,
@@ -936,7 +936,7 @@ shaping_test!(
         "BehxIni.outS1=0@0,-34+235"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_47,
@@ -947,7 +947,7 @@ shaping_test!(
     "ۓ",
     &["HamzaAboveNS=0@144,-395+0", "YehBarreeSep=0+1409"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_48,
@@ -963,7 +963,7 @@ shaping_test!(
         "BehxIni.outD2YB=0@0,419+984"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_49,
@@ -974,7 +974,7 @@ shaping_test!(
     "ا\u{653}",
     &["MaddaNS=0@211,18+0", "AlefSep=0+330"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_50,
@@ -991,7 +991,7 @@ shaping_test!(
         "BehxIni.A=0+236"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_51,
@@ -1002,7 +1002,7 @@ shaping_test!(
     "ا\u{654}",
     &["HamzaAboveNS=0@211,57+0", "AlefSep=0+330"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_52,
@@ -1019,7 +1019,7 @@ shaping_test!(
         "BehxIni.A=0+236"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_53,
@@ -1030,7 +1030,7 @@ shaping_test!(
     "و\u{654}",
     &["HamzaAboveNS=0@216,-309+0", "WawSep=0+422"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_54,
@@ -1047,7 +1047,7 @@ shaping_test!(
         "BehxIni.outD2WQ=0@0,323+158"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_55,
@@ -1058,7 +1058,7 @@ shaping_test!(
     "ا\u{655}",
     &["HamzaBelowNS=0@103,102+0", "AlefSep=0+330"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_56,
@@ -1075,7 +1075,7 @@ shaping_test!(
         "BehxIni.A=0+236"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_57,
@@ -1086,7 +1086,7 @@ shaping_test!(
     "ي\u{654}",
     &["HamzaAboveNS=0@274,-374+0", "YehxSep=0+860"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_58,
@@ -1105,7 +1105,7 @@ shaping_test!(
         "BehxIni.outT2=0@0,429+156"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_59,
@@ -1116,7 +1116,7 @@ shaping_test!(
     "ە\u{654}",
     &["HamzaAboveNS=0@159,-266+0", "HehSep=0+314"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_60,
@@ -1133,7 +1133,7 @@ shaping_test!(
         "BehxIni.outS1=0@0,-34+235"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_61,
@@ -1144,7 +1144,7 @@ shaping_test!(
     "ہ\u{654}",
     &["HamzaAboveNS=0@159,-266+0", "HehSep=0+314"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_62,
@@ -1161,7 +1161,7 @@ shaping_test!(
         "BehxIni.outS1=0@0,-34+235"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_63,
@@ -1172,7 +1172,7 @@ shaping_test!(
     "ے\u{654}",
     &["HamzaAboveNS=0@144,-395+0", "YehBarreeSep=0+1409"],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_normalization_64,
@@ -1188,7 +1188,7 @@ shaping_test!(
         "BehxIni.outD2YB=0@0,419+984"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     arabic_stch_1,
@@ -1234,7 +1234,7 @@ shaping_test!(
         "six.small=6+600"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     automatic_fractions_2,
@@ -1253,7 +1253,7 @@ shaping_test!(
         "six.small=6+600"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     automatic_fractions_3,
@@ -1272,7 +1272,7 @@ shaping_test!(
         "uni0666.small=6+600"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     cluster_1,
@@ -1283,7 +1283,7 @@ shaping_test!(
     "x\u{30a}X\u{30a}",
     &["2=0+1083", "3=1@-1132,-8+0", "1=2+1200", "3=3@-1190,349+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     cluster_2,
@@ -1304,7 +1304,7 @@ shaping_test!(
         "uni05D4=0+1338"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     cluster_3,
@@ -1324,7 +1324,7 @@ shaping_test!(
         "lvocalicbeng=5+639"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     cluster_4,
@@ -1335,7 +1335,7 @@ shaping_test!(
     "ൎ\u{d4d}\u{200d}",
     &["uni0D4E=0+0", "uni25CC=0+418", "uni0D4D=0+0", "space=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     collections_1,
@@ -1346,7 +1346,7 @@ shaping_test!(
     "… .",
     &["ellipsis=0+723", "space=1+250", "period=2+241"],
     true,
-    false
+    true
 );
 shaping_test!(
     collections_2,
@@ -1357,7 +1357,7 @@ shaping_test!(
     "… .",
     &["0=0+1000", "0=1+1000", "0=2+1000"],
     true,
-    false
+    true
 );
 shaping_test!(
     collections_3,
@@ -1368,7 +1368,7 @@ shaping_test!(
     "… .",
     &["0=0+1000", "0=1+1000", "0=2+1000"],
     true,
-    false
+    true
 );
 shaping_test!(
     collections_4,
@@ -1379,7 +1379,7 @@ shaping_test!(
     "… .",
     &["ellipsis=0+723", "space=1+250", "period=2+241"],
     true,
-    false
+    true
 );
 shaping_test!(
     collections_5,
@@ -1390,7 +1390,7 @@ shaping_test!(
     "… .",
     &["ellipsis=0+723", "space=1+250", "period=2+241"],
     true,
-    false
+    true
 );
 shaping_test!(
     collections_6,
@@ -1401,7 +1401,7 @@ shaping_test!(
     "… .",
     &["0=0+1000", "0=1+1000", "0=2+1000"],
     true,
-    false
+    true
 );
 shaping_test!(
     color_fonts_1,
@@ -1412,7 +1412,7 @@ shaping_test!(
     "🐯",
     &["1=0+2963<0,2179,2963,-2789>"],
     true,
-    false
+    true
 );
 shaping_test!(
     color_fonts_2,
@@ -1423,7 +1423,7 @@ shaping_test!(
     "😀",
     &["4=0+2550<0,1898,2555,-2405>"],
     true,
-    false
+    true
 );
 shaping_test!(
     context_matching_1,
@@ -1443,7 +1443,7 @@ shaping_test!(
         "uni1A63=3+1212"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     context_matching_2,
@@ -1459,7 +1459,7 @@ shaping_test!(
         "kadeva=2+1561"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     context_matching_3,
@@ -1470,7 +1470,7 @@ shaping_test!(
     "র\u{9cd}থ\u{9cd}যী",
     &["1=0+1320", "13=0+523", "18=0+545"],
     true,
-    false
+    true
 );
 shaping_test!(
     cursive_positioning_1,
@@ -1488,7 +1488,7 @@ shaping_test!(
         "10=0@20,1577+207"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     cursive_positioning_2,
@@ -1506,7 +1506,7 @@ shaping_test!(
         "10=0@20,1177+207"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     cursive_positioning_3,
@@ -1528,7 +1528,7 @@ shaping_test!(
     "𖼊𖽗\u{16f8f}",
     &["u16F0A=0+422", "u16F57=0@0,209+338", "u16F8F=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     default_ignorables_1,
@@ -1539,7 +1539,7 @@ shaping_test!(
     "u\u{361}\u{34f}\u{301}i",
     &["2=0+1266", "7=0@-617,442+0", "5=0@-7,0+0", "1=4+528"],
     true,
-    false
+    true
 );
 shaping_test!(
     default_ignorables_2,
@@ -1556,7 +1556,7 @@ shaping_test!(
         "space=0+452"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     default_ignorables_3,
@@ -1567,7 +1567,7 @@ shaping_test!(
     "ه\u{200d}",
     &["terminal=0+0", "uni0647.init=0+702"],
     true,
-    false
+    true
 );
 shaping_test!(
     default_ignorables_4,
@@ -1578,7 +1578,7 @@ shaping_test!(
     "ه\u{200d}",
     &["uni0647200D=0+702"],
     true,
-    false
+    true
 );
 shaping_test!(
     default_ignorables_5,
@@ -1589,7 +1589,7 @@ shaping_test!(
     "ه\u{200d}",
     &["terminal=0+0", "terminal=0+0", "uni0647.init=0+702"],
     true,
-    false
+    true
 );
 shaping_test!(
     digits_1,
@@ -1605,7 +1605,7 @@ shaping_test!(
         "uni0663.small=3@-493,0+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     digits_2,
@@ -1622,7 +1622,7 @@ shaping_test!(
         "uni0667.prop=4+527"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     digits_3,
@@ -1638,7 +1638,7 @@ shaping_test!(
         "uni0628=3+926"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     digits_4,
@@ -1654,7 +1654,7 @@ shaping_test!(
         "ThreeArabic.encl=0@-584,444+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     digits_5,
@@ -1670,7 +1670,7 @@ shaping_test!(
         "AyahEnd.alt3=0+1724"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     emoji_clusters_1,
@@ -37559,7 +37559,7 @@ shaping_test!(
         "space=0+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     emoji_2,
@@ -37570,7 +37570,7 @@ shaping_test!(
     "🏴\u{e0064}\u{e0065}\u{e007f}",
     &["de=0+3200"],
     true,
-    false
+    true
 );
 shaping_test!(
     emoji_3,
@@ -37581,7 +37581,7 @@ shaping_test!(
     "💁🏻\u{200d}♂\u{fe0f}",
     &["7=0+2550"],
     true,
-    false
+    true
 );
 shaping_test!(
     emoji_4,
@@ -37592,7 +37592,7 @@ shaping_test!(
     "💁🏻\u{200d}♂\u{fe0f}",
     &["7=0+2550"],
     true,
-    false
+    true
 );
 shaping_test!(
     emoji_5,
@@ -37611,7 +37611,7 @@ shaping_test!(
         "space=0+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     fallback_positioning_1,
@@ -37627,7 +37627,7 @@ shaping_test!(
         "acutecomb=2@-151,320+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     fallback_positioning_2,
@@ -37638,7 +37638,7 @@ shaping_test!(
     "a\u{35c}b",
     &["uni0061=0+512", "uni035C=0@0,-128+0", "uni0062=2+512"],
     true,
-    false
+    true
 );
 shaping_test!(
     hangul_jamo_1,
@@ -37649,7 +37649,7 @@ shaping_test!(
     "ᅟᆢ",
     &["3=0+920", "4=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     hangul_jamo_2,
@@ -37660,7 +37660,7 @@ shaping_test!(
     "ᆢ",
     &["1=0+920"],
     true,
-    false
+    true
 );
 shaping_test!(
     hyphens_1,
@@ -37671,7 +37671,7 @@ shaping_test!(
     "‐",
     &["1=0+739"],
     true,
-    false
+    true
 );
 shaping_test!(
     hyphens_2,
@@ -37682,7 +37682,7 @@ shaping_test!(
     "‑",
     &["1=0+739"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_consonant_with_stacker_1,
@@ -37747,7 +37747,7 @@ shaping_test!(
         "bn_nukta=7+1024"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_init_1,
@@ -37769,7 +37769,7 @@ shaping_test!(
     "ଓ\u{200d}\u{b01}",
     &["omorya=0+1450"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_joiner_candrabindu_2,
@@ -37780,7 +37780,7 @@ shaping_test!(
     "ଓ\u{200c}\u{b01}",
     &["oorya=0+1309", "space=1+0", "candrabinduorya=1+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_joiners_1,
@@ -37799,7 +37799,7 @@ shaping_test!(
         "space=7+600"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_joiners_2,
@@ -37816,7 +37816,7 @@ shaping_test!(
         "uni17b8=1+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_joiners_3,
@@ -37833,7 +37833,7 @@ shaping_test!(
         "uni092F=3+924"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_joiners_4,
@@ -37850,7 +37850,7 @@ shaping_test!(
         "uni092F=0+924"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_joiners_5,
@@ -37873,7 +37873,7 @@ shaping_test!(
         "uni092F=6+924"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_joiners_6,
@@ -37896,7 +37896,7 @@ shaping_test!(
         "uni092F=0+924"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_old_spec_1,
@@ -37907,7 +37907,7 @@ shaping_test!(
     "ಚ\u{ccd}ಚ\u{ccd}",
     &["U0C9A_U0CCD.haln=0+1066", "U0C9A_0CCD.blwf=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_old_spec_2,
@@ -37918,7 +37918,7 @@ shaping_test!(
     "സ\u{d4d}റ\u{d4d}റ\u{d4d}",
     &["glyph201=0+1183", "U0D4D=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_old_spec_3,
@@ -37929,7 +37929,7 @@ shaping_test!(
     "ट\u{94d}र\u{94d} ",
     &["Tra=0+550", "virAma=0@-73,-110+0", "space=4+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_old_spec_4,
@@ -37940,7 +37940,7 @@ shaping_test!(
     "ट\u{94d}र\u{942}",
     &["Tra=0+550", "UT=0@42,-150+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_pref_blocking_1,
@@ -37951,7 +37951,7 @@ shaping_test!(
     "യ\u{d4d}രെ",
     &["evowelsignmlym=0+1465", "rapostmlym=0+499", "yamlym=0+2120"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_pref_blocking_2,
@@ -37967,7 +37967,7 @@ shaping_test!(
         "ramlym=0+1507"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_script_extensions_1,
@@ -37986,7 +37986,7 @@ shaping_test!(
         "u1133C=3+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_script_extensions_2,
@@ -38008,7 +38008,7 @@ shaping_test!(
     "ರ\u{ccd}ಕ",
     &["1=0+1176", "5=0+1161"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_special_cases_2,
@@ -38019,7 +38019,7 @@ shaping_test!(
     "ರ\u{200d}\u{ccd}ಕ",
     &["2=0+1334", "6=0+358"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_special_cases_3,
@@ -38030,7 +38030,7 @@ shaping_test!(
     "ರ\u{ccd}\u{200d}ಕ",
     &["2=0+1334", "6=0+358"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_syllable_1,
@@ -38041,7 +38041,7 @@ shaping_test!(
     "த\u{bcd}³",
     &["taprehalftamil=0+1509", "uni00B3=2+674"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_syllable_2,
@@ -38052,7 +38052,7 @@ shaping_test!(
     "ೱ",
     &["1=0+1129"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_syllable_3,
@@ -38063,7 +38063,7 @@ shaping_test!(
     "ೲ",
     &["2=0+1539"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_syllable_4,
@@ -38074,7 +38074,7 @@ shaping_test!(
     "ঀ\u{981}",
     &["anjibeng=0+520", "candrabindubeng=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_syllable_5,
@@ -38089,7 +38089,7 @@ shaping_test!(
         "eematraguru=0@-40,0+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_syllable_6,
@@ -38100,7 +38100,7 @@ shaping_test!(
     "\u{a51}",
     &["uni25CC=0+1044", "udaatguru=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_syllable_7,
@@ -38111,7 +38111,7 @@ shaping_test!(
     "◌\u{a51}",
     &["uni25CC=0+1044", "udaatguru=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_syllable_8,
@@ -38137,7 +38137,7 @@ shaping_test!(
         "eematraguru=0@-411,0+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_syllable_10,
@@ -38148,7 +38148,7 @@ shaping_test!(
     "ਠ\u{a75}\u{a42}",
     &["tthaguru=0+1352", "yakashuuguru=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_syllable_11,
@@ -38159,7 +38159,7 @@ shaping_test!(
     "ବ\u{b55}\u{b3e}",
     &["uni0B2C=0+641", "uni0B55=0+0", "uni0B3E=0+253"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_syllable_12,
@@ -38170,7 +38170,7 @@ shaping_test!(
     "ବ\u{b3e}\u{b55}",
     &["uni0B2C=0+641", "uni0B3E=0+253", "uni0B55=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_1,
@@ -38187,7 +38187,7 @@ shaping_test!(
         "eshortvowelsigndeva=2+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_2,
@@ -38204,7 +38204,7 @@ shaping_test!(
         "aavowelsigndeva=2+259"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_3,
@@ -38221,7 +38221,7 @@ shaping_test!(
         "ideva=2+491"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_4,
@@ -38238,7 +38238,7 @@ shaping_test!(
         "uvowelsigndeva=2+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_5,
@@ -38255,7 +38255,7 @@ shaping_test!(
         "ecandravowelsigndeva=2+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_6,
@@ -38272,7 +38272,7 @@ shaping_test!(
         "eshortvowelsigndeva=2+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_7,
@@ -38289,7 +38289,7 @@ shaping_test!(
         "evowelsigndeva=2+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_8,
@@ -38310,7 +38310,7 @@ shaping_test!(
         "ecandravowelsigndeva=5+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_9,
@@ -38331,7 +38331,7 @@ shaping_test!(
         "eshortvowelsigndeva=5+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_10,
@@ -38352,7 +38352,7 @@ shaping_test!(
         "evowelsigndeva=5+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_11,
@@ -38373,7 +38373,7 @@ shaping_test!(
         "aivowelsigndeva=5+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_12,
@@ -38390,7 +38390,7 @@ shaping_test!(
         "ecandravowelsigndeva=2+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_13,
@@ -38407,7 +38407,7 @@ shaping_test!(
         "oevowelsigndeva=2+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_14,
@@ -38428,7 +38428,7 @@ shaping_test!(
         "oevowelsigndeva=5+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_15,
@@ -38445,7 +38445,7 @@ shaping_test!(
         "awvowelsigndeva=2+259"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_16,
@@ -38462,7 +38462,7 @@ shaping_test!(
         "uevowelsigndeva=2@50,0+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_17,
@@ -38479,7 +38479,7 @@ shaping_test!(
         "uuevowelsigndeva=2@50,0+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_18,
@@ -38496,7 +38496,7 @@ shaping_test!(
         "aavowelsignbeng=2+266"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_19,
@@ -38513,7 +38513,7 @@ shaping_test!(
         "rvocalicvowelsignbeng=2+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_20,
@@ -38530,7 +38530,7 @@ shaping_test!(
         "lvocalicvowelsignbeng=2+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_21,
@@ -38547,7 +38547,7 @@ shaping_test!(
         "aamatraguru=2+481"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_22,
@@ -38564,7 +38564,7 @@ shaping_test!(
         "uni25CC=2+1044"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_23,
@@ -38581,7 +38581,7 @@ shaping_test!(
         "iimatraguru=2+530"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_24,
@@ -38598,7 +38598,7 @@ shaping_test!(
         "umatraguru=2@102,0+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_25,
@@ -38615,7 +38615,7 @@ shaping_test!(
         "uumatraguru=2@102,0+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_26,
@@ -38632,7 +38632,7 @@ shaping_test!(
         "eematraguru=2+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_27,
@@ -38649,7 +38649,7 @@ shaping_test!(
         "aimatraguru=2+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_28,
@@ -38666,7 +38666,7 @@ shaping_test!(
         "oomatraguru=2+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_29,
@@ -38683,7 +38683,7 @@ shaping_test!(
         "aumatraguru=2+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_30,
@@ -38694,7 +38694,7 @@ shaping_test!(
     "આ અા",
     &["3=0+2351", "1=1+612", "2=2+1808", "17=2+1044", "10=2+543"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_31,
@@ -38705,7 +38705,7 @@ shaping_test!(
     "ઍ અ\u{ac5}",
     &["4=0+1808", "1=1+612", "2=2+1808", "17=2+1044", "11=2+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_32,
@@ -38716,7 +38716,7 @@ shaping_test!(
     "એ અ\u{ac7}",
     &["5=0+1808", "1=1+612", "2=2+1808", "17=2+1044", "12=2+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_33,
@@ -38727,7 +38727,7 @@ shaping_test!(
     "ઐ અ\u{ac8}",
     &["6=0+1808", "1=1+612", "2=2+1808", "17=2+1044", "13=2+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_34,
@@ -38738,7 +38738,7 @@ shaping_test!(
     "ઑ અૉ",
     &["7=0+2351", "1=1+612", "2=2+1808", "17=2+1044", "14=2+543"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_35,
@@ -38760,7 +38760,7 @@ shaping_test!(
         "10=5+543"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_36,
@@ -38782,7 +38782,7 @@ shaping_test!(
         "10=5+543"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_37,
@@ -38801,7 +38801,7 @@ shaping_test!(
         "10=1+543"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_38,
@@ -38818,7 +38818,7 @@ shaping_test!(
         "aavowelsignorya=2+387"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_39,
@@ -38835,7 +38835,7 @@ shaping_test!(
         "aulengthmarkorya=2+387"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_40,
@@ -38852,7 +38852,7 @@ shaping_test!(
         "aulengthmarkorya=2+387"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_41,
@@ -38863,7 +38863,7 @@ shaping_test!(
     "ఓ ఒ\u{c55}",
     &["3=0+1497", "1=1+580", "2=2+1497", "13=2+1184", "12=2+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_42,
@@ -38874,7 +38874,7 @@ shaping_test!(
     "ఔ ఒ\u{c4c}",
     &["4=0+1497", "1=1+580", "2=2+1497", "13=2+1184", "11=2+634"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_43,
@@ -38893,7 +38893,7 @@ shaping_test!(
         "12=1+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_44,
@@ -38912,7 +38912,7 @@ shaping_test!(
         "12=1+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_45,
@@ -38931,7 +38931,7 @@ shaping_test!(
         "12=1+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_46,
@@ -38942,7 +38942,7 @@ shaping_test!(
     "ಊ ಉಾ",
     &["3=0+3269", "1=1+590", "2=2+2502", "10=2+1184", "7=2+919"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_47,
@@ -38953,7 +38953,7 @@ shaping_test!(
     "ಔ ಒ\u{ccc}",
     &["6=0+1596", "1=1+590", "5=2+1590", "10=2+1184", "8=2+880"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_48,
@@ -38964,7 +38964,7 @@ shaping_test!(
     "ೠ ಋಾ",
     &["9=0+3214", "1=1+590", "4=2+2440", "10=2+1184", "7=2+919"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_49,
@@ -38975,7 +38975,7 @@ shaping_test!(
     "ഈ ഇ\u{d57}",
     &["3=0+3574", "1=1+632", "2=2+2019", "14=2+1184", "13=2+1555"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_50,
@@ -38986,7 +38986,7 @@ shaping_test!(
     "ഊ ഉ\u{d57}",
     &["5=0+2972", "1=1+632", "4=2+1417", "14=2+1184", "13=2+1555"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_51,
@@ -38997,7 +38997,7 @@ shaping_test!(
     "ഐ എെ",
     &["7=0+4073", "1=1+632", "6=2+2608", "12=2+1465", "14=2+1184"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_52,
@@ -39008,7 +39008,7 @@ shaping_test!(
     "ഓ ഒ\u{d3e}",
     &["9=0+2557", "1=1+632", "8=2+1524", "14=2+1184", "11=2+1033"],
     true,
-    false
+    true
 );
 shaping_test!(
     indic_vowel_letter_spoofing_53,
@@ -39019,7 +39019,7 @@ shaping_test!(
     "ഔ ഒ\u{d57}",
     &["10=0+3073", "1=1+632", "8=2+1524", "14=2+1184", "13=2+1555"],
     true,
-    false
+    true
 );
 shaping_test!(
     item_context_1,
@@ -39041,7 +39041,7 @@ shaping_test!(
         "uniFEDB=0+576"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     item_context_2,
@@ -39061,7 +39061,7 @@ shaping_test!(
         "uniFE98=0+391"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     item_context_3,
@@ -39081,7 +39081,7 @@ shaping_test!(
         "uniFE98=0+391"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     item_context_4,
@@ -39100,7 +39100,7 @@ shaping_test!(
         "uniFEDB=0+576"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     item_context_5,
@@ -39119,7 +39119,7 @@ shaping_test!(
         "uniFEDB=0+576"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     item_context_6,
@@ -39136,7 +39136,7 @@ shaping_test!(
         "uniFE98=0+391"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     item_context_7,
@@ -39153,7 +39153,7 @@ shaping_test!(
         "uniFE98=0+391"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     item_context_8,
@@ -39164,7 +39164,7 @@ shaping_test!(
     "كتب",
     &["uniFE90=2+821", "uniFE98=1+391", "uniFEDB=0+576"],
     true,
-    false
+    true
 );
 shaping_test!(
     item_context_9,
@@ -39180,7 +39180,7 @@ shaping_test!(
         "uniFEDB=0+576"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     item_context_10,
@@ -39191,7 +39191,7 @@ shaping_test!(
     "\u{64e}",
     &["uni25CC=0+679", "uni064E=0@-607,-210+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     item_context_11,
@@ -39202,7 +39202,7 @@ shaping_test!(
     "\u{64e}",
     &["uni064E=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     kern_format2_1,
@@ -39230,7 +39230,7 @@ shaping_test!(
         "p=15+672"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     kern_format2_2,
@@ -39241,7 +39241,7 @@ shaping_test!(
     "ckckck",
     &["c=0+579", "k=1+591", "c=2+579", "k=3+591", "c=4+579", "k=5+591"],
     true,
-    false
+    true
 );
 shaping_test!(
     kern_format2_3,
@@ -39252,7 +39252,7 @@ shaping_test!(
     "AV",
     &["A=0+701", "V=1@-40,0+703"],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_1,
@@ -39269,7 +39269,7 @@ shaping_test!(
         "uni1794=3+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_2,
@@ -39288,7 +39288,7 @@ shaping_test!(
         "uni1794=4+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_3,
@@ -39307,7 +39307,7 @@ shaping_test!(
         "uni1794=5+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_4,
@@ -39326,7 +39326,7 @@ shaping_test!(
         "uni1794=5+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_5,
@@ -39347,7 +39347,7 @@ shaping_test!(
         "uni1794=5+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_6,
@@ -39368,7 +39368,7 @@ shaping_test!(
         "uni1794=6+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_7,
@@ -39389,7 +39389,7 @@ shaping_test!(
         "uni1794=6+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_8,
@@ -39408,7 +39408,7 @@ shaping_test!(
         "uni1794=4+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_9,
@@ -39427,7 +39427,7 @@ shaping_test!(
         "uni1794=5+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_10,
@@ -39446,7 +39446,7 @@ shaping_test!(
         "uni1794=5+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_11,
@@ -39467,7 +39467,7 @@ shaping_test!(
         "uni1794=5+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_12,
@@ -39488,7 +39488,7 @@ shaping_test!(
         "uni1794=6+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_13,
@@ -39509,7 +39509,7 @@ shaping_test!(
         "uni1794=6+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_14,
@@ -39528,7 +39528,7 @@ shaping_test!(
         "uni1794=4+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_15,
@@ -39547,7 +39547,7 @@ shaping_test!(
         "uni1794=4+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_16,
@@ -39568,7 +39568,7 @@ shaping_test!(
         "uni1794=5+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_17,
@@ -39589,7 +39589,7 @@ shaping_test!(
         "uni1794=5+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_18,
@@ -39608,7 +39608,7 @@ shaping_test!(
         "uni1794=4+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_19,
@@ -39627,7 +39627,7 @@ shaping_test!(
         "uni1794=4+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_20,
@@ -39648,7 +39648,7 @@ shaping_test!(
         "uni1794=5+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_21,
@@ -39669,7 +39669,7 @@ shaping_test!(
         "uni1794=5+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_22,
@@ -39689,7 +39689,7 @@ shaping_test!(
         "uni1794=4+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_23,
@@ -39708,7 +39708,7 @@ shaping_test!(
         "uni1794=4+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_24,
@@ -39728,7 +39728,7 @@ shaping_test!(
         "uni1794=4+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_mark_order_25,
@@ -39748,7 +39748,7 @@ shaping_test!(
         "uni1794=4+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_1,
@@ -39759,7 +39759,7 @@ shaping_test!(
     "ខ\u{17d2}មែ",
     &["uni17C2=0+288", "uni1781=0+635", "uni17D21798=0@22,-26+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_2,
@@ -39770,7 +39770,7 @@ shaping_test!(
     "ជា",
     &["uni178717B6=0+923"],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_3,
@@ -39781,7 +39781,7 @@ shaping_test!(
     "ថ\u{17d2}ងៃ",
     &["uni17C3=0+288", "uni1790=0+635", "uni17D21784=0@-1,-26+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_4,
@@ -39792,7 +39792,7 @@ shaping_test!(
     "មា",
     &["uni179817B6=0+923"],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_5,
@@ -39807,7 +39807,7 @@ shaping_test!(
         "uni17BB=0@-22,-296+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_6,
@@ -39818,7 +39818,7 @@ shaping_test!(
     "រ",
     &["uni179A=0+288"],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_7,
@@ -39829,7 +39829,7 @@ shaping_test!(
     "រ\u{17b8}",
     &["uni179A=0+288", "uni17B8.r=0@76,-29+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_8,
@@ -39840,7 +39840,7 @@ shaping_test!(
     "រ\u{17cd}",
     &["uni179A=0+288", "uni17CD.r=0@18,-29+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_9,
@@ -39851,7 +39851,7 @@ shaping_test!(
     "សៅ",
     &["uni17C1=0+288", "uni179F17C5=0+1216"],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_10,
@@ -39862,7 +39862,7 @@ shaping_test!(
     "រ\u{17d2}ឥ",
     &["uni179A=0+288", "uni17D2=0+0", "uni17A5=2+635"],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_11,
@@ -39873,7 +39873,7 @@ shaping_test!(
     "ង\u{17b9}\u{17d2}ឈ",
     &["uni1784=0+635", "uni17B9=0@-46,30+0", "uni17D21788=0+234"],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_12,
@@ -39884,7 +39884,7 @@ shaping_test!(
     "ង\u{17d2}ឈ\u{17b9}",
     &["uni1784=0+635", "uni17D21788=0+234", "uni17B9=0@8,30+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_13,
@@ -39899,7 +39899,7 @@ shaping_test!(
         "uni17D21782=0@0,-26+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_14,
@@ -39914,7 +39914,7 @@ shaping_test!(
         "uni17D21782=0@0,-26+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_15,
@@ -39931,7 +39931,7 @@ shaping_test!(
         "uni17C7=0+386"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_16,
@@ -39949,7 +39949,7 @@ shaping_test!(
         "uni17C7=0+386"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_17,
@@ -39964,7 +39964,7 @@ shaping_test!(
         "uni17D0=0@-46,113+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_18,
@@ -39975,7 +39975,7 @@ shaping_test!(
     "នែ\u{17ce}",
     &["uni17C2=0+288", "uni1793=0+635", "uni17CE=0@-36,-29+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_19,
@@ -39986,7 +39986,7 @@ shaping_test!(
     "កេ\u{17d2}រ",
     &["uni17D2179A=0+287", "uni17C1=0+288", "uni1780=0+636"],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_20,
@@ -40002,7 +40002,7 @@ shaping_test!(
         "uni17C0.right1=0+288"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_21,
@@ -40013,7 +40013,7 @@ shaping_test!(
     "កោ\u{17d2}រ",
     &["uni17D2179A=0+287", "uni17C1=0+288", "uni178017B6=0+924"],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_22,
@@ -40024,7 +40024,7 @@ shaping_test!(
     "កៅ\u{17d2}រ",
     &["uni17D2179A=0+287", "uni17C1=0+288", "uni178017C5=0+924"],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_23,
@@ -40035,7 +40035,7 @@ shaping_test!(
     "ព\u{17d1}ា",
     &["uni179617B6=0+923", "uni17D1=0@-311,-19+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_24,
@@ -40053,7 +40053,7 @@ shaping_test!(
         "uni17CB=7@-23,-29+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_25,
@@ -40072,7 +40072,7 @@ shaping_test!(
         "uni17CB=7@-23,-29+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_26,
@@ -40091,7 +40091,7 @@ shaping_test!(
         "uni17CB=7@-23,-29+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_27,
@@ -40107,7 +40107,7 @@ shaping_test!(
         "uni17D2178F=4@-1,-26+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_28,
@@ -40124,7 +40124,7 @@ shaping_test!(
         "uni17D2178F=4@-1,-26+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_29,
@@ -40141,7 +40141,7 @@ shaping_test!(
         "uni17D2178F=4@-1,-26+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_30,
@@ -40158,7 +40158,7 @@ shaping_test!(
         "uni17D2178F=4@-1,-26+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_31,
@@ -40175,7 +40175,7 @@ shaping_test!(
         "uni17D2178F=4@-1,-26+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_32,
@@ -40192,7 +40192,7 @@ shaping_test!(
         "uni17D2178F=4@-1,-26+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_33,
@@ -40209,7 +40209,7 @@ shaping_test!(
         "uni17D2178F=4@-1,-26+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_34,
@@ -40226,7 +40226,7 @@ shaping_test!(
         "uni17D2178F=4@-1,-26+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_35,
@@ -40244,7 +40244,7 @@ shaping_test!(
         "uni17D2178F=4@-1,-26+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_36,
@@ -40260,7 +40260,7 @@ shaping_test!(
         "uni17C6=0@39,-29+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_37,
@@ -40277,7 +40277,7 @@ shaping_test!(
         "uni17C7=0+386"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_38,
@@ -40294,7 +40294,7 @@ shaping_test!(
         "uni17C6=0@-4,30+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_39,
@@ -40311,7 +40311,7 @@ shaping_test!(
         "uni17C7=0+386"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_40,
@@ -40328,7 +40328,7 @@ shaping_test!(
         "uni17C7=0+386"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_41,
@@ -40345,7 +40345,7 @@ shaping_test!(
         "uni17C7=0+386"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_42,
@@ -40361,7 +40361,7 @@ shaping_test!(
         "uni17C6=0@-4,30+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_43,
@@ -40377,7 +40377,7 @@ shaping_test!(
         "uni17C7=0+386"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_44,
@@ -40388,7 +40388,7 @@ shaping_test!(
     "ញ\u{17bc}",
     &["uni1789=0+952", "uni17BC=0@-173,-260+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_45,
@@ -40399,7 +40399,7 @@ shaping_test!(
     "ញ\u{17d2}ញ",
     &["uni1789.a=0+952", "uni17D21789.a=0@19,-22+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_46,
@@ -40414,7 +40414,7 @@ shaping_test!(
         "uni17BB=0@-160,-296+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_47,
@@ -40429,7 +40429,7 @@ shaping_test!(
         "uni17BC=0@-160,-296+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_48,
@@ -40444,7 +40444,7 @@ shaping_test!(
         "uni17BD=0@-160,-296+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_49,
@@ -40461,7 +40461,7 @@ shaping_test!(
         "uni17C0.right2=0+288"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_50,
@@ -40477,7 +40477,7 @@ shaping_test!(
         "uni17D2179F=0+302"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_51,
@@ -40493,7 +40493,7 @@ shaping_test!(
         "uni17D2179F=0+302"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_52,
@@ -40509,7 +40509,7 @@ shaping_test!(
         "uni17D2179F=0+302"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_53,
@@ -40525,7 +40525,7 @@ shaping_test!(
         "uni17D2179F17B6=0+584"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_54,
@@ -40541,7 +40541,7 @@ shaping_test!(
         "uni17D2179F17C5=0+584"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_55,
@@ -40559,7 +40559,7 @@ shaping_test!(
         "uni17CB=5@-23,-29+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_56,
@@ -40576,7 +40576,7 @@ shaping_test!(
         "uni17CB=4@-23,-29+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_57,
@@ -40593,7 +40593,7 @@ shaping_test!(
         "uni17CB=4@-23,-29+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_58,
@@ -40610,7 +40610,7 @@ shaping_test!(
         "uni17CB=4@-23,-29+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_59,
@@ -40626,7 +40626,7 @@ shaping_test!(
         "uni17C9=0@-334,-29+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_60,
@@ -40643,7 +40643,7 @@ shaping_test!(
         "uni17BB=0@-18,-566+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_61,
@@ -40661,7 +40661,7 @@ shaping_test!(
         "uni17BF.right1=0+288"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_62,
@@ -40679,7 +40679,7 @@ shaping_test!(
         "uni17C0.right1=0+288"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_63,
@@ -40699,7 +40699,7 @@ shaping_test!(
         "uni17D2179B=4@19,-296+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_64,
@@ -40710,7 +40710,7 @@ shaping_test!(
     "រ\u{17d2}រ",
     &["uni17D2179A=0+287", "uni179A=0+288"],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_65,
@@ -40729,7 +40729,7 @@ shaping_test!(
         "uni178417B6=10+923"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_66,
@@ -40749,7 +40749,7 @@ shaping_test!(
         "uni17B7=10@-46,30+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_67,
@@ -40769,7 +40769,7 @@ shaping_test!(
         "uni17B8=10@-46,30+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_68,
@@ -40790,7 +40790,7 @@ shaping_test!(
         "uni17D2179F17B6.low=8+584"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_69,
@@ -40805,7 +40805,7 @@ shaping_test!(
         "uni17D2178F=0@-274,-26+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_70,
@@ -40821,7 +40821,7 @@ shaping_test!(
         "uni17B7=0@-32,-29+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_71,
@@ -40837,7 +40837,7 @@ shaping_test!(
         "uni17B8=0@-32,-29+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_72,
@@ -40853,7 +40853,7 @@ shaping_test!(
         "uni17B9=0@-32,-29+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_73,
@@ -40869,7 +40869,7 @@ shaping_test!(
         "uni17BA=0@-32,-29+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_74,
@@ -40885,7 +40885,7 @@ shaping_test!(
         "uni17BB=0@-6,-296+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_75,
@@ -40901,7 +40901,7 @@ shaping_test!(
         "uni17BC=0@-6,-296+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_76,
@@ -40917,7 +40917,7 @@ shaping_test!(
         "uni17BD=0@-6,-296+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_77,
@@ -40934,7 +40934,7 @@ shaping_test!(
         "uni17B8=0@-32,-29+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_78,
@@ -40951,7 +40951,7 @@ shaping_test!(
         "uni17BF.right2=0+288"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_79,
@@ -40969,7 +40969,7 @@ shaping_test!(
         "uni17BF.right1=0+288"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_80,
@@ -40987,7 +40987,7 @@ shaping_test!(
         "uni17C0.right1.high=0+288"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_81,
@@ -41004,7 +41004,7 @@ shaping_test!(
         "uni17CA=0@-32,-29+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_82,
@@ -41021,7 +41021,7 @@ shaping_test!(
         "uni17CA=0@-32,-29+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_83,
@@ -41038,7 +41038,7 @@ shaping_test!(
         "uni17CA=0@-32,-29+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_84,
@@ -41055,7 +41055,7 @@ shaping_test!(
         "uni17C6=0@-32,113+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_85,
@@ -41073,7 +41073,7 @@ shaping_test!(
         "uni17B8=0@-4,30+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_86,
@@ -41091,7 +41091,7 @@ shaping_test!(
         "uni17BF.right1=0+288"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_87,
@@ -41109,7 +41109,7 @@ shaping_test!(
         "uni17C0.right1.high=0+288"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_88,
@@ -41126,7 +41126,7 @@ shaping_test!(
         "uni17D21780=5@0,-26+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_89,
@@ -41143,7 +41143,7 @@ shaping_test!(
         "uni1784=7+635"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     khmer_misc_90,
@@ -41159,7 +41159,7 @@ shaping_test!(
         "uni17D2=0+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     language_tags_1,
@@ -41170,7 +41170,7 @@ shaping_test!(
     "J",
     &["2=0+1000"],
     true,
-    false
+    true
 );
 shaping_test!(
     language_tags_2,
@@ -41181,7 +41181,7 @@ shaping_test!(
     "J",
     &["2=0+1000"],
     true,
-    false
+    true
 );
 shaping_test!(
     language_tags_3,
@@ -41192,7 +41192,7 @@ shaping_test!(
     "J",
     &["4=0+1000"],
     true,
-    false
+    true
 );
 shaping_test!(
     language_tags_4,
@@ -41203,7 +41203,7 @@ shaping_test!(
     "J",
     &["4=0+1000"],
     true,
-    false
+    true
 );
 shaping_test!(
     language_tags_5,
@@ -41214,7 +41214,7 @@ shaping_test!(
     "J",
     &["4=0+1000"],
     true,
-    false
+    true
 );
 shaping_test!(
     language_tags_6,
@@ -41225,7 +41225,7 @@ shaping_test!(
     "J",
     &["5=0+1000"],
     true,
-    false
+    true
 );
 shaping_test!(
     language_tags_7,
@@ -41236,7 +41236,7 @@ shaping_test!(
     "J",
     &["4=0+1000"],
     true,
-    false
+    true
 );
 shaping_test!(
     language_tags_8,
@@ -41247,7 +41247,7 @@ shaping_test!(
     "J",
     &["5=0+1000"],
     true,
-    false
+    true
 );
 shaping_test!(
     language_tags_9,
@@ -41258,7 +41258,7 @@ shaping_test!(
     "J",
     &["6=0+1000"],
     true,
-    false
+    true
 );
 shaping_test!(
     language_tags_10,
@@ -41269,7 +41269,7 @@ shaping_test!(
     "J",
     &["6=0+1000"],
     true,
-    false
+    true
 );
 shaping_test!(
     language_tags_11,
@@ -41280,7 +41280,7 @@ shaping_test!(
     "J",
     &["6=0+1000"],
     true,
-    false
+    true
 );
 shaping_test!(
     language_tags_12,
@@ -41291,7 +41291,7 @@ shaping_test!(
     "J",
     &["6=0+1000"],
     true,
-    false
+    true
 );
 shaping_test!(
     language_tags_13,
@@ -41318,7 +41318,7 @@ shaping_test!(
         "u0995_u09CD.half_u09B2.pres=7+602"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     ligature_id_2,
@@ -41335,7 +41335,7 @@ shaping_test!(
         "u0995_u09CD.half_u09B2.pres=10+602"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     ligature_id_3,
@@ -41353,7 +41353,7 @@ shaping_test!(
         "u0995_u09CD.half_u09B2.pres=13+602"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     ligature_id_4,
@@ -41372,7 +41372,7 @@ shaping_test!(
         "u0995_u09CD.half_u09B2.pres=16+602"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     ligature_id_5,
@@ -41392,7 +41392,7 @@ shaping_test!(
         "u0995_u09CD.half_u09B2.pres=19+602"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     ligature_id_6,
@@ -41413,7 +41413,7 @@ shaping_test!(
         "u0995_u09CD.half_u09B2.pres=22+602"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     ligature_id_7,
@@ -41435,7 +41435,7 @@ shaping_test!(
         "u0995_u09CD.half_u09B2.pres=25+602"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     ligature_id_8,
@@ -41458,35 +41458,35 @@ shaping_test!(
         "u0995_u09CD.half_u09B2.pres=28+602"
     ],
     true,
-    false
+    true
 );
-shaping_test!(ligature_id_9, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "space=27+213", "u0995_u09B0_u09CD.blwf.vatu=28+643", "u0995_u09CD.half_u09B2.pres=31+602"], true, false);
-shaping_test!(ligature_id_10, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "space=30+213", "u0995_u09B0_u09CD.blwf.vatu=31+643", "u0995_u09CD.half_u09B2.pres=34+602"], true, false);
-shaping_test!(ligature_id_11, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "space=33+213", "u0995_u09B0_u09CD.blwf.vatu=34+643", "u0995_u09CD.half_u09B2.pres=37+602"], true, false);
-shaping_test!(ligature_id_12, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "space=36+213", "u0995_u09B0_u09CD.blwf.vatu=37+643", "u0995_u09CD.half_u09B2.pres=40+602"], true, false);
-shaping_test!(ligature_id_13, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "space=39+213", "u0995_u09B0_u09CD.blwf.vatu=40+643", "u0995_u09CD.half_u09B2.pres=43+602"], true, false);
-shaping_test!(ligature_id_14, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "space=42+213", "u0995_u09B0_u09CD.blwf.vatu=43+643", "u0995_u09CD.half_u09B2.pres=46+602"], true, false);
-shaping_test!(ligature_id_15, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "space=45+213", "u0995_u09B0_u09CD.blwf.vatu=46+643", "u0995_u09CD.half_u09B2.pres=49+602"], true, false);
-shaping_test!(ligature_id_16, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "space=48+213", "u0995_u09B0_u09CD.blwf.vatu=49+643", "u0995_u09CD.half_u09B2.pres=52+602"], true, false);
-shaping_test!(ligature_id_17, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "space=51+213", "u0995_u09B0_u09CD.blwf.vatu=52+643", "u0995_u09CD.half_u09B2.pres=55+602"], true, false);
-shaping_test!(ligature_id_18, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "space=54+213", "u0995_u09B0_u09CD.blwf.vatu=55+643", "u0995_u09CD.half_u09B2.pres=58+602"], true, false);
-shaping_test!(ligature_id_19, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "space=57+213", "u0995_u09B0_u09CD.blwf.vatu=58+643", "u0995_u09CD.half_u09B2.pres=61+602"], true, false);
-shaping_test!(ligature_id_20, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "space=60+213", "u0995_u09B0_u09CD.blwf.vatu=61+643", "u0995_u09CD.half_u09B2.pres=64+602"], true, false);
-shaping_test!(ligature_id_21, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "space=63+213", "u0995_u09B0_u09CD.blwf.vatu=64+643", "u0995_u09CD.half_u09B2.pres=67+602"], true, false);
-shaping_test!(ligature_id_22, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "space=66+213", "u0995_u09B0_u09CD.blwf.vatu=67+643", "u0995_u09CD.half_u09B2.pres=70+602"], true, false);
-shaping_test!(ligature_id_23, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "space=69+213", "u0995_u09B0_u09CD.blwf.vatu=70+643", "u0995_u09CD.half_u09B2.pres=73+602"], true, false);
-shaping_test!(ligature_id_24, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "space=72+213", "u0995_u09B0_u09CD.blwf.vatu=73+643", "u0995_u09CD.half_u09B2.pres=76+602"], true, false);
-shaping_test!(ligature_id_25, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "space=75+213", "u0995_u09B0_u09CD.blwf.vatu=76+643", "u0995_u09CD.half_u09B2.pres=79+602"], true, false);
-shaping_test!(ligature_id_26, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "u0995_u09CD.half_u0995.pres=75+566", "space=78+213", "u0995_u09B0_u09CD.blwf.vatu=79+643", "u0995_u09CD.half_u09B2.pres=82+602"], true, false);
-shaping_test!(ligature_id_27, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "u0995_u09CD.half_u0995.pres=75+566", "u0995_u09CD.half_u0995.pres=78+566", "space=81+213", "u0995_u09B0_u09CD.blwf.vatu=82+643", "u0995_u09CD.half_u09B2.pres=85+602"], true, false);
-shaping_test!(ligature_id_28, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "u0995_u09CD.half_u0995.pres=75+566", "u0995_u09CD.half_u0995.pres=78+566", "u0995_u09CD.half_u0995.pres=81+566", "space=84+213", "u0995_u09B0_u09CD.blwf.vatu=85+643", "u0995_u09CD.half_u09B2.pres=88+602"], true, false);
-shaping_test!(ligature_id_29, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "u0995_u09CD.half_u0995.pres=75+566", "u0995_u09CD.half_u0995.pres=78+566", "u0995_u09CD.half_u0995.pres=81+566", "u0995_u09CD.half_u0995.pres=84+566", "space=87+213", "u0995_u09B0_u09CD.blwf.vatu=88+643", "u0995_u09CD.half_u09B2.pres=91+602"], true, false);
-shaping_test!(ligature_id_30, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "u0995_u09CD.half_u0995.pres=75+566", "u0995_u09CD.half_u0995.pres=78+566", "u0995_u09CD.half_u0995.pres=81+566", "u0995_u09CD.half_u0995.pres=84+566", "u0995_u09CD.half_u0995.pres=87+566", "space=90+213", "u0995_u09B0_u09CD.blwf.vatu=91+643", "u0995_u09CD.half_u09B2.pres=94+602"], true, false);
-shaping_test!(ligature_id_31, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "u0995_u09CD.half_u0995.pres=75+566", "u0995_u09CD.half_u0995.pres=78+566", "u0995_u09CD.half_u0995.pres=81+566", "u0995_u09CD.half_u0995.pres=84+566", "u0995_u09CD.half_u0995.pres=87+566", "u0995_u09CD.half_u0995.pres=90+566", "space=93+213", "u0995_u09B0_u09CD.blwf.vatu=94+643", "u0995_u09CD.half_u09B2.pres=97+602"], true, false);
-shaping_test!(ligature_id_32, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "u0995_u09CD.half_u0995.pres=75+566", "u0995_u09CD.half_u0995.pres=78+566", "u0995_u09CD.half_u0995.pres=81+566", "u0995_u09CD.half_u0995.pres=84+566", "u0995_u09CD.half_u0995.pres=87+566", "u0995_u09CD.half_u0995.pres=90+566", "u0995_u09CD.half_u0995.pres=93+566", "space=96+213", "u0995_u09B0_u09CD.blwf.vatu=97+643", "u0995_u09CD.half_u09B2.pres=100+602"], true, false);
-shaping_test!(ligature_id_33, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "u0995_u09CD.half_u0995.pres=75+566", "u0995_u09CD.half_u0995.pres=78+566", "u0995_u09CD.half_u0995.pres=81+566", "u0995_u09CD.half_u0995.pres=84+566", "u0995_u09CD.half_u0995.pres=87+566", "u0995_u09CD.half_u0995.pres=90+566", "u0995_u09CD.half_u0995.pres=93+566", "u0995_u09CD.half_u0995.pres=96+566", "space=99+213", "u0995_u09B0_u09CD.blwf.vatu=100+643", "u0995_u09CD.half_u09B2.pres=103+602"], true, false);
-shaping_test!(ligature_id_34, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "u0995_u09CD.half_u0995.pres=75+566", "u0995_u09CD.half_u0995.pres=78+566", "u0995_u09CD.half_u0995.pres=81+566", "u0995_u09CD.half_u0995.pres=84+566", "u0995_u09CD.half_u0995.pres=87+566", "u0995_u09CD.half_u0995.pres=90+566", "u0995_u09CD.half_u0995.pres=93+566", "u0995_u09CD.half_u0995.pres=96+566", "u0995_u09CD.half_u0995.pres=99+566", "space=102+213", "u0995_u09B0_u09CD.blwf.vatu=103+643", "u0995_u09CD.half_u09B2.pres=106+602"], true, false);
-shaping_test!(ligature_id_35, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "u0995_u09CD.half_u0995.pres=75+566", "u0995_u09CD.half_u0995.pres=78+566", "u0995_u09CD.half_u0995.pres=81+566", "u0995_u09CD.half_u0995.pres=84+566", "u0995_u09CD.half_u0995.pres=87+566", "u0995_u09CD.half_u0995.pres=90+566", "u0995_u09CD.half_u0995.pres=93+566", "u0995_u09CD.half_u0995.pres=96+566", "u0995_u09CD.half_u0995.pres=99+566", "u0995_u09CD.half_u0995.pres=102+566", "space=105+213", "u0995_u09B0_u09CD.blwf.vatu=106+643", "u0995_u09CD.half_u09B2.pres=109+602"], true, false);
+shaping_test!(ligature_id_9, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "space=27+213", "u0995_u09B0_u09CD.blwf.vatu=28+643", "u0995_u09CD.half_u09B2.pres=31+602"], true, true);
+shaping_test!(ligature_id_10, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "space=30+213", "u0995_u09B0_u09CD.blwf.vatu=31+643", "u0995_u09CD.half_u09B2.pres=34+602"], true, true);
+shaping_test!(ligature_id_11, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "space=33+213", "u0995_u09B0_u09CD.blwf.vatu=34+643", "u0995_u09CD.half_u09B2.pres=37+602"], true, true);
+shaping_test!(ligature_id_12, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "space=36+213", "u0995_u09B0_u09CD.blwf.vatu=37+643", "u0995_u09CD.half_u09B2.pres=40+602"], true, true);
+shaping_test!(ligature_id_13, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "space=39+213", "u0995_u09B0_u09CD.blwf.vatu=40+643", "u0995_u09CD.half_u09B2.pres=43+602"], true, true);
+shaping_test!(ligature_id_14, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "space=42+213", "u0995_u09B0_u09CD.blwf.vatu=43+643", "u0995_u09CD.half_u09B2.pres=46+602"], true, true);
+shaping_test!(ligature_id_15, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "space=45+213", "u0995_u09B0_u09CD.blwf.vatu=46+643", "u0995_u09CD.half_u09B2.pres=49+602"], true, true);
+shaping_test!(ligature_id_16, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "space=48+213", "u0995_u09B0_u09CD.blwf.vatu=49+643", "u0995_u09CD.half_u09B2.pres=52+602"], true, true);
+shaping_test!(ligature_id_17, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "space=51+213", "u0995_u09B0_u09CD.blwf.vatu=52+643", "u0995_u09CD.half_u09B2.pres=55+602"], true, true);
+shaping_test!(ligature_id_18, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "space=54+213", "u0995_u09B0_u09CD.blwf.vatu=55+643", "u0995_u09CD.half_u09B2.pres=58+602"], true, true);
+shaping_test!(ligature_id_19, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "space=57+213", "u0995_u09B0_u09CD.blwf.vatu=58+643", "u0995_u09CD.half_u09B2.pres=61+602"], true, true);
+shaping_test!(ligature_id_20, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "space=60+213", "u0995_u09B0_u09CD.blwf.vatu=61+643", "u0995_u09CD.half_u09B2.pres=64+602"], true, true);
+shaping_test!(ligature_id_21, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "space=63+213", "u0995_u09B0_u09CD.blwf.vatu=64+643", "u0995_u09CD.half_u09B2.pres=67+602"], true, true);
+shaping_test!(ligature_id_22, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "space=66+213", "u0995_u09B0_u09CD.blwf.vatu=67+643", "u0995_u09CD.half_u09B2.pres=70+602"], true, true);
+shaping_test!(ligature_id_23, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "space=69+213", "u0995_u09B0_u09CD.blwf.vatu=70+643", "u0995_u09CD.half_u09B2.pres=73+602"], true, true);
+shaping_test!(ligature_id_24, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "space=72+213", "u0995_u09B0_u09CD.blwf.vatu=73+643", "u0995_u09CD.half_u09B2.pres=76+602"], true, true);
+shaping_test!(ligature_id_25, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "space=75+213", "u0995_u09B0_u09CD.blwf.vatu=76+643", "u0995_u09CD.half_u09B2.pres=79+602"], true, true);
+shaping_test!(ligature_id_26, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "u0995_u09CD.half_u0995.pres=75+566", "space=78+213", "u0995_u09B0_u09CD.blwf.vatu=79+643", "u0995_u09CD.half_u09B2.pres=82+602"], true, true);
+shaping_test!(ligature_id_27, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "u0995_u09CD.half_u0995.pres=75+566", "u0995_u09CD.half_u0995.pres=78+566", "space=81+213", "u0995_u09B0_u09CD.blwf.vatu=82+643", "u0995_u09CD.half_u09B2.pres=85+602"], true, true);
+shaping_test!(ligature_id_28, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "u0995_u09CD.half_u0995.pres=75+566", "u0995_u09CD.half_u0995.pres=78+566", "u0995_u09CD.half_u0995.pres=81+566", "space=84+213", "u0995_u09B0_u09CD.blwf.vatu=85+643", "u0995_u09CD.half_u09B2.pres=88+602"], true, true);
+shaping_test!(ligature_id_29, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "u0995_u09CD.half_u0995.pres=75+566", "u0995_u09CD.half_u0995.pres=78+566", "u0995_u09CD.half_u0995.pres=81+566", "u0995_u09CD.half_u0995.pres=84+566", "space=87+213", "u0995_u09B0_u09CD.blwf.vatu=88+643", "u0995_u09CD.half_u09B2.pres=91+602"], true, true);
+shaping_test!(ligature_id_30, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "u0995_u09CD.half_u0995.pres=75+566", "u0995_u09CD.half_u0995.pres=78+566", "u0995_u09CD.half_u0995.pres=81+566", "u0995_u09CD.half_u0995.pres=84+566", "u0995_u09CD.half_u0995.pres=87+566", "space=90+213", "u0995_u09B0_u09CD.blwf.vatu=91+643", "u0995_u09CD.half_u09B2.pres=94+602"], true, true);
+shaping_test!(ligature_id_31, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "u0995_u09CD.half_u0995.pres=75+566", "u0995_u09CD.half_u0995.pres=78+566", "u0995_u09CD.half_u0995.pres=81+566", "u0995_u09CD.half_u0995.pres=84+566", "u0995_u09CD.half_u0995.pres=87+566", "u0995_u09CD.half_u0995.pres=90+566", "space=93+213", "u0995_u09B0_u09CD.blwf.vatu=94+643", "u0995_u09CD.half_u09B2.pres=97+602"], true, true);
+shaping_test!(ligature_id_32, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "u0995_u09CD.half_u0995.pres=75+566", "u0995_u09CD.half_u0995.pres=78+566", "u0995_u09CD.half_u0995.pres=81+566", "u0995_u09CD.half_u0995.pres=84+566", "u0995_u09CD.half_u0995.pres=87+566", "u0995_u09CD.half_u0995.pres=90+566", "u0995_u09CD.half_u0995.pres=93+566", "space=96+213", "u0995_u09B0_u09CD.blwf.vatu=97+643", "u0995_u09CD.half_u09B2.pres=100+602"], true, true);
+shaping_test!(ligature_id_33, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "u0995_u09CD.half_u0995.pres=75+566", "u0995_u09CD.half_u0995.pres=78+566", "u0995_u09CD.half_u0995.pres=81+566", "u0995_u09CD.half_u0995.pres=84+566", "u0995_u09CD.half_u0995.pres=87+566", "u0995_u09CD.half_u0995.pres=90+566", "u0995_u09CD.half_u0995.pres=93+566", "u0995_u09CD.half_u0995.pres=96+566", "space=99+213", "u0995_u09B0_u09CD.blwf.vatu=100+643", "u0995_u09CD.half_u09B2.pres=103+602"], true, true);
+shaping_test!(ligature_id_34, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "u0995_u09CD.half_u0995.pres=75+566", "u0995_u09CD.half_u0995.pres=78+566", "u0995_u09CD.half_u0995.pres=81+566", "u0995_u09CD.half_u0995.pres=84+566", "u0995_u09CD.half_u0995.pres=87+566", "u0995_u09CD.half_u0995.pres=90+566", "u0995_u09CD.half_u0995.pres=93+566", "u0995_u09CD.half_u0995.pres=96+566", "u0995_u09CD.half_u0995.pres=99+566", "space=102+213", "u0995_u09B0_u09CD.blwf.vatu=103+643", "u0995_u09CD.half_u09B2.pres=106+602"], true, true);
+shaping_test!(ligature_id_35, "tests\\fonts\\in-house\\1c2fb74c1b2aa173262734c1f616148f1648cfd6.ttf", 75, &[], &[], "ক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}কক\u{9cd}ক ক\u{9cd}রক\u{9cd}ল", &["u0995_u09CD.half_u0995.pres=0+566", "u0995_u09CD.half_u0995.pres=3+566", "u0995_u09CD.half_u0995.pres=6+566", "u0995_u09CD.half_u0995.pres=9+566", "u0995_u09CD.half_u0995.pres=12+566", "u0995_u09CD.half_u0995.pres=15+566", "u0995_u09CD.half_u0995.pres=18+566", "u0995_u09CD.half_u0995.pres=21+566", "u0995_u09CD.half_u0995.pres=24+566", "u0995_u09CD.half_u0995.pres=27+566", "u0995_u09CD.half_u0995.pres=30+566", "u0995_u09CD.half_u0995.pres=33+566", "u0995_u09CD.half_u0995.pres=36+566", "u0995_u09CD.half_u0995.pres=39+566", "u0995_u09CD.half_u0995.pres=42+566", "u0995_u09CD.half_u0995.pres=45+566", "u0995_u09CD.half_u0995.pres=48+566", "u0995_u09CD.half_u0995.pres=51+566", "u0995_u09CD.half_u0995.pres=54+566", "u0995_u09CD.half_u0995.pres=57+566", "u0995_u09CD.half_u0995.pres=60+566", "u0995_u09CD.half_u0995.pres=63+566", "u0995_u09CD.half_u0995.pres=66+566", "u0995_u09CD.half_u0995.pres=69+566", "u0995_u09CD.half_u0995.pres=72+566", "u0995_u09CD.half_u0995.pres=75+566", "u0995_u09CD.half_u0995.pres=78+566", "u0995_u09CD.half_u0995.pres=81+566", "u0995_u09CD.half_u0995.pres=84+566", "u0995_u09CD.half_u0995.pres=87+566", "u0995_u09CD.half_u0995.pres=90+566", "u0995_u09CD.half_u0995.pres=93+566", "u0995_u09CD.half_u0995.pres=96+566", "u0995_u09CD.half_u0995.pres=99+566", "u0995_u09CD.half_u0995.pres=102+566", "space=105+213", "u0995_u09B0_u09CD.blwf.vatu=106+643", "u0995_u09CD.half_u09B2.pres=109+602"], true, true);
 shaping_test!(
     ligature_id_36,
     "tests\\fonts\\in-house\\a6c76d1bafde4a0b1026ebcc932d2e5c6fd02442.ttf",
@@ -41496,7 +41496,7 @@ shaping_test!(
     "င\u{103a}\u{1039}ရ\u{103d}\u{102d}",
     &["uni101B103D=0+450", "uni1004103A1039102D=0@-50,0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     ligature_id_37,
@@ -41512,7 +41512,7 @@ shaping_test!(
         "lam_lam_hehar=0+1200"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41524,7 +41524,7 @@ shaping_test!(
     "１",
     &["781=0@-78,0+842"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41536,7 +41536,7 @@ shaping_test!(
     "ABCD",
     &["A=0+1413", "B=1+1178", "C=2+1417", "D=3+1534"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41548,7 +41548,7 @@ shaping_test!(
     "m\u{300}",
     &["m=0+1706", "gravecmb=0@-284,10+0"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41560,7 +41560,7 @@ shaping_test!(
     "m\u{300}",
     &["mgrave=0+1912"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41572,7 +41572,7 @@ shaping_test!(
     "fi",
     &["fi=0+1139"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41593,7 +41593,7 @@ shaping_test!(
         "km_ro=9+593"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41616,7 +41616,7 @@ shaping_test!(
         "tgc_ttu=12+1833"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41634,7 +41634,7 @@ shaping_test!(
         "Z=5+1251"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41646,7 +41646,7 @@ shaping_test!(
     "ס\u{5b0}",
     &["shevahebrew=0@51,0+0", "samekhhebrew=0+1361"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41676,7 +41676,7 @@ shaping_test!(
         "f_j=24+1098"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41709,7 +41709,7 @@ shaping_test!(
         "d=19@-45,0+1006"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41746,7 +41746,7 @@ shaping_test!(
         "u0627.alef=0+647"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41763,7 +41763,7 @@ shaping_test!(
         "u0628.initial.beh=0+656"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41775,7 +41775,7 @@ shaping_test!(
     "رب",
     &["u0628.beh=1+1415", "u0631.reh=0@-202,0+700"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41787,7 +41787,7 @@ shaping_test!(
     "ب\u{64f}",
     &["u064f.damma=0@250,-250+250", "u0628.beh=0@-250,0+1165"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41804,7 +41804,7 @@ shaping_test!(
         "u0644_u0645.initial.lamMeem=0@-410,0+415"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41837,7 +41837,7 @@ shaping_test!(
         "576=19@-105,0+1068"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41870,7 +41870,7 @@ shaping_test!(
         "576=19@-40,0+1198"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41882,7 +41882,7 @@ shaping_test!(
     "👨\u{200d}👩\u{200d}👧\u{200d}👦",
     &["u1F46A.MWGB=0+800"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41951,10 +41951,10 @@ shaping_test!(
         "Z_a_p_f_i_n_o=66+2333"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
-shaping_test!(macos_21, "/System/Library/Fonts/ヒラキ\u{3099}ノ明朝 ProN W3.ttc@e3bd65c7209ceab2c70ef22d3ebe0967ab319ed3", 75, &[("font-funcs", 1)], &[("direction", 0.0)], "[Hello4]", &["60=0@-157,-880+0,-1000", "41=1@-398,-880+0,-1000", "70=2@-267,-880+0,-1000", "77=3@-148,-880+0,-1000", "77=4@-148,-880+0,-1000", "80=5@-291,-880+0,-1000", "21=6@-294,-880+0,-1000", "62=7@-157,-880+0,-1000"], true, false);
+shaping_test!(macos_21, "/System/Library/Fonts/ヒラキ\u{3099}ノ明朝 ProN W3.ttc@e3bd65c7209ceab2c70ef22d3ebe0967ab319ed3", 75, &[("font-funcs", 1)], &[("direction", 0.0)], "[Hello4]", &["60=0@-157,-880+0,-1000", "41=1@-398,-880+0,-1000", "70=2@-267,-880+0,-1000", "77=3@-148,-880+0,-1000", "77=4@-148,-880+0,-1000", "80=5@-291,-880+0,-1000", "21=6@-294,-880+0,-1000", "62=7@-157,-880+0,-1000"], true, true);
 #[cfg(target_os = "macos")]
 shaping_test!(
     macos_22,
@@ -41965,7 +41965,7 @@ shaping_test!(
     "fine",
     &["fi=0+1139", "n=2+1024", "e=3+909"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41977,7 +41977,7 @@ shaping_test!(
     "fine",
     &["f=0+682", "i=1+569", "n=2+1024", "e=3+909"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -41989,7 +41989,7 @@ shaping_test!(
     "ར\u{f92}\u{fb1}\u{f74}",
     &["r_g_y_u=0+1579"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42001,7 +42001,7 @@ shaping_test!(
     "ར\u{f92}\u{fb1}\u{f74}",
     &["r_g_y_u=0+1579"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42013,7 +42013,7 @@ shaping_test!(
     "first",
     &["f_i=0+1097", "r=2+853", "s=3+728", "t=4+725"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42025,7 +42025,7 @@ shaping_test!(
     "first",
     &["f_i=0+1097", "r=2+853", "s_t=3+1438"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42037,7 +42037,7 @@ shaping_test!(
     "first",
     &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42049,7 +42049,7 @@ shaping_test!(
     "first",
     &["f_i=0+1097", "r=2+853", "s_t=3+1438"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42061,7 +42061,7 @@ shaping_test!(
     "first",
     &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42079,7 +42079,7 @@ shaping_test!(
         "T.small=4+1075"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42091,7 +42091,7 @@ shaping_test!(
     "first",
     &["f=0+639", "i=1+606", "r=2+853", "s_t=3+1438"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42103,7 +42103,7 @@ shaping_test!(
     "m\u{300}",
     &["m=0+1706", "gravecmb=0@-284,10+0"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42115,7 +42115,7 @@ shaping_test!(
     "m\u{300}",
     &["mgrave=0+1912"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42127,7 +42127,7 @@ shaping_test!(
     "fi",
     &["fi=0+1139"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42148,7 +42148,7 @@ shaping_test!(
         "km_ro=9+593"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42171,7 +42171,7 @@ shaping_test!(
         "tgc_ttu=12+1833"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42189,7 +42189,7 @@ shaping_test!(
         "Z=5+1251"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42201,7 +42201,7 @@ shaping_test!(
     "ס\u{5b0}",
     &["shevahebrew=0@51,0+0", "samekhhebrew=0+1361"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42231,7 +42231,7 @@ shaping_test!(
         "f_j=24+1098"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42264,7 +42264,7 @@ shaping_test!(
         "d=19@-45,0+1006"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42301,7 +42301,7 @@ shaping_test!(
         "u0627.alef=0+647"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42318,7 +42318,7 @@ shaping_test!(
         "u0628.initial.beh=0+656"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42330,7 +42330,7 @@ shaping_test!(
     "رب",
     &["u0628.beh=1+1415", "u0631.reh=0@-202,0+700"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42342,7 +42342,7 @@ shaping_test!(
     "ب\u{64f}",
     &["u064f.damma=0@250,-250+250", "u0628.beh=0@-250,0+1165"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42359,7 +42359,7 @@ shaping_test!(
         "u0644_u0645.initial.lamMeem=0@-410,0+415"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42392,7 +42392,7 @@ shaping_test!(
         "649=19@-135,0+999"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42425,7 +42425,7 @@ shaping_test!(
         "649=19@-70,0+1129"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42437,7 +42437,7 @@ shaping_test!(
     "👨\u{200d}👩\u{200d}👧\u{200d}👦",
     &["u1F46A.MWGB=0+800"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42506,7 +42506,7 @@ shaping_test!(
         "Z_a_p_f_i_n_o=66+2333"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42521,7 +42521,7 @@ shaping_test!(
         "maitrithai.key=0+1300"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42533,7 +42533,7 @@ shaping_test!(
     "fine",
     &["fi=0+1139", "n=2+1024", "e=3+909"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42545,7 +42545,7 @@ shaping_test!(
     "fine",
     &["f=0+682", "i=1+569", "n=2+1024", "e=3+909"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42557,7 +42557,7 @@ shaping_test!(
     "ར\u{f92}\u{fb1}\u{f74}",
     &["r_g_y_u=0+1579"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42569,7 +42569,7 @@ shaping_test!(
     "ར\u{f92}\u{fb1}\u{f74}",
     &["r_g_y_u=0+1579"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42581,7 +42581,7 @@ shaping_test!(
     "first",
     &["f_i=0+1097", "r=2+853", "s=3+728", "t=4+725"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42593,7 +42593,7 @@ shaping_test!(
     "first",
     &["f_i=0+1097", "r=2+853", "s_t=3+1438"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42605,7 +42605,7 @@ shaping_test!(
     "first",
     &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42617,7 +42617,7 @@ shaping_test!(
     "first",
     &["f_i=0+1097", "r=2+853", "s_t=3+1438"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42629,7 +42629,7 @@ shaping_test!(
     "first",
     &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42647,7 +42647,7 @@ shaping_test!(
         "T.small=4+1075"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42659,7 +42659,7 @@ shaping_test!(
     "first",
     &["f=0+639", "i=1+606", "r=2+853", "s_t=3+1438"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42671,7 +42671,7 @@ shaping_test!(
     "m\u{300}",
     &["m=0+1706", "gravecmb=0@-284,10+0"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42683,7 +42683,7 @@ shaping_test!(
     "m\u{300}",
     &["mgrave=0+1912"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42695,7 +42695,7 @@ shaping_test!(
     "fi",
     &["fi=0+1139"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42716,7 +42716,7 @@ shaping_test!(
         "km_ro=9+712"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42739,7 +42739,7 @@ shaping_test!(
         "tgc_ttu=12+1833"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42757,7 +42757,7 @@ shaping_test!(
         "Z=5+1251"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42769,7 +42769,7 @@ shaping_test!(
     "ס\u{5b0}",
     &["shevahebrew=0@51,0+0", "samekhhebrew=0+1361"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42799,7 +42799,7 @@ shaping_test!(
         "f_j=24+1098"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42832,7 +42832,7 @@ shaping_test!(
         "d=19@-45,0+1006"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42869,7 +42869,7 @@ shaping_test!(
         "u0627.alef=0+647"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42886,7 +42886,7 @@ shaping_test!(
         "u0628.initial.beh=0+656"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42898,7 +42898,7 @@ shaping_test!(
     "رب",
     &["u0628.beh=1+1415", "u0631.reh=0@-202,0+700"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42910,7 +42910,7 @@ shaping_test!(
     "ب\u{64f}",
     &["u064f.damma=0@250,-250+250", "u0628.beh=0@-250,0+1165"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42927,7 +42927,7 @@ shaping_test!(
         "u0644_u0645.initial.lamMeem=0@-410,0+415"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42960,7 +42960,7 @@ shaping_test!(
         "650=19@-135,0+999"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -42993,7 +42993,7 @@ shaping_test!(
         "650=19@-70,0+1129"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43005,7 +43005,7 @@ shaping_test!(
     "👨\u{200d}👩\u{200d}👧\u{200d}👦",
     &["u1F46A.MWGB=0+800"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43074,7 +43074,7 @@ shaping_test!(
         "Z_a_p_f_i_n_o=66+2333"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43089,7 +43089,7 @@ shaping_test!(
         "maitrithai.key=0+1300"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43101,7 +43101,7 @@ shaping_test!(
     "fine",
     &["fi=0+1139", "n=2+1024", "e=3+909"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43113,7 +43113,7 @@ shaping_test!(
     "fine",
     &["f=0+682", "i=1+569", "n=2+1024", "e=3+909"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43125,7 +43125,7 @@ shaping_test!(
     "ར\u{f92}\u{fb1}\u{f74}",
     &["r_g_y_u=0+1579"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43137,7 +43137,7 @@ shaping_test!(
     "ར\u{f92}\u{fb1}\u{f74}",
     &["r_g_y_u=0+1579"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43149,7 +43149,7 @@ shaping_test!(
     "first",
     &["f_i=0+1097", "r=2+853", "s=3+728", "t=4+725"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43161,7 +43161,7 @@ shaping_test!(
     "first",
     &["f_i=0+1097", "r=2+853", "s_t=3+1438"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43173,7 +43173,7 @@ shaping_test!(
     "first",
     &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43185,7 +43185,7 @@ shaping_test!(
     "first",
     &["f_i=0+1097", "r=2+853", "s_t=3+1438"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43197,7 +43197,7 @@ shaping_test!(
     "first",
     &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43215,7 +43215,7 @@ shaping_test!(
         "T.small=4+1075"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43227,7 +43227,7 @@ shaping_test!(
     "first",
     &["f=0+639", "i=1+606", "r=2+853", "s_t=3+1438"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43239,7 +43239,7 @@ shaping_test!(
     "m\u{300}",
     &["m=0+1706", "gravecmb=0@-284,10+0"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43251,7 +43251,7 @@ shaping_test!(
     "m\u{300}",
     &["mgrave=0+1912"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43263,7 +43263,7 @@ shaping_test!(
     "fi",
     &["fi=0+1139"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43284,7 +43284,7 @@ shaping_test!(
         "km_ro=9+712"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43307,7 +43307,7 @@ shaping_test!(
         "tgc_ttu=12+1833"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43325,7 +43325,7 @@ shaping_test!(
         "Z=5+1251"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43337,12 +43337,12 @@ shaping_test!(
     "ס\u{5b0}",
     &["shevahebrew=0@51,0+0", "samekhhebrew=0+1361"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
-shaping_test!(macos_100, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1)], &[], "Th th ll te to tr fr fu fj", &["T_h=0+2308", "space=2+569", "t_h=3+1687", "space=5+569", "l_l=6+1108", "space=8+569", "t_e=9+1408", "space=11+569", "t_o=12+1531", "space=14+569", "t_r=15+1385", "space=17+569", "f_r=18+1432", "space=20+569", "f_u=21+1733", "space=23+569", "f_j=24+1098"], true, false);
+shaping_test!(macos_100, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1)], &[], "Th th ll te to tr fr fu fj", &["T_h=0+2308", "space=2+569", "t_h=3+1687", "space=5+569", "l_l=6+1108", "space=8+569", "t_e=9+1408", "space=11+569", "t_o=12+1531", "space=14+569", "t_r=15+1385", "space=17+569", "f_r=18+1432", "space=20+569", "f_u=21+1733", "space=23+569", "f_j=24+1098"], true, true);
 #[cfg(target_os = "macos")]
-shaping_test!(macos_101, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1)], &[], "Te AV Tr Va rT eT Td", &["T=0+1497", "e=1@-62,0+699", "space=2+569", "A=3+1431", "V=4@-37,0+1377", "space=5+569", "T=6+1510", "r=7@-50,0+803", "space=8+569", "V=9+1376", "a=10@-37,0+1014", "space=11+569", "r=12+853", "T=13+1560", "space=14+569", "e=15+761", "T=16+1560", "space=17+569", "T=18+1515", "d=19@-45,0+1006"], true, false);
+shaping_test!(macos_101, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1)], &[], "Te AV Tr Va rT eT Td", &["T=0+1497", "e=1@-62,0+699", "space=2+569", "A=3+1431", "V=4@-37,0+1377", "space=5+569", "T=6+1510", "r=7@-50,0+803", "space=8+569", "V=9+1376", "a=10@-37,0+1014", "space=11+569", "r=12+853", "T=13+1560", "space=14+569", "e=15+761", "T=16+1560", "space=17+569", "T=18+1515", "d=19@-45,0+1006"], true, true);
 #[cfg(target_os = "macos")]
 shaping_test!(
     macos_102,
@@ -43378,7 +43378,7 @@ shaping_test!(
         "u0627.alef=0+647"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43395,7 +43395,7 @@ shaping_test!(
         "u0628.initial.beh=0+656"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43407,7 +43407,7 @@ shaping_test!(
     "رب",
     &["u0628.beh=1+1415", "u0631.reh=0@-202,0+700"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43419,7 +43419,7 @@ shaping_test!(
     "ب\u{64f}",
     &["u064f.damma=0@250,-250+250", "u0628.beh=0@-250,0+1165"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43436,7 +43436,7 @@ shaping_test!(
         "u0644_u0645.initial.lamMeem=0@-410,0+415"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43469,7 +43469,7 @@ shaping_test!(
         "d=19+1134"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43502,7 +43502,7 @@ shaping_test!(
         "d=19@19,0+1172"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43514,7 +43514,7 @@ shaping_test!(
     "👨\u{200d}👩\u{200d}👧\u{200d}👦",
     &["u1F46A.MWGB=0+800"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43583,7 +43583,7 @@ shaping_test!(
         "Z_a_p_f_i_n_o=66+2333"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43598,7 +43598,7 @@ shaping_test!(
         "maitrithai.key=0+1300"
     ],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43610,7 +43610,7 @@ shaping_test!(
     "fine",
     &["fi=0+1139", "n=2+1024", "e=3+909"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43622,7 +43622,7 @@ shaping_test!(
     "fine",
     &["f=0+682", "i=1+569", "n=2+1024", "e=3+909"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43634,7 +43634,7 @@ shaping_test!(
     "ར\u{f92}\u{fb1}\u{f74}",
     &["r_g_y_u=0+1579"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
 shaping_test!(
@@ -43646,22 +43646,22 @@ shaping_test!(
     "ར\u{f92}\u{fb1}\u{f74}",
     &["r_g_y_u=0+1579"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
-shaping_test!(macos_116, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1)], &[], "first", &["f_i=0+1097", "r=2+853", "s=3+728", "t=4+725"], true, false);
+shaping_test!(macos_116, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1)], &[], "first", &["f_i=0+1097", "r=2+853", "s=3+728", "t=4+725"], true, true);
 #[cfg(target_os = "macos")]
-shaping_test!(macos_117, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f_i=0+1097", "r=2+853", "s_t=3+1438"], true, false);
+shaping_test!(macos_117, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f_i=0+1097", "r=2+853", "s_t=3+1438"], true, true);
 #[cfg(target_os = "macos")]
-shaping_test!(macos_118, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"], true, false);
+shaping_test!(macos_118, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"], true, true);
 #[cfg(target_os = "macos")]
-shaping_test!(macos_119, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f_i=0+1097", "r=2+853", "s_t=3+1438"], true, false);
+shaping_test!(macos_119, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f_i=0+1097", "r=2+853", "s_t=3+1438"], true, true);
 #[cfg(target_os = "macos")]
-shaping_test!(macos_120, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"], true, false);
+shaping_test!(macos_120, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f=0+639", "i=1+606", "r=2+853", "s=3+728", "t=4+725"], true, true);
 #[cfg(target_os = "macos")]
-shaping_test!(macos_121, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["F.small=0+903", "I.small=1+634", "R.small=2+1113", "S.small=3+911", "T.small=4+1075"], true, false);
+shaping_test!(macos_121, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["F.small=0+903", "I.small=1+634", "R.small=2+1113", "S.small=3+911", "T.small=4+1075"], true, true);
 #[cfg(target_os = "macos")]
-shaping_test!(macos_122, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f=0+639", "i=1+606", "r=2+853", "s_t=3+1438"], true, false);
+shaping_test!(macos_122, "/System/Library/Fonts/Supplemental/Apple Chancery.ttf@4ec49cba0d4e68d025ada0498c4df1b2f9fd57ac", 75, &[("font-funcs", 1), ("features", 1)], &[], "first", &["f=0+639", "i=1+606", "r=2+853", "s_t=3+1438"], true, true);
 #[cfg(target_os = "macos")]
 shaping_test!(
     macos_123,
@@ -43672,10 +43672,10 @@ shaping_test!(
     "AV",
     &["A=0+1345", "V=1@-12,0+1346"],
     true,
-    false
+    true
 );
 #[cfg(target_os = "macos")]
-shaping_test!(macos_124, "/System/Library/Fonts/Supplemental/Devanagari Sangam MN.ttc@214b7ffa672bc936745df5a72644f2b705b24b4b", 75, &[("font-funcs", 1)], &[], "भ\u{941}", &["dn_bha=0+1339", "dn_u_matra.mrk=0@-296,11+0"], true, false);
+shaping_test!(macos_124, "/System/Library/Fonts/Supplemental/Devanagari Sangam MN.ttc@214b7ffa672bc936745df5a72644f2b705b24b4b", 75, &[("font-funcs", 1)], &[], "भ\u{941}", &["dn_bha=0+1339", "dn_u_matra.mrk=0@-296,11+0"], true, true);
 #[cfg(target_os = "macos")]
 shaping_test!(
     macos_125,
@@ -43691,7 +43691,7 @@ shaping_test!(
         "u1F468.4.RA=0+800"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     mark_attachment_1,
@@ -43702,7 +43702,7 @@ shaping_test!(
     "ဏြ\u{102f}\u{1036}",
     &["uni103C102F=0+150", "uni100F=0+550", "uni1036=0@-150,0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     mark_filtering_sets_1,
@@ -43722,7 +43722,7 @@ shaping_test!(
         "glyph112=0@0,-358+905"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     mark_filtering_sets_2,
@@ -43742,7 +43742,7 @@ shaping_test!(
         "glyph112=0@0,-358+905"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     mark_filtering_sets_3,
@@ -43762,7 +43762,7 @@ shaping_test!(
         "glyph112=0@0,-358+905"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     mark_filtering_sets_4,
@@ -43782,7 +43782,7 @@ shaping_test!(
         "glyph112=0@0,-358+905"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     mark_filtering_sets_5,
@@ -43802,7 +43802,7 @@ shaping_test!(
         "glyph112=0@0,-358+905"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     mongolian_variation_selector_1,
@@ -43813,7 +43813,7 @@ shaping_test!(
     "ᠦ\u{180b}ᠦ",
     &["uni1826.E85E_ue.init1=0+599", "uni1826.E856_ue.fina=2+750"],
     true,
-    false
+    true
 );
 shaping_test!(
     mongolian_variation_selector_2,
@@ -43824,7 +43824,7 @@ shaping_test!(
     "ᠠ\u{180b}",
     &["uni1820.E821_a.isol1=0+1199"],
     true,
-    false
+    true
 );
 shaping_test!(
     mongolian_variation_selector_3,
@@ -43838,7 +43838,7 @@ shaping_test!(
         "1=11+268"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     mongolian_variation_selector_4,
@@ -43857,7 +43857,7 @@ shaping_test!(
         "uni1837.E931_r.fina=10+750"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     mongolian_variation_selector_5,
@@ -43868,7 +43868,7 @@ shaping_test!(
     "ᠭᠭ\u{180b}",
     &["uni182D.E8E2_g.init=0+1000", "uni182D.E8E8_g.fina1=1+1250"],
     true,
-    false
+    true
 );
 shaping_test!(
     mongolian_variation_selector_6,
@@ -43879,7 +43879,7 @@ shaping_test!(
     "ᠭ\u{180c}",
     &["uni182D.EA1B_g.isol2=0+1000"],
     true,
-    false
+    true
 );
 shaping_test!(
     mongolian_variation_selector_7,
@@ -43890,7 +43890,7 @@ shaping_test!(
     "ᠭ\u{180d}\u{200d}",
     &["uni182D.EA1E_g.init3=0+650", "space=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     mongolian_variation_selector_8,
@@ -43906,7 +43906,7 @@ shaping_test!(
         "space=2+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     mongolian_variation_selector_9,
@@ -43917,7 +43917,7 @@ shaping_test!(
     "ᠭ\u{180c}\u{200d}",
     &["uni182D.EA1D_g.init2=0+950", "space=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     mongolian_variation_selector_10,
@@ -43928,7 +43928,7 @@ shaping_test!(
     "ᠭ\u{180d}\u{200d}",
     &["uni182D.EA1E_g.init3=0+650", "space=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     mongolian_variation_selector_11,
@@ -43946,7 +43946,7 @@ shaping_test!(
         "space=4+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     mongolian_variation_selector_12,
@@ -43957,7 +43957,7 @@ shaping_test!(
     "\u{200d}ᠭ\u{180c}\u{200d}",
     &["space=0+0", "uni182D.E8E6_g.medi2=1+650", "space=1+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     mongolian_variation_selector_13,
@@ -43968,7 +43968,7 @@ shaping_test!(
     "\u{200d}ᠭ\u{180d}\u{200d}",
     &["space=0+0", "uni182D.E8E6_g.medi2=1+650", "space=1+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     mongolian_variation_selector_14,
@@ -43984,7 +43984,7 @@ shaping_test!(
         "uni182D.E8E8_g.fina1=3+1250"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     mongolian_variation_selector_15,
@@ -43995,7 +43995,7 @@ shaping_test!(
     "\u{200d}ᠭ\u{180c}",
     &["space=0+0", "uni182D.E8E9_g.fina2=1+1050"],
     true,
-    false
+    true
 );
 shaping_test!(
     mongolian_variation_selector_16,
@@ -44012,7 +44012,7 @@ shaping_test!(
         "uni1837.E931_r.fina=4+750"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     mongolian_variation_selector_17,
@@ -44032,7 +44032,7 @@ shaping_test!(
         "space=6+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     mongolian_variation_selector_18,
@@ -44049,7 +44049,7 @@ shaping_test!(
         "uni1822.E837_i.fina=4+600"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     mongolian_variation_selector_19,
@@ -44070,7 +44070,7 @@ shaping_test!(
         "uni1828.E866_n.fina=9+850"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     myanmar_misc_1,
@@ -44081,7 +44081,7 @@ shaping_test!(
     "ယ\u{1035}",
     &["ya_e_above=0+1000"],
     true,
-    false
+    true
 );
 shaping_test!(
     myanmar_syllable_1,
@@ -44110,7 +44110,7 @@ shaping_test!(
         "One-Myanmar=5+1247"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     none_directional_1,
@@ -44121,7 +44121,7 @@ shaping_test!(
     "𐌀𐌁",
     &["u10300=0+1470", "u10301=1+1284"],
     true,
-    false
+    true
 );
 shaping_test!(
     none_directional_2,
@@ -44132,7 +44132,7 @@ shaping_test!(
     "𐌀𐌁",
     &["u10300=0+1470", "u10301=1+1284"],
     true,
-    false
+    true
 );
 shaping_test!(
     none_directional_3,
@@ -44143,7 +44143,7 @@ shaping_test!(
     "𐌀𐌁",
     &["u10301_r=1+1284", "u10300_r=0+1470"],
     true,
-    false
+    true
 );
 shaping_test!(
     positioning_features_1,
@@ -44154,7 +44154,7 @@ shaping_test!(
     "AV",
     &["A=0+625", "V=1+675"],
     true,
-    false
+    true
 );
 shaping_test!(
     positioning_features_2,
@@ -44165,7 +44165,7 @@ shaping_test!(
     "m\u{315}",
     &["m=0+945", "uni0315=0@32,-178+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     positioning_features_3,
@@ -44176,7 +44176,7 @@ shaping_test!(
     "y\u{325}",
     &["y=0+565", "uni0325=0@-422,-240+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     rand_1,
@@ -44233,7 +44233,7 @@ shaping_test!(
     "A AB",
     &["A.alt1=0+1000", "space=1+1000", "A.alt1=2+1000", "B=3+1000"],
     true,
-    false
+    true
 );
 shaping_test!(
     reverse_sub_2,
@@ -44254,7 +44254,7 @@ shaping_test!(
         "21=0@0,220+670"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     reverse_sub_3,
@@ -44287,7 +44287,7 @@ shaping_test!(
         "zero.dnom=20+350"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     rotation_1,
@@ -44298,7 +44298,7 @@ shaping_test!(
     "〈",
     &["uni3008"],
     false,
-    false
+    true
 );
 shaping_test!(
     rotation_2,
@@ -44309,7 +44309,7 @@ shaping_test!(
     "〈",
     &["uni3009"],
     false,
-    false
+    true
 );
 shaping_test!(
     rotation_3,
@@ -44320,7 +44320,7 @@ shaping_test!(
     "〈",
     &["uniFE3F"],
     false,
-    false
+    true
 );
 shaping_test!(
     rotation_4,
@@ -44331,7 +44331,7 @@ shaping_test!(
     "〈",
     &["uniFE40"],
     false,
-    false
+    true
 );
 shaping_test!(
     simple_1,
@@ -44345,7 +44345,7 @@ shaping_test!(
         "d=7+1164"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     simple_2,
@@ -44359,7 +44359,7 @@ shaping_test!(
         "d=7+1164"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     sinhala_1,
@@ -44370,7 +44370,7 @@ shaping_test!(
     "ර\u{dca}\u{200d}ය\u{dca}\u{200d}ය",
     &["8=0+1343", "4=0+1130"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_1,
@@ -44381,7 +44381,7 @@ shaping_test!(
     " ",
     &["1=0+560"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_2,
@@ -44392,7 +44392,7 @@ shaping_test!(
     "\u{a0}",
     &["1=0+560"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_3,
@@ -44403,7 +44403,7 @@ shaping_test!(
     "\u{1680}",
     &["0=0+692"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_4,
@@ -44414,7 +44414,7 @@ shaping_test!(
     "\u{2000}",
     &["1=0+1024"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_5,
@@ -44425,7 +44425,7 @@ shaping_test!(
     "\u{2001}",
     &["1=0+2048"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_6,
@@ -44436,7 +44436,7 @@ shaping_test!(
     "\u{2002}",
     &["1=0+1024"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_7,
@@ -44447,7 +44447,7 @@ shaping_test!(
     "\u{2003}",
     &["1=0+2048"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_8,
@@ -44458,7 +44458,7 @@ shaping_test!(
     "\u{2004}",
     &["1=0+683"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_9,
@@ -44469,7 +44469,7 @@ shaping_test!(
     "\u{2005}",
     &["1=0+512"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_10,
@@ -44480,7 +44480,7 @@ shaping_test!(
     "\u{2006}",
     &["1=0+341"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_11,
@@ -44491,7 +44491,7 @@ shaping_test!(
     "\u{2007}",
     &["1=0+560"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_12,
@@ -44502,7 +44502,7 @@ shaping_test!(
     "\u{2008}",
     &["1=0+560"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_13,
@@ -44513,7 +44513,7 @@ shaping_test!(
     "\u{2009}",
     &["1=0+410"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_14,
@@ -44524,7 +44524,7 @@ shaping_test!(
     "\u{200a}",
     &["1=0+128"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_15,
@@ -44535,7 +44535,7 @@ shaping_test!(
     "\u{202f}",
     &["1=0+280"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_16,
@@ -44546,7 +44546,7 @@ shaping_test!(
     "\u{205f}",
     &["1=0+455"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_17,
@@ -44557,7 +44557,7 @@ shaping_test!(
     "\u{3000}",
     &["1=0+2048"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_18,
@@ -44568,7 +44568,7 @@ shaping_test!(
     " ",
     &["1=0@-280,0+0,-2048"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_19,
@@ -44579,7 +44579,7 @@ shaping_test!(
     "\u{a0}",
     &["1=0@-280,0+0,-2048"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_20,
@@ -44590,7 +44590,7 @@ shaping_test!(
     "\u{1680}",
     &["0=0@-346,0+0,-2048"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_21,
@@ -44601,7 +44601,7 @@ shaping_test!(
     "\u{2000}",
     &["1=0@-280,0+0,-1024"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_22,
@@ -44612,7 +44612,7 @@ shaping_test!(
     "\u{2001}",
     &["1=0@-280,0+0,-2048"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_23,
@@ -44623,7 +44623,7 @@ shaping_test!(
     "\u{2002}",
     &["1=0@-280,0+0,-1024"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_24,
@@ -44634,7 +44634,7 @@ shaping_test!(
     "\u{2003}",
     &["1=0@-280,0+0,-2048"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_25,
@@ -44645,7 +44645,7 @@ shaping_test!(
     "\u{2004}",
     &["1=0@-280,0+0,-683"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_26,
@@ -44656,7 +44656,7 @@ shaping_test!(
     "\u{2005}",
     &["1=0@-280,0+0,-512"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_27,
@@ -44667,7 +44667,7 @@ shaping_test!(
     "\u{2006}",
     &["1=0@-280,0+0,-341"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_28,
@@ -44678,7 +44678,7 @@ shaping_test!(
     "\u{2007}",
     &["1=0@-280,0+0,-2048"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_29,
@@ -44689,7 +44689,7 @@ shaping_test!(
     "\u{2008}",
     &["1=0@-280,0+0,-2048"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_30,
@@ -44700,7 +44700,7 @@ shaping_test!(
     "\u{2009}",
     &["1=0@-280,0+0,-410"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_31,
@@ -44711,7 +44711,7 @@ shaping_test!(
     "\u{200a}",
     &["1=0@-280,0+0,-128"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_32,
@@ -44722,7 +44722,7 @@ shaping_test!(
     "\u{202f}",
     &["1=0@-280,0+0,-1024"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_33,
@@ -44733,7 +44733,7 @@ shaping_test!(
     "\u{205f}",
     &["1=0@-280,0+0,-455"],
     true,
-    false
+    true
 );
 shaping_test!(
     spaces_34,
@@ -44744,7 +44744,7 @@ shaping_test!(
     "\u{3000}",
     &["1=0@-280,0+0,-2048"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_1,
@@ -44762,7 +44762,7 @@ shaping_test!(
         "uni0F0B=9+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_2,
@@ -44773,7 +44773,7 @@ shaping_test!(
     "ཀ\u{f74}\u{f72}ས་",
     &["uni0F400F740F72=0+680", "uni0F66=3+680", "uni0F0B=4+190"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_3,
@@ -44789,7 +44789,7 @@ shaping_test!(
         "uni0F0B=4@-30,0+160"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_4,
@@ -44806,7 +44806,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_5,
@@ -44822,7 +44822,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_6,
@@ -44838,7 +44838,7 @@ shaping_test!(
         "uni0F0B=4+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_7,
@@ -44854,7 +44854,7 @@ shaping_test!(
         "uni0F0B=6+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_8,
@@ -44870,7 +44870,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_9,
@@ -44886,7 +44886,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_10,
@@ -44902,7 +44902,7 @@ shaping_test!(
         "uni0F0B=5@-65,0+130"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_11,
@@ -44918,7 +44918,7 @@ shaping_test!(
         "uni0F0B=6@-65,0+130"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_12,
@@ -44929,7 +44929,7 @@ shaping_test!(
     "ས\u{f90}\u{fb1}\u{f74}\u{f7a}་",
     &["uni0F660F900FB10F74=0+680", "uni0F7A=0+0", "uni0F0B=5+190"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_13,
@@ -44946,7 +44946,7 @@ shaping_test!(
         "uni0F0B=7@-70,0+106"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_14,
@@ -44963,7 +44963,7 @@ shaping_test!(
         "uni0F0B=8@-70,0+106"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_15,
@@ -44979,7 +44979,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_16,
@@ -44996,7 +44996,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_17,
@@ -45012,7 +45012,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_18,
@@ -45028,7 +45028,7 @@ shaping_test!(
         "uni0F0B=5@-70,0+106"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_19,
@@ -45044,7 +45044,7 @@ shaping_test!(
         "uni0F0B=5@-20,0+110"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_20,
@@ -45060,7 +45060,7 @@ shaping_test!(
         "uni0F0B=5@-70,0+106"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_21,
@@ -45075,7 +45075,7 @@ shaping_test!(
         "uni0F0B=5@-70,0+106"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_22,
@@ -45092,7 +45092,7 @@ shaping_test!(
         "uni0F0B=7@-30,0+160"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_23,
@@ -45108,7 +45108,7 @@ shaping_test!(
         "uni0F0B=5@-65,0+130"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_24,
@@ -45124,7 +45124,7 @@ shaping_test!(
         "uni0F0B=4+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_25,
@@ -45140,7 +45140,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_26,
@@ -45156,7 +45156,7 @@ shaping_test!(
         "uni0F0B=5@-30,0+160"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_27,
@@ -45167,7 +45167,7 @@ shaping_test!(
     "ག\u{fb2}\u{f74}\u{f72}་",
     &["uni0F420FB20F74=0+680", "uni0F72=0+0", "uni0F0B=4+190"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_28,
@@ -45183,7 +45183,7 @@ shaping_test!(
         "uni0F0B=5@-30,0+160"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_29,
@@ -45199,7 +45199,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_30,
@@ -45215,7 +45215,7 @@ shaping_test!(
         "uni0F0B=5@-30,0+160"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_31,
@@ -45231,7 +45231,7 @@ shaping_test!(
         "uni0F0B=5@-65,0+130"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_32,
@@ -45247,7 +45247,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_33,
@@ -45264,7 +45264,7 @@ shaping_test!(
         "uni0F0B=5@-30,0+160"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_34,
@@ -45282,7 +45282,7 @@ shaping_test!(
         "uni0F0B=6+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_35,
@@ -45299,7 +45299,7 @@ shaping_test!(
         "uni0F0B=6@-20,0+110"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_36,
@@ -45315,7 +45315,7 @@ shaping_test!(
         "uni0F0B=5@-30,0+160"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_37,
@@ -45331,7 +45331,7 @@ shaping_test!(
         "uni0F0B=4+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_38,
@@ -45348,7 +45348,7 @@ shaping_test!(
         "uni0F0B=6+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_39,
@@ -45364,7 +45364,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_40,
@@ -45380,7 +45380,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_41,
@@ -45396,7 +45396,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_42,
@@ -45407,7 +45407,7 @@ shaping_test!(
     "བཅ\u{f74}\u{f72}་",
     &["uni0F56=0+610", "uni0F450F740F72=1+630", "uni0F0B=4+190"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_43,
@@ -45418,7 +45418,7 @@ shaping_test!(
     "བཅ\u{f74}\u{f7e}་",
     &["uni0F56=0+610", "uni0F450F740F7E=1+630", "uni0F0B=4+190"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_44,
@@ -45434,7 +45434,7 @@ shaping_test!(
         "uni0F0B=4+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_45,
@@ -45450,7 +45450,7 @@ shaping_test!(
         "uni0F0B=4@-70,0+106"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_46,
@@ -45466,7 +45466,7 @@ shaping_test!(
         "uni0F0B=4@-70,0+106"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_47,
@@ -45481,7 +45481,7 @@ shaping_test!(
         "uni0F0B=4@-70,0+106"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_48,
@@ -45499,7 +45499,7 @@ shaping_test!(
         "uni0F0B=5@-70,0+106"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_49,
@@ -45514,7 +45514,7 @@ shaping_test!(
         "uni0F0B=5@-30,0+160"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_50,
@@ -45530,7 +45530,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_51,
@@ -45547,7 +45547,7 @@ shaping_test!(
         "uni0F0B=5@-30,0+160"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_52,
@@ -45563,7 +45563,7 @@ shaping_test!(
         "uni0F0B=6@-65,0+130"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_53,
@@ -45574,7 +45574,7 @@ shaping_test!(
     "ཇ\u{f7c}\u{f7c}་",
     &["uni0F470F7D=0+570", "uni0F0B=3+190"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_54,
@@ -45591,7 +45591,7 @@ shaping_test!(
         "uni0F0B=6+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_55,
@@ -45602,7 +45602,7 @@ shaping_test!(
     "ཉ\u{f74}\u{f72}་",
     &["uni0F490F74=0+580", "uni0F72=0+0", "uni0F0B=3+190"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_56,
@@ -45618,7 +45618,7 @@ shaping_test!(
         "uni0F0B=4@-20,0+110"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_57,
@@ -45635,7 +45635,7 @@ shaping_test!(
         "uni0F0B=5@-70,0+106"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_58,
@@ -45651,7 +45651,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_59,
@@ -45669,7 +45669,7 @@ shaping_test!(
         "uni0F0B=6+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_1_60,
@@ -45687,7 +45687,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_1,
@@ -45703,7 +45703,7 @@ shaping_test!(
         "uni0F0B=4@-30,0+160"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_2,
@@ -45720,7 +45720,7 @@ shaping_test!(
         "uni0F0B=5@-20,0+110"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_3,
@@ -45737,7 +45737,7 @@ shaping_test!(
         "uni0F0B=5@-20,0+110"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_4,
@@ -45754,7 +45754,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_5,
@@ -45771,7 +45771,7 @@ shaping_test!(
         "uni0F0B=6@-70,0+106"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_6,
@@ -45787,7 +45787,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_7,
@@ -45803,7 +45803,7 @@ shaping_test!(
         "uni0F0B=5@-30,0+160"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_8,
@@ -45820,7 +45820,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_9,
@@ -45836,7 +45836,7 @@ shaping_test!(
         "uni0F0B=5@-70,0+106"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_10,
@@ -45847,7 +45847,7 @@ shaping_test!(
     "ར\u{fa1}\u{f7c}\u{f7a}་",
     &["uni0F620FA10F7C0F7A=0+580", "uni0F0B=4+190"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_11,
@@ -45863,7 +45863,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_12,
@@ -45880,7 +45880,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_13,
@@ -45896,7 +45896,7 @@ shaping_test!(
         "uni0F0B=4@-65,0+130"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_14,
@@ -45913,7 +45913,7 @@ shaping_test!(
         "uni0F0B=6@-65,0+130"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_15,
@@ -45931,7 +45931,7 @@ shaping_test!(
         "uni0F0B=6+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_16,
@@ -45947,7 +45947,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_17,
@@ -45963,7 +45963,7 @@ shaping_test!(
         "uni0F0B=5@-30,0+160"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_18,
@@ -45979,7 +45979,7 @@ shaping_test!(
         "uni0F0B=5@-30,0+160"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_19,
@@ -45996,7 +45996,7 @@ shaping_test!(
         "uni0F0B=5@-70,0+106"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_20,
@@ -46014,7 +46014,7 @@ shaping_test!(
         "uni0F0B=6+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_21,
@@ -46031,7 +46031,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_22,
@@ -46047,7 +46047,7 @@ shaping_test!(
         "uni0F0B=4+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_23,
@@ -46064,7 +46064,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_24,
@@ -46080,7 +46080,7 @@ shaping_test!(
         "uni0F0B=4@-30,0+160"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_25,
@@ -46095,7 +46095,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_26,
@@ -46111,7 +46111,7 @@ shaping_test!(
         "uni0F0B=4@-20,0+110"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_27,
@@ -46128,7 +46128,7 @@ shaping_test!(
         "uni0F0B=5@-65,0+130"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_28,
@@ -46144,7 +46144,7 @@ shaping_test!(
         "uni0F0B=6+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_29,
@@ -46160,7 +46160,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_30,
@@ -46176,7 +46176,7 @@ shaping_test!(
         "uni0F0B=5@-30,0+160"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_31,
@@ -46192,7 +46192,7 @@ shaping_test!(
         "uni0F0B=4+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_32,
@@ -46209,7 +46209,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_33,
@@ -46227,7 +46227,7 @@ shaping_test!(
         "uni0F0B=6+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_34,
@@ -46243,7 +46243,7 @@ shaping_test!(
         "uni0F0B=4+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_35,
@@ -46259,7 +46259,7 @@ shaping_test!(
         "uni0F0B=5@-20,0+110"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_36,
@@ -46276,7 +46276,7 @@ shaping_test!(
         "uni0F0B=5@-65,0+130"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_37,
@@ -46293,7 +46293,7 @@ shaping_test!(
         "uni0F0B=5@-65,0+130"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_38,
@@ -46310,7 +46310,7 @@ shaping_test!(
         "uni0F0B=5@-70,0+106"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_39,
@@ -46326,7 +46326,7 @@ shaping_test!(
         "uni0F0B=4@-65,0+130"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_40,
@@ -46337,7 +46337,7 @@ shaping_test!(
     "ཡ\u{f72}\u{f7a}་",
     &["uni0F61=0+700", "uni0F720F7A=0+0", "uni0F0B=3+190"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_41,
@@ -46353,7 +46353,7 @@ shaping_test!(
         "uni0F0B=4+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_42,
@@ -46368,7 +46368,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_43,
@@ -46384,7 +46384,7 @@ shaping_test!(
         "uni0F0B=4+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_44,
@@ -46400,7 +46400,7 @@ shaping_test!(
         "uni0F0B=4@-30,0+160"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_45,
@@ -46417,7 +46417,7 @@ shaping_test!(
         "uni0F0B=5@-40,0+150"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_46,
@@ -46428,7 +46428,7 @@ shaping_test!(
     "ས\u{f7c}\u{f7c}བ་",
     &["uni0F660F7D=0+680", "uni0F56=3+610", "uni0F0B=4+190"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_47,
@@ -46439,7 +46439,7 @@ shaping_test!(
     "ས\u{f7c}\u{f7c}ར་",
     &["uni0F660F7D=0+680", "uni0F62=3+620", "uni0F0B=4@-65,0+130"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_48,
@@ -46455,7 +46455,7 @@ shaping_test!(
         "uni0F0B=5+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_49,
@@ -46471,7 +46471,7 @@ shaping_test!(
         "uni0F0B=5@-70,0+106"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_50,
@@ -46487,7 +46487,7 @@ shaping_test!(
         "uni0F0B=5@-30,0+160"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_51,
@@ -46505,7 +46505,7 @@ shaping_test!(
         "uni0F0B=7+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_52,
@@ -46522,7 +46522,7 @@ shaping_test!(
         "uni0F0B=6+190"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_contractions_2_53,
@@ -46538,7 +46538,7 @@ shaping_test!(
         "uni0F0B=4@-30,0+160"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_vowels_1,
@@ -46549,7 +46549,7 @@ shaping_test!(
     "ཨ\u{f72}",
     &["uni0F680F72=0+730"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_vowels_2,
@@ -46560,7 +46560,7 @@ shaping_test!(
     "ཨ\u{f74}",
     &["uni0F680F74=0+730"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_vowels_3,
@@ -46571,7 +46571,7 @@ shaping_test!(
     "ཨ\u{f7a}",
     &["uni0F680F7A=0+730"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_vowels_4,
@@ -46582,7 +46582,7 @@ shaping_test!(
     "ཨ\u{f7c}",
     &["uni0F680F7C=0+730"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_vowels_5,
@@ -46593,7 +46593,7 @@ shaping_test!(
     "ཨ\u{f71}\u{f72}",
     &["uni0F680F710F72=0+720"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_vowels_6,
@@ -46604,7 +46604,7 @@ shaping_test!(
     "ཨ\u{f71}\u{f74}",
     &["uni0F680F75=0+720"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_vowels_7,
@@ -46615,7 +46615,7 @@ shaping_test!(
     "ཨ\u{f7b}",
     &["uni0F680F7B=0+720"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_vowels_8,
@@ -46626,7 +46626,7 @@ shaping_test!(
     "ཨ\u{f7d}",
     &["uni0F680F7D=0+730"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_vowels_9,
@@ -46637,7 +46637,7 @@ shaping_test!(
     "ཨ\u{f7e}",
     &["uni0F680F7E=0+730"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_vowels_10,
@@ -46648,7 +46648,7 @@ shaping_test!(
     "ཨཿ",
     &["uni0F68=0+730", "uni0F7F=0+408"],
     true,
-    false
+    true
 );
 shaping_test!(
     tibetan_vowels_11,
@@ -46659,7 +46659,7 @@ shaping_test!(
     "ༀ",
     &["uni0F00=0+730"],
     true,
-    false
+    true
 );
 shaping_test!(
     tt_kern_gpos_1,
@@ -46670,7 +46670,7 @@ shaping_test!(
     "ACAB",
     &["A=0+1275", "C=1@-20,0+1272", "A=2+1296", "B=3+1327"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_indic3_1,
@@ -46681,7 +46681,7 @@ shaping_test!(
     "ಕ\u{ccd}ರ",
     &["uni0C95=0+1176", "uni0CB0_uni0CCD.blwf=0+275"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_1,
@@ -46692,7 +46692,7 @@ shaping_test!(
     "𑲏",
     &["u11C8F=0+3000"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_2,
@@ -46703,7 +46703,7 @@ shaping_test!(
     "𑱱",
     &["u11C71=0+1600"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_3,
@@ -46714,7 +46714,7 @@ shaping_test!(
     "𑲊\u{11cb5}",
     &["u11C8A=0+2000", "u11CB5=0@-2000,0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_4,
@@ -46725,7 +46725,7 @@ shaping_test!(
     "𑲄𑱱",
     &["u11C84=0+2200", "u11C71=1+1600"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_5,
@@ -46736,7 +46736,7 @@ shaping_test!(
     "𑱾𑲊",
     &["u11C7E=0+2600", "u11C8A=1+2000"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_6,
@@ -46747,7 +46747,7 @@ shaping_test!(
     "𑲊\u{11c92}𑲩",
     &["u11C8A.11C92.11CA9=0+2600"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_7,
@@ -46758,7 +46758,7 @@ shaping_test!(
     "𑲊\u{11c94}𑲩",
     &["u11C8A.11C94.11CA9=0+2600"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_8,
@@ -46769,7 +46769,7 @@ shaping_test!(
     "𑲍\u{11c92}𑲩",
     &["u11C8D.11C92.11CA9=0+2600"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_9,
@@ -46780,7 +46780,7 @@ shaping_test!(
     "𑲍\u{11c94}𑲩",
     &["u11C8D.11C94.11CA9=0+2600"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_10,
@@ -46791,7 +46791,7 @@ shaping_test!(
     "𑲍\u{11c9e}𑲩",
     &["u11C8D.11C9E.11CA9=0+3200"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_11,
@@ -46802,7 +46802,7 @@ shaping_test!(
     "𑲍\u{11ca0}𑲩",
     &["u11C8D.11CA0.11CA9=0+3000"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_12,
@@ -46813,7 +46813,7 @@ shaping_test!(
     "𑲍\u{11c92}\u{11caa}",
     &["u11C8D.11C92.11CAA=0+2000"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_13,
@@ -46824,7 +46824,7 @@ shaping_test!(
     "𑲍\u{11c94}\u{11caa}",
     &["u11C8D.11C94.11CAA=0+2000"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_14,
@@ -46835,7 +46835,7 @@ shaping_test!(
     "𑲍\u{11c9d}\u{11caa}",
     &["u11C8D.11C9D.11CAA=0+2000"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_15,
@@ -46846,7 +46846,7 @@ shaping_test!(
     "𑲍\u{11c9e}\u{11caa}",
     &["u11C8D.11C9E.11CAA=0+2600"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_16,
@@ -46857,7 +46857,7 @@ shaping_test!(
     "𑲍\u{11ca0}\u{11caa}",
     &["u11C8D.11CA0.11CAA=0+2400"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_17,
@@ -46868,7 +46868,7 @@ shaping_test!(
     "𑲀𑱲\u{11caa}",
     &["u11C80=0+2400", "u11C72.11CAA=1+2000"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_18,
@@ -46879,7 +46879,7 @@ shaping_test!(
     "𑲌𑲱𑲍",
     &["u11C8C.11CB1=0+2793", "u11C8D=2+2000"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_19,
@@ -46890,7 +46890,7 @@ shaping_test!(
     "𑲀𑱼\u{11cb3}",
     &["u11C80=0+2400", "u11C7C.11CB3=1+2200"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_20,
@@ -46901,7 +46901,7 @@ shaping_test!(
     "𑱿\u{11cb2}𑱽",
     &["u11C7F.11CB2=0+2400", "u11C7D=2+2000"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_21,
@@ -46912,7 +46912,7 @@ shaping_test!(
     "𑲍\u{11cb2}𑲁",
     &["u11C8D.11CB2=0+2000", "u11C81=2+2400"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_22,
@@ -46923,7 +46923,7 @@ shaping_test!(
     "𑲌𑲴𑱴",
     &["u11C8C.11CB4=0+2800", "u11C74=2+2000"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_23,
@@ -46934,7 +46934,7 @@ shaping_test!(
     "𑲊\u{11ca1}𑲩𑱱",
     &["u11C8A.11CA1.11CA9=0+3000", "u11C71=3+1600"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_24,
@@ -46945,7 +46945,7 @@ shaping_test!(
     "𑲍\u{11ca1}𑲩𑱱",
     &["u11C8D.11CA1.11CA9=0+3000", "u11C71=3+1600"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_25,
@@ -46956,7 +46956,7 @@ shaping_test!(
     "𑲍\u{11ca1}\u{11caa}𑱱",
     &["u11C8D.11CA1.11CAA=0+2400", "u11C71=3+1600"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_26,
@@ -46967,7 +46967,7 @@ shaping_test!(
     "𑲏\u{11cb0}𑲴\u{11cb6}",
     &["u11C8F.11CB0.11CB4=0+3600", "u11CB6=0@-3200,0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_27,
@@ -46978,7 +46978,7 @@ shaping_test!(
     "𑲎\u{11cb0}\u{11cb2}\u{11cb5}",
     &["u11C8E.11CB0.11CB2=0+2000", "u11CB5=0@-2000,0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_28,
@@ -46989,7 +46989,7 @@ shaping_test!(
     "𑱴𑲉\u{11cb2}𑱵",
     &["u11C74=0+2000", "u11C89.11CB2=1+2000", "u11C75=3+2000"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_29,
@@ -47000,7 +47000,7 @@ shaping_test!(
     "𑱼\u{11caa}\u{11cb2}𑱵",
     &["u11C7C.11CAA.11CB2=0+2200", "u11C75=3+2000"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_30,
@@ -47011,7 +47011,7 @@ shaping_test!(
     "𑲁𑱴\u{11cb2}𑲋",
     &["u11C81=0+2400", "u11C74.11CB2=1+2000", "u11C8B=3+2400"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_31,
@@ -47022,7 +47022,7 @@ shaping_test!(
     "𑲋\u{11cb3}𑱴𑲍",
     &["u11C8B.11CB3=0+2400", "u11C74=2+2000", "u11C8D=3+2000"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_32,
@@ -47033,7 +47033,7 @@ shaping_test!(
     "𑲃𑲴𑱴𑲍",
     &["u11C83.11CB4=0+2800", "u11C74=2+2000", "u11C8D=3+2000"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_33,
@@ -47049,7 +47049,7 @@ shaping_test!(
         "u11C71=4+1600"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_34,
@@ -47065,7 +47065,7 @@ shaping_test!(
         "u11C8D=4+2000"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_marchen_35,
@@ -47081,7 +47081,7 @@ shaping_test!(
         "u11C8D=6+2000"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_syllable_1,
@@ -47092,7 +47092,7 @@ shaping_test!(
     "ꨀ\u{aa2d}\u{aa29}",
     &["a_cham=0+1121", "uSign_cham=0@14,0+0", ".notdef=0+600"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_syllable_2,
@@ -47107,7 +47107,7 @@ shaping_test!(
         "waMedial_cham=0@-32,0+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_syllable_3,
@@ -47122,7 +47122,7 @@ shaping_test!(
         "yaMedial_cham=0+542"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_syllable_4,
@@ -47133,7 +47133,7 @@ shaping_test!(
     "ꨀ\u{aa35}\u{aa36}",
     &["a_cham=0+1121", "laMedial_waMedial_cham=0@43,0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_syllable_5,
@@ -47177,7 +47177,7 @@ shaping_test!(
     "𑁤\u{1107f}𑁒𑁥\u{1107f}𑁓",
     &["brm_num100.1=0+2224", "brm_num1000.2=3+1834"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_syllable_9,
@@ -47192,7 +47192,7 @@ shaping_test!(
         "brm_virama=0@-524,0+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_syllable_10,
@@ -47207,7 +47207,7 @@ shaping_test!(
         "brm_virama=0@-524,0+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_syllable_11,
@@ -47218,7 +47218,7 @@ shaping_test!(
     "𑀓\u{1103c}",
     &["brm_KA=0+754", "brm_vowelU=0@-403,0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_syllable_12,
@@ -47229,7 +47229,7 @@ shaping_test!(
     "𑇈\u{111c9}\u{111c9}",
     &["u111C8=0+500", "u111C9=0@-500,0+0", "u111C9=0@-500,0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_syllable_13,
@@ -47240,7 +47240,7 @@ shaping_test!(
     "ᨽ\u{1a5a}ᩣ",
     &["uni1A3D=0+250", "uni1A5A=0+0", "uni1A63=0+250"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_syllable_14,
@@ -47259,7 +47259,7 @@ shaping_test!(
         "uni1A59=5+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_syllable_15,
@@ -47279,7 +47279,7 @@ shaping_test!(
         "uni1A5A=5+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_syllable_16,
@@ -47298,7 +47298,7 @@ shaping_test!(
         "uni1A60=5+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_syllable_17,
@@ -47309,7 +47309,7 @@ shaping_test!(
     "𑐐\u{11442}\u{200c}𑐑",
     &["Ga=0+576", "Virama=0@70,70+0", "Gha=3+566"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_syllable_18,
@@ -47320,7 +47320,7 @@ shaping_test!(
     "𑐐\u{11442}\u{200c}\u{34f}𑐑",
     &["Ga=0+576", "Virama=0@70,70+0", "Gha=4+566"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_syllable_19,
@@ -47331,7 +47331,7 @@ shaping_test!(
     "𑐐\u{200c}\u{11442}\u{34f}𑐑",
     &["Ga.icd=0+367", "Gha.diag=1@100,0+386"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_syllable_20,
@@ -47342,7 +47342,7 @@ shaping_test!(
     "ꨀ\u{200c}ꨴ",
     &["raMedial_cham_pre=0+400", "a_cham=0+1121"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_syllable_21,
@@ -47353,7 +47353,7 @@ shaping_test!(
     "𑄤\u{200d}\u{11127}",
     &["u11124=0+514", "u11127=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_syllable_22,
@@ -47364,7 +47364,7 @@ shaping_test!(
     "𑄤\u{2060}\u{11127}",
     &["u11124=0+514", "u11127=1+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_1,
@@ -47375,7 +47375,7 @@ shaping_test!(
     "अ\u{93a}",
     &["uni0905=0+500", "uni25CC=0+500", "uni093A=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_2,
@@ -47386,7 +47386,7 @@ shaping_test!(
     "अऻ",
     &["uni0905=0+500", "uni25CC=0+500", "uni093B=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_3,
@@ -47397,7 +47397,7 @@ shaping_test!(
     "अा",
     &["uni0905=0+500", "uni25CC=0+500", "uni093E=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_4,
@@ -47408,7 +47408,7 @@ shaping_test!(
     "अ\u{945}",
     &["uni0905=0+500", "uni25CC=0+500", "uni0945=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_5,
@@ -47419,7 +47419,7 @@ shaping_test!(
     "अ\u{946}",
     &["uni0905=0+500", "uni25CC=0+500", "uni0946=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_6,
@@ -47430,7 +47430,7 @@ shaping_test!(
     "अॉ",
     &["uni0905=0+500", "uni25CC=0+500", "uni0949=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_7,
@@ -47441,7 +47441,7 @@ shaping_test!(
     "अॊ",
     &["uni0905=0+500", "uni25CC=0+500", "uni094A=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_8,
@@ -47452,7 +47452,7 @@ shaping_test!(
     "अो",
     &["uni0905=0+500", "uni25CC=0+500", "uni094B=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_9,
@@ -47463,7 +47463,7 @@ shaping_test!(
     "अौ",
     &["uni0905=0+500", "uni25CC=0+500", "uni094C=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_10,
@@ -47474,7 +47474,7 @@ shaping_test!(
     "अॏ",
     &["uni0905=0+500", "uni25CC=0+500", "uni094F=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_11,
@@ -47485,7 +47485,7 @@ shaping_test!(
     "अ\u{956}",
     &["uni0905=0+500", "uni25CC=0+500", "uni0956=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_12,
@@ -47496,7 +47496,7 @@ shaping_test!(
     "अ\u{957}",
     &["uni0905=0+500", "uni25CC=0+500", "uni0957=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_13,
@@ -47507,7 +47507,7 @@ shaping_test!(
     "आ\u{93a}",
     &["uni0906=0+500", "uni25CC=0+500", "uni093A=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_14,
@@ -47518,7 +47518,7 @@ shaping_test!(
     "आ\u{945}",
     &["uni0906=0+500", "uni25CC=0+500", "uni0945=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_15,
@@ -47529,7 +47529,7 @@ shaping_test!(
     "आ\u{946}",
     &["uni0906=0+500", "uni25CC=0+500", "uni0946=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_16,
@@ -47540,7 +47540,7 @@ shaping_test!(
     "आ\u{947}",
     &["uni0906=0+500", "uni25CC=0+500", "uni0947=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_17,
@@ -47551,7 +47551,7 @@ shaping_test!(
     "आ\u{948}",
     &["uni0906=0+500", "uni25CC=0+500", "uni0948=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_18,
@@ -47562,7 +47562,7 @@ shaping_test!(
     "उ\u{941}",
     &["uni0909=0+500", "uni25CC=0+500", "uni0941=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_19,
@@ -47573,7 +47573,7 @@ shaping_test!(
     "ए\u{945}",
     &["uni090F=0+500", "uni25CC=0+500", "uni0945=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_20,
@@ -47584,7 +47584,7 @@ shaping_test!(
     "ए\u{946}",
     &["uni090F=0+500", "uni25CC=0+500", "uni0946=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_21,
@@ -47595,7 +47595,7 @@ shaping_test!(
     "ए\u{947}",
     &["uni090F=0+500", "uni25CC=0+500", "uni0947=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_22,
@@ -47611,7 +47611,7 @@ shaping_test!(
         "uni0907=2+500"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_23,
@@ -47622,7 +47622,7 @@ shaping_test!(
     "অ\u{9be}",
     &["uni0985=0+500", "uni25CC=0+500", ".notdef=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_24,
@@ -47633,7 +47633,7 @@ shaping_test!(
     "ঋ\u{9c3}",
     &["uni098B=0+500", "uni25CC=0+500", "uni09C3=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_25,
@@ -47644,7 +47644,7 @@ shaping_test!(
     "ঌ\u{9e2}",
     &["uni098C=0+500", "uni25CC=0+500", "uni09E2=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_26,
@@ -47655,7 +47655,7 @@ shaping_test!(
     "ਅਾ",
     &["uni0A05=0+500", "uni25CC=0+500", "uni0A3E=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_27,
@@ -47666,7 +47666,7 @@ shaping_test!(
     "ਅ\u{a48}",
     &["uni0A05=0+500", "uni25CC=0+500", "uni0A48=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_28,
@@ -47677,7 +47677,7 @@ shaping_test!(
     "ਅ\u{a4c}",
     &["uni0A05=0+500", "uni25CC=0+500", "uni0A4C=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_29,
@@ -47688,7 +47688,7 @@ shaping_test!(
     "ੲਿ",
     &["uni0A72=0+500", "uni0A3F=0+500", "uni25CC=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_30,
@@ -47699,7 +47699,7 @@ shaping_test!(
     "ੲੀ",
     &["uni0A72=0+500", "uni25CC=0+500", "uni0A40=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_31,
@@ -47710,7 +47710,7 @@ shaping_test!(
     "ੲ\u{a47}",
     &["uni0A72=0+500", "uni25CC=0+500", "uni0A47=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_32,
@@ -47721,7 +47721,7 @@ shaping_test!(
     "ੳ\u{a41}",
     &["uni0A73=0+500", "uni25CC=0+500", "uni0A41=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_33,
@@ -47732,7 +47732,7 @@ shaping_test!(
     "ੳ\u{a42}",
     &["uni0A73=0+500", "uni25CC=0+500", "uni0A42=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_34,
@@ -47743,7 +47743,7 @@ shaping_test!(
     "ੳ\u{a4b}",
     &["uni0A73=0+500", "uni25CC=0+500", "uni0A4B=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_35,
@@ -47760,7 +47760,7 @@ shaping_test!(
         "uni0AC5=0+500"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_36,
@@ -47777,7 +47777,7 @@ shaping_test!(
         "uni0AC8=0+500"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_37,
@@ -47788,7 +47788,7 @@ shaping_test!(
     "અા",
     &["uni0A85=0+500", "uni25CC=0+500", "uni0ABE=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_38,
@@ -47799,7 +47799,7 @@ shaping_test!(
     "અ\u{ac5}",
     &["uni0A85=0+500", "uni25CC=0+500", "uni0AC5=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_39,
@@ -47810,7 +47810,7 @@ shaping_test!(
     "અ\u{ac7}",
     &["uni0A85=0+500", "uni25CC=0+500", "uni0AC7=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_40,
@@ -47821,7 +47821,7 @@ shaping_test!(
     "અ\u{ac8}",
     &["uni0A85=0+500", "uni25CC=0+500", "uni0AC8=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_41,
@@ -47832,7 +47832,7 @@ shaping_test!(
     "અૉ",
     &["uni0A85=0+500", "uni25CC=0+500", "uni0AC9=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_42,
@@ -47843,7 +47843,7 @@ shaping_test!(
     "અો",
     &["uni0A85=0+500", "uni25CC=0+500", "uni0ACB=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_43,
@@ -47854,7 +47854,7 @@ shaping_test!(
     "અૌ",
     &["uni0A85=0+500", "uni25CC=0+500", "uni0ACC=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_44,
@@ -47870,7 +47870,7 @@ shaping_test!(
         "uni0ABE=0+500"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_45,
@@ -47881,7 +47881,7 @@ shaping_test!(
     "ଅ\u{b3e}",
     &["uni0B05=0+500", "uni25CC=0+500", "uni0B3E=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_46,
@@ -47892,7 +47892,7 @@ shaping_test!(
     "ଏ\u{b57}",
     &["uni0B0F=0+500", "uni25CC=0+500", "uni0B57=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_47,
@@ -47903,7 +47903,7 @@ shaping_test!(
     "ଓ\u{b57}",
     &["uni0B13=0+500", "uni25CC=0+500", "uni0B57=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_48,
@@ -47914,7 +47914,7 @@ shaping_test!(
     "ఒ\u{c4c}",
     &["uni0C12=0+500", "uni25CC=0+500", "uni0C4C=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_49,
@@ -47925,7 +47925,7 @@ shaping_test!(
     "ఒ\u{c55}",
     &["uni0C12=0+500", "uni25CC=0+500", "uni0C55=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_50,
@@ -47941,7 +47941,7 @@ shaping_test!(
         "uni0C55=0+500"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_51,
@@ -47957,7 +47957,7 @@ shaping_test!(
         "uni0C55=0+500"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_52,
@@ -47973,7 +47973,7 @@ shaping_test!(
         "uni0C55=0+500"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_53,
@@ -47984,7 +47984,7 @@ shaping_test!(
     "ಉಾ",
     &["uni0C89=0+500", "uni25CC=0+500", "uni0CBE=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_54,
@@ -47995,7 +47995,7 @@ shaping_test!(
     "ಋಾ",
     &["uni0C8B=0+500", "uni25CC=0+500", "uni0CBE=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_55,
@@ -48006,7 +48006,7 @@ shaping_test!(
     "ಒ\u{ccc}",
     &["uni0C92=0+500", "uni25CC=0+500", "uni0CCC=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_56,
@@ -48017,7 +48017,7 @@ shaping_test!(
     "ഇ\u{d57}",
     &["uni0D07=0+500", "uni25CC=0+500", "uni0D57=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_57,
@@ -48028,7 +48028,7 @@ shaping_test!(
     "ഉ\u{d57}",
     &["uni0D09=0+500", "uni25CC=0+500", "uni0D57=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_58,
@@ -48039,7 +48039,7 @@ shaping_test!(
     "എെ",
     &["uni0D0E=0+500", "uni0D46=0+500", "uni25CC=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_59,
@@ -48050,7 +48050,7 @@ shaping_test!(
     "ഒ\u{d3e}",
     &["uni0D12=0+500", "uni25CC=0+500", "uni0D3E=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_60,
@@ -48061,7 +48061,7 @@ shaping_test!(
     "ഒ\u{d57}",
     &["uni0D12=0+500", "uni25CC=0+500", "uni0D57=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_61,
@@ -48072,7 +48072,7 @@ shaping_test!(
     "අ\u{dcf}",
     &["uni0D85=0+500", "uni25CC=0+500", "uni0DCF=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_62,
@@ -48083,7 +48083,7 @@ shaping_test!(
     "අැ",
     &["uni0D85=0+500", "uni25CC=0+500", "uni0DD0=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_63,
@@ -48094,7 +48094,7 @@ shaping_test!(
     "අෑ",
     &["uni0D85=0+500", "uni25CC=0+500", "uni0DD1=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_64,
@@ -48105,7 +48105,7 @@ shaping_test!(
     "උ\u{ddf}",
     &["uni0D8B=0+500", "uni25CC=0+500", "uni0DDF=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_65,
@@ -48116,7 +48116,7 @@ shaping_test!(
     "ඍෘ",
     &["uni0D8D=0+500", "uni25CC=0+500", "uni0DD8=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_66,
@@ -48127,7 +48127,7 @@ shaping_test!(
     "ඏ\u{ddf}",
     &["uni0D8F=0+500", "uni25CC=0+500", "uni0DDF=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_67,
@@ -48138,7 +48138,7 @@ shaping_test!(
     "එ\u{dca}",
     &["uni0D91=0+500", "uni25CC=0+500", "uni0DCA=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_68,
@@ -48149,7 +48149,7 @@ shaping_test!(
     "එෙ",
     &["uni0D91=0+500", "uni0DD9=0+500", "uni25CC=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_69,
@@ -48165,7 +48165,7 @@ shaping_test!(
         "uni0DCA=0+500"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_70,
@@ -48181,7 +48181,7 @@ shaping_test!(
         "uni0DCF=0+500"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_71,
@@ -48198,7 +48198,7 @@ shaping_test!(
         "uni0DCA=0+500"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_72,
@@ -48215,7 +48215,7 @@ shaping_test!(
         "uni0DCA=0+500"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_73,
@@ -48226,7 +48226,7 @@ shaping_test!(
     "ඔ\u{ddf}",
     &["uni0D94=0+500", "uni25CC=0+500", "uni0DDF=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_74,
@@ -48237,7 +48237,7 @@ shaping_test!(
     "𑀅\u{11038}",
     &["u11005=0+500", "uni25CC=0+500", "u11038=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_75,
@@ -48248,7 +48248,7 @@ shaping_test!(
     "𑀋\u{1103e}",
     &["u1100B=0+500", "uni25CC=0+500", "u1103E=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_76,
@@ -48259,7 +48259,7 @@ shaping_test!(
     "𑀏\u{11042}",
     &["u1100F=0+500", "uni25CC=0+500", "u11042=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_77,
@@ -48270,7 +48270,7 @@ shaping_test!(
     "𑊰𑋠",
     &["u112B0=0+500", "uni25CC=0+500", "u112E0=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_78,
@@ -48281,7 +48281,7 @@ shaping_test!(
     "𑊰\u{112e5}",
     &["u112B0=0+500", "uni25CC=0+500", "u112E5=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_79,
@@ -48292,7 +48292,7 @@ shaping_test!(
     "𑊰\u{112e6}",
     &["u112B0=0+500", "uni25CC=0+500", "u112E6=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_80,
@@ -48303,7 +48303,7 @@ shaping_test!(
     "𑊰\u{112e7}",
     &["u112B0=0+500", "uni25CC=0+500", "u112E7=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_81,
@@ -48314,7 +48314,7 @@ shaping_test!(
     "𑊰\u{112e8}",
     &["u112B0=0+500", "uni25CC=0+500", "u112E8=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_82,
@@ -48325,7 +48325,7 @@ shaping_test!(
     "𑒁\u{114b0}",
     &["u11481=0+500", "uni25CC=0+500", "u114B0=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_83,
@@ -48336,7 +48336,7 @@ shaping_test!(
     "𑒋\u{114ba}",
     &["u1148B=0+500", "uni25CC=0+500", "u114BA=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_84,
@@ -48347,7 +48347,7 @@ shaping_test!(
     "𑒍\u{114ba}",
     &["u1148D=0+500", "uni25CC=0+500", "u114BA=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_85,
@@ -48358,7 +48358,7 @@ shaping_test!(
     "𑒪\u{114b5}",
     &["u114AA=0+500", "uni25CC=0+500", "u114B5=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_86,
@@ -48369,7 +48369,7 @@ shaping_test!(
     "𑒪\u{114b6}",
     &["u114AA=0+500", "uni25CC=0+500", "u114B6=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_87,
@@ -48380,7 +48380,7 @@ shaping_test!(
     "𑘀\u{11639}",
     &["u11600=0+500", "uni25CC=0+500", "u11639=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_88,
@@ -48391,7 +48391,7 @@ shaping_test!(
     "𑘀\u{1163a}",
     &["u11600=0+500", "uni25CC=0+500", "u1163A=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_89,
@@ -48402,7 +48402,7 @@ shaping_test!(
     "𑘁\u{11639}",
     &["u11601=0+500", "uni25CC=0+500", "u11639=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_90,
@@ -48413,7 +48413,7 @@ shaping_test!(
     "𑘁\u{1163a}",
     &["u11601=0+500", "uni25CC=0+500", "u1163A=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_91,
@@ -48424,7 +48424,7 @@ shaping_test!(
     "𑚀\u{116ad}",
     &["u11680=0+500", "uni25CC=0+500", "u116AD=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_92,
@@ -48435,7 +48435,7 @@ shaping_test!(
     "𑚀\u{116b4}",
     &["u11680=0+500", "uni25CC=0+500", "u116B4=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_93,
@@ -48446,7 +48446,7 @@ shaping_test!(
     "𑚀\u{116b5}",
     &["u11680=0+500", "uni25CC=0+500", "u116B5=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_vowel_letter_spoofing_94,
@@ -48457,7 +48457,7 @@ shaping_test!(
     "𑚆\u{116b2}",
     &["u11686=0+500", "uni25CC=0+500", "u116B2=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_1,
@@ -48468,7 +48468,7 @@ shaping_test!(
     "ᬛ᭄ᬓᬾ",
     &["3=0+990", "7=0+2473", "5=0@-293,-400+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_2,
@@ -48488,7 +48488,7 @@ shaping_test!(
         "uni1A63=3+1212"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_3,
@@ -48508,7 +48508,7 @@ shaping_test!(
         "uni1A63=3+1212"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_4,
@@ -48519,7 +48519,7 @@ shaping_test!(
     "𑄃\u{11128}",
     &["u11103=0+837", "u11128=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_5,
@@ -48530,7 +48530,7 @@ shaping_test!(
     "𑄤\u{1112e}",
     &["u11124=0+514", "u11131=0+0", "u11127=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_6,
@@ -48541,7 +48541,7 @@ shaping_test!(
     "𑄤\u{11131}\u{11127}",
     &["u11124=0+514", "u11131=0+0", "u11127=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_7,
@@ -48552,7 +48552,7 @@ shaping_test!(
     "𑄤\u{11127}\u{11131}",
     &["u11124=0+514", "u11127=0+0", "uni25CC=0+547", "u11131=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_8,
@@ -48563,7 +48563,7 @@ shaping_test!(
     "𑄤\u{11134}\u{11131}",
     &["u11124=0+514", "u11134=0+0", "u11131=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_9,
@@ -48574,7 +48574,7 @@ shaping_test!(
     "𑄤\u{11131}\u{11134}",
     &["u11124=0+514", "u11131=0+0", "uni25CC=0+547", "u11134=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_10,
@@ -48596,7 +48596,7 @@ shaping_test!(
         "Candrabindu.sm=5@-52,179+0"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_11,
@@ -48607,7 +48607,7 @@ shaping_test!(
     "𑌨𑍍\u{1cf4}",
     &["1=0+793", "2=0+0", "3=0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     use_12,
@@ -48624,7 +48624,7 @@ shaping_test!(
         "uni1C00=0+500"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_13,
@@ -48641,7 +48641,7 @@ shaping_test!(
         "uni0D15=3+500"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_14,
@@ -48657,7 +48657,7 @@ shaping_test!(
         "u11046=0+500"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     use_15,
@@ -48668,7 +48668,7 @@ shaping_test!(
     "𑂃",
     &[".notdef=0+500"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_1,
@@ -48679,7 +48679,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_2,
@@ -48690,7 +48690,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_3,
@@ -48701,7 +48701,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_4,
@@ -48712,7 +48712,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_5,
@@ -48723,7 +48723,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_6,
@@ -48734,7 +48734,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_7,
@@ -48745,7 +48745,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_8,
@@ -48756,7 +48756,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_9,
@@ -48767,7 +48767,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_10,
@@ -48778,7 +48778,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_11,
@@ -48789,7 +48789,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_12,
@@ -48800,7 +48800,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_13,
@@ -48811,7 +48811,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_14,
@@ -48822,7 +48822,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_15,
@@ -48833,7 +48833,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_16,
@@ -48844,7 +48844,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_17,
@@ -48855,7 +48855,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_18,
@@ -48866,7 +48866,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_19,
@@ -48877,7 +48877,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_20,
@@ -48888,7 +48888,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_21,
@@ -48899,7 +48899,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_22,
@@ -48910,7 +48910,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_23,
@@ -48921,7 +48921,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_24,
@@ -48932,7 +48932,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_25,
@@ -48943,7 +48943,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_26,
@@ -48954,7 +48954,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_27,
@@ -48965,7 +48965,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_28,
@@ -48976,7 +48976,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_29,
@@ -48987,7 +48987,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_30,
@@ -48998,7 +48998,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_31,
@@ -49009,7 +49009,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_32,
@@ -49020,7 +49020,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_33,
@@ -49031,7 +49031,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_34,
@@ -49042,7 +49042,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_35,
@@ -49053,7 +49053,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_36,
@@ -49064,7 +49064,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_37,
@@ -49075,7 +49075,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_38,
@@ -49086,7 +49086,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_39,
@@ -49097,7 +49097,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_40,
@@ -49108,7 +49108,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_41,
@@ -49119,7 +49119,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_42,
@@ -49130,7 +49130,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_43,
@@ -49141,7 +49141,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_44,
@@ -49152,7 +49152,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_45,
@@ -49163,7 +49163,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_46,
@@ -49174,7 +49174,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_47,
@@ -49185,7 +49185,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_48,
@@ -49196,7 +49196,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_49,
@@ -49207,7 +49207,7 @@ shaping_test!(
     "r",
     &["rvrn_base=0+1529"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_50,
@@ -49218,7 +49218,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_51,
@@ -49229,7 +49229,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_52,
@@ -49240,7 +49240,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_53,
@@ -49251,7 +49251,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_54,
@@ -49262,7 +49262,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_55,
@@ -49273,7 +49273,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_56,
@@ -49284,7 +49284,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_57,
@@ -49295,7 +49295,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_58,
@@ -49306,7 +49306,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_59,
@@ -49317,7 +49317,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_60,
@@ -49328,7 +49328,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_61,
@@ -49339,7 +49339,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_62,
@@ -49350,7 +49350,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_63,
@@ -49361,7 +49361,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_64,
@@ -49372,7 +49372,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_65,
@@ -49383,7 +49383,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_66,
@@ -49394,7 +49394,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_67,
@@ -49405,7 +49405,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_68,
@@ -49416,7 +49416,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_69,
@@ -49427,7 +49427,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_70,
@@ -49438,7 +49438,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_71,
@@ -49449,7 +49449,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_72,
@@ -49460,7 +49460,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_73,
@@ -49471,7 +49471,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_74,
@@ -49482,7 +49482,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_75,
@@ -49493,7 +49493,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_76,
@@ -49504,7 +49504,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_77,
@@ -49515,7 +49515,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_78,
@@ -49526,7 +49526,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_79,
@@ -49537,7 +49537,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_80,
@@ -49548,7 +49548,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_81,
@@ -49559,7 +49559,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_82,
@@ -49570,7 +49570,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_83,
@@ -49581,7 +49581,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_84,
@@ -49592,7 +49592,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_85,
@@ -49603,7 +49603,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_86,
@@ -49614,7 +49614,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_87,
@@ -49625,7 +49625,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_88,
@@ -49636,7 +49636,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_89,
@@ -49647,7 +49647,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_90,
@@ -49658,7 +49658,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_91,
@@ -49669,7 +49669,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_92,
@@ -49680,7 +49680,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_93,
@@ -49691,7 +49691,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_94,
@@ -49702,7 +49702,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_95,
@@ -49713,7 +49713,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_96,
@@ -49724,7 +49724,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_97,
@@ -49735,7 +49735,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_98,
@@ -49746,7 +49746,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_99,
@@ -49757,7 +49757,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_rvrn_100,
@@ -49768,7 +49768,7 @@ shaping_test!(
     "r",
     &["rvrn_subst=0+1825"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_1,
@@ -49779,7 +49779,7 @@ shaping_test!(
     "A",
     &["A=0+496"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_2,
@@ -49790,7 +49790,7 @@ shaping_test!(
     "A",
     &["A=0+505"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_3,
@@ -49801,7 +49801,7 @@ shaping_test!(
     " ",
     &["space=0+266"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_4,
@@ -49812,7 +49812,7 @@ shaping_test!(
     " ",
     &["space=0+639"],
     true,
-    false
+    true
 );
 shaping_test!(
     variations_5,
@@ -49823,7 +49823,7 @@ shaping_test!(
     ".e",
     &["period=0+681", "e=1+650"],
     true,
-    false
+    true
 );
 shaping_test!(
     vertical_1,
@@ -49834,7 +49834,7 @@ shaping_test!(
     "「",
     &["uni300C.vert=0@-512,-578+0,-1024"],
     true,
-    false
+    true
 );
 shaping_test!(
     vertical_2,
@@ -49845,7 +49845,7 @@ shaping_test!(
     "AB",
     &["1=0@-654,-2128+0,-2789", "2=1@-665,-2125+0,-2789"],
     true,
-    false
+    true
 );
 shaping_test!(
     vertical_3,
@@ -49856,7 +49856,7 @@ shaping_test!(
     "AB",
     &["1=0@-654,-1468+0,-2048", "2=1@-665,-1462+0,-2048"],
     true,
-    false
+    true
 );
 shaping_test!(
     vertical_4,
@@ -49867,7 +49867,7 @@ shaping_test!(
     "Ｘ",
     &["2=0@-500,-867+0,-1000"],
     true,
-    false
+    true
 );
 shaping_test!(
     zero_width_marks_1,
@@ -49878,7 +49878,7 @@ shaping_test!(
     "\u{1030}",
     &["circledash=0+636", "u1030.med=0@-162,0+0"],
     true,
-    false
+    true
 );
 shaping_test!(
     zero_width_marks_2,
@@ -49895,7 +49895,7 @@ shaping_test!(
         "uni05E0=0+683"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     zero_width_marks_3,
@@ -49906,7 +49906,7 @@ shaping_test!(
     "ก\u{e34}ก",
     &["1=0+1264", "2=0@20,0+0", "1=2+1264"],
     true,
-    false
+    true
 );
 shaping_test!(
     zero_width_marks_4,
@@ -49917,7 +49917,7 @@ shaping_test!(
     "ก\u{e34}ก",
     &["1=0+1264", "2=0@20,0+1000", "1=2+1264"],
     true,
-    false
+    true
 );
 shaping_test!(
     zero_width_marks_5,
@@ -49928,7 +49928,7 @@ shaping_test!(
     "ก\u{e34}ก",
     &["1=0+1264", "2=0+0", "1=2+1264"],
     true,
-    false
+    true
 );
 shaping_test!(
     zero_width_marks_6,
@@ -49939,7 +49939,7 @@ shaping_test!(
     "ก\u{e34}ก",
     &["1=0+1264", "2=0+0", "1=2+1264"],
     true,
-    false
+    true
 );
 shaping_test!(
     zero_width_marks_7,
@@ -49963,7 +49963,7 @@ shaping_test!(
         "2=11+528"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     zero_width_marks_8,
@@ -49987,7 +49987,7 @@ shaping_test!(
         "2=11+528"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     zero_width_marks_9,
@@ -50001,7 +50001,7 @@ shaping_test!(
         "5=8+528", "6=8+0", "2=10+528", "2=11+528"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     zero_width_marks_10,
@@ -50025,7 +50025,7 @@ shaping_test!(
         "2=11+528"
     ],
     true,
-    false
+    true
 );
 shaping_test!(
     zero_width_marks_11,
@@ -50036,5 +50036,5 @@ shaping_test!(
     "ABA",
     &["A=0+1368", "B=1+0", "A=2+1368"],
     true,
-    false
+    true
 );

@@ -92,7 +92,15 @@ macro_rules! shaping_test {
     ($name:ident, $font:expr, $font_size:expr, $features:expr, $variations:expr, $input:expr) => {
         #[test]
         fn $name() {
-            shaping::shape_text($font, $font_size, $features, $variations, $input, false);
+            shaping::shape_text(
+                $font,
+                $font_size,
+                $features,
+                $variations,
+                $input,
+                false,
+                false,
+            );
         }
     };
 }
