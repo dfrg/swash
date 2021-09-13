@@ -16,6 +16,8 @@ impl<T: Copy + PartialEq> PartialEq for Setting<T> {
     }
 }
 
+impl<T: Copy + PartialEq> Eq for Setting<T> {}
+
 impl<T: Copy + fmt::Display> fmt::Display for Setting<T> {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let bytes = self.tag.to_be_bytes();
