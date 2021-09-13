@@ -1,4 +1,5 @@
 use super::{tag_from_bytes, tag_from_str_lossy, Tag};
+use core::fmt;
 
 /// Setting combining a tag and a value for features and variations.
 #[derive(Copy, Clone, Default, Debug)]
@@ -7,6 +8,20 @@ pub struct Setting<T: Copy> {
     pub tag: Tag,
     /// The value for the setting.
     pub value: T,
+}
+
+impl<T: Copy + PartialEq> PartialEq for Setting<T> {
+    fn eq(&self, other: &Self) -> bool {
+        self.tag == other.tag && self.value == other.value
+    }
+}
+
+impl<T: Copy + fmt::Display> fmt::Display for Setting<T> {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let bytes = self.tag.to_be_bytes();
+        let tag_name = core::str::from_utf8(&bytes).unwrap_or("");
+        write!(f, "\"{}\" {}", tag_name, self.value)
+    }
 }
 
 impl Setting<u16> {
@@ -108,15 +123,6 @@ impl<T: Copy> From<&(&str, T)> for Setting<T> {
             tag: tag_from_str_lossy(v.0),
             value: v.1,
         }
-    }
-}
-
-impl<T> PartialEq for Setting<T>
-where
-    T: Copy + PartialEq,
-{
-    fn eq(&self, other: &Self) -> bool {
-        self.tag == other.tag && self.value == other.value
     }
 }
 
