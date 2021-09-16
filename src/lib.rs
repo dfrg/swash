@@ -58,7 +58,7 @@ pub use attributes::*;
 pub use cache::CacheKey;
 pub use charmap::Charmap;
 pub use feature::{Action, Feature, WritingSystem};
-pub use font::{FontDataRef, FontRef};
+pub use font::{FontDataRef, FontRef, TableProvider};
 pub use metrics::{GlyphMetrics, Metrics};
 pub use palette::{ColorPalette, Usability};
 pub use setting::Setting;

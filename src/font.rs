@@ -1,5 +1,6 @@
 use super::cache::CacheKey;
 use super::internal::{raw_data, RawFont};
+use super::Tag;
 
 /// Reference to the content of a font file.
 #[derive(Copy, Clone)]
@@ -241,5 +242,23 @@ impl<'a> IntoIterator for FontDataRef<'a> {
 
     fn into_iter(self) -> Self::IntoIter {
         self.fonts()
+    }
+}
+
+/// Source that can provide table data by tag.
+pub trait TableProvider {
+    /// Returns the table for the specified tag.
+    fn table_by_tag(&self, tag: Tag) -> Option<&[u8]>;
+}
+
+impl<'a> TableProvider for FontRef<'a> {
+    fn table_by_tag(&self, tag: Tag) -> Option<&[u8]> {
+        self.table_data(tag)
+    }
+}
+
+impl<'a> TableProvider for &'a FontRef<'a> {
+    fn table_by_tag(&self, tag: Tag) -> Option<&[u8]> {
+        self.table_data(tag)
     }
 }
