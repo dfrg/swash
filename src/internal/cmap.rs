@@ -194,3 +194,82 @@ fn is_unicode(platform: u16, encoding: u16) -> bool {
 fn is_symbol(platform: u16, encoding: u16) -> bool {
     platform == 3 && encoding == 0
 }
+
+/// Result of the mapping a codepoint with a variation selector.
+#[derive(Copy, Clone, PartialEq, Eq, Debug)]
+pub enum MapVariant {
+    /// Use the default glyph mapping.
+    UseDefault,
+    /// Use the specified variant.
+    Variant(u16),
+}
+
+/// Maps a codepoint with variation selector to a glyph identifer using the
+/// format 14 subtable at the specified offset in data.
+///
+/// <https://docs.microsoft.com/en-us/typography/opentype/spec/cmap#format-14-unicode-variation-sequences>
+pub fn map_variant(
+    data: &[u8],
+    offset: u32,
+    codepoint: u32,
+    variation_selector: u32,
+) -> Option<MapVariant> {
+    use core::cmp::Ordering;
+    let b = Bytes::with_offset(data, offset as usize)?;
+    let len = b.read_u32(6)? as usize;
+    let base = 10;
+    let mut lo = 0;
+    let mut hi = len;
+    let mut default_uvs_offset = 0;
+    let mut non_default_uvs_offset = 0;
+    while lo < hi {
+        let i = (lo + hi) / 2;
+        let rec = base + i * 11;
+        let vs = b.read_u24(rec)?;
+        match variation_selector.cmp(&vs) {
+            Ordering::Less => hi = i,
+            Ordering::Greater => lo = i + 1,
+            Ordering::Equal => {
+                default_uvs_offset = b.read_u32(rec + 3)? as usize;
+                non_default_uvs_offset = b.read_u32(rec + 7)? as usize;
+                break;
+            }
+        }
+    }
+    if default_uvs_offset != 0 {
+        let base = default_uvs_offset;
+        let len = b.read_u32(base)? as usize;
+        let mut lo = 0;
+        let mut hi = len;
+        while lo < hi {
+            let i = (lo + hi) / 2;
+            let rec = base + 4 + i * 4;
+            let start = b.read_u24(rec)?;
+            if codepoint < start {
+                hi = i;
+            } else if codepoint > (start + b.read_u8(rec + 3)? as u32) {
+                lo = i + 1;
+            } else {
+                // Fallback to standard mapping.
+                return Some(MapVariant::UseDefault);
+            }
+        }
+    }
+    if non_default_uvs_offset != 0 {
+        let base = non_default_uvs_offset;
+        let len = b.read_u32(base)? as usize;
+        let mut lo = 0;
+        let mut hi = len;
+        while lo < hi {
+            let i = (lo + hi) / 2;
+            let rec = base + 4 + i * 5;
+            let value = b.read_u24(rec)?;
+            match codepoint.cmp(&value) {
+                Ordering::Less => hi = i,
+                Ordering::Greater => lo = i + 1,
+                Ordering::Equal => return Some(MapVariant::Variant(b.read_u16(rec + 3)?)),
+            }
+        }
+    }
+    None
+}
