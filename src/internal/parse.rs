@@ -67,6 +67,12 @@ impl<'a> Bytes<'a> {
         u16::from_be_data(self.0, offset)
     }
 
+    /// Reads a u24 value at the specified offset.
+    #[inline(always)]
+    pub fn read_u24(&self, offset: usize) -> Option<u32> {
+        U24::from_be_data(self.0, offset).map(|x| x.0)
+    }
+
     /// Reads a u32 value at some offset.
     #[inline(always)]
     pub fn read_u32(&self, offset: usize) -> Option<u32> {
