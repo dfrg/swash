@@ -49,7 +49,7 @@ impl Setting<u16> {
             })
             .take_while(|(ok, _, _)| *ok)
             .map(|(_, tag, value)| Self { tag, value })
-    }    
+    }
 }
 
 impl Setting<f32> {

@@ -1,6 +1,6 @@
 [package]
 name = "swash"
-version = "0.1.4"
+version = "0.1.5"
 authors = ["Chad Brokaw <cbrokaw@gmail.com>"]
 edition = "2018"
 description = "Font introspection, complex text shaping and glyph rendering."

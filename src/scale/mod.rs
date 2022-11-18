@@ -912,7 +912,7 @@ impl<'a> Render<'a> {
                                     break;
                                 }
                             };
-                            
+
                             scratch.clear();
                             let placement = Mask::with_scratch(layer.path(), rcx)
                                 .origin(Origin::BottomLeft)
