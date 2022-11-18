@@ -890,18 +890,7 @@ impl<'a> Render<'a> {
                         }
                         let palette = proxy.color.palette(font, *palette_index);
 
-                        let mut total_bounds = zeno::Bounds::empty();
-
-                        for i in 0..outline.len() {
-                            let layer = match outline.get(i) {
-                                Some(layer) => layer,
-                                _ => {
-                                    break;
-                                }
-                            };
-                            let bounds = layer.bounds();
-                            total_bounds = total_bounds.grow(&bounds);
-                        }
+                        let total_bounds = outline.bounds();
 
                         let base_x = total_bounds.min.x.floor() as i32;
                         let base_y = total_bounds.min.y.floor() as i32;
@@ -910,7 +899,7 @@ impl<'a> Render<'a> {
 
                         image.data.resize((base_w * base_h * 4) as usize, 0);
                         image.placement.left = base_x;
-                        image.placement.top = (base_h as i32 + base_y);
+                        image.placement.top = base_h as i32 + base_y;
                         image.placement.width = total_bounds.width().ceil() as u32;
                         image.placement.height = total_bounds.height().ceil() as u32;
 
@@ -961,7 +950,7 @@ impl<'a> Render<'a> {
                     if !scaler.has_bitmaps() {
                         continue;
                     }
-                        if scaler.scale_bitmap_into(glyph_id, *mode, image) {
+                    if scaler.scale_bitmap_into(glyph_id, *mode, image) {
                         return true;
                     }
                 }
@@ -969,7 +958,7 @@ impl<'a> Render<'a> {
                     if !scaler.has_color_bitmaps() {
                         continue;
                     }
-                        if scaler.scale_color_bitmap_into(glyph_id, *mode, image) {
+                    if scaler.scale_color_bitmap_into(glyph_id, *mode, image) {
                         return true;
                     }
                 }
