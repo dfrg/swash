@@ -889,10 +889,20 @@ impl<'a> Render<'a> {
                             outline.transform(transform);
                         }
                         let palette = proxy.color.palette(font, *palette_index);
-                        let mut base_x = 0i32;
-                        let mut base_y = 0i32;
-                        let mut base_w = 0u32;
-                        let mut base_h = 0u32;
+
+                        let total_bounds = outline.bounds();
+
+                        let base_x = total_bounds.min.x.floor() as i32;
+                        let base_y = total_bounds.min.y.floor() as i32;
+                        let base_w = total_bounds.width().ceil() as u32;
+                        let base_h = total_bounds.height().ceil() as u32;
+
+                        image.data.resize((base_w * base_h * 4) as usize, 0);
+                        image.placement.left = base_x;
+                        image.placement.top = base_h as i32 + base_y;
+                        image.placement.width = total_bounds.width().ceil() as u32;
+                        image.placement.height = total_bounds.height().ceil() as u32;
+
                         let mut ok = true;
                         for i in 0..outline.len() {
                             let layer = match outline.get(i) {
@@ -902,6 +912,7 @@ impl<'a> Render<'a> {
                                     break;
                                 }
                             };
+                            
                             scratch.clear();
                             let placement = Mask::with_scratch(layer.path(), rcx)
                                 .origin(Origin::BottomLeft)
@@ -911,14 +922,6 @@ impl<'a> Render<'a> {
                                     scratch.resize(fmt.buffer_size(w, h), 0);
                                 })
                                 .render_into(&mut scratch[..], None);
-                            if i == 0 {
-                                base_x = placement.left;
-                                base_y = placement.top;
-                                base_w = placement.width;
-                                base_h = placement.height;
-                                image.data.resize((base_w * base_h * 4) as usize, 0);
-                                image.placement = placement;
-                            }
                             let color = layer
                                 .color_index()
                                 .map(|i| palette.map(|p| p.get(i)))
@@ -929,7 +932,7 @@ impl<'a> Render<'a> {
                                 placement.width,
                                 placement.height,
                                 placement.left.wrapping_sub(base_x),
-                                base_y.wrapping_sub(placement.top),
+                                (base_h as i32 + base_y).wrapping_sub(placement.top),
                                 color,
                                 &mut image.data,
                                 base_w,
