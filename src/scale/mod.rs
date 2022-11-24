@@ -892,8 +892,9 @@ impl<'a> Render<'a> {
 
                         let total_bounds = outline.bounds();
 
-                        let base_x = total_bounds.min.x.floor() as i32;
-                        let base_y = total_bounds.min.y.floor() as i32;
+                        // need to take offset into account when placing glyph
+                        let base_x = (total_bounds.min.x + self.offset.x).floor() as i32;
+                        let base_y = (total_bounds.min.y + self.offset.y).ceil() as i32;
                         let base_w = total_bounds.width().ceil() as u32;
                         let base_h = total_bounds.height().ceil() as u32;
 
