@@ -4,7 +4,7 @@ version = 3
 
 [[package]]
 name = "swash"
-version = "0.1.5"
+version = "0.1.6"
 dependencies = [
  "yazi",
  "zeno",
