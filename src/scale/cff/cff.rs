@@ -40,6 +40,7 @@ pub struct CffProxy {
     font_matrix: Option<Transform>,
     is_cff2: bool,
     is_simple: bool,
+    units_per_em: u16,
 }
 
 impl CffProxy {
@@ -51,7 +52,9 @@ impl CffProxy {
         if offset == 0 {
             return None;
         }
-        Self::parse(font.data, offset)
+        let units_per_em = font.head().map(|head| head.units_per_em()).unwrap_or(1000);
+
+        Self::parse(font.data, offset, units_per_em)
     }
 
     pub fn materialize<'a>(&self, font: &FontRef<'a>) -> Cff<'a> {
@@ -59,7 +62,7 @@ impl CffProxy {
         Cff { data, proxy: *self }
     }
 
-    fn parse(data: &[u8], cff: u32) -> Option<Self> {
+    fn parse(data: &[u8], cff: u32, units_per_em: u16) -> Option<Self> {
         let data = data.get(cff as usize..)?;
         let mut c = Stream::new(data);
         let major = c.read::<u8>()?;
@@ -108,6 +111,7 @@ impl CffProxy {
             vstore: 0,
             vsindex: 0,
             ok: true,
+            units_per_em,
         };
         parse_dict(data, top_dict_range, None, &mut loader)?;
         if !loader.ok {
@@ -180,6 +184,7 @@ impl CffProxy {
             vsindex: loader.vsindex,
             is_cff2,
             is_simple,
+            units_per_em: loader.units_per_em,
         })
     }
 }
@@ -216,6 +221,7 @@ impl<'a> Glyph<'a> {
                 vstore: 0,
                 vsindex,
                 ok: true,
+                units_per_em: proxy.units_per_em,
             };
             let fd_range = proxy.fd_array.get_range(data, fd as u32)?;
             let blend = if proxy.vstore != 0 {
@@ -1104,6 +1110,7 @@ struct Loader {
     vstore: usize,
     vsindex: u16,
     ok: bool,
+    units_per_em: u16,
 }
 
 impl DictionarySink for Loader {
@@ -1136,10 +1143,10 @@ impl DictionarySink for Loader {
     fn font_matrix(&mut self, values: &[f32]) {
         if values.len() == 6 {
             self.font_matrix = Some(Transform {
-                xx: values[0] * 1000.,
-                xy: values[1] * 1000.,
-                yx: values[2] * 1000.,
-                yy: values[3] * 1000.,
+                xx: values[0] * self.units_per_em as f32,
+                xy: values[1] * self.units_per_em as f32,
+                yx: values[2] * self.units_per_em as f32,
+                yy: values[3] * self.units_per_em as f32,
                 x: values[4],
                 y: values[5],
             });
