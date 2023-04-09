@@ -431,7 +431,7 @@ pub trait FromBeData: Sized + Copy + Clone {
 }
 
 pub(crate) const USE_UNALIGNED_READS_LE: bool =
-    cfg!(any(target_arch = "x86", target_arch = "x86_64"));
+    cfg!(any(target_arch = "x86", target_arch = "x86_64")) && cfg!(not(debug_assertions));
 
 impl FromBeData for u8 {
     unsafe fn from_be_data_unchecked(buf: &[u8], offset: usize) -> Self {
