@@ -1,6 +1,6 @@
 [package]
 name = "swash"
-version = "0.1.7"
+version = "0.1.8"
 authors = ["Chad Brokaw <cbrokaw@gmail.com>"]
 edition = "2018"
 description = "Font introspection, complex text shaping and glyph rendering."
@@ -18,5 +18,5 @@ scale = ["yazi", "zeno"]
 render = ["scale", "zeno/eval"]
 
 [dependencies]
-yazi = { version = "0.1.5", optional = true }
+yazi = { version = "0.1.6", optional = true }
 zeno = { version = "0.2.2", optional = true, default_features = false }

@@ -4,7 +4,7 @@ version = 3
 
 [[package]]
 name = "swash"
-version = "0.1.7"
+version = "0.1.8"
 dependencies = [
  "yazi",
  "zeno",
@@ -12,9 +12,9 @@ dependencies = [
 
 [[package]]
 name = "yazi"
-version = "0.1.5"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ec4882895da007f1fb0524971b07f60fc742f457996d970443affd44a48ce954"
+checksum = "c94451ac9513335b5e23d7a8a2b61a7102398b8cca5160829d313e84c9d98be1"
 
 [[package]]
 name = "zeno"
