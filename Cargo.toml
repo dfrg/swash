@@ -20,3 +20,8 @@ render = ["scale", "zeno/eval"]
 [dependencies]
 yazi = { version = "0.1.6", optional = true }
 zeno = { version = "0.2.2", optional = true, default_features = false }
+read-fonts = "0.10.0"
+
+[dev-dependencies]
+font-test-data= { git = "https://github.com/googlefonts/fontations", rev = "91ebdfd91bec9ae4ec34f6a7d5f01736b1b2eb6e" }
+read-fonts = { version = "0.10.0", features = ["scaler_test"] }
