@@ -219,7 +219,7 @@ pub mod image;
 pub mod outline;
 
 mod bitmap;
-mod cff3;
+mod cff;
 mod color;
 mod glyf;
 mod proxy;
@@ -286,7 +286,7 @@ pub struct ScaleContext {
 
 struct State {
     glyf_scaler: glyf::Scaler,
-    cff_cache: cff3::SubfontCache,
+    cff_cache: cff::SubfontCache,
     scratch0: Vec<u8>,
     scratch1: Vec<u8>,
     outline: Outline,
@@ -308,7 +308,7 @@ impl ScaleContext {
             fonts: FontCache::new(max_entries),
             state: State {
                 glyf_scaler: glyf::Scaler::new(max_entries),
-                cff_cache: cff3::SubfontCache::new(max_entries),
+                cff_cache: cff::SubfontCache::new(max_entries),
                 scratch0: Vec::new(),
                 scratch1: Vec::new(),
                 outline: Outline::new(),
@@ -432,7 +432,7 @@ impl<'a> ScalerBuilder<'a> {
                     read_fonts::FontRef::from_index(self.font.data, index as u32).ok()
                 })
             };
-            font.and_then(|font| cff3::Outlines::new(&font).ok())
+            font.and_then(|font| cff::Outlines::new(&font).ok())
         } else {
             None
         };
@@ -458,7 +458,7 @@ pub struct Scaler<'a> {
     state: &'a mut State,
     font: FontRef<'a>,
     proxy: &'a ScalerProxy,
-    cff: Option<cff3::Outlines<'a>>,
+    cff: Option<cff::Outlines<'a>>,
     id: u64,
     coords: &'a [i16],
     size: f32,
