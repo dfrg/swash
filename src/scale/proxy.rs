@@ -1,6 +1,7 @@
+use crate::internal::raw_tag;
+
 use super::{
     super::{metrics::MetricsProxy, strike::BitmapStrikesProxy, FontRef},
-    cff::CffProxy,
     color::ColorProxy,
     glyf::GlyfProxy,
 };
@@ -8,7 +9,7 @@ use super::{
 #[derive(Copy, Clone)]
 pub enum OutlinesProxy {
     None,
-    Cff(CffProxy),
+    Cff,
     Glyf(GlyfProxy),
 }
 
@@ -25,8 +26,8 @@ impl ScalerProxy {
     pub fn from_font(font: &FontRef) -> Self {
         let outlines = if let Some(glyf) = GlyfProxy::from_font(font) {
             OutlinesProxy::Glyf(glyf)
-        } else if let Some(cff) = CffProxy::from_font(font) {
-            OutlinesProxy::Cff(cff)
+        } else if font.table(raw_tag(b"CFF ")).is_some() || font.table(raw_tag(b"CFF2")).is_some() {
+            OutlinesProxy::Cff
         } else {
             OutlinesProxy::None
         };

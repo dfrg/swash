@@ -4,7 +4,7 @@ version = "0.1.9"
 authors = ["Chad Brokaw <cbrokaw@gmail.com>"]
 edition = "2018"
 description = "Font introspection, complex text shaping and glyph rendering."
-license = "MIT OR Apache-2.0"
+license = "MIT/Apache-2.0"
 keywords = ["font", "shape", "glyph", "text"]
 categories = ["graphics", "text-processing"]
 repository = "https://github.com/dfrg/swash"
@@ -20,3 +20,8 @@ render = ["scale", "zeno/eval"]
 [dependencies]
 yazi = { version = "0.1.6", optional = true }
 zeno = { version = "0.2.2", optional = true, default_features = false }
+read-fonts = "0.15.2"
+
+[dev-dependencies]
+font-test-data= { git = "https://github.com/googlefonts/fontations", rev = "10c27ef7bba1549fa37a3f41cd4870b2a24b1073" }
+read-fonts = { version = "0.15.2", features = ["scaler_test"] }
