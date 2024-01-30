@@ -1,26 +1,18 @@
-/*!
-PostScript outlines.
-
-*/
-
-#[allow(clippy::module_inception)]
-mod cff;
 mod hint;
+mod outlines;
 
-pub use cff::{Cff, CffProxy, Glyph, GlyphSink};
-pub use hint::HinterState;
+pub(crate) use outlines::Outlines;
 
-use super::{internal, TRACE};
+use super::Outline;
+use read_fonts::types::{F2Dot14, GlyphId};
 
-use crate::font::FontRef;
-
-pub struct Scaler {
+pub struct SubfontCache {
     entries: Vec<Entry>,
     max_entries: usize,
     epoch: u64,
 }
 
-impl Scaler {
+impl SubfontCache {
     pub fn new(max_entries: usize) -> Self {
         Self {
             entries: Vec::new(),
@@ -31,82 +23,70 @@ impl Scaler {
 
     pub fn scale(
         &mut self,
-        font: &FontRef,
+        outlines: &outlines::Outlines,
         id: u64,
-        coords: &[i16],
-        proxy: &CffProxy,
-        scale: f32,
-        hint: bool,
         glyph_id: u16,
-        sink: &mut impl GlyphSink,
-    ) -> Option<()> {
-        let cff = proxy.materialize(font);
-        let glyph = cff.get(glyph_id)?;
-        if hint {
-            let dict = glyph.subfont_index();
-            let state = self.entry(id, dict, coords, scale, &glyph);
-            if glyph.path(scale, coords, Some(state), sink) {
-                Some(())
-            } else {
-                None
-            }
-        } else if glyph.path(scale, coords, None, sink) {
-            Some(())
-        } else {
-            None
-        }
-    }
-
-    fn entry(
-        &mut self,
-        id: u64,
-        dict: u16,
+        size: f32,
         coords: &[i16],
-        scale: f32,
-        glyph: &Glyph,
-    ) -> &HinterState {
+        hint: bool,
+        outline: &mut Outline,
+    ) -> Option<()> {
         let epoch = self.epoch;
-        let (found, index) = self.find_entry(id, dict, coords, scale);
-        if found {
-            let entry = &mut self.entries[index];
+        let gid = GlyphId::new(glyph_id);
+        let subfont_index = outlines.subfont_index(gid);
+        let (found, entry_index) = self.find_entry(id, subfont_index, coords, size);
+        let (subfont, coords) = if found {
+            let entry = &mut self.entries[entry_index];
             entry.epoch = epoch;
-            &entry.state
+            (&entry.subfont, &entry.coords)
         } else {
             self.epoch += 1;
-            let state = HinterState::new(glyph, scale, coords);
-            if index == self.entries.len() {
+            let epoch = self.epoch;
+            if entry_index == self.entries.len() {
+                let coords: Vec<F2Dot14> = coords.iter().map(|x| F2Dot14::from_bits(*x)).collect();
+                let subfont = outlines.subfont(subfont_index, size, &coords).ok()?;
                 self.entries.push(Entry {
-                    epoch,
                     id,
-                    dict,
-                    state,
-                    coords: Vec::from(coords),
-                    scale,
+                    epoch,
+                    subfont,
+                    subfont_index,
+                    size,
+                    coords,
                 });
-                &self.entries[index].state
+                let entry = &self.entries[entry_index];
+                (&entry.subfont, &entry.coords)
             } else {
-                let entry = &mut self.entries[index];
+                let entry = &mut self.entries[entry_index];
+                entry.id = u64::MAX;
                 entry.epoch = epoch;
-                entry.id = id;
-                entry.dict = dict;
-                entry.state = state;
                 entry.coords.clear();
-                entry.coords.extend_from_slice(coords);
-                entry.scale = scale;
-                &entry.state
+                entry
+                    .coords
+                    .extend(coords.iter().map(|x| F2Dot14::from_bits(*x)));
+                entry.subfont = outlines.subfont(subfont_index, size, &entry.coords).ok()?;
+                entry.id = id;
+                entry.subfont_index = subfont_index;
+                entry.size = size;
+                (&entry.subfont, &entry.coords)
             }
-        }
+        };
+        outlines
+            .draw(subfont, gid, coords, hint, &mut OutlineBuilder(outline))
+            .ok()?;
+        Some(())
     }
 
-    fn find_entry(&self, id: u64, dict: u16, coords: &[i16], scale: f32) -> (bool, usize) {
+    fn find_entry(&self, id: u64, index: u32, coords: &[i16], size: f32) -> (bool, usize) {
         let mut lowest_epoch = self.epoch;
         let mut lowest_index = 0;
-        let vary = !coords.is_empty();
         for (i, entry) in self.entries.iter().enumerate() {
             if entry.id == id
-                && entry.dict == dict
-                && entry.scale == scale
-                && (!vary || (coords == &entry.coords[..]))
+                && entry.subfont_index == index
+                && entry.size == size
+                && coords
+                    .iter()
+                    .map(|x| F2Dot14::from_bits(*x))
+                    .eq(entry.coords.iter().copied())
             {
                 return (true, i);
             }
@@ -125,8 +105,33 @@ impl Scaler {
 struct Entry {
     epoch: u64,
     id: u64,
-    dict: u16,
-    state: HinterState,
-    coords: Vec<i16>,
-    scale: f32,
+    subfont: outlines::Subfont,
+    subfont_index: u32,
+    size: f32,
+    coords: Vec<F2Dot14>,
+}
+
+struct OutlineBuilder<'a>(&'a mut Outline);
+
+impl read_fonts::types::Pen for OutlineBuilder<'_> {
+    fn move_to(&mut self, x: f32, y: f32) {
+        self.0.move_to((x, y).into());
+    }
+
+    fn line_to(&mut self, x: f32, y: f32) {
+        self.0.line_to((x, y).into());
+    }
+
+    fn quad_to(&mut self, cx0: f32, cy0: f32, x: f32, y: f32) {
+        self.0.quad_to((cx0, cy0).into(), (x, y).into());
+    }
+
+    fn curve_to(&mut self, cx0: f32, cy0: f32, cx1: f32, cy1: f32, x: f32, y: f32) {
+        self.0
+            .curve_to((cx0, cy0).into(), (cx1, cy1).into(), (x, y).into());
+    }
+
+    fn close(&mut self) {
+        self.0.close();
+    }
 }

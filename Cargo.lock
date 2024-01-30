@@ -3,9 +3,31 @@
 version = 3
 
 [[package]]
+name = "font-test-data"
+version = "0.1.0"
+source = "git+https://github.com/googlefonts/fontations?rev=10c27ef7bba1549fa37a3f41cd4870b2a24b1073#10c27ef7bba1549fa37a3f41cd4870b2a24b1073"
+
+[[package]]
+name = "font-types"
+version = "0.4.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0bd7f3ea17572640b606b35df42cfb6ecdf003704b062580e59918692190b73d"
+
+[[package]]
+name = "read-fonts"
+version = "0.15.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7555e052e772f964a1c99f1434f6a2c3a47a5f8e4292236921f121a7753cb2b5"
+dependencies = [
+ "font-types",
+]
+
+[[package]]
 name = "swash"
 version = "0.1.8"
 dependencies = [
+ "font-test-data",
+ "read-fonts",
  "yazi",
  "zeno",
 ]
