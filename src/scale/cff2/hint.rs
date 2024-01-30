@@ -636,7 +636,7 @@ impl HintMap {
         if !first.is_locked() {
             if let Some(initial) = initial {
                 if is_pair {
-                    let mid = initial.apply(scale, half(second.coord + first.coord));
+                    let mid = initial.apply(scale, first.coord + half(second.coord - first.coord));
                     let half = half(second.coord - first.coord) * scale;
                     first.ds_coord = mid - half;
                     second.ds_coord = mid + half;
