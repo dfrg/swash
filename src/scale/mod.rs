@@ -219,8 +219,7 @@ pub mod image;
 pub mod outline;
 
 mod bitmap;
-mod cff;
-mod cff2;
+mod cff3;
 mod color;
 mod glyf;
 mod proxy;
@@ -287,8 +286,7 @@ pub struct ScaleContext {
 
 struct State {
     glyf_scaler: glyf::Scaler,
-    cff_scaler: cff::Scaler,
-    cff_cache: cff2::SubfontCache,
+    cff_cache: cff3::SubfontCache,
     scratch0: Vec<u8>,
     scratch1: Vec<u8>,
     outline: Outline,
@@ -310,8 +308,7 @@ impl ScaleContext {
             fonts: FontCache::new(max_entries),
             state: State {
                 glyf_scaler: glyf::Scaler::new(max_entries),
-                cff_scaler: cff::Scaler::new(max_entries),
-                cff_cache: cff2::SubfontCache::new(max_entries),
+                cff_cache: cff3::SubfontCache::new(max_entries),
                 scratch0: Vec::new(),
                 scratch1: Vec::new(),
                 outline: Outline::new(),
@@ -421,7 +418,7 @@ impl<'a> ScalerBuilder<'a> {
             1.
         };
         // Handle read-fonts conversion for CFF
-        let cff = if matches!(&self.proxy.outlines, OutlinesProxy::Cff(_)) {
+        let cff = if matches!(&self.proxy.outlines, OutlinesProxy::Cff) {
             let font = if self.font.offset == 0 {
                 read_fonts::FontRef::new(self.font.data).ok()
             } else {
@@ -435,7 +432,7 @@ impl<'a> ScalerBuilder<'a> {
                     read_fonts::FontRef::from_index(self.font.data, index as u32).ok()
                 })
             };
-            font.and_then(|font| cff2::Scaler::new(&font).ok())
+            font.and_then(|font| cff3::Outlines::new(&font).ok())
         } else {
             None
         };
@@ -461,7 +458,7 @@ pub struct Scaler<'a> {
     state: &'a mut State,
     font: FontRef<'a>,
     proxy: &'a ScalerProxy,
-    cff: Option<cff2::Scaler<'a>>,
+    cff: Option<cff3::Outlines<'a>>,
     id: u64,
     coords: &'a [i16],
     size: f32,
@@ -541,7 +538,7 @@ impl<'a> Scaler<'a> {
             _ => &mut self.state.outline,
         };
         match &self.proxy.outlines {
-            OutlinesProxy::Cff(_) if self.cff.is_some() => {
+            OutlinesProxy::Cff if self.cff.is_some() => {
                 let cff_scaler = self.cff.as_ref().unwrap();
                 outline.begin_layer(color_index);
                 if self
@@ -1108,27 +1105,4 @@ fn fill_outline(
         }
     }
     Some(())
-}
-
-struct CffBuilder<'a> {
-    outline: &'a mut Outline,
-}
-
-impl cff::GlyphSink for CffBuilder<'_> {
-    fn move_to(&mut self, x: f32, y: f32) {
-        self.outline.move_to(Point::new(x, y));
-    }
-
-    fn line_to(&mut self, x: f32, y: f32) {
-        self.outline.line_to(Point::new(x, y));
-    }
-
-    fn curve_to(&mut self, cx1: f32, cy1: f32, cx2: f32, cy2: f32, x: f32, y: f32) {
-        self.outline
-            .curve_to(Point::new(cx1, cy1), Point::new(cx2, cy2), Point::new(x, y));
-    }
-
-    fn close(&mut self) {
-        self.outline.close();
-    }
 }

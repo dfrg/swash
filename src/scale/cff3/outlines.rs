@@ -1,4 +1,4 @@
-//! Scaler for CFF outlines.
+//! Support for scaling CFF outlines.
 
 use std::ops::Range;
 
@@ -13,10 +13,10 @@ use read_fonts::{
         variations::ItemVariationStore,
     },
     types::{F2Dot14, Fixed, GlyphId, Pen},
-    FontData, FontRead, ReadError, TableProvider,
+    FontData, FontRead, TableProvider,
 };
 
-use super::hint::{HintParams, HintState};
+use super::hint::{HintParams, HintState, HintingSink};
 
 /// Type for loading, scaling and hinting outlines in CFF/CFF2 tables.
 ///
@@ -35,34 +35,14 @@ use super::hint::{HintParams, HintState};
 /// index for the requested glyph followed by using the
 /// [`subfont`](Self::subfont) method to create an appropriately configured
 /// subfont for that glyph.
-///
-/// # Example
-///
-/// ```
-/// # use read_fonts::{tables::postscript::*, types::*, FontRef};
-/// # fn example(font: FontRef, coords: &[F2Dot14], pen: &mut impl Pen) -> Result<(), Error> {
-/// let scaler = Scaler::new(&font)?;
-/// let glyph_id = GlyphId::new(24);
-/// // Retrieve the subfont index for the requested glyph.
-/// let subfont_index = scaler.subfont_index(glyph_id);
-/// // Construct a subfont with the given configuration.
-/// let size = 16.0;
-/// let coords = &[];
-/// let subfont = scaler.subfont(subfont_index, size, coords)?;
-/// // Scale the outline using our configured subfont and emit the
-/// // result to the given pen.
-/// let hint = false;
-/// scaler.outline(&subfont, glyph_id, coords, hint, pen)?;
-/// # Ok(())
-/// # }
-/// ```
-pub struct Scaler<'a> {
+#[derive(Clone)]
+pub(crate) struct Outlines<'a> {
     version: Version<'a>,
-    top_dict: ScalerTopDict<'a>,
+    top_dict: TopDict<'a>,
     units_per_em: u16,
 }
 
-impl<'a> Scaler<'a> {
+impl<'a> Outlines<'a> {
     /// Creates a new scaler for the given font.
     ///
     /// This will choose an underyling CFF2 or CFF table from the font, in that
@@ -87,7 +67,7 @@ impl<'a> Scaler<'a> {
         units_per_em: u16,
     ) -> Result<Self, Error> {
         let top_dict_data = cff1.top_dicts().get(top_dict_index)?;
-        let top_dict = ScalerTopDict::new(cff1.offset_data().as_bytes(), top_dict_data, false)?;
+        let top_dict = TopDict::new(cff1.offset_data().as_bytes(), top_dict_data, false)?;
         Ok(Self {
             version: Version::Version1(cff1),
             top_dict,
@@ -97,7 +77,7 @@ impl<'a> Scaler<'a> {
 
     pub fn from_cff2(cff2: Cff2<'a>, units_per_em: u16) -> Result<Self, Error> {
         let table_data = cff2.offset_data().as_bytes();
-        let top_dict = ScalerTopDict::new(table_data, cff2.top_dict_data(), true)?;
+        let top_dict = TopDict::new(table_data, cff2.top_dict_data(), true)?;
         Ok(Self {
             version: Version::Version2(cff2),
             top_dict,
@@ -107,6 +87,15 @@ impl<'a> Scaler<'a> {
 
     pub fn is_cff2(&self) -> bool {
         matches!(self.version, Version::Version2(_))
+    }
+
+    /// Returns the number of available glyphs.
+    pub fn glyph_count(&self) -> usize {
+        self.top_dict
+            .charstrings
+            .as_ref()
+            .map(|cs| cs.count() as usize)
+            .unwrap_or_default()
     }
 
     /// Returns the number of available subfonts.
@@ -144,12 +133,7 @@ impl<'a> Scaler<'a> {
     ///
     /// The index of a subfont for a particular glyph can be retrieved with
     /// the [`subfont_index`](Self::subfont_index) method.
-    pub fn subfont(
-        &self,
-        index: u32,
-        size: f32,
-        coords: &[F2Dot14],
-    ) -> Result<ScalerSubfont, Error> {
+    pub fn subfont(&self, index: u32, size: f32, coords: &[F2Dot14]) -> Result<Subfont, Error> {
         let private_dict_range = self.private_dict_range(index)?;
         let private_dict_data = self.offset_data().read_array(private_dict_range.clone())?;
         let mut hint_params = HintParams::default();
@@ -185,11 +169,12 @@ impl<'a> Scaler<'a> {
             // match FreeType
             Fixed::from_bits((size * 64.) as i32) / Fixed::from_bits(self.units_per_em as i32)
         };
-        let hint_state = HintState::new(&hint_params, scale);
-        Ok(ScalerSubfont {
+        // When hinting, use a modified scale factor
+        // <https://gitlab.freedesktop.org/freetype/freetype/-/blob/80a507a6b8e3d2906ad2c8ba69329bd2fb2a85ef/src/psaux/psft.c#L279>
+        let hint_scale = Fixed::from_bits((scale.to_bits() + 32) / 64);
+        let hint_state = HintState::new(&hint_params, hint_scale);
+        Ok(Subfont {
             is_cff2: self.is_cff2(),
-            index,
-            size,
             scale,
             subrs_offset,
             hint_state,
@@ -208,9 +193,9 @@ impl<'a> Scaler<'a> {
     /// discrete steps to allow for caching.
     ///
     /// The result is emitted to the specified pen.
-    pub fn outline(
+    pub fn draw(
         &self,
-        subfont: &ScalerSubfont,
+        subfont: &Subfont,
         glyph_id: GlyphId,
         coords: &[F2Dot14],
         hint: bool,
@@ -220,18 +205,15 @@ impl<'a> Scaler<'a> {
             .top_dict
             .charstrings
             .as_ref()
-            .ok_or(Error::Read(ReadError::MalformedData(
-                "missing charstrings INDEX in CFF table",
-            )))?
+            .ok_or(Error::MissingCharstrings)?
             .get(glyph_id.to_u16() as usize)?;
         let subrs = subfont.subrs(self)?;
         let blend_state = subfont.blend_state(self, coords)?;
         let mut pen_sink = charstring::PenSink::new(pen);
         let mut simplifying_adapter = NopFilteringSink::new(&mut pen_sink);
         if hint {
-            let mut scaling_adapter = ScalingSink26Dot6::new(&mut simplifying_adapter, Fixed::ONE);
             let mut hinting_adapter =
-                super::hint::Hinter::new(&subfont.hint_state, &mut scaling_adapter);
+                HintingSink::new(&subfont.hint_state, &mut simplifying_adapter);
             charstring::evaluate(
                 charstring_data,
                 self.global_subrs(),
@@ -239,6 +221,7 @@ impl<'a> Scaler<'a> {
                 blend_state,
                 &mut hinting_adapter,
             )?;
+            hinting_adapter.finish();
         } else {
             let mut scaling_adapter =
                 ScalingSink26Dot6::new(&mut simplifying_adapter, subfont.scale);
@@ -286,12 +269,11 @@ impl<'a> Scaler<'a> {
             // available.
             self.top_dict.private_dict_range.clone()
         }
-        .ok_or(Error::Read(ReadError::MalformedData(
-            "missing Private DICT in CFF table",
-        )))
+        .ok_or(Error::MissingPrivateDict)
     }
 }
 
+#[derive(Clone)]
 enum Version<'a> {
     /// <https://learn.microsoft.com/en-us/typography/opentype/spec/cff>
     Version1(Cff<'a>),
@@ -307,27 +289,17 @@ enum Version<'a> {
 ///
 /// For variable fonts, this is dependent on a location in variation space.
 #[derive(Clone)]
-pub struct ScalerSubfont {
+pub(crate) struct Subfont {
     is_cff2: bool,
-    index: u32,
-    size: f32,
     scale: Fixed,
     subrs_offset: Option<usize>,
-    hint_state: HintState,
+    pub(crate) hint_state: HintState,
     store_index: u16,
 }
 
-impl ScalerSubfont {
-    pub fn index(&self) -> u32 {
-        self.index
-    }
-
-    pub fn size(&self) -> f32 {
-        self.size
-    }
-
+impl Subfont {
     /// Returns the local subroutine index.
-    pub fn subrs<'a>(&self, scaler: &Scaler<'a>) -> Result<Option<Index<'a>>, Error> {
+    pub fn subrs<'a>(&self, scaler: &Outlines<'a>) -> Result<Option<Index<'a>>, Error> {
         if let Some(subrs_offset) = self.subrs_offset {
             let offset_data = scaler.offset_data().as_bytes();
             let index_data = offset_data.get(subrs_offset..).unwrap_or_default();
@@ -341,7 +313,7 @@ impl ScalerSubfont {
     /// coordinates.
     pub fn blend_state<'a>(
         &self,
-        scaler: &Scaler<'a>,
+        scaler: &Outlines<'a>,
         coords: &'a [F2Dot14],
     ) -> Result<Option<BlendState<'a>>, Error> {
         if let Some(var_store) = scaler.top_dict.var_store.clone() {
@@ -354,8 +326,8 @@ impl ScalerSubfont {
 
 /// Entries that we parse from the Top DICT that are required to support
 /// charstring evaluation.
-#[derive(Default)]
-struct ScalerTopDict<'a> {
+#[derive(Clone, Default)]
+struct TopDict<'a> {
     charstrings: Option<Index<'a>>,
     font_dicts: Option<Index<'a>>,
     fd_select: Option<FdSelect<'a>>,
@@ -363,9 +335,9 @@ struct ScalerTopDict<'a> {
     var_store: Option<ItemVariationStore<'a>>,
 }
 
-impl<'a> ScalerTopDict<'a> {
+impl<'a> TopDict<'a> {
     fn new(table_data: &'a [u8], top_dict_data: &'a [u8], is_cff2: bool) -> Result<Self, Error> {
-        let mut items = ScalerTopDict::default();
+        let mut items = TopDict::default();
         for entry in dict::entries(top_dict_data, None) {
             match entry? {
                 dict::Entry::CharstringsOffset(offset) => {
@@ -417,25 +389,31 @@ impl<'a, S> ScalingSink26Dot6<'a, S> {
     }
 
     fn scale(&self, coord: Fixed) -> Fixed {
+        // The following dance is necessary to exactly match FreeType's
+        // application of scaling factors. This seems to be the result
+        // of merging the contributed Adobe code while not breaking the
+        // FreeType public API.
+        //
+        // The first two steps apply to both scaled and unscaled outlines:
+        //
+        // 1. Multiply by 1/64
+        // <https://gitlab.freedesktop.org/freetype/freetype/-/blob/80a507a6b8e3d2906ad2c8ba69329bd2fb2a85ef/src/psaux/psft.c#L284>
+        let a = coord * Fixed::from_bits(0x0400);
+        // 2. Truncate the bottom 10 bits. Combined with the division by 64,
+        // converts to font units.
+        // <https://gitlab.freedesktop.org/freetype/freetype/-/blob/80a507a6b8e3d2906ad2c8ba69329bd2fb2a85ef/src/psaux/psobjs.c#L2219>
+        let b = Fixed::from_bits(a.to_bits() >> 10);
         if self.scale != Fixed::ONE {
-            // The following dance is necessary to exactly match FreeType's
-            // application of scaling factors. This seems to be the result
-            // of merging the contributed Adobe code while not breaking the
-            // FreeType public API.
-            // 1. Multiply by 1/64
-            // <https://gitlab.freedesktop.org/freetype/freetype/-/blob/80a507a6b8e3d2906ad2c8ba69329bd2fb2a85ef/src/psaux/psft.c#L284>
-            let a = coord * Fixed::from_bits(0x0400);
-            // 2. Convert to 26.6 by truncation
-            // <https://gitlab.freedesktop.org/freetype/freetype/-/blob/80a507a6b8e3d2906ad2c8ba69329bd2fb2a85ef/src/psaux/psobjs.c#L2219>
-            let b = Fixed::from_bits(a.to_bits() >> 10);
-            // 3. Multiply by the original scale factor
+            // Scaled case:
+            // 3. Multiply by the original scale factor (to 26.6)
             // <https://gitlab.freedesktop.org/freetype/freetype/-/blob/80a507a6b8e3d2906ad2c8ba69329bd2fb2a85ef/src/cff/cffgload.c#L721>
             let c = b * self.scale;
-            // Finally, we convert back to 16.16
+            // 4. Convert from 26.6 to 16.16
             Fixed::from_bits(c.to_bits() << 10)
         } else {
-            // Otherwise, simply zero the low 10 bits
-            Fixed::from_bits(coord.to_bits() & !0x3FF)
+            // Unscaled case:
+            // 3. Convert from integer to 16.16
+            Fixed::from_bits(b.to_bits() << 16)
         }
     }
 }
@@ -576,13 +554,156 @@ where
 
     fn close(&mut self) {
         if self.pending_move.is_none() {
-            if let Some((start_x, start_y)) = self.start {
-                if self.start != self.last {
-                    self.inner.line_to(start_x, start_y);
-                }
-            }
+            self.inner.close();
             self.start = None;
             self.last = None;
+        }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use read_fonts::FontRef;
+
+    #[test]
+    fn unscaled_scaling_sink_produces_integers() {
+        let nothing = &mut ();
+        let sink = ScalingSink26Dot6::new(nothing, Fixed::ONE);
+        for coord in [50.0, 50.1, 50.125, 50.5, 50.9] {
+            assert_eq!(sink.scale(Fixed::from_f64(coord)).to_f32(), 50.0);
+        }
+    }
+
+    #[test]
+    fn scaled_scaling_sink() {
+        let ppem = 20.0;
+        let upem = 1000.0;
+        // match FreeType scaling with intermediate conversion to 26.6
+        let scale = Fixed::from_bits((ppem * 64.) as i32) / Fixed::from_bits(upem as i32);
+        let nothing = &mut ();
+        let sink = ScalingSink26Dot6::new(nothing, scale);
+        let inputs = [
+            // input coord, expected scaled output
+            (0.0, 0.0),
+            (8.0, 0.15625),
+            (16.0, 0.3125),
+            (32.0, 0.640625),
+            (72.0, 1.4375),
+            (128.0, 2.5625),
+        ];
+        for (coord, expected) in inputs {
+            assert_eq!(
+                sink.scale(Fixed::from_f64(coord)).to_f32(),
+                expected,
+                "scaling coord {coord}"
+            );
+        }
+    }
+
+    #[test]
+    fn read_cff_static() {
+        let font = FontRef::new(font_test_data::NOTO_SERIF_DISPLAY_TRIMMED).unwrap();
+        let cff = Outlines::new(&font).unwrap();
+        assert!(!cff.is_cff2());
+        assert!(cff.top_dict.var_store.is_none());
+        assert!(cff.top_dict.font_dicts.is_none());
+        assert!(cff.top_dict.private_dict_range.is_some());
+        assert!(cff.top_dict.fd_select.is_none());
+        assert_eq!(cff.subfont_count(), 1);
+        assert_eq!(cff.subfont_index(GlyphId::new(1)), 0);
+        assert_eq!(cff.global_subrs().count(), 17);
+    }
+
+    #[test]
+    fn read_cff2_static() {
+        let font = FontRef::new(font_test_data::CANTARELL_VF_TRIMMED).unwrap();
+        let cff = Outlines::new(&font).unwrap();
+        assert!(cff.is_cff2());
+        assert!(cff.top_dict.var_store.is_some());
+        assert!(cff.top_dict.font_dicts.is_some());
+        assert!(cff.top_dict.private_dict_range.is_none());
+        assert!(cff.top_dict.fd_select.is_none());
+        assert_eq!(cff.subfont_count(), 1);
+        assert_eq!(cff.subfont_index(GlyphId::new(1)), 0);
+        assert_eq!(cff.global_subrs().count(), 0);
+    }
+
+    #[test]
+    fn read_example_cff2_table() {
+        let cff = Outlines::from_cff2(
+            Cff2::read(FontData::new(font_test_data::cff2::EXAMPLE)).unwrap(),
+            1000,
+        )
+        .unwrap();
+        assert!(cff.is_cff2());
+        assert!(cff.top_dict.var_store.is_some());
+        assert!(cff.top_dict.font_dicts.is_some());
+        assert!(cff.top_dict.private_dict_range.is_none());
+        assert!(cff.top_dict.fd_select.is_none());
+        assert_eq!(cff.subfont_count(), 1);
+        assert_eq!(cff.subfont_index(GlyphId::new(1)), 0);
+        assert_eq!(cff.global_subrs().count(), 0);
+    }
+
+    #[test]
+    fn cff2_variable_outlines_match_freetype() {
+        compare_glyphs(
+            font_test_data::CANTARELL_VF_TRIMMED,
+            font_test_data::CANTARELL_VF_TRIMMED_GLYPHS,
+        );
+    }
+
+    #[test]
+    fn cff_static_outlines_match_freetype() {
+        compare_glyphs(
+            font_test_data::NOTO_SERIF_DISPLAY_TRIMMED,
+            font_test_data::NOTO_SERIF_DISPLAY_TRIMMED_GLYPHS,
+        );
+    }
+
+    /// For the given font data and extracted outlines, parse the extracted
+    /// outline data into a set of expected values and compare these with the
+    /// results generated by the scaler.
+    ///
+    /// This will compare all outlines at various sizes and (for variable
+    /// fonts), locations in variation space.
+    fn compare_glyphs(font_data: &[u8], expected_outlines: &str) {
+        let font = FontRef::new(font_data).unwrap();
+        let outlines = read_fonts::scaler_test::parse_glyph_outlines(expected_outlines);
+        let scaler = super::Outlines::new(&font).unwrap();
+        let mut path = read_fonts::scaler_test::Path::default();
+        for expected_outline in &outlines {
+            if expected_outline.size == 0.0 && !expected_outline.coords.is_empty() {
+                continue;
+            }
+            path.elements.clear();
+            let subfont = scaler
+                .subfont(
+                    scaler.subfont_index(expected_outline.glyph_id),
+                    expected_outline.size,
+                    &expected_outline.coords,
+                )
+                .unwrap();
+            scaler
+                .draw(
+                    &subfont,
+                    expected_outline.glyph_id,
+                    &expected_outline.coords,
+                    false,
+                    &mut path,
+                )
+                .unwrap();
+            if path.elements != expected_outline.path {
+                panic!(
+                    "mismatch in glyph path for id {} (size: {}, coords: {:?}): path: {:?} expected_path: {:?}",
+                    expected_outline.glyph_id,
+                    expected_outline.size,
+                    expected_outline.coords,
+                    &path.elements,
+                    &expected_outline.path
+                );
+            }
         }
     }
 }
