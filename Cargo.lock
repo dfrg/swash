@@ -24,7 +24,7 @@ dependencies = [
 
 [[package]]
 name = "swash"
-version = "0.1.9"
+version = "0.1.10"
 dependencies = [
  "font-test-data",
  "read-fonts",
