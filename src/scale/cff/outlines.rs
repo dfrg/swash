@@ -36,7 +36,7 @@ use super::hint::{HintParams, HintState, HintingSink};
 /// [`subfont`](Self::subfont) method to create an appropriately configured
 /// subfont for that glyph.
 #[derive(Clone)]
-pub(crate) struct Outlines<'a> {
+pub struct Outlines<'a> {
     version: Version<'a>,
     top_dict: TopDict<'a>,
     units_per_em: u16,
