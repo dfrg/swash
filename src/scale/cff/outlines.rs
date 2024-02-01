@@ -289,7 +289,7 @@ enum Version<'a> {
 ///
 /// For variable fonts, this is dependent on a location in variation space.
 #[derive(Clone)]
-pub(crate) struct Subfont {
+pub struct Subfont {
     is_cff2: bool,
     scale: Fixed,
     subrs_offset: Option<usize>,
