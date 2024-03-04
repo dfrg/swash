@@ -784,6 +784,8 @@ pub struct Render<'a> {
     sources: &'a [Source],
     format: Format,
     offset: Point,
+    h_flip: bool,
+    v_flip: bool,
     transform: Option<Transform>,
     embolden: f32,
     foreground: [u8; 4],
@@ -799,6 +801,8 @@ impl<'a> Render<'a> {
             sources,
             format: Format::Alpha,
             offset: Point::new(0., 0.),
+            h_flip: false,
+            v_flip: false,
             transform: None,
             embolden: 0.,
             foreground: [128, 128, 128, 255],
@@ -824,6 +828,24 @@ impl<'a> Render<'a> {
     /// Default is `(0, 0)`.
     pub fn offset(&mut self, offset: Vector) -> &mut Self {
         self.offset = offset;
+        self
+    }
+
+    /// Specifies if a horizontal flip should be done when rasterizing an
+    /// outline. Default is `false`.
+    ///
+    /// Note that flips are applied before transforms.
+    pub fn h_flip(&mut self, h_flip: bool) -> &mut Self {
+        self.h_flip = h_flip;
+        self
+    }
+
+    /// Specifies if a vertical flip should be done when rasterizing an
+    /// outline. Default is `false`.
+    ///
+    /// Note that flips are applied before transforms.
+    pub fn v_flip(&mut self, v_flip: bool) -> &mut Self {
+        self.v_flip = v_flip;
         self
     }
 
@@ -866,6 +888,12 @@ impl<'a> Render<'a> {
                         if self.embolden != 0. {
                             outline.embolden(self.embolden, self.embolden);
                         }
+                        if self.h_flip {
+                            outline.h_flip();
+                        }
+                        if self.v_flip {
+                            outline.v_flip();
+                        }
                         if let Some(transform) = &self.transform {
                             outline.transform(transform);
                         }
@@ -905,6 +933,12 @@ impl<'a> Render<'a> {
                         // if self.embolden != 0. {
                         //     outline.embolden(self.embolden, self.embolden);
                         // }
+                        if self.h_flip {
+                            outline.h_flip();
+                        }
+                        if self.v_flip {
+                            outline.v_flip();
+                        }
                         if let Some(transform) = &self.transform {
                             outline.transform(transform);
                         }

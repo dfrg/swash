@@ -86,6 +86,20 @@ impl Outline {
         Bounds::from_points(&self.points)
     }
 
+    /// Flip the outline horizontally
+    pub fn h_flip(&mut self) {
+        for p in &mut self.points {
+            p.x *= -1.0;
+        }
+    }
+
+    /// Flip the outline vertically
+    pub fn v_flip(&mut self) {
+        for p in &mut self.points {
+            p.y *= -1.0;
+        }
+    }
+
     /// Transforms the outline by the specified matrix.
     pub fn transform(&mut self, transform: &Transform) {
         for p in &mut self.points {
