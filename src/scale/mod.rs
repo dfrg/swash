@@ -337,7 +337,7 @@ pub struct ScalerBuilder<'a> {
     state: &'a mut State,
     font: FontRef<'a>,
     proxy: &'a ScalerProxy,
-    id: u64,
+    id: [u64; 2],
     coords: &'a mut Vec<i16>,
     size: f32,
     hint: bool,
@@ -348,7 +348,7 @@ impl<'a> ScalerBuilder<'a> {
         let font = font.into();
         let (id, proxy) = context
             .fonts
-            .get(&font, |font| ScalerProxy::from_font(font));
+            .get(&font, None, |font| ScalerProxy::from_font(font));
         Self {
             state: &mut context.state,
             font,
@@ -459,7 +459,7 @@ pub struct Scaler<'a> {
     font: FontRef<'a>,
     proxy: &'a ScalerProxy,
     cff: Option<cff::Outlines<'a>>,
-    id: u64,
+    id: [u64; 2],
     coords: &'a [i16],
     size: f32,
     scale: f32,

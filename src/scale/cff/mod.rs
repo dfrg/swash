@@ -24,7 +24,7 @@ impl SubfontCache {
     pub fn scale(
         &mut self,
         outlines: &outlines::Outlines,
-        id: u64,
+        id: [u64; 2],
         glyph_id: u16,
         size: f32,
         coords: &[i16],
@@ -57,7 +57,7 @@ impl SubfontCache {
                 (&entry.subfont, &entry.coords)
             } else {
                 let entry = &mut self.entries[entry_index];
-                entry.id = u64::MAX;
+                entry.id = [u64::MAX; 2];
                 entry.epoch = epoch;
                 entry.coords.clear();
                 entry
@@ -76,7 +76,7 @@ impl SubfontCache {
         Some(())
     }
 
-    fn find_entry(&self, id: u64, index: u32, coords: &[i16], size: f32) -> (bool, usize) {
+    fn find_entry(&self, id: [u64; 2], index: u32, coords: &[i16], size: f32) -> (bool, usize) {
         let mut lowest_epoch = self.epoch;
         let mut lowest_index = 0;
         for (i, entry) in self.entries.iter().enumerate() {
@@ -104,7 +104,7 @@ impl SubfontCache {
 
 struct Entry {
     epoch: u64,
-    id: u64,
+    id: [u64; 2],
     subfont: outlines::Subfont,
     subfont_index: u32,
     size: f32,

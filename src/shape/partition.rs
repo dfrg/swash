@@ -24,6 +24,10 @@ pub trait SelectedFont: PartialEq {
     /// Returns a reference to the underlying font.
     fn font(&self) -> FontRef;
 
+    fn id_override(&self) -> Option<[u64; 2]> {
+        None
+    }
+
     /// Returns an optional synthesis state for the font.
     fn synthesis(&self) -> Option<Synthesis> {
         None
@@ -208,8 +212,12 @@ where
         return false;
     }
     let font = current_font.as_ref().unwrap();
+    let font_ref = font.font();
+    let id = font
+        .id_override()
+        .unwrap_or([font_ref.key.value(), u64::MAX]);
     let mut shaper = context
-        .builder(font.font())
+        .builder_with_id(font.font(), id)
         .script(options.script())
         .language(options.language())
         .direction(options.direction())

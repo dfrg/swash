@@ -27,7 +27,7 @@ impl FontEntry {
 
 pub struct FeatureEntry {
     pub epoch: Epoch,
-    pub id: u64,
+    pub id: [u64; 2],
     pub coords: Vec<i16>,
     pub tags: [u32; 4],
     pub store: FeatureStore,
@@ -55,7 +55,7 @@ impl FeatureCache {
 
     pub fn entry<'a>(
         &'a mut self,
-        id: u64,
+        id: [u64; 2],
         coords: &[i16],
         has_feature_vars: bool,
         tags: &[u32; 4],
@@ -77,7 +77,7 @@ impl FeatureCache {
 
     fn find_entry(
         &mut self,
-        id: u64,
+        id: [u64; 2],
         coords: &[i16],
         has_feature_vars: bool,
         tags: &[u32; 4],

@@ -312,6 +312,16 @@ impl ShapeContext {
     pub fn builder<'a>(&'a mut self, font: impl Into<FontRef<'a>>) -> ShaperBuilder<'a> {
         ShaperBuilder::new(self, font)
     }
+
+    /// Creates a new builder for constructing a shaper with this context
+    /// and the specified font.
+    pub fn builder_with_id<'a>(
+        &'a mut self,
+        font: impl Into<FontRef<'a>>,
+        id: [u64; 2],
+    ) -> ShaperBuilder<'a> {
+        ShaperBuilder::new_with_id(self, font, id)
+    }
 }
 
 impl Default for ShapeContext {
@@ -357,7 +367,7 @@ pub struct ShaperBuilder<'a> {
     state: &'a mut State,
     feature_cache: &'a mut FeatureCache,
     font: FontRef<'a>,
-    font_id: u64,
+    font_id: [u64; 2],
     font_entry: &'a FontEntry,
     coords: &'a mut Vec<i16>,
     charmap: Charmap<'a>,
@@ -374,7 +384,21 @@ impl<'a> ShaperBuilder<'a> {
     /// context and font.
     fn new(context: &'a mut ShapeContext, font: impl Into<FontRef<'a>>) -> Self {
         let font = font.into();
-        let (font_id, font_entry) = context.font_cache.get(&font, |font| FontEntry::new(font));
+        let id = [font.key.value(), u64::MAX];
+        Self::new_with_id(context, font, id)
+    }
+
+    /// Creates a new builder for configuring a shaper with the specified
+    /// context and font.
+    fn new_with_id(
+        context: &'a mut ShapeContext,
+        font: impl Into<FontRef<'a>>,
+        id: [u64; 2],
+    ) -> Self {
+        let font = font.into();
+        let (font_id, font_entry) = context
+            .font_cache
+            .get(&font, Some(id), |font| FontEntry::new(font));
         context.state.reset();
         context.coords.clear();
         Self {

@@ -492,7 +492,7 @@ impl Scaler {
 
 pub struct ScalerState<'a> {
     pub data: &'a [u8],
-    pub id: u64,
+    pub id: [u64; 2],
     pub coords: &'a [i16],
     pub proxy: &'a GlyfProxy,
     pub metrics: &'a MetricsProxy,
@@ -512,7 +512,7 @@ pub struct ScalerState<'a> {
 impl<'a> ScalerState<'a> {
     pub fn new(
         data: &'a [u8],
-        id: u64,
+        id: [u64; 2],
         coords: &'a [i16],
         proxy: &'a GlyfProxy,
         metrics: &'a MetricsProxy,

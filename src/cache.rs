@@ -39,8 +39,14 @@ impl<T> FontCache<T> {
         }
     }
 
-    pub fn get<'a>(&'a mut self, font: &FontRef, mut f: impl FnMut(&FontRef) -> T) -> (u64, &'a T) {
-        let (found, index) = self.find(font);
+    pub fn get<'a>(
+        &'a mut self,
+        font: &FontRef,
+        id_override: Option<[u64; 2]>,
+        mut f: impl FnMut(&FontRef) -> T,
+    ) -> ([u64; 2], &'a T) {
+        let id = id_override.unwrap_or([font.key.value(), u64::MAX]);
+        let (found, index) = self.find(id);
         if found {
             let entry = &mut self.entries[index];
             entry.epoch = self.epoch;
@@ -48,7 +54,6 @@ impl<T> FontCache<T> {
         } else {
             self.epoch += 1;
             let data = f(font);
-            let id = font.key.value();
             if index == self.entries.len() {
                 self.entries.push(Entry {
                     epoch: self.epoch,
@@ -67,10 +72,9 @@ impl<T> FontCache<T> {
         }
     }
 
-    fn find(&self, font: &FontRef) -> (bool, usize) {
+    fn find(&self, id: [u64; 2]) -> (bool, usize) {
         let mut lowest = 0;
         let mut lowest_epoch = self.epoch;
-        let id = font.key.value();
         for (i, entry) in self.entries.iter().enumerate() {
             if entry.id == id {
                 return (true, i);
@@ -90,6 +94,6 @@ impl<T> FontCache<T> {
 
 struct Entry<T> {
     epoch: u64,
-    id: u64,
+    id: [u64; 2],
     data: T,
 }
