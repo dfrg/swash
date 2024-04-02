@@ -616,13 +616,27 @@ impl Default for Stretch {
 /// [`Attributes`].
 #[derive(Copy, Clone, Default)]
 pub struct Synthesis {
-    vars: [Setting<f32>; 3],
+    vars: [Setting<f32>; 4],
     len: u8,
     embolden: bool,
     skew: i8,
 }
 
 impl Synthesis {
+    #[doc(hidden)]
+    pub fn new(variations: impl Iterator<Item = Setting<f32>>, embolden: bool, skew: f32) -> Self {
+        let mut synth = Self {
+            embolden,
+            skew: skew as i8,
+            ..Default::default()
+        };
+        for (i, setting) in variations.take(4).enumerate() {
+            synth.vars[i] = setting;
+            synth.len = i as u8 + 1;
+        }
+        synth
+    }
+
     /// Returns true if any synthesis suggestions are available.
     pub fn any(&self) -> bool {
         self.len != 0 || self.embolden || self.skew != 0
