@@ -1,5 +1,7 @@
 //! Font and metric variation tables.
 
+use read_fonts::{FontData, FontRead};
+
 use super::{fixed::Fixed, raw_tag, Array, Bytes, RawFont, RawTag, U24};
 
 pub const FVAR: RawTag = raw_tag(b"fvar");
@@ -237,34 +239,18 @@ pub fn adjust_axis(data: &[u8], avar: u32, axis: u16, coord: Fixed) -> Option<Fi
     if avar == 0 {
         return None;
     }
-    let b = Bytes::with_offset(data, avar as usize)?;
-    let axis_count = b.read::<u16>(6)?;
-    if axis >= axis_count {
-        return None;
-    }
-    let mut offset = 8;
-    for _ in 0..axis {
-        let count = b.read::<u16>(offset)? as usize;
-        offset += 2 + count * 2;
-    }
-    let count = b.read::<u16>(offset)? as usize;
-    offset += 2;
-    for i in 0..count {
-        use core::cmp::Ordering::*;
-        let from = Fixed(b.read::<i16>(offset)? as i32 * 4);
-        match from.cmp(&coord) {
-            Equal => return Some(Fixed(b.read::<i16>(offset + 2)? as i32 * 4)),
-            Greater if i == 0 => return None,
-            Greater => {
-                let to = Fixed(b.read::<i16>(offset + 2)? as i32 * 4);
-                let prev_from = Fixed(b.read::<i16>(offset - 4)? as i32 * 4);
-                let prev_to = Fixed(b.read::<i16>(offset - 2)? as i32 * 4);
-                return Some(prev_to + ((to - prev_to) * (coord - prev_from) / (from - prev_from)));
-            }
-            Less => offset += 4,
-        }
-    }
-    None
+    let avar =
+        read_fonts::tables::avar::Avar::read(FontData::new(data.get(avar as usize..)?)).ok()?;
+    let mapping = avar
+        .axis_segment_maps()
+        .get(axis as usize)
+        .transpose()
+        .ok()??;
+    Some(Fixed(
+        mapping
+            .apply(read_fonts::types::Fixed::from_bits(coord.0))
+            .to_bits(),
+    ))
 }
 
 /// Returns a delta from an item variation store.
