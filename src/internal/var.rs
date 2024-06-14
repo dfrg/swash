@@ -1,6 +1,6 @@
 //! Font and metric variation tables.
 
-use read_fonts::{FontData, FontRead};
+use skrifa::raw::{FontData, FontRead};
 
 use super::{fixed::Fixed, raw_tag, Array, Bytes, RawFont, RawTag, U24};
 
@@ -240,7 +240,7 @@ pub fn adjust_axis(data: &[u8], avar: u32, axis: u16, coord: Fixed) -> Option<Fi
         return None;
     }
     let avar =
-        read_fonts::tables::avar::Avar::read(FontData::new(data.get(avar as usize..)?)).ok()?;
+        skrifa::raw::tables::avar::Avar::read(FontData::new(data.get(avar as usize..)?)).ok()?;
     let mapping = avar
         .axis_segment_maps()
         .get(axis as usize)
@@ -248,7 +248,7 @@ pub fn adjust_axis(data: &[u8], avar: u32, axis: u16, coord: Fixed) -> Option<Fi
         .ok()??;
     Some(Fixed(
         mapping
-            .apply(read_fonts::types::Fixed::from_bits(coord.0))
+            .apply(skrifa::raw::types::Fixed::from_bits(coord.0))
             .to_bits(),
     ))
 }
