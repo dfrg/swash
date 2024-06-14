@@ -447,7 +447,6 @@ impl<'a> ScalerBuilder<'a> {
             }
             _ => None,
         };
-        // Handle read-fonts conversion for CFF
         Scaler {
             state: self.state,
             font: self.font,

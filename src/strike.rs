@@ -666,7 +666,6 @@ fn get_data<'a>(table: &'a [u8], loc: &Location) -> Option<BitmapData<'a>> {
     let depth = loc.bit_depth as usize;
     let mut bitmap = BitmapData {
         data: &[],
-        flags: loc.flags,
         id: loc.id,
         ppem: loc.ppem,
         bit_depth: loc.bit_depth,
@@ -780,7 +779,6 @@ struct BitmapData<'a> {
     pub data: &'a [u8],
     pub id: u16,
     pub ppem: u16,
-    pub flags: u8,
     pub bit_depth: u8,
     pub width: u8,
     pub height: u8,
