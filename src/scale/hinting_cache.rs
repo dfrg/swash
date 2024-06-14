@@ -22,9 +22,14 @@ impl<'a> HintingKey<'a> {
     }
 }
 
+// const HINTING_MODE: HintingMode = HintingMode::Smooth {
+//     lcd_subpixel: Some(LcdLayout::Horizontal),
+//     preserve_linear_metrics: true,
+// };
+
 const HINTING_MODE: HintingMode = HintingMode::Smooth {
-    lcd_subpixel: Some(LcdLayout::Horizontal),
-    preserve_linear_metrics: true,
+    lcd_subpixel: None,
+    preserve_linear_metrics: false,
 };
 
 #[derive(Default)]
