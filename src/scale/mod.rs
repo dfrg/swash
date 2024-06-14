@@ -213,19 +213,22 @@ affine matrix, and applying path effects. See the methods on [`Render`] for
 more detail.
 */
 
-const TRACE: bool = false;
-
 pub mod image;
 pub mod outline;
 
 mod bitmap;
-mod cff;
 mod color;
-mod glyf;
+mod hinting_cache;
 mod proxy;
 
+use hinting_cache::HintingCache;
 use image::*;
 use outline::*;
+use skrifa::{
+    instance::{NormalizedCoord as SkrifaNormalizedCoord, Size as SkrifaSize},
+    outline::OutlineGlyphCollection,
+    GlyphId as SkrifaGlyphId, MetadataProvider,
+};
 
 use super::internal;
 use super::{cache::FontCache, setting::Setting, FontRef, GlyphId, NormalizedCoord};
@@ -281,12 +284,11 @@ impl Default for Source {
 pub struct ScaleContext {
     fonts: FontCache<ScalerProxy>,
     state: State,
-    coords: Vec<i16>,
+    hinting_cache: HintingCache,
+    coords: Vec<SkrifaNormalizedCoord>,
 }
 
 struct State {
-    glyf_scaler: glyf::Scaler,
-    cff_cache: cff::SubfontCache,
     scratch0: Vec<u8>,
     scratch1: Vec<u8>,
     outline: Outline,
@@ -307,14 +309,13 @@ impl ScaleContext {
         Self {
             fonts: FontCache::new(max_entries),
             state: State {
-                glyf_scaler: glyf::Scaler::new(max_entries),
-                cff_cache: cff::SubfontCache::new(max_entries),
                 scratch0: Vec::new(),
                 scratch1: Vec::new(),
                 outline: Outline::new(),
                 #[cfg(feature = "render")]
                 rcx: Scratch::new(),
             },
+            hinting_cache: HintingCache::default(),
             coords: Vec::new(),
         }
     }
@@ -335,10 +336,12 @@ impl Default for ScaleContext {
 /// Builder for configuring a scaler.
 pub struct ScalerBuilder<'a> {
     state: &'a mut State,
+    hinting_cache: &'a mut HintingCache,
     font: FontRef<'a>,
+    outlines: Option<OutlineGlyphCollection<'a>>,
     proxy: &'a ScalerProxy,
     id: [u64; 2],
-    coords: &'a mut Vec<i16>,
+    coords: &'a mut Vec<SkrifaNormalizedCoord>,
     size: f32,
     hint: bool,
 }
@@ -349,9 +352,20 @@ impl<'a> ScalerBuilder<'a> {
         let (id, proxy) = context
             .fonts
             .get(&font, None, |font| ScalerProxy::from_font(font));
+        let skrifa_font = if font.offset == 0 {
+            skrifa::FontRef::new(font.data).ok()
+        } else {
+            // TODO: make this faster
+            let index = crate::FontDataRef::new(font.data)
+                .and_then(|font_data| font_data.fonts().position(|f| f.offset == font.offset));
+            index.and_then(|index| skrifa::FontRef::from_index(font.data, index as u32).ok())
+        };
+        let outlines = skrifa_font.map(|font_ref| font_ref.outline_glyphs());
         Self {
             state: &mut context.state,
+            hinting_cache: &mut context.hinting_cache,
             font,
+            outlines,
             proxy,
             id,
             coords: &mut context.coords,
@@ -381,14 +395,14 @@ impl<'a> ScalerBuilder<'a> {
     {
         if self.proxy.coord_count != 0 {
             let vars = self.font.variations();
-            self.coords.resize(vars.len(), 0);
+            self.coords.resize(vars.len(), Default::default());
             for setting in settings {
                 let setting = setting.into();
                 for var in vars {
                     if var.tag() == setting.tag {
                         let value = var.normalize(setting.value);
                         if let Some(c) = self.coords.get_mut(var.index()) {
-                            *c = value;
+                            *c = SkrifaNormalizedCoord::from_bits(value);
                         }
                     }
                 }
@@ -405,48 +419,44 @@ impl<'a> ScalerBuilder<'a> {
         I::Item: Borrow<NormalizedCoord>,
     {
         self.coords.clear();
-        self.coords.extend(coords.into_iter().map(|c| *c.borrow()));
+        self.coords.extend(
+            coords
+                .into_iter()
+                .map(|c| SkrifaNormalizedCoord::from_bits(*c.borrow())),
+        );
         self
     }
 
     /// Builds a scaler for the current configuration.
     pub fn build(self) -> Scaler<'a> {
         let upem = self.proxy.metrics.units_per_em();
-        let scale = if self.size != 0. && upem != 0 {
-            self.size / upem as f32
+        let skrifa_size = if self.size != 0.0 && upem != 0 {
+            SkrifaSize::new(self.size)
         } else {
-            1.
+            SkrifaSize::unscaled()
+        };
+        let hinting_instance = match (self.hint, &self.outlines) {
+            (true, Some(outlines)) => {
+                let key = hinting_cache::HintingKey {
+                    id: self.id,
+                    outlines,
+                    size: skrifa_size,
+                    coords: &self.coords,
+                };
+                self.hinting_cache.get(&key)
+            }
+            _ => None,
         };
         // Handle read-fonts conversion for CFF
-        let cff = if matches!(&self.proxy.outlines, OutlinesProxy::Cff) {
-            let font = if self.font.offset == 0 {
-                read_fonts::FontRef::new(self.font.data).ok()
-            } else {
-                // TODO: make this faster
-                let index = crate::FontDataRef::new(self.font.data).and_then(|font_data| {
-                    font_data
-                        .fonts()
-                        .position(|font| font.offset == self.font.offset)
-                });
-                index.and_then(|index| {
-                    read_fonts::FontRef::from_index(self.font.data, index as u32).ok()
-                })
-            };
-            font.and_then(|font| cff::Outlines::new(&font).ok())
-        } else {
-            None
-        };
         Scaler {
             state: self.state,
             font: self.font,
+            outlines: self.outlines,
+            hinting_instance,
             proxy: self.proxy,
-            cff,
-            id: self.id,
             coords: &self.coords[..],
             size: self.size,
-            scale,
-            hint: self.hint,
-            glyf_state: None,
+            skrifa_size,
         }
     }
 }
@@ -457,20 +467,21 @@ impl<'a> ScalerBuilder<'a> {
 pub struct Scaler<'a> {
     state: &'a mut State,
     font: FontRef<'a>,
+    outlines: Option<OutlineGlyphCollection<'a>>,
+    hinting_instance: Option<&'a skrifa::outline::HintingInstance>,
     proxy: &'a ScalerProxy,
-    cff: Option<cff::Outlines<'a>>,
-    id: [u64; 2],
-    coords: &'a [i16],
+    coords: &'a [SkrifaNormalizedCoord],
     size: f32,
-    scale: f32,
-    hint: bool,
-    glyf_state: Option<glyf::ScalerState<'a>>,
+    skrifa_size: SkrifaSize,
 }
 
 impl<'a> Scaler<'a> {
     /// Returns true if scalable glyph outlines are available.
     pub fn has_outlines(&self) -> bool {
-        !matches!(self.proxy.outlines, OutlinesProxy::None)
+        self.outlines
+            .as_ref()
+            .map(|outlines| outlines.format().is_some())
+            .unwrap_or_default()
     }
 
     /// Scales an outline for the specified glyph into the provided outline.
@@ -537,63 +548,27 @@ impl<'a> Scaler<'a> {
             Some(x) => x,
             _ => &mut self.state.outline,
         };
-        match &self.proxy.outlines {
-            OutlinesProxy::Cff if self.cff.is_some() => {
-                let cff_scaler = self.cff.as_ref().unwrap();
+        if let Some(outlines) = &self.outlines {
+            if let Some(glyph) = outlines.get(SkrifaGlyphId::from(glyph_id)) {
                 outline.begin_layer(color_index);
-                if self
-                    .state
-                    .cff_cache
-                    .scale(
-                        cff_scaler,
-                        self.id,
-                        glyph_id,
-                        self.size,
-                        &self.coords,
-                        self.hint,
-                        outline,
-                    )
-                    .is_some()
-                {
+                let settings: skrifa::outline::DrawSettings =
+                    if let Some(hinting_instance) = &self.hinting_instance {
+                        (*hinting_instance).into()
+                    } else {
+                        (
+                            self.skrifa_size,
+                            skrifa::instance::LocationRef::new(&self.coords),
+                        )
+                            .into()
+                    };
+                if glyph.draw(settings, outline).is_ok() {
                     outline.maybe_close();
                     outline.finish();
-                    true
-                } else {
-                    false
+                    return true;
                 }
             }
-            OutlinesProxy::Glyf(proxy) => {
-                if self.glyf_state.is_none() {
-                    self.glyf_state = Some(glyf::ScalerState::new(
-                        self.font.data,
-                        self.id,
-                        &self.coords,
-                        proxy,
-                        &self.proxy.metrics,
-                        self.size,
-                        self.hint,
-                    ));
-                }
-                let state = self.glyf_state.as_mut().unwrap();
-                outline.begin_layer(color_index);
-                if self.state.glyf_scaler.scale(state, glyph_id).is_some() {
-                    let scaler = &self.state.glyf_scaler;
-                    fill_outline(
-                        outline,
-                        &scaler.scaled,
-                        &scaler.contours,
-                        &scaler.tags,
-                        self.size != 0.,
-                    );
-                    outline.maybe_close();
-                    outline.finish();
-                    true
-                } else {
-                    false
-                }
-            }
-            _ => false,
         }
+        false
     }
 
     // Unused when render feature is disabled.
@@ -997,112 +972,4 @@ impl<'a> Render<'a> {
             None
         }
     }
-}
-
-fn fill_outline(
-    outline: &mut Outline,
-    points: &[glyf::Point],
-    contours: &[u16],
-    tags: &[u8],
-    scaled: bool,
-) -> Option<()> {
-    use glyf::Point as PointI;
-    #[inline(always)]
-    fn conv(p: glyf::Point, s: f32) -> Point {
-        Point::new(p.x as f32 * s, p.y as f32 * s)
-    }
-    const TAG_MASK: u8 = 0x3;
-    const CONIC: u8 = 0x0;
-    const ON: u8 = 0x1;
-    const CUBIC: u8 = 0x2;
-    let s = if scaled { 1. / 64. } else { 1. };
-    for c in 0..contours.len() {
-        let mut cur = if c > 0 {
-            contours[c - 1] as usize + 1
-        } else {
-            0
-        };
-        let mut last = contours[c] as usize;
-        if last < cur || last >= points.len() {
-            return None;
-        }
-        let mut v_start = points[cur];
-        let v_last = points[last];
-        let mut tag = tags[cur] & TAG_MASK;
-        if tag == CUBIC {
-            return None;
-        }
-        let mut step_point = true;
-        if tag == CONIC {
-            if tags[last] & TAG_MASK == ON {
-                v_start = v_last;
-                last -= 1;
-            } else {
-                v_start.x = (v_start.x + v_last.x) / 2;
-                v_start.y = (v_start.y + v_last.y) / 2;
-            }
-            step_point = false;
-        }
-        outline.move_to(conv(v_start, s));
-        // let mut do_close = true;
-        while cur < last {
-            if step_point {
-                cur += 1;
-            }
-            step_point = true;
-            tag = tags[cur] & TAG_MASK;
-            match tag {
-                ON => {
-                    outline.line_to(conv(points[cur], s));
-                    continue;
-                }
-                CONIC => {
-                    let mut do_close_conic = true;
-                    let mut v_control = points[cur];
-                    while cur < last {
-                        cur += 1;
-                        let point = points[cur];
-                        tag = tags[cur] & TAG_MASK;
-                        if tag == ON {
-                            outline.quad_to(conv(v_control, s), conv(point, s));
-                            do_close_conic = false;
-                            break;
-                        }
-                        if tag != CONIC {
-                            return None;
-                        }
-                        let v_middle =
-                            PointI::new((v_control.x + point.x) / 2, (v_control.y + point.y) / 2);
-                        outline.quad_to(conv(v_control, s), conv(v_middle, s));
-                        v_control = point;
-                    }
-                    if do_close_conic {
-                        outline.quad_to(conv(v_control, s), conv(v_start, s));
-                        //                        do_close = false;
-                        break;
-                    }
-                    continue;
-                }
-                _ => {
-                    if cur + 1 > last || (tags[cur + 1] & TAG_MASK != CUBIC) {
-                        return None;
-                    }
-                    let v1 = conv(points[cur], s);
-                    let v2 = conv(points[cur + 1], s);
-                    cur += 2;
-                    if cur <= last {
-                        outline.curve_to(v1, v2, conv(points[cur], s));
-                        continue;
-                    }
-                    outline.curve_to(v1, v2, conv(v_start, s));
-                    // do_close = false;
-                    break;
-                }
-            }
-        }
-        if true {
-            outline.maybe_close();
-        }
-    }
-    Some(())
 }
