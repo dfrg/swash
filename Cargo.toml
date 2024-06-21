@@ -21,3 +21,6 @@ render = ["scale", "zeno/eval"]
 yazi = { version = "0.1.6", optional = true }
 zeno = { version = "0.2.2", optional = true, default_features = false }
 skrifa = { version = "0.19.3" }
+
+[dev-dependencies]
+image = "0.25" # Used by examples
