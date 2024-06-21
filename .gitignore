@@ -1,3 +1,6 @@
 Cargo.lock
 /target
 .DS_Store
+
+# Output from running examples
+/examples/*.png
