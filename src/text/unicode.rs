@@ -251,7 +251,7 @@ pub trait Codepoint: Sized + Copy {
     /// Returns the canonical decomposition of the character.
     fn decompose(self) -> Decompose;
 
-    /// Returns the compatiblity decomposition of the character.
+    /// Returns the compatibility decomposition of the character.
     fn decompose_compatible(self) -> Decompose;
 }
 

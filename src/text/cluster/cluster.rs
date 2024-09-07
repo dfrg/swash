@@ -140,7 +140,7 @@ impl CharCluster {
         }
     }
 
-    /// Resets the cluster to the intial empty state.
+    /// Resets the cluster to the initial empty state.
     pub fn clear(&mut self) {
         self.info = ClusterInfo(0);
         self.len = 0;
