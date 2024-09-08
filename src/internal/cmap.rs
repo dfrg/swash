@@ -204,7 +204,7 @@ pub enum MapVariant {
     Variant(u16),
 }
 
-/// Maps a codepoint with variation selector to a glyph identifer using the
+/// Maps a codepoint with variation selector to a glyph identifier using the
 /// format 14 subtable at the specified offset in data.
 ///
 /// <https://docs.microsoft.com/en-us/typography/opentype/spec/cmap#format-14-unicode-variation-sequences>

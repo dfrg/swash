@@ -671,7 +671,7 @@ impl<'a> Maxp<'a> {
     }
 }
 
-/// Horizonal header table.
+/// Horizontal header table.
 #[derive(Copy, Clone)]
 pub struct Hhea<'a>(Bytes<'a>);
 
@@ -692,12 +692,12 @@ impl<'a> Hhea<'a> {
         self.0.data()
     }
 
-    /// Returns the major version of the horizonal header table. Set to 1.
+    /// Returns the major version of the horizontal header table. Set to 1.
     pub fn major_version(&self) -> u16 {
         self.0.read(0).unwrap_or(0)
     }
 
-    /// Returns the minor version of the horizonal header table. Set to 0.
+    /// Returns the minor version of the horizontal header table. Set to 0.
     pub fn minor_version(&self) -> u16 {
         self.0.read(2).unwrap_or(0)
     }
@@ -753,7 +753,7 @@ impl<'a> Hhea<'a> {
         self.0.read(32).unwrap_or(0)
     }
 
-    /// Returns the number of "long" metric entries in the horizonal metrics
+    /// Returns the number of "long" metric entries in the horizontal metrics
     /// table.
     pub fn num_long_metrics(&self) -> u16 {
         self.0.read(34).unwrap_or(0)

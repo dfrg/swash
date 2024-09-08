@@ -80,7 +80,7 @@ pub trait ShapeOptions {
 pub struct SimpleShapeOptions<'a> {
     /// Script for the fragment.
     pub script: Script,
-    /// Langauge for the fragment.
+    /// Language for the fragment.
     pub language: Option<Language>,
     /// Text direction of the fragment.
     pub direction: Direction,
