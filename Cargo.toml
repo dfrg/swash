@@ -2,7 +2,7 @@
 name = "swash"
 version = "0.1.18"
 authors = ["Chad Brokaw <cbrokaw@gmail.com>"]
-edition = "2018"
+edition = "2021"
 description = "Font introspection, complex text shaping and glyph rendering."
 license = "MIT/Apache-2.0"
 keywords = ["font", "shape", "glyph", "text"]
