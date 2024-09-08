@@ -14,7 +14,7 @@ readme = "README.md"
 [features]
 default = ["scale", "render"]
 
-scale = ["yazi", "zeno"]
+scale = ["dep:yazi", "dep:zeno"]
 render = ["scale", "zeno/eval"]
 
 [dependencies]
