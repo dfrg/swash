@@ -25,6 +25,16 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       - run: cargo test
 
+  build-no-std:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          # Use a target without `std` to make sure we don't link to `std`
+          target: x86_64-unknown-none
+      - run: cargo build --target x86_64-unknown-none --no-default-features --features libm
+
   miri:
     name: Miri
     runs-on: ubuntu-latest

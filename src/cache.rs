@@ -1,4 +1,5 @@
 use super::FontRef;
+use alloc::vec::Vec;
 
 /// Uniquely generated value for identifying and caching fonts.
 #[derive(Copy, Clone, PartialOrd, Ord, PartialEq, Eq, Hash, Debug)]

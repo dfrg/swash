@@ -5,6 +5,7 @@ use super::internal::{self, at::Gdef, raw_tag, Bytes, RawFont, RawTag};
 use crate::font::FontRef;
 use crate::text::{Language, Script};
 
+use alloc::vec::Vec;
 use core::ops::Range;
 
 /// Shaping engine that handles the various methods available in

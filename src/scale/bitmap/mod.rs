@@ -2,6 +2,10 @@
 
 #![allow(dead_code)]
 
+use alloc::vec::Vec;
+#[cfg(feature = "libm")]
+use core_maths::CoreFloat;
+
 mod png;
 
 /// Decodes a PNG image.
@@ -345,7 +349,7 @@ fn sample_dir<Input, Output, Filter>(
 }
 
 fn sinc(t: f32) -> f32 {
-    let a = t * std::f32::consts::PI;
+    let a = t * core::f32::consts::PI;
     if t == 0. {
         1.
     } else {
@@ -403,5 +407,5 @@ fn nearest(_x: f32) -> f32 {
 }
 
 fn gaussian(x: f32, r: f32) -> f32 {
-    ((2. * std::f32::consts::PI).sqrt() * r).recip() * (-x.powi(2) / (2. * r.powi(2))).exp()
+    ((2. * core::f32::consts::PI).sqrt() * r).recip() * (-x.powi(2) / (2. * r.powi(2))).exp()
 }
