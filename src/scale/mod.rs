@@ -232,7 +232,10 @@ use skrifa::{
 
 use super::internal;
 use super::{cache::FontCache, setting::Setting, FontRef, GlyphId, NormalizedCoord};
+use alloc::vec::Vec;
 use core::borrow::Borrow;
+#[cfg(feature = "libm")]
+use core_maths::CoreFloat;
 use proxy::*;
 #[cfg(feature = "render")]
 use zeno::{Format, Mask, Origin, Scratch, Style, Transform, Vector};

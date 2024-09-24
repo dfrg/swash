@@ -2,7 +2,7 @@
 Localized names and other metadata.
 */
 
-use std::fmt::Write;
+use core::fmt::Write;
 
 use super::internal::*;
 use super::FontRef;
