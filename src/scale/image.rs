@@ -3,6 +3,7 @@ Rendered glyph image.
 */
 
 use super::Source;
+use alloc::vec::Vec;
 use zeno::Placement;
 
 /// Content of a scaled glyph image.

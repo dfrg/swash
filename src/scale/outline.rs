@@ -2,6 +2,7 @@
 Glyph outline.
 */
 
+use alloc::vec::Vec;
 use zeno::{Bounds, PathData, Point, Transform, Verb};
 
 /// Scaled glyph outline represented as a collection of layers and a sequence

@@ -3,6 +3,11 @@
 use super::internal::*;
 use super::{FontRef, GlyphId};
 
+#[cfg(feature = "scale")]
+use alloc::vec::Vec;
+#[cfg(all(feature = "libm", feature = "scale"))]
+use core_maths::CoreFloat;
+
 /// Proxy for rematerializing strike collections.
 #[derive(Copy, Clone)]
 pub struct BitmapStrikesProxy {

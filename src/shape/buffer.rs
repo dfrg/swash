@@ -4,6 +4,8 @@ use crate::text::{
     cluster::{Char, CharCluster, ClusterInfo, ShapeClass, SourceRange, MAX_CLUSTER_SIZE},
     JoiningType,
 };
+
+use alloc::vec::Vec;
 use core::ops::Range;
 
 // Glyph flags.
