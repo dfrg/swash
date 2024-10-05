@@ -20,4 +20,4 @@ render = ["scale", "zeno/eval"]
 [dependencies]
 yazi = { version = "0.1.6", optional = true }
 zeno = { version = "0.2.2", optional = true, default-features = false }
-skrifa = { version = "0.20.0" }
+skrifa = { version = "0.22.3" }
