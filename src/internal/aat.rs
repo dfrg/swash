@@ -253,7 +253,7 @@ pub mod morx {
         }
     }
 
-    /// Iterator over the chains in a metamophosis table.
+    /// Iterator over the chains in a metamorphosis table.
     #[derive(Copy, Clone)]
     pub struct Chains<'a> {
         data: Bytes<'a>,
@@ -581,7 +581,7 @@ pub mod morx {
         }
     }
 
-    /// Defines a rearrangment that can be applied to a buffer.
+    /// Defines a rearrangement that can be applied to a buffer.
     #[derive(Copy, Clone)]
     pub struct Rearrange {
         l: usize,
