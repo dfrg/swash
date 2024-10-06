@@ -774,6 +774,7 @@ fn sbix_range(table: &[u8], strike_base: usize, glyph_id: u16, recurse: i32) -> 
     }
 }
 
+#[cfg(feature = "scale")]
 #[derive(Copy, Clone)]
 struct BitmapData<'a> {
     pub data: &'a [u8],
@@ -806,6 +807,7 @@ impl<'a> BitmapData<'a> {
     }
 }
 
+#[cfg(feature = "scale")]
 #[derive(Copy, Clone, Default)]
 struct Metrics {
     pub x: i8,
