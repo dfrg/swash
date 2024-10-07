@@ -190,7 +190,7 @@ impl Buffer {
             component: !0,
             cluster,
             data: ch.data,
-        })
+        });
     }
 
     fn _push_hangul_char(&mut self, ch: &Char) {
@@ -217,7 +217,7 @@ impl Buffer {
             component: !0,
             cluster,
             data: ch.data,
-        })
+        });
     }
 
     fn push_cluster(&mut self, cluster: &CharCluster) {

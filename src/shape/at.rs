@@ -167,7 +167,7 @@ impl FeatureStore {
         let mut sub = self.groups.basic;
         let mut pos = self.groups.position;
         if dir == Direction::RightToLeft {
-            sub |= self.groups.rtl
+            sub |= self.groups.rtl;
         }
         for feature in features {
             if let Ok(index) = self.features.binary_search_by(|x| x.0.cmp(&feature.0)) {

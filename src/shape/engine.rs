@@ -205,7 +205,7 @@ impl<'a> Engine<'a> {
         for (tag, value) in features {
             if let Some((selector, [on, off])) = feature_from_tag(*tag) {
                 let setting = if *value == 0 { off } else { on };
-                selectors.push((selector, setting))
+                selectors.push((selector, setting));
             }
         }
         selectors.sort_unstable();

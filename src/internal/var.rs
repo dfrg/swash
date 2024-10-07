@@ -312,9 +312,9 @@ pub fn item_delta(
             } else if coord == peak {
                 continue;
             } else if coord < peak {
-                scalar = scalar * (coord - start) / (peak - start)
+                scalar = scalar * (coord - start) / (peak - start);
             } else {
-                scalar = scalar * (end - coord) / (end - peak)
+                scalar = scalar * (end - coord) / (end - peak);
             };
         }
         let val = if idx >= short_count {

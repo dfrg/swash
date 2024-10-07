@@ -296,7 +296,7 @@ impl Outline {
                 points: (0, points_end),
                 verbs: (0, verbs_end),
                 color_index: None,
-            })
+            });
         }
     }
 }

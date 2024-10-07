@@ -389,7 +389,7 @@ impl<'a> GlyphMetrics<'a> {
     pub fn lsb(&self, glyph_id: GlyphId) -> f32 {
         let mut v = xmtx::sb(self.data, self.hmtx, self.hmtx_count, glyph_id) as f32;
         if self.hvar != 0 {
-            v += var::sb_delta(self.data, self.hvar, glyph_id, self.coords)
+            v += var::sb_delta(self.data, self.hvar, glyph_id, self.coords);
         }
         v * self.scale
     }
