@@ -564,7 +564,7 @@ pub fn reorder_complex(glyphs: &mut [GlyphData], buf: &mut Vec<GlyphData>, order
         }
         match g.char_class {
             Base => {
-                if first_base == None {
+                if first_base.is_none() {
                     first_base = Some(i);
                     ignored[i] = true;
                 }
@@ -576,13 +576,13 @@ pub fn reorder_complex(glyphs: &mut [GlyphData], buf: &mut Vec<GlyphData>, order
                 last_halant = Some(i);
             }
             Reph => {
-                if reph == None {
+                if reph.is_none() {
                     reph = Some(i);
                     ignored[i] = true;
                 }
             }
             Pref => {
-                if pref == None {
+                if pref.is_none() {
                     pref = Some(i);
                     ignored[i] = true;
                 }
