@@ -396,9 +396,7 @@ impl<'a> ShaperBuilder<'a> {
         id: [u64; 2],
     ) -> Self {
         let font = font.into();
-        let (font_id, font_entry) = context
-            .font_cache
-            .get(&font, Some(id), |font| FontEntry::new(font));
+        let (font_id, font_entry) = context.font_cache.get(&font, Some(id), FontEntry::new);
         context.state.reset();
         context.coords.clear();
         Self {

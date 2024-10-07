@@ -349,9 +349,7 @@ pub struct ScalerBuilder<'a> {
 impl<'a> ScalerBuilder<'a> {
     fn new(context: &'a mut ScaleContext, font: impl Into<FontRef<'a>>) -> Self {
         let font = font.into();
-        let (id, proxy) = context
-            .fonts
-            .get(&font, None, |font| ScalerProxy::from_font(font));
+        let (id, proxy) = context.fonts.get(&font, None, ScalerProxy::from_font);
         let skrifa_font = if font.offset == 0 {
             skrifa::FontRef::new(font.data).ok()
         } else {
