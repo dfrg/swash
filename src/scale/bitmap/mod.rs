@@ -125,7 +125,7 @@ pub fn resize(
             target_height,
             scratch,
             0.,
-            &|x| nearest(x),
+            &nearest,
         ),
         Bilinear => resample(
             image,
@@ -137,7 +137,7 @@ pub fn resize(
             target_height,
             scratch,
             1.,
-            &|x| bilinear(x),
+            &bilinear,
         ),
         Bicubic => resample(
             image,
@@ -149,7 +149,7 @@ pub fn resize(
             target_height,
             scratch,
             2.,
-            &|x| bicubic(x),
+            &bicubic,
         ),
         Mitchell => resample(
             image,
@@ -161,7 +161,7 @@ pub fn resize(
             target_height,
             scratch,
             2.,
-            &|x| mitchell(x),
+            &mitchell,
         ),
         Lanczos3 => resample(
             image,
@@ -173,7 +173,7 @@ pub fn resize(
             target_height,
             scratch,
             3.,
-            &|x| lanczos3(x),
+            &lanczos3,
         ),
         Gaussian => resample(
             image,

@@ -100,11 +100,11 @@ necessary glyphs. A small text label in a UI is a good example.
 For more complex scenarios, the shaper can be fed a single cluster at a time.
 This method allows you to provide:
 - accurate source ranges per character even if your runs
-and items span multiple non-contiguous fragments
+  and items span multiple non-contiguous fragments
 - user data per character (a single `u32`) that can be used, for
-example, to associate each resulting glyph with a style span
+  example, to associate each resulting glyph with a style span
 - boundary analysis per character, carrying word boundaries and
-line break opportunities through the shaper.
+  line break opportunities through the shaper.
 
 This also provides a junction point for inserting a font fallback
 mechanism.
@@ -298,7 +298,7 @@ impl ShapeContext {
     /// Creates a new shaping context with the specified maximum number of
     /// cache entries.
     pub fn with_max_entries(max_entries: usize) -> Self {
-        let max_entries = max_entries.min(64).max(1);
+        let max_entries = max_entries.clamp(1, 64);
         Self {
             font_cache: FontCache::new(max_entries),
             feature_cache: FeatureCache::new(max_entries),
@@ -396,9 +396,7 @@ impl<'a> ShaperBuilder<'a> {
         id: [u64; 2],
     ) -> Self {
         let font = font.into();
-        let (font_id, font_entry) = context
-            .font_cache
-            .get(&font, Some(id), |font| FontEntry::new(font));
+        let (font_id, font_entry) = context.font_cache.get(&font, Some(id), FontEntry::new);
         context.state.reset();
         context.coords.clear();
         Self {
@@ -738,7 +736,7 @@ impl<'a> Shaper<'a> {
                     // Collect the range for the non-empty cluster.
                     let end = g.cluster as usize;
                     let start = last_cluster as usize;
-                    let mut group_end = start as usize + 1;
+                    let mut group_end = start + 1;
                     while group_end < end && buf.infos[group_end].1 {
                         group_end += 1;
                     }

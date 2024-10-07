@@ -603,7 +603,7 @@ pub fn lookup_data(
             _ => return None,
         }
     };
-    let ignored = ((f as u8) & 0b1110) | 1 << 5;
+    let ignored = (f & 0b1110) | 1 << 5;
     Some(LookupData {
         index,
         stage,

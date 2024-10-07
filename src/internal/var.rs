@@ -146,8 +146,7 @@ impl VarAxis {
         };
         value = value.min(Fixed::ONE).max(-Fixed::ONE);
         value = avar
-            .map(|(data, avar)| adjust_axis(data, avar, self.index, value))
-            .flatten()
+            .and_then(|(data, avar)| adjust_axis(data, avar, self.index, value))
             .unwrap_or(value);
         value.to_f2dot14()
     }
@@ -313,9 +312,9 @@ pub fn item_delta(
             } else if coord == peak {
                 continue;
             } else if coord < peak {
-                scalar = scalar * (coord - start) / (peak - start)
+                scalar = scalar * (coord - start) / (peak - start);
             } else {
-                scalar = scalar * (end - coord) / (end - peak)
+                scalar = scalar * (end - coord) / (end - peak);
             };
         }
         let val = if idx >= short_count {

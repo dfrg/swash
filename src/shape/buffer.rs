@@ -190,7 +190,7 @@ impl Buffer {
             component: !0,
             cluster,
             data: ch.data,
-        })
+        });
     }
 
     fn _push_hangul_char(&mut self, ch: &Char) {
@@ -217,7 +217,7 @@ impl Buffer {
             component: !0,
             cluster,
             data: ch.data,
-        })
+        });
     }
 
     fn push_cluster(&mut self, cluster: &CharCluster) {
@@ -564,7 +564,7 @@ pub fn reorder_complex(glyphs: &mut [GlyphData], buf: &mut Vec<GlyphData>, order
         }
         match g.char_class {
             Base => {
-                if first_base == None {
+                if first_base.is_none() {
                     first_base = Some(i);
                     ignored[i] = true;
                 }
@@ -576,13 +576,13 @@ pub fn reorder_complex(glyphs: &mut [GlyphData], buf: &mut Vec<GlyphData>, order
                 last_halant = Some(i);
             }
             Reph => {
-                if reph == None {
+                if reph.is_none() {
                     reph = Some(i);
                     ignored[i] = true;
                 }
             }
             Pref => {
-                if pref == None {
+                if pref.is_none() {
                     pref = Some(i);
                     ignored[i] = true;
                 }

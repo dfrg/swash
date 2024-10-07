@@ -209,7 +209,7 @@ impl<'a> Iterator for Fonts<'a> {
     type Item = FontRef<'a>;
 
     fn size_hint(&self) -> (usize, Option<usize>) {
-        let remaining = (self.data.len - self.pos) as usize;
+        let remaining = self.data.len - self.pos;
         (remaining, Some(remaining))
     }
 
@@ -232,7 +232,7 @@ impl<'a> Iterator for Fonts<'a> {
 
 impl<'a> ExactSizeIterator for Fonts<'a> {
     fn len(&self) -> usize {
-        (self.data.len - self.pos) as usize
+        self.data.len - self.pos
     }
 }
 

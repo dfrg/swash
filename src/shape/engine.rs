@@ -43,7 +43,7 @@ impl<'a> Engine<'a> {
         let data = Bytes::new(font_data);
         let gdef = Gdef::from_offset(font_data, metadata.gdef).unwrap_or_else(Gdef::empty);
         let script_tag = script.to_opentype();
-        let lang_tag = lang.map(|l| l.to_opentype()).flatten();
+        let lang_tag = lang.and_then(|l| l.to_opentype());
         let (gsub, stags) = if metadata.sub_mode == SubMode::Gsub {
             at::StageOffsets::new(&data, metadata.gsub, script_tag, lang_tag).unwrap_or_default()
         } else {
@@ -205,7 +205,7 @@ impl<'a> Engine<'a> {
         for (tag, value) in features {
             if let Some((selector, [on, off])) = feature_from_tag(*tag) {
                 let setting = if *value == 0 { off } else { on };
-                selectors.push((selector, setting))
+                selectors.push((selector, setting));
             }
         }
         selectors.sort_unstable();

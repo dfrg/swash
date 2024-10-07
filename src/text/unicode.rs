@@ -167,7 +167,7 @@ impl From<u32> for Properties {
 
 impl From<&'_ u32> for Properties {
     fn from(ch: &'_ u32) -> Self {
-        Self::new(*ch as u32)
+        Self::new(*ch)
     }
 }
 

@@ -94,7 +94,7 @@ impl StageOffsets {
         script: RawTag,
         lang: Option<RawTag>,
     ) -> Option<(Self, [RawTag; 2])> {
-        let (lang, tags) = language_or_default_by_tags(&b, base, script, lang)?;
+        let (lang, tags) = language_or_default_by_tags(b, base, script, lang)?;
         let var = feature_var_offset(b, base);
         Some((Self { base, lang, var }, tags))
     }
@@ -167,7 +167,7 @@ impl FeatureStore {
         let mut sub = self.groups.basic;
         let mut pos = self.groups.position;
         if dir == Direction::RightToLeft {
-            sub |= self.groups.rtl
+            sub |= self.groups.rtl;
         }
         for feature in features {
             if let Ok(index) = self.features.binary_search_by(|x| x.0.cmp(&feature.0)) {
@@ -353,7 +353,7 @@ impl FeatureStoreBuilder {
             cache.features.push((ftag, fbit, stage));
             let foffset = if let Some(v) = vars {
                 if let Some(offset) = v.apply(b, findex as u16) {
-                    offset as usize
+                    offset
                 } else {
                     fbase + b.read::<u16>(rec + 4)? as usize
                 }
@@ -399,7 +399,7 @@ impl FeatureStoreBuilder {
         lookup: &mut LookupData,
     ) -> Option<bool> {
         let start = cache.subtables.len();
-        if start >= core::u16::MAX as usize {
+        if start >= u16::MAX as usize {
             return None;
         }
         lookup.subtables.0 = start as u16;
@@ -420,7 +420,7 @@ impl FeatureStoreBuilder {
             }
         }
         let end = cache.subtables.len();
-        if end >= core::u16::MAX as usize {
+        if end >= u16::MAX as usize {
             return None;
         }
         lookup.subtables.1 = end as u16;
@@ -438,7 +438,7 @@ struct CoverageBuilder {
 impl CoverageBuilder {
     fn begin(&mut self) {
         self.coverage.clear();
-        self.min = core::u16::MAX;
+        self.min = u16::MAX;
         self.max = 0;
     }
 
@@ -715,12 +715,7 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
     }
 
     fn next(&self, index: usize) -> Option<usize> {
-        for i in (index + 1)..self.s.end {
-            if !self.ignored(i) {
-                return Some(i);
-            }
-        }
-        None
+        ((index + 1)..self.s.end).find(|&i| !self.ignored(i))
     }
 
     fn previous(&self, index: usize) -> Option<usize> {
@@ -1232,7 +1227,7 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                 let base_anchor = self.anchor(lig_attach + anchor_offset)?;
                 let dx = base_anchor.0 - mark_anchor.0;
                 let dy = base_anchor.1 - mark_anchor.1;
-                self.buf.position_mark(cur, prev, dx as f32, dy as f32);
+                self.buf.position_mark(cur, prev, dx, dy);
                 return Some(true);
             }
             Context1 => {
@@ -1537,7 +1532,7 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
         }
         let b = self.data;
         let list_base = self.gsubgpos + b.read::<u16>(self.gsubgpos as usize + 8)? as u32;
-        let lookup = lookup_data(&self.data, self.stage, list_base, index, 0, Some(self.defs))?;
+        let lookup = lookup_data(self.data, self.stage, list_base, index, 0, Some(self.defs))?;
         self.storage.stack[self.top as usize] = self.s;
         self.top += 1;
         let v = self.apply_uncached(&lookup, cur, end + 1, first);
@@ -1621,12 +1616,12 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
 
     #[inline(always)]
     fn coverage(&self, coverage_offset: usize, glyph_id: u16) -> Option<u16> {
-        coverage(&self.data, coverage_offset as u32, glyph_id)
+        coverage(self.data, coverage_offset as u32, glyph_id)
     }
 
     #[inline(always)]
     fn class(&self, classdef_offset: usize, glyph_id: u16) -> u16 {
-        classdef(&self.data, classdef_offset as u32, glyph_id)
+        classdef(self.data, classdef_offset as u32, glyph_id)
     }
 }
 

@@ -305,7 +305,7 @@ impl ScaleContext {
     /// Creates a new scaling context with the specified maximum number of
     /// cache entries.
     pub fn with_max_entries(max_entries: usize) -> Self {
-        let max_entries = max_entries.min(64).max(1);
+        let max_entries = max_entries.clamp(1, 64);
         Self {
             fonts: FontCache::new(max_entries),
             state: State {
@@ -349,9 +349,7 @@ pub struct ScalerBuilder<'a> {
 impl<'a> ScalerBuilder<'a> {
     fn new(context: &'a mut ScaleContext, font: impl Into<FontRef<'a>>) -> Self {
         let font = font.into();
-        let (id, proxy) = context
-            .fonts
-            .get(&font, None, |font| ScalerProxy::from_font(font));
+        let (id, proxy) = context.fonts.get(&font, None, ScalerProxy::from_font);
         let skrifa_font = if font.offset == 0 {
             skrifa::FontRef::new(font.data).ok()
         } else {
@@ -441,7 +439,7 @@ impl<'a> ScalerBuilder<'a> {
                     id: self.id,
                     outlines,
                     size: skrifa_size,
-                    coords: &self.coords,
+                    coords: self.coords,
                 };
                 self.hinting_cache.get(&key)
             }
@@ -556,7 +554,7 @@ impl<'a> Scaler<'a> {
                     } else {
                         (
                             self.skrifa_size,
-                            skrifa::instance::LocationRef::new(&self.coords),
+                            skrifa::instance::LocationRef::new(self.coords),
                         )
                             .into()
                     };
@@ -919,8 +917,7 @@ impl<'a> Render<'a> {
                                 .render_into(&mut scratch[..], None);
                             let color = layer
                                 .color_index()
-                                .map(|i| palette.map(|p| p.get(i)))
-                                .flatten()
+                                .and_then(|i| palette.map(|p| p.get(i)))
                                 .unwrap_or(self.foreground);
                             bitmap::blit(
                                 &scratch[..],
