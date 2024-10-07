@@ -100,11 +100,11 @@ necessary glyphs. A small text label in a UI is a good example.
 For more complex scenarios, the shaper can be fed a single cluster at a time.
 This method allows you to provide:
 - accurate source ranges per character even if your runs
-and items span multiple non-contiguous fragments
+  and items span multiple non-contiguous fragments
 - user data per character (a single `u32`) that can be used, for
-example, to associate each resulting glyph with a style span
+  example, to associate each resulting glyph with a style span
 - boundary analysis per character, carrying word boundaries and
-line break opportunities through the shaper.
+  line break opportunities through the shaper.
 
 This also provides a junction point for inserting a font fallback
 mechanism.
