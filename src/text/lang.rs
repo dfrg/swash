@@ -152,7 +152,7 @@ impl Language {
             Ok(index) => index,
             _ => return None,
         };
-        return Self::parse(LANG_ENTRIES.get(name_index)?.1);
+        Self::parse(LANG_ENTRIES.get(name_index)?.1)
     }
 
     /// Returns the language component.
