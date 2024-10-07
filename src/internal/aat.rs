@@ -8,7 +8,7 @@ pub const KERX: RawTag = raw_tag(b"kerx");
 pub const ANKR: RawTag = raw_tag(b"ankr");
 pub const KERN: RawTag = raw_tag(b"kern");
 
-/// Maximum number of times we allow consecutive DONT_ADVANCE states.
+/// Maximum number of times we allow consecutive `DONT_ADVANCE` states.
 const MAX_CYCLES: u16 = 16;
 
 /// Gets a value from a lookup table.

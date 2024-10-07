@@ -274,7 +274,7 @@ impl<'a> Stream<'a> {
 }
 
 /// An array wrapping a byte buffer over a sequence of values that implement
-/// FromBeData.
+/// [`FromBeData`].
 #[derive(Copy, Clone)]
 pub struct Array<'a, T: FromBeData> {
     data: &'a [u8],
