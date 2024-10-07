@@ -715,12 +715,7 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
     }
 
     fn next(&self, index: usize) -> Option<usize> {
-        for i in (index + 1)..self.s.end {
-            if !self.ignored(i) {
-                return Some(i);
-            }
-        }
-        None
+        ((index + 1)..self.s.end).find(|&i| !self.ignored(i))
     }
 
     fn previous(&self, index: usize) -> Option<usize> {
