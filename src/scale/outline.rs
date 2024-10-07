@@ -157,7 +157,7 @@ pub struct LayerMut<'a> {
 impl<'a> LayerMut<'a> {
     /// Returns the sequence of points for the layer.
     pub fn points(&'a self) -> &'a [Point] {
-        &self.points[..]
+        self.points
     }
 
     /// Returns a mutable reference the sequence of points for the layer.
