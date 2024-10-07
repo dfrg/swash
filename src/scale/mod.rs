@@ -305,7 +305,7 @@ impl ScaleContext {
     /// Creates a new scaling context with the specified maximum number of
     /// cache entries.
     pub fn with_max_entries(max_entries: usize) -> Self {
-        let max_entries = max_entries.min(64).max(1);
+        let max_entries = max_entries.clamp(1, 64);
         Self {
             fonts: FontCache::new(max_entries),
             state: State {

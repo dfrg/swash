@@ -294,7 +294,7 @@ pub struct ObliqueAngle(pub(crate) u8);
 impl ObliqueAngle {
     /// Creates a new oblique angle from degrees.
     pub fn from_degrees(degrees: f32) -> Self {
-        let a = degrees.min(90.).max(-90.) + 90.;
+        let a = degrees.clamp(-90., 90.) + 90.;
         Self(a as u8)
     }
 
@@ -455,7 +455,7 @@ impl Weight {
         Some(match s {
             "normal" => Self::NORMAL,
             "bold" => Self::BOLD,
-            _ => Self(s.parse::<u32>().ok()?.min(1000).max(1) as u16),
+            _ => Self(s.parse::<u32>().ok()?.clamp(1, 1000) as u16),
         })
     }
 }
@@ -508,7 +508,7 @@ impl Stretch {
     /// clamped at half percentage increments between 50% and 200%,
     /// inclusive.
     pub fn from_percentage(percentage: f32) -> Self {
-        let value = ((percentage.min(200.).max(50.) - 50.) * 2.) as u16;
+        let value = ((percentage.clamp(50., 200.) - 50.) * 2.) as u16;
         Self(value)
     }
 
