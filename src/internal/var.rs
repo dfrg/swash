@@ -146,8 +146,7 @@ impl VarAxis {
         };
         value = value.min(Fixed::ONE).max(-Fixed::ONE);
         value = avar
-            .map(|(data, avar)| adjust_axis(data, avar, self.index, value))
-            .flatten()
+            .and_then(|(data, avar)| adjust_axis(data, avar, self.index, value))
             .unwrap_or(value);
         value.to_f2dot14()
     }

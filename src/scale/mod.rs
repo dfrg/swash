@@ -917,8 +917,7 @@ impl<'a> Render<'a> {
                                 .render_into(&mut scratch[..], None);
                             let color = layer
                                 .color_index()
-                                .map(|i| palette.map(|p| p.get(i)))
-                                .flatten()
+                                .and_then(|i| palette.map(|p| p.get(i)))
                                 .unwrap_or(self.foreground);
                             bitmap::blit(
                                 &scratch[..],
