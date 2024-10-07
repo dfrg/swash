@@ -82,7 +82,7 @@ fn pair_index(c: u32, table: &[(u32, u16, u16)]) -> Option<usize> {
             return None;
         }
         let end = start + entry.1 as usize;
-        if c as usize <= end {
+        if c <= end {
             return Some(entry.2 as usize + (c - start));
         }
     }

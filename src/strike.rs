@@ -137,9 +137,9 @@ impl<'a> BitmapStrikes<'a> {
             return None;
         }
         let offset = if self.is_sbix {
-            self.data.read::<u32>(8 + index as usize * 4)? as usize
+            self.data.read::<u32>(8 + index * 4)? as usize
         } else {
-            8 + index as usize * 48
+            8 + index * 48
         };
         Some(BitmapStrike {
             data: self.data,
@@ -417,17 +417,17 @@ impl<'a> Bitmap<'a> {
         match self.format {
             BitmapFormat::Packed(bits) => match bits {
                 1 => {
-                    for x in 0..(w * h) as usize {
+                    for x in 0..(w * h) {
                         dst[x] = (src[x >> 3] >> (!x & 7) & 1) * 255;
                     }
                 }
                 2 => {
-                    for x in 0..(w * h) as usize {
+                    for x in 0..(w * h) {
                         dst[x] = (src[x >> 2] >> (!(x * 2) & 2) & 3) * 85;
                     }
                 }
                 4 => {
-                    for x in 0..(w * h) as usize {
+                    for x in 0..(w * h) {
                         dst[x] = (src[x >> 1] >> (!(x * 4) & 4) & 15) * 17;
                     }
                 }
@@ -440,7 +440,7 @@ impl<'a> Bitmap<'a> {
                 1 => {
                     let mut dst_idx = 0;
                     for row in src.chunks(((w * bits as usize) + 7) / 8) {
-                        for x in 0..w as usize {
+                        for x in 0..w {
                             dst[dst_idx] = (row[x >> 3] >> (!x & 7) & 1) * 255;
                             dst_idx += 1;
                         }
@@ -449,7 +449,7 @@ impl<'a> Bitmap<'a> {
                 2 => {
                     let mut dst_idx = 0;
                     for row in src.chunks(((w * bits as usize) + 7) / 8) {
-                        for x in 0..w as usize {
+                        for x in 0..w {
                             dst[dst_idx] = (row[x >> 2] >> (!(x * 2) & 2) & 3) * 85;
                             dst_idx += 1;
                         }
@@ -458,7 +458,7 @@ impl<'a> Bitmap<'a> {
                 4 => {
                     let mut dst_idx = 0;
                     for row in src.chunks(((w * bits as usize) + 7) / 8) {
-                        for x in 0..w as usize {
+                        for x in 0..w {
                             dst[dst_idx] = (row[x >> 1] >> (!(x * 4) & 4) & 15) * 17;
                             dst_idx += 1;
                         }
@@ -588,7 +588,7 @@ fn get_location(
         let offset = array_offset + d.read::<u32>(offset + 4)? as usize;
         let index_format = d.read::<u16>(offset)?;
         let image_format = d.read::<u16>(offset + 2)? as u8;
-        let image_offset = d.read::<u32>(offset + 4)? as u32;
+        let image_offset = d.read::<u32>(offset + 4)?;
         let base = offset + 8;
         let mut loc = Location {
             ppem,

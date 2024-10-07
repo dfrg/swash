@@ -353,7 +353,7 @@ impl FeatureStoreBuilder {
             cache.features.push((ftag, fbit, stage));
             let foffset = if let Some(v) = vars {
                 if let Some(offset) = v.apply(b, findex as u16) {
-                    offset as usize
+                    offset
                 } else {
                     fbase + b.read::<u16>(rec + 4)? as usize
                 }
@@ -1232,7 +1232,7 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
                 let base_anchor = self.anchor(lig_attach + anchor_offset)?;
                 let dx = base_anchor.0 - mark_anchor.0;
                 let dy = base_anchor.1 - mark_anchor.1;
-                self.buf.position_mark(cur, prev, dx as f32, dy as f32);
+                self.buf.position_mark(cur, prev, dx, dy);
                 return Some(true);
             }
             Context1 => {

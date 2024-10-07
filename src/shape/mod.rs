@@ -736,7 +736,7 @@ impl<'a> Shaper<'a> {
                     // Collect the range for the non-empty cluster.
                     let end = g.cluster as usize;
                     let start = last_cluster as usize;
-                    let mut group_end = start as usize + 1;
+                    let mut group_end = start + 1;
                     while group_end < end && buf.infos[group_end].1 {
                         group_end += 1;
                     }
