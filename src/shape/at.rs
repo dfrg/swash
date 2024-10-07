@@ -94,7 +94,7 @@ impl StageOffsets {
         script: RawTag,
         lang: Option<RawTag>,
     ) -> Option<(Self, [RawTag; 2])> {
-        let (lang, tags) = language_or_default_by_tags(&b, base, script, lang)?;
+        let (lang, tags) = language_or_default_by_tags(b, base, script, lang)?;
         let var = feature_var_offset(b, base);
         Some((Self { base, lang, var }, tags))
     }
@@ -1537,7 +1537,7 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
         }
         let b = self.data;
         let list_base = self.gsubgpos + b.read::<u16>(self.gsubgpos as usize + 8)? as u32;
-        let lookup = lookup_data(&self.data, self.stage, list_base, index, 0, Some(self.defs))?;
+        let lookup = lookup_data(self.data, self.stage, list_base, index, 0, Some(self.defs))?;
         self.storage.stack[self.top as usize] = self.s;
         self.top += 1;
         let v = self.apply_uncached(&lookup, cur, end + 1, first);
@@ -1621,12 +1621,12 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
 
     #[inline(always)]
     fn coverage(&self, coverage_offset: usize, glyph_id: u16) -> Option<u16> {
-        coverage(&self.data, coverage_offset as u32, glyph_id)
+        coverage(self.data, coverage_offset as u32, glyph_id)
     }
 
     #[inline(always)]
     fn class(&self, classdef_offset: usize, glyph_id: u16) -> u16 {
-        classdef(&self.data, classdef_offset as u32, glyph_id)
+        classdef(self.data, classdef_offset as u32, glyph_id)
     }
 }
 

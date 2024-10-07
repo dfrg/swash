@@ -439,7 +439,7 @@ impl<'a> ScalerBuilder<'a> {
                     id: self.id,
                     outlines,
                     size: skrifa_size,
-                    coords: &self.coords,
+                    coords: self.coords,
                 };
                 self.hinting_cache.get(&key)
             }
@@ -554,7 +554,7 @@ impl<'a> Scaler<'a> {
                     } else {
                         (
                             self.skrifa_size,
-                            skrifa::instance::LocationRef::new(&self.coords),
+                            skrifa::instance::LocationRef::new(self.coords),
                         )
                             .into()
                     };
