@@ -17,6 +17,10 @@ default = ["scale", "render"]
 scale = ["dep:yazi", "dep:zeno"]
 render = ["scale", "zeno/eval"]
 
+[lints]
+clippy.doc_markdown = "warn"
+clippy.semicolon_if_nothing_returned = "warn"
+
 [dependencies]
 yazi = { version = "0.1.6", optional = true }
 zeno = { version = "0.2.2", optional = true, default-features = false }
