@@ -399,7 +399,7 @@ impl FeatureStoreBuilder {
         lookup: &mut LookupData,
     ) -> Option<bool> {
         let start = cache.subtables.len();
-        if start >= core::u16::MAX as usize {
+        if start >= u16::MAX as usize {
             return None;
         }
         lookup.subtables.0 = start as u16;
@@ -420,7 +420,7 @@ impl FeatureStoreBuilder {
             }
         }
         let end = cache.subtables.len();
-        if end >= core::u16::MAX as usize {
+        if end >= u16::MAX as usize {
             return None;
         }
         lookup.subtables.1 = end as u16;
@@ -438,7 +438,7 @@ struct CoverageBuilder {
 impl CoverageBuilder {
     fn begin(&mut self) {
         self.coverage.clear();
-        self.min = core::u16::MAX;
+        self.min = u16::MAX;
         self.max = 0;
     }
 
