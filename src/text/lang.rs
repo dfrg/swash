@@ -65,7 +65,7 @@ impl Language {
                             lang.lang_len = 2;
                             let key = tag2(&[a, b]);
                             if let Ok(index) = LANG_BY_TAG2.binary_search_by(|x| x.0.cmp(&key)) {
-                                lang_index = (*LANG_BY_TAG2.get(index)?).1
+                                lang_index = LANG_BY_TAG2.get(index)?.1
                             }
                         }
                         3 => {
@@ -79,7 +79,7 @@ impl Language {
                             lang.lang_len = 3;
                             let key = tag3(&[a, b, c]);
                             if let Ok(index) = LANG_BY_TAG3.binary_search_by(|x| x.0.cmp(&key)) {
-                                lang_index = (*LANG_BY_TAG3.get(index)?).1 as u16
+                                lang_index = LANG_BY_TAG3.get(index)?.1 as u16
                             }
                         }
                         _ => return None,
