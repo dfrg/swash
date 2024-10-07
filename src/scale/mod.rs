@@ -234,9 +234,9 @@ use super::internal;
 use super::{cache::FontCache, setting::Setting, FontRef, GlyphId, NormalizedCoord};
 use core::borrow::Borrow;
 use proxy::*;
+use zeno::Placement;
 #[cfg(feature = "render")]
-use zeno::{Format, Mask, Origin, Scratch, Style, Transform, Vector};
-use zeno::{Placement, Point};
+use zeno::{Format, Mask, Origin, Point, Scratch, Style, Transform, Vector};
 
 pub(crate) use bitmap::decode_png;
 
