@@ -14,7 +14,9 @@ readme = "README.md"
 [features]
 default = ["scale", "render"]
 
-scale = ["dep:yazi", "dep:zeno"]
+std = ["skrifa/std"]
+libm = ["skrifa/libm"]
+scale = ["std", "dep:yazi", "dep:zeno"]
 render = ["scale", "zeno/eval"]
 
 [lints]
@@ -24,4 +26,4 @@ clippy.semicolon_if_nothing_returned = "warn"
 [dependencies]
 yazi = { version = "0.1.6", optional = true }
 zeno = { version = "0.2.2", optional = true, default-features = false }
-skrifa = { version = "0.22.3" }
+skrifa = { version = "0.22.3", default-features = false }

@@ -22,11 +22,14 @@ Documentation for [shaping](shape) and [scaling](scale) is provided in
 the respective modules.
 */
 
+#![cfg_attr(not(feature = "std"), no_std)]
 #![allow(clippy::float_cmp)]
 #![allow(clippy::many_single_char_names)]
 #![allow(clippy::needless_lifetimes)]
 #![allow(clippy::redundant_static_lifetimes)]
 #![allow(clippy::too_many_arguments)]
+
+extern crate alloc;
 
 #[cfg(feature = "scale")]
 pub use zeno;

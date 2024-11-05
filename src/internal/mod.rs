@@ -79,6 +79,7 @@ pub trait RawFont<'a>: Sized {
     /// Returns the offset to the table directory.
     fn offset(&self) -> u32;
 
+    #[cfg(feature = "std")]
     fn dump_tables(&self) -> Option<()> {
         let base = self.offset() as usize;
         let b = Bytes::new(self.data());

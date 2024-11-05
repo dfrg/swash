@@ -264,6 +264,7 @@ use crate::text::{
     cluster::{CharCluster, Parser, ShapeClass, Token},
     Language, Script,
 };
+use alloc::vec::Vec;
 use at::{FeatureMask, FeatureStore, FeatureStoreBuilder};
 use buffer::*;
 use cache::{FeatureCache, FontEntry};

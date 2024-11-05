@@ -1,6 +1,7 @@
 use super::internal::{at::*, *};
 use super::{buffer::*, feature::*, Direction};
 use crate::text::Script;
+use alloc::vec::Vec;
 use core::ops::Range;
 
 pub type FeatureBit = u16;

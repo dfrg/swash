@@ -2,6 +2,7 @@ use super::at::FeatureStore;
 use super::engine::EngineMetadata;
 use super::internal::var::Fvar;
 use crate::{charmap::CharmapProxy, metrics::MetricsProxy, FontRef};
+use alloc::vec::Vec;
 
 pub type Epoch = u64;
 
