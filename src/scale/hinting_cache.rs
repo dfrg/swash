@@ -1,9 +1,11 @@
+use alloc::vec::Vec;
 use skrifa::{
     instance::{NormalizedCoord, Size},
     outline::{
         HintingInstance, HintingMode, LcdLayout, OutlineGlyphCollection, OutlineGlyphFormat,
     },
 };
+
 /// We keep this small to enable a simple LRU cache with a linear
 /// search. Regenerating hinting data is low to medium cost so it's fine
 /// to redo it occasionally.

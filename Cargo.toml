@@ -12,9 +12,12 @@ homepage = "https://github.com/dfrg/swash"
 readme = "README.md"
 
 [features]
-default = ["scale", "render"]
+default = ["std", "scale", "render"]
 
-scale = ["dep:yazi", "dep:zeno", "zeno/std"]
+libm = ["dep:core_maths", "skrifa/libm", "zeno/libm"]
+std = ["skrifa/std", "zeno/std"]
+
+scale = ["dep:yazi", "dep:zeno"]
 render = ["scale", "zeno/eval"]
 
 [lints]
@@ -22,6 +25,7 @@ clippy.doc_markdown = "warn"
 clippy.semicolon_if_nothing_returned = "warn"
 
 [dependencies]
-yazi = { version = "0.2.0", optional = true }
+core_maths = { version = "0.1.0", optional = true }
+yazi = { version = "0.2.0", optional = true, default-features = false }
 zeno = { version = "0.3.1", optional = true, default-features = false }
-skrifa = { version = "0.22.3" }
+skrifa = { version = "0.22.3", default-features = false }

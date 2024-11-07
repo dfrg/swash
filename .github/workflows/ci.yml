@@ -25,6 +25,21 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       - run: cargo test
 
+  build-no-std:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          # Use a target without `std` to make sure we don't link to `std`
+          targets: "x86_64-unknown-none,thumbv7m-none-eabi"
+      - run: cargo build --target x86_64-unknown-none --no-default-features --features libm
+      - run: cargo build --target x86_64-unknown-none --no-default-features --features libm,scale
+      - run: cargo build --target x86_64-unknown-none --no-default-features --features libm,render
+      - run: cargo build --target thumbv7m-none-eabi --no-default-features --features libm
+      - run: cargo build --target thumbv7m-none-eabi --no-default-features --features libm,scale
+      - run: cargo build --target thumbv7m-none-eabi --no-default-features --features libm,render
+
   miri:
     name: Miri
     runs-on: ubuntu-latest
