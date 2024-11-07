@@ -20,8 +20,8 @@ targets = []
 [features]
 default = ["std", "scale", "render"]
 
-libm = ["dep:core_maths", "skrifa/libm", "zeno/libm"]
-std = ["skrifa/std", "zeno/std"]
+libm = ["dep:core_maths", "skrifa/libm", "zeno?/libm"]
+std = ["skrifa/std", "zeno?/std", "yazi?/std"]
 
 scale = ["dep:yazi", "dep:zeno"]
 render = ["scale", "zeno/eval"]
