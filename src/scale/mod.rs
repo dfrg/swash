@@ -343,7 +343,7 @@ pub struct ScalerBuilder<'a> {
     font: FontRef<'a>,
     outlines: Option<OutlineGlyphCollection<'a>>,
     proxy: &'a ScalerProxy,
-    id: [u64; 2],
+    id: [usize; 2],
     coords: &'a mut Vec<SkrifaNormalizedCoord>,
     size: f32,
     hint: bool,
