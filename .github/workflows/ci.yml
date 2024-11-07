@@ -66,3 +66,12 @@ jobs:
         run: cargo doc --workspace --all-features --no-deps --document-private-items
         env:
           RUSTDOCFLAGS: '--cfg docsrs -D warnings'
+
+  # If this fails, consider changing your text or adding something to .typos.toml.
+  typos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: check typos
+        uses: crate-ci/typos@v1.27.0
