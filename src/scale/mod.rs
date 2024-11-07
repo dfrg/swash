@@ -782,7 +782,7 @@ impl<'a> Render<'a> {
     }
 
     /// Specifies the target format for rasterizing an outline. Default is
-    /// [`Format::Alpha`](zeno::Format::Alpha).
+    /// [`Format::Alpha`].
     pub fn format(&mut self, format: Format) -> &mut Self {
         self.format = format;
         self
