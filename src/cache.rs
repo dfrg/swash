@@ -3,18 +3,18 @@ use alloc::vec::Vec;
 
 /// Uniquely generated value for identifying and caching fonts.
 #[derive(Copy, Clone, PartialOrd, Ord, PartialEq, Eq, Hash, Debug)]
-pub struct CacheKey(pub(crate) u64);
+pub struct CacheKey(pub(crate) usize);
 
 impl CacheKey {
     /// Generates a new cache key.
     pub fn new() -> Self {
         use core::sync::atomic::{AtomicUsize, Ordering};
         static KEY: AtomicUsize = AtomicUsize::new(1);
-        Self(KEY.fetch_add(1, Ordering::Relaxed).try_into().unwrap())
+        Self(KEY.fetch_add(1, Ordering::Relaxed))
     }
 
     /// Returns the underlying value of the key.
-    pub fn value(self) -> u64 {
+    pub fn value(self) -> usize {
         self.0
     }
 }
@@ -43,10 +43,10 @@ impl<T> FontCache<T> {
     pub fn get<'a>(
         &'a mut self,
         font: &FontRef,
-        id_override: Option<[u64; 2]>,
+        id_override: Option<[usize; 2]>,
         mut f: impl FnMut(&FontRef) -> T,
-    ) -> ([u64; 2], &'a T) {
-        let id = id_override.unwrap_or([font.key.value(), u64::MAX]);
+    ) -> ([usize; 2], &'a T) {
+        let id = id_override.unwrap_or([font.key.value(), usize::MAX]);
         let (found, index) = self.find(id);
         if found {
             let entry = &mut self.entries[index];
@@ -73,7 +73,7 @@ impl<T> FontCache<T> {
         }
     }
 
-    fn find(&self, id: [u64; 2]) -> (bool, usize) {
+    fn find(&self, id: [usize; 2]) -> (bool, usize) {
         let mut lowest = 0;
         let mut lowest_epoch = self.epoch;
         for (i, entry) in self.entries.iter().enumerate() {
@@ -95,6 +95,6 @@ impl<T> FontCache<T> {
 
 struct Entry<T> {
     epoch: u64,
-    id: [u64; 2],
+    id: [usize; 2],
     data: T,
 }
