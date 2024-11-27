@@ -95,7 +95,7 @@ use proxy::BitmapStrikesProxy;
 pub type GlyphId = u16;
 
 /// Normalized variation coordinate in 2.14 fixed point format.
-pub type NormalizedCoord = i16;
+pub type NormalizedCoord = skrifa::instance::NormalizedCoord;
 
 impl<'a> FontRef<'a> {
     /// Returns the primary attributes for the font.

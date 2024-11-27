@@ -4,6 +4,7 @@ use super::buffer::*;
 use super::internal::{self, at::Gdef, raw_tag, Bytes, RawFont, RawTag};
 use crate::font::FontRef;
 use crate::text::{Language, Script};
+use crate::NormalizedCoord;
 
 use alloc::vec::Vec;
 use core::ops::Range;
@@ -21,7 +22,7 @@ pub struct Engine<'a> {
     pub ankr: u32,
     pub kern: u32,
     pub storage: at::Storage,
-    pub coords: &'a [i16],
+    pub coords: &'a [NormalizedCoord],
     pub script: Script,
     pub lang: Option<Language>,
     pub tags: [RawTag; 4],
@@ -37,7 +38,7 @@ impl<'a> Engine<'a> {
     pub fn new(
         metadata: &EngineMetadata,
         font_data: &'a [u8],
-        coords: &'a [i16],
+        coords: &'a [NormalizedCoord],
         script: Script,
         lang: Option<Language>,
     ) -> Self {

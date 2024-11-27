@@ -1,7 +1,7 @@
 use super::at::FeatureStore;
 use super::engine::EngineMetadata;
 use super::internal::var::Fvar;
-use crate::{charmap::CharmapProxy, metrics::MetricsProxy, FontRef};
+use crate::{charmap::CharmapProxy, metrics::MetricsProxy, FontRef, NormalizedCoord};
 
 use alloc::vec::Vec;
 
@@ -30,7 +30,7 @@ impl FontEntry {
 pub struct FeatureEntry {
     pub epoch: Epoch,
     pub id: [u64; 2],
-    pub coords: Vec<i16>,
+    pub coords: Vec<NormalizedCoord>,
     pub tags: [u32; 4],
     pub store: FeatureStore,
 }
@@ -58,7 +58,7 @@ impl FeatureCache {
     pub fn entry<'a>(
         &'a mut self,
         id: [u64; 2],
-        coords: &[i16],
+        coords: &[NormalizedCoord],
         has_feature_vars: bool,
         tags: &[u32; 4],
     ) -> FeatureCacheEntry<'a> {
@@ -80,7 +80,7 @@ impl FeatureCache {
     fn find_entry(
         &mut self,
         id: [u64; 2],
-        coords: &[i16],
+        coords: &[NormalizedCoord],
         has_feature_vars: bool,
         tags: &[u32; 4],
     ) -> (bool, usize) {

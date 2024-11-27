@@ -286,7 +286,7 @@ pub enum Direction {
 pub struct ShapeContext {
     font_cache: FontCache<FontEntry>,
     feature_cache: FeatureCache,
-    coords: Vec<i16>,
+    coords: Vec<NormalizedCoord>,
     state: State,
 }
 
@@ -370,7 +370,7 @@ pub struct ShaperBuilder<'a> {
     font: FontRef<'a>,
     font_id: [u64; 2],
     font_entry: &'a FontEntry,
-    coords: &'a mut Vec<i16>,
+    coords: &'a mut Vec<NormalizedCoord>,
     charmap: Charmap<'a>,
     dotted_circle: Option<u16>,
     retain_ignorables: bool,
@@ -466,7 +466,7 @@ impl<'a> ShaperBuilder<'a> {
     {
         if self.font_entry.coord_count != 0 {
             let vars = self.font.variations();
-            self.coords.resize(vars.len(), 0);
+            self.coords.resize(vars.len(), NormalizedCoord::ZERO);
             for setting in settings {
                 let setting = setting.into();
                 for var in vars {

@@ -2,6 +2,8 @@
 
 use skrifa::raw::{FontData, FontRead};
 
+use crate::NormalizedCoord;
+
 use super::{fixed::Fixed, raw_tag, Array, Bytes, RawFont, RawTag, U24};
 
 pub const FVAR: RawTag = raw_tag(b"fvar");
@@ -132,7 +134,11 @@ impl VarAxis {
 
     /// Returns a normalized axis coordinate for the specified value in 2.14
     /// fixed point format.
-    pub fn normalized_coord(&self, mut value: Fixed, avar: Option<(&[u8], u32)>) -> i16 {
+    pub fn normalized_coord(
+        &self,
+        mut value: Fixed,
+        avar: Option<(&[u8], u32)>,
+    ) -> NormalizedCoord {
         use core::cmp::Ordering::*;
         if value < self.min {
             value = self.min;
@@ -148,7 +154,7 @@ impl VarAxis {
         value = avar
             .and_then(|(data, avar)| adjust_axis(data, avar, self.index, value))
             .unwrap_or(value);
-        value.to_f2dot14()
+        NormalizedCoord::from_bits(value.to_f2dot14())
     }
 }
 
@@ -164,14 +170,14 @@ pub struct VarInstance<'a> {
 /// Metrics variation table.
 pub struct Mvar<'a> {
     data: Bytes<'a>,
-    coords: &'a [i16],
+    coords: &'a [NormalizedCoord],
     rec_size: usize,
     rec_count: usize,
     store: u32,
 }
 
 impl<'a> Mvar<'a> {
-    pub fn new(data: &'a [u8], mvar: u32, coords: &'a [i16]) -> Option<Self> {
+    pub fn new(data: &'a [u8], mvar: u32, coords: &'a [NormalizedCoord]) -> Option<Self> {
         let b = Bytes::with_offset(data, mvar as usize)?;
         let rec_size = b.read::<u16>(6)? as usize;
         let rec_count = b.read::<u16>(8)? as usize;
@@ -219,14 +225,14 @@ impl<'a> Mvar<'a> {
 }
 
 /// Returns the advance delta for the specified glyph.
-pub fn advance_delta(data: &[u8], xvar: u32, glyph_id: u16, coords: &[i16]) -> f32 {
+pub fn advance_delta(data: &[u8], xvar: u32, glyph_id: u16, coords: &[NormalizedCoord]) -> f32 {
     metric_delta(data, xvar, 8, glyph_id, coords)
         .map(|d| d.to_f32())
         .unwrap_or(0.)
 }
 
 /// Returns the side bearing delta for the specified glyph.
-pub fn sb_delta(data: &[u8], xvar: u32, glyph_id: u16, coords: &[i16]) -> f32 {
+pub fn sb_delta(data: &[u8], xvar: u32, glyph_id: u16, coords: &[NormalizedCoord]) -> f32 {
     metric_delta(data, xvar, 12, glyph_id, coords)
         .map(|d| d.to_f32())
         .unwrap_or(0.)
@@ -258,7 +264,7 @@ pub fn item_delta(
     offset: u32,
     outer: u16,
     inner: u16,
-    coords: &[i16],
+    coords: &[NormalizedCoord],
 ) -> Option<Fixed> {
     if offset == 0 {
         return None;
@@ -302,7 +308,7 @@ pub fn item_delta(
             let end = Fixed::from_f2dot14(b.read::<i16>(region_axis_base + 4)?);
             let coord = coords
                 .get(axis)
-                .map(|c| Fixed::from_f2dot14(*c))
+                .map(|c| Fixed::from_f2dot14(c.to_bits()))
                 .unwrap_or(ZERO);
             if start > peak || peak > end || peak == ZERO || start < ZERO && end > ZERO {
                 continue;
@@ -336,7 +342,7 @@ fn metric_delta(
     base: u32,
     which: usize,
     glyph_id: u16,
-    coords: &[i16],
+    coords: &[NormalizedCoord],
 ) -> Option<Fixed> {
     if base == 0 {
         return None;
