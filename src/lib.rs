@@ -2,7 +2,7 @@
 Font introspection, complex text shaping and glyph rendering.
 
 For a comprehensive list of features provided by this crate, please check out
-the [readme](https://github.com/dfrg/swash/blob/master/README.md) on GitHub.
+the [readme](https://github.com/dfrg/swash/blob/main/README.md) on GitHub.
 
 # Note
 
