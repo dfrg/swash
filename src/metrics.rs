@@ -281,7 +281,7 @@ pub struct Metrics {
 impl Metrics {
     /// Creates a new set of metrics from the specified font and
     /// normalized variation coordinates.
-    pub(crate) fn from_font(font: &FontRef, coords: &[i16]) -> Self {
+    pub(crate) fn from_font(font: &FontRef, coords: &[NormalizedCoord]) -> Self {
         let meta = MetricsProxy::from_font(font);
         meta.materialize_metrics(font, coords)
     }
@@ -320,7 +320,7 @@ impl Metrics {
 #[derive(Copy, Clone)]
 pub struct GlyphMetrics<'a> {
     data: &'a [u8],
-    coords: &'a [i16],
+    coords: &'a [NormalizedCoord],
     units_per_em: u16,
     glyph_count: u16,
     hmtx: u32,

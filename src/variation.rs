@@ -99,7 +99,7 @@ impl<'a> Variations<'a> {
     {
         let mut copy = *self;
         copy.pos = 0;
-        let mut coords = [0i16; 32];
+        let mut coords = [NormalizedCoord::ZERO; 32];
         let len = self.len.min(32);
         for setting in settings {
             let val = setting.into();

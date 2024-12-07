@@ -1,6 +1,7 @@
 use super::internal::{at::*, *};
 use super::{buffer::*, feature::*, Direction};
 use crate::text::Script;
+use crate::NormalizedCoord;
 
 use alloc::vec::Vec;
 use core::ops::Range;
@@ -287,7 +288,7 @@ impl FeatureStoreBuilder {
         &mut self,
         cache: &mut FeatureStore,
         data: &[u8],
-        coords: &[i16],
+        coords: &[NormalizedCoord],
         gdef: &Gdef,
         gsub: &StageOffsets,
         gpos: &StageOffsets,
@@ -309,7 +310,7 @@ impl FeatureStoreBuilder {
         &mut self,
         cache: &mut FeatureStore,
         b: &Bytes,
-        coords: &[i16],
+        coords: &[NormalizedCoord],
         gdef: &Gdef,
         offsets: &StageOffsets,
         stage: u8,
@@ -532,7 +533,7 @@ pub fn apply(
     stage: u8,
     data: &Bytes,
     gsubgpos: u32,
-    coords: &[i16],
+    coords: &[NormalizedCoord],
     gdef: &Gdef,
     storage: &mut Storage,
     cache: &FeatureStore,
@@ -590,7 +591,7 @@ struct ApplyContext<'a, 'b, 'c> {
     data: &'a Bytes<'a>,
     gsubgpos: u32,
     defs: &'a Gdef<'a>,
-    coords: &'a [i16],
+    coords: &'a [NormalizedCoord],
     enable_var: bool,
     cache: &'a FeatureStore,
     storage: &'b mut Storage,
@@ -608,7 +609,7 @@ impl<'a, 'b, 'c> ApplyContext<'a, 'b, 'c> {
         data: &'a Bytes<'a>,
         gsubgpos: u32,
         defs: &'a Gdef<'a>,
-        coords: &'a [i16],
+        coords: &'a [NormalizedCoord],
         cache: &'a FeatureStore,
         storage: &'b mut Storage,
         buffer: &'c mut Buffer,
