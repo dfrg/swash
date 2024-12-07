@@ -26,16 +26,6 @@ pub enum DecodeError {
     CorruptData,
     /// An "end of file" was reached prematurely.
     UnexpectedEof,
-    #[cfg(feature = "std")]
-    /// Underlying IO error.
-    Io(std::io::Error),
-}
-
-#[cfg(feature = "std")]
-impl From<std::io::Error> for DecodeError {
-    fn from(e: std::io::Error) -> Self {
-        Self::Io(e)
-    }
 }
 
 impl From<yazi::Error> for DecodeError {
