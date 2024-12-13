@@ -24,7 +24,7 @@ pub trait SelectedFont: PartialEq {
     /// Returns a reference to the underlying font.
     fn font(&self) -> FontRef;
 
-    fn id_override(&self) -> Option<[u64; 2]> {
+    fn id_override(&self) -> Option<[usize; 2]> {
         None
     }
 
@@ -215,7 +215,7 @@ where
     let font_ref = font.font();
     let id = font
         .id_override()
-        .unwrap_or([font_ref.key.value(), u64::MAX]);
+        .unwrap_or([font_ref.key.value(), usize::MAX]);
     let mut shaper = context
         .builder_with_id(font.font(), id)
         .script(options.script())

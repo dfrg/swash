@@ -12,7 +12,7 @@ use skrifa::{
 const MAX_CACHED_HINT_INSTANCES: usize = 8;
 
 pub struct HintingKey<'a> {
-    pub id: [u64; 2],
+    pub id: [usize; 2],
     pub outlines: &'a OutlineGlyphCollection<'a>,
     pub size: Size,
     pub coords: &'a [NormalizedCoord],
@@ -60,7 +60,7 @@ impl HintingCache {
 }
 
 struct HintingEntry {
-    id: [u64; 2],
+    id: [usize; 2],
     instance: HintingInstance,
     serial: u64,
 }
