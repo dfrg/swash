@@ -225,9 +225,8 @@ use hinting_cache::HintingCache;
 use image::*;
 use outline::*;
 use skrifa::{
-    instance::{NormalizedCoord as SkrifaNormalizedCoord, Size as SkrifaSize},
-    outline::OutlineGlyphCollection,
-    GlyphId as SkrifaGlyphId, MetadataProvider,
+    instance::Size as SkrifaSize, outline::OutlineGlyphCollection, GlyphId as SkrifaGlyphId,
+    MetadataProvider,
 };
 
 use super::internal;
@@ -288,7 +287,7 @@ pub struct ScaleContext {
     fonts: FontCache<ScalerProxy>,
     state: State,
     hinting_cache: HintingCache,
-    coords: Vec<SkrifaNormalizedCoord>,
+    coords: Vec<NormalizedCoord>,
 }
 
 struct State {
@@ -344,7 +343,7 @@ pub struct ScalerBuilder<'a> {
     outlines: Option<OutlineGlyphCollection<'a>>,
     proxy: &'a ScalerProxy,
     id: [u64; 2],
-    coords: &'a mut Vec<SkrifaNormalizedCoord>,
+    coords: &'a mut Vec<NormalizedCoord>,
     size: f32,
     hint: bool,
 }
@@ -403,7 +402,7 @@ impl<'a> ScalerBuilder<'a> {
                     if var.tag() == setting.tag {
                         let value = var.normalize(setting.value);
                         if let Some(c) = self.coords.get_mut(var.index()) {
-                            *c = SkrifaNormalizedCoord::from_bits(value);
+                            *c = value;
                         }
                     }
                 }
@@ -417,13 +416,13 @@ impl<'a> ScalerBuilder<'a> {
     pub fn normalized_coords<I>(self, coords: I) -> Self
     where
         I: IntoIterator,
-        I::Item: Borrow<NormalizedCoord>,
+        I::Item: Borrow<i16>,
     {
         self.coords.clear();
         self.coords.extend(
             coords
                 .into_iter()
-                .map(|c| SkrifaNormalizedCoord::from_bits(*c.borrow())),
+                .map(|c| NormalizedCoord::from_bits(*c.borrow())),
         );
         self
     }
@@ -470,7 +469,7 @@ pub struct Scaler<'a> {
     outlines: Option<OutlineGlyphCollection<'a>>,
     hinting_instance: Option<&'a skrifa::outline::HintingInstance>,
     proxy: &'a ScalerProxy,
-    coords: &'a [SkrifaNormalizedCoord],
+    coords: &'a [NormalizedCoord],
     size: f32,
     skrifa_size: SkrifaSize,
 }

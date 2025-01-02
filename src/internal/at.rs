@@ -1,5 +1,7 @@
 //! OpenType advanced typography tables.
 
+use crate::NormalizedCoord;
+
 use super::{raw_tag, Bytes, RawTag};
 
 pub const GDEF: RawTag = raw_tag(b"GDEF");
@@ -116,7 +118,7 @@ impl<'a> Gdef<'a> {
         self.var_store != 0
     }
 
-    pub fn delta(&self, outer: u16, inner: u16, coords: &[i16]) -> f32 {
+    pub fn delta(&self, outer: u16, inner: u16, coords: &[NormalizedCoord]) -> f32 {
         if self.var_store != 0 {
             super::var::item_delta(self.data.data(), self.var_store, outer, inner, coords)
                 .map(|d| d.to_f32())
@@ -223,7 +225,7 @@ impl SubtableData {
 pub struct FeatureSubsts(u32);
 
 impl FeatureSubsts {
-    pub fn new(b: &Bytes, offset: u32, coords: &[i16]) -> Option<Self> {
+    pub fn new(b: &Bytes, offset: u32, coords: &[NormalizedCoord]) -> Option<Self> {
         if offset == 0 || coords.is_empty() {
             return None;
         }
@@ -245,11 +247,11 @@ impl FeatureSubsts {
                     break;
                 }
                 let coord = coords[axis];
-                let min = b.read::<i16>(cond_table + 4)?;
+                let min = NormalizedCoord::from_bits(b.read::<i16>(cond_table + 4)?);
                 if coord < min {
                     break;
                 }
-                let max = b.read::<i16>(cond_table + 6)?;
+                let max = NormalizedCoord::from_bits(b.read::<i16>(cond_table + 6)?);
                 if coord > max {
                     break;
                 }
