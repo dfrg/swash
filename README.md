@@ -5,17 +5,14 @@ complex text shaping and glyph rendering.
 
 [![Crates.io][crates-badge]][crates-url]
 [![Docs.rs][docs-badge]][docs-url]
-[![MIT licensed][mit-badge]][mit-url]
-[![Apache licensed][apache-badge]][apache-url]
+[![Apache 2.0 or MIT license.][license-badge]][license-url]
 
 [crates-badge]: https://img.shields.io/crates/v/swash.svg
 [crates-url]: https://crates.io/crates/swash
 [docs-badge]: https://docs.rs/swash/badge.svg
 [docs-url]: https://docs.rs/swash
-[mit-badge]: https://img.shields.io/badge/license-MIT-blue.svg
-[mit-url]: LICENSE-MIT
-[apache-badge]: https://img.shields.io/badge/license-Apache--2.0-blue.svg
-[apache-url]: LICENSE-APACHE
+[license-badge]: https://img.shields.io/badge/license-Apache--2.0_OR_MIT-blue.svg
+[license-url]: #license
 
 ### Goals
 
@@ -114,7 +111,23 @@ twice as fast. Simple fonts and pure ASCII runs tend to show the smallest gains 
 simply measure shaper initialization and glyph iteration. A comprehensive set of benchmarks
 (and test cases!) are needed here to gain more insight and track regressions.
 
-### Contributing
+### License
 
-Contributions are welcome and appreciated! All contributions must be granted under the
-licenses under which this project is released.
+Licensed under either of
+
+- Apache License, Version 2.0
+   ([LICENSE-APACHE](LICENSE-APACHE) or <http://www.apache.org/licenses/LICENSE-2.0>)
+- MIT license
+   ([LICENSE-MIT](LICENSE-MIT) or <http://opensource.org/licenses/MIT>)
+
+at your option.
+
+### Contribution
+
+Contributions are welcome by pull request. The [Rust code of conduct] applies.
+
+Unless you explicitly state otherwise, any contribution intentionally submitted
+for inclusion in the work by you, as defined in the Apache-2.0 license, shall be
+licensed as above, without any additional terms or conditions.
+
+[Rust Code of Conduct]: https://www.rust-lang.org/policies/code-of-conduct
