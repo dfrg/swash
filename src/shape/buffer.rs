@@ -74,8 +74,6 @@ pub struct Buffer {
     pub has_marks: bool,
     pub reversed: bool,
     pub next_cluster: u32,
-    pub indices: Vec<usize>,
-    pub ids: Vec<u16>,
     pub skip_state: SkipState,
     pub sub_args: Vec<u16>,
     pub pos_args: Vec<u16>,
