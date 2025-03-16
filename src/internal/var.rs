@@ -1,6 +1,6 @@
 //! Font and metric variation tables.
 
-use skrifa::raw::{FontData, FontRead};
+use skrifa::raw::{types::F2Dot14, FontData, FontRead};
 
 use super::{fixed::Fixed, raw_tag, Array, Bytes, RawFont, RawTag, U24};
 
@@ -250,6 +250,40 @@ pub fn adjust_axis(data: &[u8], avar: u32, axis: u16, coord: Fixed) -> Option<Fi
             .apply(skrifa::raw::types::Fixed::from_bits(coord.0))
             .to_bits(),
     ))
+}
+
+pub fn phantom_point_deltas(
+    data: &[u8],
+    glyf: u32,
+    loca: u32,
+    loca_fmt: u8,
+    gvar: u32,
+    glyph_id: u16,
+    coords: &[i16],
+) -> Option<[[f32; 2]; 4]> {
+    let gvar =
+        skrifa::raw::tables::gvar::Gvar::read(FontData::new(data.get(gvar as usize..)?)).ok()?;
+
+    let glyf =
+        skrifa::raw::tables::glyf::Glyf::read(FontData::new(data.get(glyf as usize..)?)).ok()?;
+
+    let loca = skrifa::raw::tables::loca::Loca::read(
+        FontData::new(data.get(loca as usize..)?),
+        loca_fmt == 1,
+    )
+    .ok()?;
+
+    const _: () = assert!(std::mem::size_of::<i16>() == std::mem::size_of::<F2Dot14>());
+    let deltas = gvar
+        .phantom_point_deltas(
+            &glyf,
+            &loca,
+            unsafe { &*(coords as *const [i16] as *const [F2Dot14]) },
+            glyph_id.into(),
+        )
+        .ok()?;
+
+    Some(deltas.map(|p| [p.x.to_f32(), p.y.to_f32()]))
 }
 
 /// Returns a delta from an item variation store.
