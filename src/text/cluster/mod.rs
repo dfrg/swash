@@ -53,6 +53,6 @@ impl Boundary {
     }
 }
 
-/// Artibrary user data that can be associated with a character throughout
+/// Arbitrary user data that can be associated with a character throughout
 /// the shaping pipeline.
 pub type UserData = u32;
