@@ -273,7 +273,7 @@ pub fn phantom_point_deltas(
     )
     .ok()?;
 
-    const _: () = assert!(std::mem::size_of::<i16>() == std::mem::size_of::<F2Dot14>());
+    const _: () = assert!(core::mem::size_of::<i16>() == core::mem::size_of::<F2Dot14>());
     let deltas = gvar
         .phantom_point_deltas(
             &glyf,
