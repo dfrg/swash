@@ -73,6 +73,12 @@ pub trait ShapeOptions {
     fn insert_dotted_circles(&self) -> bool {
         false
     }
+
+    /// Returns true if characters defined as default ignorable should be
+    /// retained by the shaper.
+    fn retain_ignorables(&self) -> bool {
+        false
+    }
 }
 
 /// Simple implementation of the shape options trait.
@@ -92,6 +98,9 @@ pub struct SimpleShapeOptions<'a> {
     pub variations: &'a [Setting<f32>],
     /// True if the shaper should insert dotted circles for broken clusters.
     pub insert_dotted_circles: bool,
+    /// True if characters defined as default ignorable should be retained by
+    /// the shaper.
+    pub retain_ignorables: bool,
 }
 
 impl Default for SimpleShapeOptions<'_> {
@@ -104,6 +113,7 @@ impl Default for SimpleShapeOptions<'_> {
             features: &[],
             variations: &[],
             insert_dotted_circles: false,
+            retain_ignorables: false,
         }
     }
 }
@@ -233,6 +243,7 @@ where
         )
         .variations(options.variations())
         .insert_dotted_circles(options.insert_dotted_circles())
+        .retain_ignorables(options.retain_ignorables())
         .build();
     loop {
         shaper.add_cluster(cluster);
