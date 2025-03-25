@@ -14,6 +14,6 @@ mod unicode_data;
 
 pub mod cluster;
 
-pub use analyze::{analyze, Analyze};
+pub use analyze::{analyze, Analyze, WordBreakStrength};
 pub use lang::{Cjk, Language};
 pub use unicode::*;

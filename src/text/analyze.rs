@@ -41,16 +41,36 @@ impl<I> Analyze<I> {
     pub fn needs_bidi_resolution(&self) -> bool {
         self.state.needs_bidi
     }
+
+    /// Sets the word breaking strength that will be used to analyze the next character.
+    pub fn set_break_strength(&mut self, strength: WordBreakStrength) {
+        self.state.strength = strength;
+    }
+}
+
+/// Word breaking strength (corresponds to <https://drafts.csswg.org/css-text/#word-break-property>).
+#[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Hash, Debug, Default)]
+#[repr(u8)]
+pub enum WordBreakStrength {
+    /// Words can be broken according to their normal Unicode rules.
+    #[default]
+    Normal,
+    /// Breaking treats numeric, alphabetic, and Southeast Asian classes as Ideographic. Note that this does not affect
+    /// breaking punctuation.
+    BreakAll,
+    /// Breaking between typographic letter units or the NU, AL, AI, or ID classes is prohibited.
+    KeepAll,
 }
 
 #[derive(Clone)]
 struct BoundaryState {
+    strength: WordBreakStrength,
     prev: WordBreak,
     prevent_next: bool,
     ri_count: u8,
     emoji: bool,
     next_emoji: bool,
-    line_state: (u8, bool),
+    line_state: (u8, Option<LineBreak>),
     first: bool,
     needs_bidi: bool,
 }
@@ -58,12 +78,13 @@ struct BoundaryState {
 impl BoundaryState {
     fn new() -> Self {
         Self {
+            strength: WordBreakStrength::default(),
             prev: WordBreak::EX,
             prevent_next: false,
             ri_count: 0,
             emoji: false,
             next_emoji: false,
-            line_state: (sot, false),
+            line_state: (sot, None),
             first: true,
             needs_bidi: false,
         }
@@ -243,18 +264,54 @@ impl BoundaryState {
     fn check_line(&mut self, props: Properties) -> Boundary {
         let state = self.line_state;
         let lb = props.line_break();
+
+        use LineBreak::*;
+
         let val = PAIR_TABLE[state.0 as usize][lb as usize];
-        let mode = if val & MANDATORY_BREAK_BIT != 0 {
+
+        // word-break: break-all
+        //
+        // Treat the NU, AL, and SA line breaking classes as ID.
+        let mode_val = if self.strength == WordBreakStrength::BreakAll {
+            let left = if matches!(state.1, Some(AL | NU | SA)) {
+                ID as usize
+            } else {
+                state.0 as usize
+            };
+            let right = if matches!(lb, AL | NU | SA) {
+                ID as usize
+            } else {
+                lb as usize
+            };
+            PAIR_TABLE[left][right]
+        } else {
+            val
+        };
+
+        let mut mode = if mode_val & MANDATORY_BREAK_BIT != 0 {
             Boundary::Mandatory
-        } else if val & ALLOWED_BREAK_BIT != 0 && !state.1 {
+        } else if mode_val & ALLOWED_BREAK_BIT != 0 && state.1 != Some(ZWJ) {
             Boundary::Line
         } else {
             Boundary::None
         };
-        self.line_state = (
-            val & !(ALLOWED_BREAK_BIT | MANDATORY_BREAK_BIT),
-            lb == LineBreak::ZWJ,
-        );
+
+        // word-break: keep-all
+        //
+        // Prohibit breaking between typographic letter units or the NU, AL, or
+        // AI, or ID classes.
+        // (See https://github.com/unicode-org/icu4x/blob/1e27279/components/segmenter/src/line.rs#L836-L840)
+        if let (
+            WordBreakStrength::KeepAll,
+            Some(AI | AL | ID | NU | HY | H2 | H3 | JL | JV | JT | CJ),
+            AI | AL | ID | NU | HY | H2 | H3 | JL | JV | JT | CJ,
+        ) = (self.strength, state.1, lb)
+        {
+            mode = Boundary::None;
+        }
+
+        // Store the original value, not the modified one.
+        self.line_state = (val & !(ALLOWED_BREAK_BIT | MANDATORY_BREAK_BIT), Some(lb));
         mode
     }
 
