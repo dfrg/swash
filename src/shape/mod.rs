@@ -319,7 +319,7 @@ impl ShapeContext {
     pub fn builder_with_id<'a>(
         &'a mut self,
         font: impl Into<FontRef<'a>>,
-        id: [u64; 2],
+        id: [usize; 2],
     ) -> ShaperBuilder<'a> {
         ShaperBuilder::new_with_id(self, font, id)
     }
@@ -368,7 +368,7 @@ pub struct ShaperBuilder<'a> {
     state: &'a mut State,
     feature_cache: &'a mut FeatureCache,
     font: FontRef<'a>,
-    font_id: [u64; 2],
+    font_id: [usize; 2],
     font_entry: &'a FontEntry,
     coords: &'a mut Vec<i16>,
     charmap: Charmap<'a>,
@@ -385,7 +385,7 @@ impl<'a> ShaperBuilder<'a> {
     /// context and font.
     fn new(context: &'a mut ShapeContext, font: impl Into<FontRef<'a>>) -> Self {
         let font = font.into();
-        let id = [font.key.value(), u64::MAX];
+        let id = [font.key.value(), usize::MAX];
         Self::new_with_id(context, font, id)
     }
 
@@ -394,7 +394,7 @@ impl<'a> ShaperBuilder<'a> {
     fn new_with_id(
         context: &'a mut ShapeContext,
         font: impl Into<FontRef<'a>>,
-        id: [u64; 2],
+        id: [usize; 2],
     ) -> Self {
         let font = font.into();
         let (font_id, font_entry) = context.font_cache.get(&font, Some(id), FontEntry::new);
