@@ -106,10 +106,7 @@ impl<'a> Gdef<'a> {
         }
         let offset = b.read::<u32>(sets_base + 4 + set * 4)?;
         let set_offset = sets_base as u32 + offset;
-        if offset != 0 && validate_coverage(b, set_offset).is_some() {
-            return Some(set_offset);
-        }
-        None
+        (offset != 0 && validate_coverage(b, set_offset)).then_some(set_offset)
     }
 
     pub fn has_var_store(&self) -> bool {
@@ -626,8 +623,7 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
     let base = offset as usize;
     fn cov(b: &Bytes, base: usize, offset: usize) -> Option<u16> {
         let c = b.read::<u16>(base + offset)?;
-        validate_coverage(b, base as u32 + c as u32)?;
-        Some(c)
+        validate_coverage(b, base as u32 + c as u32).then_some(c)
     }
     use LookupKind::*;
     match kind {
@@ -822,30 +818,18 @@ pub fn subtable_data(b: &Bytes, offset: u32, kind: LookupKind, fmt: u16) -> Opti
     }
 }
 
-pub fn validate_coverage(b: &Bytes, coverage_offset: u32) -> Option<()> {
+fn validate_coverage(b: &Bytes, coverage_offset: u32) -> bool {
     if coverage_offset == 0 {
-        return None;
+        return false;
     }
     let base = coverage_offset as usize;
-    let fmt = b.read::<u16>(base)?;
-    let len = b.read::<u16>(base + 2)? as usize;
     let arr = base + 4;
-    match fmt {
-        1 => {
-            if !b.check_range(arr, len * 2) {
-                None
-            } else {
-                Some(())
-            }
-        }
-        2 => {
-            if !b.check_range(arr, len * 6) {
-                None
-            } else {
-                Some(())
-            }
-        }
-        _ => None,
+    match (b.read::<u16>(base), b.read::<u16>(base + 2)) {
+        // Empty subtable coverage is useless, so mark empty coverage subtables as invalid.
+        (Some(_), Some(0)) => false,
+        (Some(1), Some(len)) => b.check_range(arr, len as usize * 2),
+        (Some(2), Some(len)) => b.check_range(arr, len as usize * 6),
+        _ => false,
     }
 }
 
