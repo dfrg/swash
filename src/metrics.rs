@@ -28,6 +28,10 @@ pub struct MetricsProxy {
     mvar: u32,
     hmtx: u32,
     hvar: u32,
+    glyf: u32,
+    loca: u32,
+    loca_fmt: u8,
+    gvar: u32,
     hmtx_count: u16,
     has_vvar: bool,
     vertical: Vertical,
@@ -124,6 +128,10 @@ impl MetricsProxy {
             glyph_count: self.glyph_count,
             hmtx: self.hmtx,
             hvar: self.hvar,
+            glyf: self.glyf,
+            loca: self.loca,
+            loca_fmt: self.loca_fmt,
+            gvar: self.gvar,
             hmtx_count: self.hmtx_count,
             has_vvar: self.has_vvar,
             vertical,
@@ -189,6 +197,18 @@ impl MetricsProxy {
         self.hmtx_count = hhea.map(|t| t.num_long_metrics()).unwrap_or(1);
         self.hmtx = font.table_offset(xmtx::HMTX);
         self.hvar = font.table_offset(var::HVAR);
+        let glyf = font.table_offset(glyf::GLYF);
+        let loca = font.table_offset(glyf::LOCA);
+        let loca_fmt = font
+            .head()
+            .map(|t| t.index_to_location_format() as u8)
+            .unwrap_or(0xFF);
+        if glyf != 0 && loca != 0 && loca_fmt != 0xFF {
+            self.glyf = glyf;
+            self.loca = loca;
+            self.loca_fmt = loca_fmt;
+            self.gvar = font.table_offset(glyf::GVAR);
+        }
         let mut vmtx = 0;
         if vhea.is_some() {
             vmtx = font.table_offset(xmtx::VMTX);
@@ -206,20 +226,11 @@ impl MetricsProxy {
                     vorg,
                 };
             } else {
-                let glyf = font.table_offset(glyf::GLYF);
-                let loca = font.table_offset(glyf::LOCA);
-                let loca_fmt = font
-                    .head()
-                    .map(|t| t.index_to_location_format() as u8)
-                    .unwrap_or(0xFF);
-                if glyf != 0 && loca != 0 && loca_fmt != 0xFF {
+                if self.glyf != 0 {
                     self.vertical = Vertical::VmtxGlyf {
-                        loca_fmt,
                         long_count,
                         vmtx,
                         vvar,
-                        glyf,
-                        loca,
                     }
                 }
             }
@@ -325,6 +336,10 @@ pub struct GlyphMetrics<'a> {
     glyph_count: u16,
     hmtx: u32,
     hvar: u32,
+    glyf: u32,
+    loca: u32,
+    loca_fmt: u8,
+    gvar: u32,
     hmtx_count: u16,
     has_vvar: bool,
     vertical: Vertical,
@@ -376,11 +391,28 @@ impl<'a> GlyphMetrics<'a> {
         copy
     }
 
+    /// Returns the phantom point deltas for the specified glyph.
+    fn phantom_point_deltas(&self, glyph_id: GlyphId) -> Option<[[f32; 2]; 4]> {
+        var::phantom_point_deltas(
+            self.data,
+            self.glyf,
+            self.loca,
+            self.loca_fmt,
+            self.gvar,
+            glyph_id,
+            self.coords,
+        )
+    }
+
     /// Returns the horizontal advance for the specified glyph.
     pub fn advance_width(&self, glyph_id: GlyphId) -> f32 {
         let mut v = xmtx::advance(self.data, self.hmtx, self.hmtx_count, glyph_id) as f32;
         if self.hvar != 0 {
             v += var::advance_delta(self.data, self.hvar, glyph_id, self.coords);
+        } else if self.gvar != 0 {
+            if let Some([left, right, _top, _bottom]) = self.phantom_point_deltas(glyph_id) {
+                v += right[0] - left[0];
+            }
         }
         v * self.scale
     }
@@ -413,6 +445,12 @@ impl<'a> GlyphMetrics<'a> {
                     let mut v = xmtx::advance(self.data, vmtx, long_count, glyph_id) as f32;
                     if vvar != 0 {
                         v += var::advance_delta(self.data, vvar, glyph_id, self.coords);
+                    } else if self.gvar != 0 {
+                        if let Some([_left, _right, top, bottom]) =
+                            self.phantom_point_deltas(glyph_id)
+                        {
+                            v += bottom[1] - top[1];
+                        }
                     }
                     v
                 }
@@ -450,13 +488,10 @@ impl<'a> GlyphMetrics<'a> {
     pub fn vertical_origin(&self, glyph_id: GlyphId) -> f32 {
         self.scale
             * match self.vertical {
-                Vertical::VmtxGlyf {
-                    loca_fmt,
-                    loca,
-                    glyf,
-                    ..
-                } => {
-                    if let Some(max_y) = glyf::ymax(self.data, loca_fmt, loca, glyf, glyph_id) {
+                Vertical::VmtxGlyf { .. } => {
+                    if let Some(max_y) =
+                        glyf::ymax(self.data, self.loca_fmt, self.loca, self.glyf, glyph_id)
+                    {
                         max_y as f32 + self.tsb(glyph_id)
                     } else {
                         self.units_per_em as f32
@@ -474,12 +509,9 @@ impl<'a> GlyphMetrics<'a> {
 #[repr(u8)]
 enum Vertical {
     VmtxGlyf {
-        loca_fmt: u8,
         long_count: u16,
         vmtx: u32,
         vvar: u32,
-        glyf: u32,
-        loca: u32,
     },
     VmtxVorg {
         long_count: u16,
