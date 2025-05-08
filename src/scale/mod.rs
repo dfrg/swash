@@ -326,7 +326,17 @@ impl ScaleContext {
     /// Creates a new builder for constructing a scaler with this context
     /// and the specified font.
     pub fn builder<'a>(&'a mut self, font: impl Into<FontRef<'a>>) -> ScalerBuilder<'a> {
-        ScalerBuilder::new(self, font)
+        ScalerBuilder::new(self, font, None)
+    }
+
+    /// Creates a new builder for constructing a scaler with this context,
+    /// specified font and a custom unique identifier.
+    pub fn builder_with_id<'a>(
+        &'a mut self,
+        font: impl Into<FontRef<'a>>,
+        id: [u64; 2],
+    ) -> ScalerBuilder<'a> {
+        ScalerBuilder::new(self, font, Some(id))
     }
 }
 
@@ -350,9 +360,13 @@ pub struct ScalerBuilder<'a> {
 }
 
 impl<'a> ScalerBuilder<'a> {
-    fn new(context: &'a mut ScaleContext, font: impl Into<FontRef<'a>>) -> Self {
+    fn new(
+        context: &'a mut ScaleContext,
+        font: impl Into<FontRef<'a>>,
+        id: Option<[u64; 2]>,
+    ) -> Self {
         let font = font.into();
-        let (id, proxy) = context.fonts.get(&font, None, ScalerProxy::from_font);
+        let (id, proxy) = context.fonts.get(&font, id, ScalerProxy::from_font);
         let skrifa_font = if font.offset == 0 {
             skrifa::FontRef::new(font.data).ok()
         } else {
