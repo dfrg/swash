@@ -558,7 +558,7 @@ impl<'a> Scaler<'a> {
         color_index: Option<u16>,
         outline: Option<&mut Outline>,
     ) -> bool {
-        let outline = match outline {
+        let mut outline = match outline {
             Some(x) => x,
             _ => &mut self.state.outline,
         };
@@ -575,7 +575,10 @@ impl<'a> Scaler<'a> {
                         )
                             .into()
                     };
-                if glyph.draw(settings, outline).is_ok() {
+                if glyph
+                    .draw(settings, &mut OutlineWriter(&mut outline))
+                    .is_ok()
+                {
                     outline.maybe_close();
                     outline.finish();
                     return true;

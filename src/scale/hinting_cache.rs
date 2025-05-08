@@ -11,7 +11,7 @@ use skrifa::{
 /// to redo it occasionally.
 const MAX_CACHED_HINT_INSTANCES: usize = 8;
 
-pub struct HintingKey<'a> {
+pub(crate) struct HintingKey<'a> {
     pub id: [u64; 2],
     pub outlines: &'a OutlineGlyphCollection<'a>,
     pub size: Size,
