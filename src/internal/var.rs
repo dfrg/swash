@@ -1,7 +1,5 @@
 //! Font and metric variation tables.
 
-use skrifa::raw::{FontData, FontRead};
-
 use super::{fixed::Fixed, raw_tag, Array, Bytes, RawFont, RawTag, U24};
 
 pub const FVAR: RawTag = raw_tag(b"fvar");
@@ -235,21 +233,18 @@ pub fn sb_delta(data: &[u8], xvar: u32, glyph_id: u16, coords: &[i16]) -> f32 {
 /// Applies adjustments to a coordinate according to the optional axis
 /// variation table.
 pub fn adjust_axis(data: &[u8], avar: u32, axis: u16, coord: Fixed) -> Option<Fixed> {
+    use skrifa::raw::{tables::avar::Avar, types::Fixed, FontData, FontRead};
+
     if avar == 0 {
         return None;
     }
-    let avar =
-        skrifa::raw::tables::avar::Avar::read(FontData::new(data.get(avar as usize..)?)).ok()?;
+    let avar = Avar::read(FontData::new(data.get(avar as usize..)?)).ok()?;
     let mapping = avar
         .axis_segment_maps()
         .get(axis as usize)
         .transpose()
         .ok()??;
-    Some(Fixed(
-        mapping
-            .apply(skrifa::raw::types::Fixed::from_bits(coord.0))
-            .to_bits(),
-    ))
+    Some(Fixed(mapping.apply(Fixed::from_bits(coord.0)).to_bits()))
 }
 
 /// Returns a delta from an item variation store.
