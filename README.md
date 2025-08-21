@@ -101,16 +101,6 @@ areas of related interest are specifically avoided:
 - Single pass, iterator based analysis determines word and line boundaries
     and detects whether bidi resolution is necessary
 
-### Performance
-
-Performance is a primary goal for this crate and preliminary microbenchmarks show a general
-improvement over FreeType and Harfbuzz by about 10-20% on average and some cases show
-substantial wins, particularly when scaling Postscript outlines or shaping text with complex
-features. Specifically, shaping runs with fonts like Calibri and Noto Sans Myanmar is almost
-twice as fast. Simple fonts and pure ASCII runs tend to show the smallest gains as those 
-simply measure shaper initialization and glyph iteration. A comprehensive set of benchmarks
-(and test cases!) are needed here to gain more insight and track regressions.
-
 ### License
 
 Licensed under either of
