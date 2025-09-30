@@ -27,7 +27,7 @@ the respective modules.
 #![allow(clippy::needless_lifetimes)]
 #![allow(clippy::redundant_static_lifetimes)]
 #![allow(clippy::too_many_arguments)]
-#![cfg_attr(docsrs, feature(doc_auto_cfg))]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 #![cfg_attr(not(any(test, feature = "std")), no_std)]
 extern crate alloc;
 
