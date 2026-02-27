@@ -61,6 +61,8 @@ impl HintingCache {
 
 struct HintingEntry {
     id: [u64; 2],
+    size: Size,
+    coords: Vec<NormalizedCoord>,
     instance: HintingInstance,
     serial: u64,
 }
@@ -69,10 +71,7 @@ fn find_hinting_entry(entries: &mut Vec<HintingEntry>, key: &HintingKey) -> Opti
     let mut found_serial = u64::MAX;
     let mut found_index = 0;
     for (ix, entry) in entries.iter().enumerate() {
-        if entry.id == key.id
-            && entry.instance.size() == key.size
-            && entry.instance.location().coords() == key.coords
-        {
+        if entry.id == key.id && entry.size == key.size && entry.coords == key.coords {
             return Some((ix, true));
         }
         if entry.serial < found_serial {
@@ -85,6 +84,8 @@ fn find_hinting_entry(entries: &mut Vec<HintingEntry>, key: &HintingKey) -> Opti
         let ix = entries.len();
         entries.push(HintingEntry {
             id: key.id,
+            size: key.size,
+            coords: key.coords.to_vec(),
             instance,
             serial: 0,
         });
