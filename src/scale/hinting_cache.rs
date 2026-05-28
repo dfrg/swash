@@ -31,10 +31,11 @@ const HINTING_MODE: HintingMode = HintingMode::Smooth {
 
 #[derive(Default)]
 pub(super) struct HintingCache {
-    // Split caches for glyf/cff because the instance type can reuse
-    // internal memory when reconfigured for the same format.
+    // Split caches because the instance type can reuse internal memory when
+    // reconfigured for the same format.
     glyf_entries: Vec<HintingEntry>,
     cff_entries: Vec<HintingEntry>,
+    other_entries: Vec<HintingEntry>,
     serial: u64,
 }
 
@@ -43,6 +44,8 @@ impl HintingCache {
         let entries = match key.outlines.format()? {
             OutlineGlyphFormat::Glyf => &mut self.glyf_entries,
             OutlineGlyphFormat::Cff | OutlineGlyphFormat::Cff2 => &mut self.cff_entries,
+            #[allow(unreachable_patterns)]
+            _ => &mut self.other_entries,
         };
         let (entry_ix, is_current) = find_hinting_entry(entries, key)?;
         let entry = entries.get_mut(entry_ix)?;
