@@ -53,6 +53,9 @@ impl HintingCache {
         entry.serial = self.serial;
         if !is_current {
             entry.id = key.id;
+            entry.size = key.size;
+            entry.coords.clear();
+            entry.coords.extend_from_slice(key.coords);
             entry
                 .instance
                 .reconfigure(key.outlines, key.size, key.coords, HINTING_MODE)
