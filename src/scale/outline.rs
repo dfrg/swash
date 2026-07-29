@@ -197,7 +197,7 @@ impl<'a> LayerMut<'a> {
     pub fn embolden(&mut self, x_strength: f32, y_strength: f32) {
         let mut point_start = 0;
         let mut pos = 0;
-        let winding = compute_winding(self.points);
+        let winding = compute_winding(self.points, self.verbs);
         for verb in self.verbs {
             match verb {
                 Verb::MoveTo | Verb::Close => {
@@ -382,21 +382,56 @@ fn embolden(points: &mut [Point], winding: u8, x_strength: f32, y_strength: f32)
     }
 }
 
-fn compute_winding(points: &[Point]) -> u8 {
-    if points.is_empty() {
-        return 0;
-    }
+fn compute_winding(points: &[Point], verbs: &[Verb]) -> u8 {
     let mut area = 0.;
-    let last = points.len() - 1;
-    let mut prev = points[last];
-    for cur in points[0..=last].iter() {
-        area += (cur.y - prev.y) * (cur.x + prev.x);
-        prev = *cur;
+    let mut point_start = 0;
+    let mut pos = 0;
+
+    for verb in verbs {
+        match verb {
+            Verb::MoveTo | Verb::Close => {
+                if let Some(points) = points.get(point_start..pos) {
+                    area += compute_area(points);
+                    point_start = pos;
+                    if *verb == Verb::MoveTo {
+                        pos += 1;
+                    }
+                } else {
+                    return 0;
+                }
+            }
+            Verb::LineTo => pos += 1,
+            Verb::QuadTo => pos += 2,
+            Verb::CurveTo => pos += 3,
+        }
     }
+
+    if pos > point_start {
+        if let Some(points) = points.get(point_start..pos) {
+            area += compute_area(points);
+        } else {
+            return 0;
+        }
+    }
+
     if area > 0. {
         1
     } else {
         0
+    }
+}
+
+fn compute_area(points: &[Point]) -> f32 {
+    if let Some(last) = points.last() {
+        let mut prev = *last;
+        let mut area = 0.;
+        for cur in points {
+            area += (cur.y - prev.y) * (cur.x + prev.x);
+            prev = *cur;
+        }
+        area
+    } else {
+        0.
     }
 }
 
