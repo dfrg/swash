@@ -330,9 +330,19 @@ pub fn script_language_count(b: &Bytes, script_offset: u32) -> u16 {
     if script_offset == 0 {
         return 0;
     }
-    b.read::<u16>(script_offset as usize + 2)
-        .map(|n| n + 1)
-        .unwrap_or(0)
+    let base = script_offset as usize;
+    let len = match b.read::<u16>(base + 2) {
+        Some(len) => len,
+        None => return 0,
+    };
+    // A script table that claims more language system records than the data
+    // contains is malformed and has no usable language systems.
+    if !b.check_range(base + 4, len as usize * 6) {
+        return 0;
+    }
+    // The count includes the default language system, which is stored outside
+    // of the record array.
+    len.saturating_add(1)
 }
 
 pub fn script_default_language(b: &Bytes, script_offset: u32) -> Option<u32> {
@@ -955,4 +965,28 @@ pub fn classdef(b: &Bytes, classdef_offset: u32, glyph_id: u16) -> u16 {
         }
     }
     0
+}
+
+#[cfg(test)]
+mod tests {
+    use super::{script_language_count, Bytes};
+
+    #[test]
+    fn script_language_count_out_of_range() {
+        // Script table at offset 4 with a langSysCount of 65535, claiming far
+        // more language system records than the data contains.
+        // https://github.com/dfrg/swash/issues/123
+        let data = [0, 0, 0, 0, 0, 4, 0xFF, 0xFF];
+        assert_eq!(script_language_count(&Bytes::new(&data), 4), 0);
+    }
+
+    #[test]
+    fn script_language_count_includes_default_language() {
+        // Script table at offset 4 with a single 6 byte language system
+        // record.
+        let data = [0, 0, 0, 0, 0, 4, 0, 1, 0, 0, 0, 0, 0, 0];
+        assert_eq!(script_language_count(&Bytes::new(&data), 4), 2);
+        // The same table with the record truncated by a byte.
+        assert_eq!(script_language_count(&Bytes::new(&data[..13]), 4), 0);
+    }
 }
