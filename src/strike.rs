@@ -409,6 +409,15 @@ impl<'a> Bitmap<'a> {
         }
         let w = self.width as usize;
         let h = self.height as usize;
+        // Zero-width/height bitmaps are valid font data (blank glyphs in some
+        // CJK bitmap strikes, e.g. SimSun's EBLC/EBDT). Decode them as an empty
+        // image instead of panicking in `slice::chunks` on a zero row stride.
+        // This mirrors both FreeType (which returns an empty bitmap) and this
+        // crate's own `bitmap::resize`, which already treats a zero target
+        // dimension as a successful empty result.
+        if w == 0 || h == 0 {
+            return true;
+        }
         let src = self.data;
         let dst = &mut *target;
         match self.format {
@@ -832,4 +841,53 @@ fn get_metrics(
         m.advance = d.read::<u8>(offset + 4)?;
     }
     Some((width, height))
+}
+
+#[cfg(all(test, feature = "scale"))]
+mod tests {
+    use super::{Bitmap, BitmapFormat};
+
+    // Regression test for https://github.com/dfrg/swash/issues/139.
+    //
+    // A zero-width (or zero-height) bitmap glyph is valid font data: blank
+    // glyphs appear in CJK bitmap strikes such as SimSun's EBLC/EBDT. For such
+    // a glyph the row stride `((w * bits) + 7) / 8` is 0, which made
+    // `Bitmap::decode` call `slice::chunks(0)` and panic with
+    // "chunk size must be non-zero" in every `BitmapFormat::Alpha(1|2|4)`
+    // branch. Decoding must instead succeed with an empty image, matching
+    // FreeType's empty-bitmap behavior.
+    #[test]
+    fn decode_zero_width_bitmap_does_not_panic() {
+        for bits in [1u8, 2, 4] {
+            let bmp = Bitmap {
+                format: BitmapFormat::Alpha(bits),
+                ppem: 12,
+                width: 0,
+                height: 16,
+                left: 0,
+                top: 0,
+                data: &[],
+            };
+            // decoded_size() is 0, so a zero-length target is the correct buffer.
+            assert!(
+                bmp.decode(None, &mut []),
+                "zero-width Alpha({bits}) bitmap should decode as empty"
+            );
+        }
+
+        // A zero-height glyph hits the same zero-stride path.
+        let bmp = Bitmap {
+            format: BitmapFormat::Alpha(1),
+            ppem: 12,
+            width: 8,
+            height: 0,
+            left: 0,
+            top: 0,
+            data: &[],
+        };
+        assert!(
+            bmp.decode(None, &mut []),
+            "zero-height bitmap should decode as empty"
+        );
+    }
 }
