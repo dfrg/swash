@@ -855,6 +855,9 @@ impl<'a> Render<'a> {
                         let state = &mut scaler.state;
                         let rcx = &mut state.rcx;
                         let outline = &mut state.outline;
+                        if outline.points().is_empty() {
+                            continue;
+                        }
                         if self.embolden != 0. {
                             outline.embolden(self.embolden, self.embolden);
                         }
