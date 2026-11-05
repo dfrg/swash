@@ -367,6 +367,11 @@ impl<'a> ScalerBuilder<'a> {
     ) -> Self {
         let font = font.into();
         let (id, proxy) = context.fonts.get(&font, id, ScalerProxy::from_font);
+        // The coordinate buffer is shared by every scaler this context builds,
+        // and `variations` only resizes it before writing the axes it is given.
+        // Start each scaler from the default location so a font does not
+        // inherit the previous font's coordinates on the axes it leaves unset.
+        context.coords.clear();
         let skrifa_font = if font.offset == 0 {
             skrifa::FontRef::new(font.data).ok()
         } else {
