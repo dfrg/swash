@@ -156,7 +156,7 @@ impl MetricsProxy {
             self.cap_height = os2.cap_height();
             if flags.use_typographic_metrics() {
                 self.ascent = os2.typographic_ascender();
-                self.descent = -os2.typographic_descender();
+                self.descent = os2.typographic_descender().wrapping_neg();
                 self.leading = os2.typographic_line_gap();
                 have_line_metrics = self.ascent != 0;
             }
@@ -166,7 +166,7 @@ impl MetricsProxy {
             self.max_width = hhea.max_advance();
             if !have_line_metrics {
                 self.ascent = hhea.ascender();
-                self.descent = -hhea.descender();
+                self.descent = hhea.descender().wrapping_neg();
                 self.leading = hhea.line_gap();
             }
         }
@@ -174,7 +174,7 @@ impl MetricsProxy {
         if let Some(vhea) = vhea {
             self.has_vertical_metrics = true;
             self.vertical_ascent = vhea.ascender();
-            self.vertical_descent = -vhea.descender();
+            self.vertical_descent = vhea.descender().wrapping_neg();
             self.vertical_leading = vhea.line_gap();
         } else {
             self.vertical_ascent = (self.units_per_em / 2) as i16;

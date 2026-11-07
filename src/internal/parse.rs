@@ -36,7 +36,7 @@ impl<'a> Bytes<'a> {
     /// underlying data.
     pub fn check_range(&self, offset: usize, len: usize) -> bool {
         let end = self.0.len();
-        (offset < end) & (end - offset >= len)
+        (offset < end) && (end - offset >= len)
     }
 
     /// Returns an error if the specified range is not within the bounds of
@@ -523,4 +523,22 @@ impl FromBeData for U24 {
 
 impl FromBeData for () {
     unsafe fn from_be_data_unchecked(_buf: &[u8], _offset: usize) -> Self {}
+}
+
+#[cfg(test)]
+mod tests {
+    use super::Bytes;
+
+    #[test]
+    fn check_range_does_not_underflow_past_the_end() {
+        // #126: `offset > end` used to reach `end - offset` through a
+        // non-short-circuiting `&`, underflowing usize in debug builds.
+        let bytes = Bytes::new(&[0u8; 4]);
+        assert!(bytes.check_range(0, 4));
+        assert!(bytes.check_range(1, 3));
+        assert!(!bytes.check_range(1, 4));
+        assert!(!bytes.check_range(4, 0));
+        assert!(!bytes.check_range(5, 0));
+        assert!(!bytes.check_range(8, 1));
+    }
 }
