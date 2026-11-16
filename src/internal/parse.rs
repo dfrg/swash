@@ -36,7 +36,7 @@ impl<'a> Bytes<'a> {
     /// underlying data.
     pub fn check_range(&self, offset: usize, len: usize) -> bool {
         let end = self.0.len();
-        (offset < end) & (end - offset >= len)
+        (offset < end) && (end - offset >= len)
     }
 
     /// Returns an error if the specified range is not within the bounds of
@@ -523,4 +523,21 @@ impl FromBeData for U24 {
 
 impl FromBeData for () {
     unsafe fn from_be_data_unchecked(_buf: &[u8], _offset: usize) -> Self {}
+}
+
+#[cfg(test)]
+mod tests {
+    use super::Bytes;
+
+    #[test]
+    fn check_range_offset_past_end() {
+        let bytes = Bytes::new(&[0u8; 4]);
+        // An offset beyond the end of the buffer must report out of range
+        // instead of overflowing the `end - offset` subtraction.
+        assert!(!bytes.check_range(8, 1));
+        assert!(!bytes.check_range(8, 0));
+        assert!(!bytes.check_range(4, 1));
+        assert!(bytes.check_range(0, 4));
+        assert!(bytes.check_range(2, 2));
+    }
 }
