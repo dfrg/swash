@@ -905,17 +905,20 @@ impl<'a> Render<'a> {
 
                         let total_bounds = outline.bounds();
 
-                        // need to take offset into account when placing glyph
-                        let base_x = (total_bounds.min.x + self.offset.x).floor() as i32;
-                        let base_y = (total_bounds.min.y + self.offset.y).ceil() as i32;
-                        let base_w = total_bounds.width().ceil() as u32;
-                        let base_h = total_bounds.height().ceil() as u32;
+                        // need to take offset into account when placing glyph. Cover the same
+                        // pixels as the layer masks below: floor of the min to ceil of the max.
+                        let min = (total_bounds.min + self.offset).floor();
+                        let max = (total_bounds.max + self.offset).ceil();
+                        let base_x = min.x as i32;
+                        let base_y = min.y as i32;
+                        let base_w = (max.x - min.x) as u32;
+                        let base_h = (max.y - min.y) as u32;
 
                         image.data.resize((base_w * base_h * 4) as usize, 0);
                         image.placement.left = base_x;
                         image.placement.top = base_h as i32 + base_y;
-                        image.placement.width = total_bounds.width().ceil() as u32;
-                        image.placement.height = total_bounds.height().ceil() as u32;
+                        image.placement.width = base_w;
+                        image.placement.height = base_h;
 
                         let mut ok = true;
                         for i in 0..outline.len() {
