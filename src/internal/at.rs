@@ -331,7 +331,7 @@ pub fn script_language_count(b: &Bytes, script_offset: u32) -> u16 {
         return 0;
     }
     b.read::<u16>(script_offset as usize + 2)
-        .map(|n| n + 1)
+        .map(|n| n.wrapping_add(1))
         .unwrap_or(0)
 }
 
@@ -955,4 +955,24 @@ pub fn classdef(b: &Bytes, classdef_offset: u32, glyph_id: u16) -> u16 {
         }
     }
     0
+}
+
+#[cfg(test)]
+mod tests {
+    use super::script_language_count;
+    use crate::internal::Bytes;
+
+    #[test]
+    fn language_count_wraps_at_u16_max() {
+        // #123: langSysCount of u16::MAX overflowed `n + 1` in debug
+        // builds. wrapping_add matches the release-build result (0).
+        let mut data = [0u8; 5];
+        data[3..5].copy_from_slice(&u16::MAX.to_be_bytes());
+        let bytes = Bytes::new(&data);
+        assert_eq!(script_language_count(&bytes, 1), 0);
+        let mut data = [0u8; 5];
+        data[3..5].copy_from_slice(&5u16.to_be_bytes());
+        let bytes = Bytes::new(&data);
+        assert_eq!(script_language_count(&bytes, 1), 6);
+    }
 }
