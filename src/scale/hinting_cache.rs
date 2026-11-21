@@ -1,3 +1,4 @@
+use super::HintingTarget;
 use alloc::vec::Vec;
 use skrifa::{
     instance::{NormalizedCoord, Size},
@@ -16,18 +17,31 @@ pub(crate) struct HintingKey<'a> {
     pub outlines: &'a OutlineGlyphCollection<'a>,
     pub size: Size,
     pub coords: &'a [NormalizedCoord],
+    pub target: HintingTarget,
 }
 
 impl<'a> HintingKey<'a> {
     fn new_instance(&self) -> Option<HintingInstance> {
-        HintingInstance::new(self.outlines, self.size, self.coords, HINTING_MODE).ok()
+        HintingInstance::new(self.outlines, self.size, self.coords, hinting_mode(self.target))
+            .ok()
     }
 }
 
-const HINTING_MODE: HintingMode = HintingMode::Smooth {
-    lcd_subpixel: Some(LcdLayout::Horizontal),
-    preserve_linear_metrics: true,
-};
+fn hinting_mode(target: HintingTarget) -> HintingMode {
+    // preserve_linear_metrics is always requested so that hinting never
+    // changes advance widths: swash reports linearly scaled metrics and
+    // callers position glyphs based on them.
+    match target {
+        HintingTarget::HorizontalLcd => HintingMode::Smooth {
+            lcd_subpixel: Some(LcdLayout::Horizontal),
+            preserve_linear_metrics: true,
+        },
+        HintingTarget::Grayscale => HintingMode::Smooth {
+            lcd_subpixel: None,
+            preserve_linear_metrics: true,
+        },
+    }
+}
 
 #[derive(Default)]
 pub(super) struct HintingCache {
@@ -56,9 +70,10 @@ impl HintingCache {
             entry.size = key.size;
             entry.coords.clear();
             entry.coords.extend_from_slice(key.coords);
+            entry.target = key.target;
             entry
                 .instance
-                .reconfigure(key.outlines, key.size, key.coords, HINTING_MODE)
+                .reconfigure(key.outlines, key.size, key.coords, hinting_mode(key.target))
                 .ok()?;
         }
         Some(&entry.instance)
@@ -69,6 +84,7 @@ struct HintingEntry {
     id: [u64; 2],
     size: Size,
     coords: Vec<NormalizedCoord>,
+    target: HintingTarget,
     instance: HintingInstance,
     serial: u64,
 }
@@ -77,7 +93,11 @@ fn find_hinting_entry(entries: &mut Vec<HintingEntry>, key: &HintingKey) -> Opti
     let mut found_serial = u64::MAX;
     let mut found_index = 0;
     for (ix, entry) in entries.iter().enumerate() {
-        if entry.id == key.id && entry.size == key.size && entry.coords == key.coords {
+        if entry.id == key.id
+            && entry.size == key.size
+            && entry.coords == key.coords
+            && entry.target == key.target
+        {
             return Some((ix, true));
         }
         if entry.serial < found_serial {
@@ -92,6 +112,7 @@ fn find_hinting_entry(entries: &mut Vec<HintingEntry>, key: &HintingKey) -> Opti
             id: key.id,
             size: key.size,
             coords: key.coords.to_vec(),
+            target: key.target,
             instance,
             serial: 0,
         });

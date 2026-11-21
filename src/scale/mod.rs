@@ -346,6 +346,25 @@ impl Default for ScaleContext {
     }
 }
 
+/// Target rendering technology that hinting should optimize glyph outlines
+/// for.
+///
+/// Grid-fitting moves outline points so that stems align with the pixel
+/// structure of the output device; that structure differs between grayscale
+/// anti-aliasing (whole pixels) and subpixel rendering (LCD stripes), so the
+/// hinter needs to know which one applies.
+#[derive(Copy, Clone, PartialEq, Eq, Debug, Default)]
+pub enum HintingTarget {
+    /// Hinting optimized for subpixel rendering on a display with a
+    /// horizontal RGB stripe layout. This is the default and matches the
+    /// behavior of previous versions that did not offer a choice of target.
+    #[default]
+    HorizontalLcd,
+    /// Hinting optimized for grayscale anti-aliased rendering, the
+    /// appropriate target when rasterizing with [`Format::Alpha`].
+    Grayscale,
+}
+
 /// Builder for configuring a scaler.
 pub struct ScalerBuilder<'a> {
     state: &'a mut State,
@@ -357,6 +376,7 @@ pub struct ScalerBuilder<'a> {
     coords: &'a mut Vec<SkrifaNormalizedCoord>,
     size: f32,
     hint: bool,
+    hint_target: HintingTarget,
 }
 
 impl<'a> ScalerBuilder<'a> {
@@ -386,6 +406,7 @@ impl<'a> ScalerBuilder<'a> {
             coords: &mut context.coords,
             size: 0.,
             hint: false,
+            hint_target: HintingTarget::default(),
         }
     }
 
@@ -399,6 +420,15 @@ impl<'a> ScalerBuilder<'a> {
     /// Specifies whether to apply hinting to outlines. The default value is `false`.
     pub fn hint(mut self, yes: bool) -> Self {
         self.hint = yes;
+        self
+    }
+
+    /// Specifies the target rendering technology that hinting should optimize
+    /// for. This has no effect unless hinting is enabled with
+    /// [`hint`](Self::hint). The default value is
+    /// [`HintingTarget::HorizontalLcd`].
+    pub fn hint_target(mut self, target: HintingTarget) -> Self {
+        self.hint_target = target;
         self
     }
 
@@ -457,6 +487,7 @@ impl<'a> ScalerBuilder<'a> {
                     outlines,
                     size: skrifa_size,
                     coords: self.coords,
+                    target: self.hint_target,
                 };
                 self.hinting_cache.get(&key)
             }
