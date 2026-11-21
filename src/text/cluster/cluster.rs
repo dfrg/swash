@@ -16,7 +16,6 @@ pub struct CharCluster {
     info: ClusterInfo,
     chars: [Char; MAX_CLUSTER_SIZE],
     len: u8,
-    map_len: u8,
     start: u32,
     end: u32,
     force_normalize: bool,
@@ -33,7 +32,6 @@ impl CharCluster {
             info: ClusterInfo(0),
             chars: [DEFAULT_CHAR; MAX_CLUSTER_SIZE],
             len: 0,
-            map_len: 0,
             start: 0,
             end: 0,
             force_normalize: false,
@@ -103,7 +101,6 @@ impl CharCluster {
         }
         ratio = Mapper {
             chars: &mut self.chars[..self.len as usize],
-            map_len: self.map_len.max(1),
         }
         .map(&f, &mut glyph_ids, self.best_ratio);
         if ratio > self.best_ratio {
@@ -144,7 +141,6 @@ impl CharCluster {
     pub fn clear(&mut self) {
         self.info = ClusterInfo(0);
         self.len = 0;
-        self.map_len = 0;
         self.start = 0;
         self.end = 0;
         self.force_normalize = false;
@@ -179,7 +175,6 @@ impl CharCluster {
                 }
                 self.decomp.len = i as u8;
                 self.decomp.state = FormState::Valid;
-                self.decomp.setup();
                 Some(self.decomp.chars())
             }
             FormState::Valid => Some(self.decomp.chars()),
@@ -210,7 +205,6 @@ impl CharCluster {
                 self.comp.chars[i] = last;
                 self.comp.len = i as u8 + 1;
                 self.comp.state = FormState::Valid;
-                self.comp.setup();
                 Some(self.comp.chars())
             }
             FormState::Valid => Some(self.comp.chars()),
@@ -256,7 +250,6 @@ impl CharCluster {
         self.info.merge_boundary(input.info.boundary() as u16);
         self.end = input.offset + input.len as u32;
         self.len += 1;
-        self.map_len += contributes_to_shaping as u8;
     }
 
     /// This function records the attributes and range information for
@@ -334,7 +327,6 @@ enum FormState {
 struct Form {
     pub chars: [Char; MAX_CLUSTER_SIZE],
     pub len: u8,
-    pub map_len: u8,
     pub state: FormState,
 }
 
@@ -343,28 +335,17 @@ impl Form {
         Self {
             chars: [DEFAULT_CHAR; MAX_CLUSTER_SIZE],
             len: 0,
-            map_len: 0,
             state: FormState::None,
         }
     }
 
     fn clear(&mut self) {
         self.len = 0;
-        self.map_len = 0;
         self.state = FormState::None;
     }
 
     fn chars(&self) -> &[Char] {
         &self.chars[..self.len as usize]
-    }
-
-    fn setup(&mut self) {
-        self.map_len = (self
-            .chars()
-            .iter()
-            .filter(|c| c.shape_class != ShapeClass::Control)
-            .count() as u8)
-            .max(1);
     }
 
     fn map(
@@ -375,7 +356,6 @@ impl Form {
     ) -> f32 {
         Mapper {
             chars: &mut self.chars[..self.len as usize],
-            map_len: self.map_len,
         }
         .map(f, glyphs, best_ratio)
     }
@@ -383,7 +363,6 @@ impl Form {
 
 struct Mapper<'a> {
     chars: &'a mut [Char],
-    map_len: u8,
 }
 
 impl<'a> Mapper<'a> {
@@ -393,25 +372,17 @@ impl<'a> Mapper<'a> {
         glyphs: &mut [u16; MAX_CLUSTER_SIZE],
         best_ratio: f32,
     ) -> f32 {
-        if self.map_len == 0 {
+        if self.chars.is_empty() {
             return 1.;
         }
         let mut mapped = 0;
         for (c, g) in self.chars.iter().zip(glyphs.iter_mut()) {
-            if !c.contributes_to_shaping {
-                *g = f(c.ch);
-                if self.map_len == 1 {
-                    mapped += 1;
-                }
-            } else {
-                let gid = f(c.ch);
-                *g = gid;
-                if gid != 0 {
-                    mapped += 1;
-                }
+            *g = f(c.ch);
+            if *g != 0 {
+                mapped += 1;
             }
         }
-        let ratio = mapped as f32 / self.map_len as f32;
+        let ratio = mapped as f32 / self.chars.len() as f32;
         if ratio > best_ratio {
             for (ch, glyph) in self.chars.iter_mut().zip(glyphs) {
                 ch.glyph_id = *glyph;
@@ -431,3 +402,61 @@ const DEFAULT_CHAR: Char = Char {
     data: 0,
     offset: 0,
 };
+
+#[cfg(test)]
+mod tests {
+    use super::super::{Parser, Token};
+    use super::*;
+    use crate::text::Script;
+
+    const NOTDEF: GlyphId = 0;
+
+    fn cluster_from_str(text: &str) -> CharCluster {
+        let tokens: Vec<_> = text
+            .char_indices()
+            .map(|(i, ch)| Token {
+                ch,
+                offset: i as u32,
+                len: ch.len_utf8() as u8,
+                info: ch.into(),
+                data: 0,
+            })
+            .collect();
+        let mut cluster = CharCluster::new();
+        assert!(
+            Parser::new(Script::Latin, tokens.into_iter()).next(&mut cluster),
+            "expected {text:?} to yield a cluster"
+        );
+        cluster
+    }
+
+    fn scotland_flag_cluster() -> CharCluster {
+        let cluster = cluster_from_str("🏴󠁧󠁢󠁳󠁣󠁴󠁿");
+        assert!(cluster.info().is_emoji());
+        assert_eq!(cluster.chars().len(), 7);
+        assert_eq!(cluster.chars()[0].ch, '\u{1F3F4}');
+        assert!(cluster.chars()[0].contributes_to_shaping);
+        assert!(cluster.chars()[1..]
+            .iter()
+            .all(|c| !c.contributes_to_shaping));
+        cluster
+    }
+
+    #[test]
+    fn emoji_tag_sequence_all_notdef_is_discard() {
+        assert_eq!(scotland_flag_cluster().map(|_| NOTDEF), Status::Discard);
+    }
+
+    #[test]
+    fn emoji_tag_sequence_only_base_is_keep() {
+        assert_eq!(
+            scotland_flag_cluster().map(|ch| if ch == '\u{1F3F4}' { 1 } else { NOTDEF }),
+            Status::Keep
+        );
+    }
+
+    #[test]
+    fn emoji_tag_sequence_full_charmap_is_complete() {
+        assert_eq!(scotland_flag_cluster().map(|_| 1), Status::Complete);
+    }
+}
