@@ -409,6 +409,12 @@ impl<'a> Bitmap<'a> {
         }
         let w = self.width as usize;
         let h = self.height as usize;
+        // Zero-sized bitmaps are valid font data (blank glyphs in some EBDT
+        // strikes, e.g. SimSun). Fail the decode so callers can fall back
+        // to another source instead of panicking on chunks(0).
+        if w == 0 || h == 0 {
+            return false;
+        }
         let src = self.data;
         let dst = &mut *target;
         match self.format {
