@@ -317,7 +317,11 @@ impl BitmapFormat {
     /// Returns the buffer size for a bitmap of the specified dimensions in this
     /// format.
     pub fn buffer_size(&self, width: u32, height: u32) -> usize {
-        (width * height * self.channels()) as usize
+        // Saturates rather than wraps, so an impossible size is never taken
+        // for a small one.
+        (width as usize)
+            .saturating_mul(height as usize)
+            .saturating_mul(self.channels() as usize)
     }
 }
 
@@ -337,12 +341,14 @@ pub struct Bitmap<'a> {
 #[cfg(feature = "scale")]
 impl<'a> Bitmap<'a> {
     fn new(data: &BitmapData<'a>, upem: u16, is_apple: bool) -> Option<Self> {
-        let format = if data.is_packed {
-            BitmapFormat::Packed(data.bit_depth)
-        } else if data.is_png {
+        let format = if data.is_png {
             BitmapFormat::Png
         } else if data.bit_depth == 32 {
+            // 32-bit pixels are whole bytes, so bit-aligned data is laid out
+            // like byte-aligned data.
             BitmapFormat::Color
+        } else if data.is_packed {
+            BitmapFormat::Packed(data.bit_depth)
         } else {
             BitmapFormat::Alpha(data.bit_depth)
         };
@@ -407,78 +413,81 @@ impl<'a> Bitmap<'a> {
         if target.len() < size {
             return false;
         }
+        let dst = &mut target[..size];
         let w = self.width as usize;
         let h = self.height as usize;
-        let src = self.data;
-        let dst = &mut *target;
-        match self.format {
-            BitmapFormat::Packed(bits) => match bits {
-                1 => {
-                    for x in 0..(w * h) {
-                        dst[x] = (src[x >> 3] >> (!x & 7) & 1) * 255;
-                    }
-                }
-                2 => {
-                    for x in 0..(w * h) {
-                        dst[x] = (src[x >> 2] >> (!(x * 2) & 2) & 3) * 85;
-                    }
-                }
-                4 => {
-                    for x in 0..(w * h) {
-                        dst[x] = (src[x >> 1] >> (!(x * 4) & 4) & 15) * 17;
-                    }
-                }
-                8 | 32 => {
-                    dst.copy_from_slice(src);
-                }
-                _ => return false,
-            },
-            BitmapFormat::Alpha(bits) => match bits {
-                1 => {
-                    let mut dst_idx = 0;
-                    for row in src.chunks(((w * bits as usize) + 7) / 8) {
-                        for x in 0..w {
-                            dst[dst_idx] = (row[x >> 3] >> (!x & 7) & 1) * 255;
-                            dst_idx += 1;
-                        }
-                    }
-                }
-                2 => {
-                    let mut dst_idx = 0;
-                    for row in src.chunks(((w * bits as usize) + 7) / 8) {
-                        for x in 0..w {
-                            dst[dst_idx] = (row[x >> 2] >> (!(x * 2) & 2) & 3) * 85;
-                            dst_idx += 1;
-                        }
-                    }
-                }
-                4 => {
-                    let mut dst_idx = 0;
-                    for row in src.chunks(((w * bits as usize) + 7) / 8) {
-                        for x in 0..w {
-                            dst[dst_idx] = (row[x >> 1] >> (!(x * 4) & 4) & 15) * 17;
-                            dst_idx += 1;
-                        }
-                    }
-                }
-                8 | 32 => {
-                    dst.copy_from_slice(src);
-                }
-                _ => return false,
-            },
-
-            BitmapFormat::Color => {
-                dst.copy_from_slice(src);
-            }
-            BitmapFormat::Png => {
+        // Apart from PNG, each format needs a fixed number of source bytes.
+        // Checking it here keeps every index below in bounds, whatever the
+        // dimensions: a bitmap with no pixels (a blank glyph) decodes to
+        // nothing.
+        let src = self.data_len().and_then(|len| self.data.get(..len));
+        match (self.format, src) {
+            (BitmapFormat::Png, _) => {
                 use super::scale::decode_png;
                 scratch.clear();
-                if decode_png(src, scratch, target).is_none() {
-                    return false;
-                }
+                return decode_png(self.data, scratch, dst).is_some();
             }
+            (_, None) => return false,
+            (BitmapFormat::Packed(bits), Some(src)) => match bits {
+                1 => {
+                    for (x, out) in dst.iter_mut().enumerate() {
+                        *out = (src[x >> 3] >> (!x & 7) & 1) * 255;
+                    }
+                }
+                2 => {
+                    for (x, out) in dst.iter_mut().enumerate() {
+                        *out = (src[x >> 2] >> (!(x * 2) & 2) & 3) * 85;
+                    }
+                }
+                4 => {
+                    for (x, out) in dst.iter_mut().enumerate() {
+                        *out = (src[x >> 1] >> (!(x * 4) & 4) & 15) * 17;
+                    }
+                }
+                8 => dst.copy_from_slice(src),
+                _ => return false,
+            },
+            (BitmapFormat::Alpha(bits), Some(src)) => match bits {
+                1 | 2 | 4 => {
+                    // Each row starts on a byte.
+                    let stride = (w * bits as usize + 7) / 8;
+                    for y in 0..h {
+                        let row = &src[y * stride..][..stride];
+                        let out = &mut dst[y * w..][..w];
+                        for (x, out) in out.iter_mut().enumerate() {
+                            *out = match bits {
+                                1 => (row[x >> 3] >> (!x & 7) & 1) * 255,
+                                2 => (row[x >> 2] >> (!(x * 2) & 2) & 3) * 85,
+                                _ => (row[x >> 1] >> (!(x * 4) & 4) & 15) * 17,
+                            };
+                        }
+                    }
+                }
+                8 => dst.copy_from_slice(src),
+                _ => return false,
+            },
+            (BitmapFormat::Color, Some(src)) => dst.copy_from_slice(src),
         }
         true
+    }
+
+    /// Returns the number of bytes of source data the bitmap needs, or `None`
+    /// if that does not fit in memory. PNG data has no fixed size.
+    fn data_len(&self) -> Option<usize> {
+        let w = self.width as usize;
+        let h = self.height as usize;
+        match self.format {
+            BitmapFormat::Alpha(bits) => {
+                let stride = w.checked_mul(bits as usize)?.checked_add(7)? / 8;
+                stride.checked_mul(h)
+            }
+            BitmapFormat::Packed(bits) => {
+                let bits = w.checked_mul(h)?.checked_mul(bits as usize)?;
+                Some(bits.checked_add(7)? / 8)
+            }
+            BitmapFormat::Color => w.checked_mul(h)?.checked_mul(4),
+            BitmapFormat::Png => None,
+        }
     }
 }
 
@@ -832,4 +841,148 @@ fn get_metrics(
         m.advance = d.read::<u8>(offset + 4)?;
     }
     Some((width, height))
+}
+
+#[cfg(all(test, feature = "scale"))]
+mod tests {
+    use super::{Bitmap, BitmapData, BitmapFormat, Metrics};
+    use BitmapFormat::{Alpha, Color, Packed};
+
+    const FORMATS: [BitmapFormat; 9] = [
+        Alpha(1),
+        Alpha(2),
+        Alpha(4),
+        Alpha(8),
+        Packed(1),
+        Packed(2),
+        Packed(4),
+        Packed(8),
+        Color,
+    ];
+
+    fn bitmap(format: BitmapFormat, width: u32, height: u32, data: &[u8]) -> Bitmap<'_> {
+        Bitmap {
+            format,
+            ppem: 12,
+            width,
+            height,
+            left: 0,
+            top: 0,
+            data,
+        }
+    }
+
+    /// Bytes of source data for a `width` x `height` bitmap.
+    fn data_len(format: BitmapFormat, width: usize, height: usize) -> usize {
+        match format {
+            Alpha(bits) => (width * bits as usize + 7) / 8 * height,
+            Packed(bits) => (width * height * bits as usize + 7) / 8,
+            _ => width * height * 4,
+        }
+    }
+
+    /// Decodes into a buffer `extra` bytes larger than needed, filled with a
+    /// marker, and returns the result and the buffer.
+    fn decode(bitmap: &Bitmap, extra: usize) -> (bool, Vec<u8>) {
+        let mut target = vec![0xAA; bitmap.decoded_size() + extra];
+        let ok = bitmap.decode(None, &mut target);
+        (ok, target)
+    }
+
+    // A glyph can be present in a strike with no pixels, such as the space
+    // in many bitmap fonts (#139). It decodes to an empty image.
+    #[test]
+    fn decode_empty() {
+        for format in FORMATS {
+            for (w, h) in [(0, 3), (3, 0), (0, 0)] {
+                let (ok, target) = decode(&bitmap(format, w, h, &[]), 4);
+                assert!(ok, "{format:?} {w}x{h}");
+                assert_eq!(target, [0xAA; 4], "{format:?} {w}x{h}");
+            }
+        }
+    }
+
+    #[test]
+    fn decode_short_data() {
+        for format in FORMATS {
+            let data = vec![0xFF; data_len(format, 3, 2) - 1];
+            let (ok, target) = decode(&bitmap(format, 3, 2, &data), 0);
+            assert!(!ok, "{format:?}");
+            assert!(target.iter().all(|&b| b == 0xAA), "{format:?}");
+        }
+    }
+
+    #[test]
+    fn decode_into_larger_target() {
+        for format in FORMATS {
+            let data = vec![0xFF; data_len(format, 3, 2)];
+            let bitmap = bitmap(format, 3, 2, &data);
+            let size = bitmap.decoded_size();
+            let (ok, target) = decode(&bitmap, 4);
+            assert!(ok, "{format:?}");
+            assert!(target[..size].iter().all(|&b| b == 0xFF), "{format:?}");
+            assert_eq!(target[size..], [0xAA; 4], "{format:?}");
+        }
+    }
+
+    #[test]
+    fn decode_unsupported_depth() {
+        for format in [Alpha(3), Alpha(32), Packed(3), Packed(32)] {
+            let data = [0xFF; 32];
+            let (ok, _) = decode(&bitmap(format, 2, 2, &data), 0);
+            assert!(!ok, "{format:?}");
+        }
+    }
+
+    #[test]
+    fn decode_pixels() {
+        let cases: [(BitmapFormat, &[u8], &[u8]); 7] = [
+            // Rows are padded to a byte.
+            (
+                Alpha(1),
+                &[0b1010_0000, 0b0100_0000],
+                &[255, 0, 255, 0, 255, 0],
+            ),
+            (
+                Alpha(4),
+                &[0xF0, 0x80, 0x12, 0x30],
+                &[255, 0, 136, 17, 34, 51],
+            ),
+            (Alpha(8), &[1, 2, 3, 4, 5, 6], &[1, 2, 3, 4, 5, 6]),
+            // Rows follow each other bit by bit.
+            (Packed(1), &[0b1010_1000], &[255, 0, 255, 0, 255, 0]),
+            (Packed(4), &[0xF0, 0x81, 0x23], &[255, 0, 136, 17, 34, 51]),
+            (Packed(8), &[1, 2, 3, 4, 5, 6], &[1, 2, 3, 4, 5, 6]),
+            (Color, &[1; 24], &[1; 24]),
+        ];
+        for (format, data, pixels) in cases {
+            let (ok, target) = decode(&bitmap(format, 3, 2, data), 0);
+            assert!(ok, "{format:?}");
+            assert_eq!(target, pixels, "{format:?}");
+        }
+    }
+
+    // A 32-bit strike stores whole bytes per pixel, so its bit-aligned image
+    // formats hold the same bytes as the byte-aligned ones.
+    #[test]
+    fn packed_32_bit_is_color() {
+        let pixels = [1, 2, 3, 4, 5, 6, 7, 8];
+        let data = BitmapData {
+            data: &pixels,
+            ppem: 12,
+            bit_depth: 32,
+            width: 2,
+            height: 1,
+            metrics: Metrics::default(),
+            vertical_metrics: Metrics::default(),
+            is_packed: true,
+            is_png: false,
+            is_sbix: false,
+        };
+        let bitmap = Bitmap::new(&data, 1000, false).unwrap();
+        assert_eq!(bitmap.format, Color);
+        let (ok, target) = decode(&bitmap, 0);
+        assert!(ok);
+        assert_eq!(target, pixels);
+    }
 }
