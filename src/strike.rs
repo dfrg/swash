@@ -641,28 +641,32 @@ fn get_location(
                 return Some(loc);
             }
             4 => {
+                // The number of glyphs, then a (glyph, offset) pair for each,
+                // sorted by glyph, and one more pair to end the last image.
+                let records = base + 4;
                 let mut l = 0;
                 let mut h = d.read::<u32>(base)? as usize;
                 while l < h {
                     use core::cmp::Ordering::*;
-                    let i = (l + h) / 2;
-                    let rec = base + i * 4;
+                    let i = l + (h - l) / 2;
+                    let rec = records + i * 4;
                     let id = d.read::<u16>(rec)?;
                     match glyph_id.cmp(&id) {
                         Less => h = i,
-                        Greater => l = i + i,
+                        Greater => l = i + 1,
                         Equal => {
                             let offset1 = d.read::<u16>(rec + 2)? as u32;
                             let offset2 = d.read::<u16>(rec + 6)? as u32;
                             if offset2 <= offset1 {
                                 return None;
                             }
-                            loc.offset = image_offset + offset1;
+                            loc.offset = image_offset.checked_add(offset1)?;
                             loc.size = offset2 - offset1;
                             return Some(loc);
                         }
                     }
                 }
+                return None;
             }
             _ => {
                 return None;
@@ -1044,6 +1048,26 @@ mod tests {
         }
     }
 
+    /// Index format 4: (glyph, offset) pairs for the glyphs present, and one
+    /// past the last image.
+    fn sparse(first: u16, last: u16, glyphs: &[(u16, &[u8])]) -> Subtable {
+        let mut body = (glyphs.len() as u32).to_be_bytes().to_vec();
+        let mut offset = 0;
+        for (glyph_id, image) in glyphs.iter().chain(&[(0, &[][..])]) {
+            body.extend(glyph_id.to_be_bytes());
+            body.extend((offset as u16).to_be_bytes());
+            offset += image.len();
+        }
+        Subtable {
+            first,
+            last,
+            index_format: 4,
+            image_format: 1,
+            body,
+            images: glyphs.iter().flat_map(|g| g.1).copied().collect(),
+        }
+    }
+
     /// Builds EBLC and EBDT tables with one strike, 12 ppem and 1 bit deep.
     fn tables(subtables: &[Subtable]) -> (Vec<u8>, Vec<u8>) {
         let mut ebdt = vec![0, 2, 0, 0];
@@ -1098,5 +1122,18 @@ mod tests {
         let ink2 = Some((2, 1, vec![0xC0]));
         let found: Vec<_> = (1..=6).map(|gid| lookup(&eblc, &ebdt, gid)).collect();
         assert_eq!(found, [blank.clone(), None, ink, blank, None, ink2]);
+    }
+
+    #[test]
+    fn sparse_glyphs() {
+        let (blank, ink, ink2) = (image(0, 0, &[]), image(1, 1, &[0x80]), image(2, 1, &[0xC0]));
+        let (eblc, ebdt) = tables(&[sparse(10, 20, &[(12, &ink), (14, &blank), (16, &ink2)])]);
+        // Includes glyphs in range below, between and above the records.
+        let found: Vec<_> = (10..=20).map(|gid| lookup(&eblc, &ebdt, gid)).collect();
+        let mut expected = vec![None; 11];
+        expected[2] = Some((1, 1, vec![0x80]));
+        expected[4] = Some((0, 0, vec![]));
+        expected[6] = Some((2, 1, vec![0xC0]));
+        assert_eq!(found, expected);
     }
 }
