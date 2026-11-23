@@ -234,7 +234,7 @@ use super::internal;
 use super::{cache::FontCache, setting::Setting, FontRef, GlyphId, NormalizedCoord};
 use alloc::vec::Vec;
 use core::borrow::Borrow;
-#[cfg(all(feature = "libm", feature = "render"))]
+#[cfg(feature = "libm")]
 use core_maths::CoreFloat;
 use proxy::*;
 use zeno::Placement;
@@ -741,8 +741,8 @@ impl<'a> Scaler<'a> {
             ) {
                 return None;
             }
-            let left = (bitmap.left as f32 * scale) as i32;
-            let top = (bitmap.top as f32 * scale) as i32;
+            let left = (bitmap.left as f32 * scale).round() as i32;
+            let top = (bitmap.top as f32 * scale).round() as i32;
             Placement {
                 left,
                 top,
@@ -1095,5 +1095,15 @@ mod tests {
         let (placement, pixels) = render(&font, 13.6, StrikeWith::BestFit).unwrap();
         assert_eq!(placement, exact.0);
         assert_ne!(pixels, exact.1);
+    }
+
+    // A scaled strike's size and position are rounded to the nearest pixel.
+    #[test]
+    fn best_fit_rounds_scaled_strike() {
+        let font = font(&[(13, image(6, 7))]);
+        // At 20/13 the 6 x 7 image at (1, 7) scales to 9.2 x 10.8 at
+        // (1.5, 10.8).
+        let (placement, _) = render(&font, 20., StrikeWith::BestFit).unwrap();
+        assert_eq!(placement, [2, 11, 9, 11]);
     }
 }
