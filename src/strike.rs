@@ -436,7 +436,7 @@ impl<'a> Bitmap<'a> {
                 }
                 2 => {
                     for (x, out) in dst.iter_mut().enumerate() {
-                        *out = (src[x >> 2] >> (!(x * 2) & 2) & 3) * 85;
+                        *out = (src[x >> 2] >> (!(x * 2) & 6) & 3) * 85;
                     }
                 }
                 4 => {
@@ -457,7 +457,7 @@ impl<'a> Bitmap<'a> {
                         for (x, out) in out.iter_mut().enumerate() {
                             *out = match bits {
                                 1 => (row[x >> 3] >> (!x & 7) & 1) * 255,
-                                2 => (row[x >> 2] >> (!(x * 2) & 2) & 3) * 85,
+                                2 => (row[x >> 2] >> (!(x * 2) & 6) & 3) * 85,
                                 _ => (row[x >> 1] >> (!(x * 4) & 4) & 15) * 17,
                             };
                         }
@@ -959,6 +959,16 @@ mod tests {
             let (ok, target) = decode(&bitmap(format, 3, 2, data), 0);
             assert!(ok, "{format:?}");
             assert_eq!(target, pixels, "{format:?}");
+        }
+    }
+
+    // Four 2-bit pixels per byte, the first in the high bits.
+    #[test]
+    fn decode_2_bit_pixels() {
+        for format in [Alpha(2), Packed(2)] {
+            let (ok, target) = decode(&bitmap(format, 4, 1, &[0b11_10_01_00]), 0);
+            assert!(ok, "{format:?}");
+            assert_eq!(target, [255, 170, 85, 0], "{format:?}");
         }
     }
 
