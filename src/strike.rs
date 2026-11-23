@@ -627,7 +627,8 @@ fn get_location(
             }
             2 => {
                 loc.size = d.read::<u32>(base)?;
-                loc.offset = image_offset + loc.size * (glyph_id - first) as u32;
+                let index = (glyph_id - first) as u32;
+                loc.offset = image_offset.checked_add(loc.size.checked_mul(index)?)?;
                 let (w, h) = get_metrics(
                     &d,
                     base + 4,
@@ -770,13 +771,14 @@ fn sbix_range(table: &[u8], strike_base: usize, glyph_id: u16, recurse: i32) -> 
     let b = Bytes::new(table);
     let id = glyph_id as usize;
     let base = strike_base + 4;
-    let mut start = b.read::<u32>(base + id * 4)?;
-    let mut end = b.read::<u32>(base + (id + 1) * 4)?;
-    if end <= start {
+    let start = b.read::<u32>(base + id * 4)?;
+    let end = b.read::<u32>(base + (id + 1) * 4)?;
+    // A glyph record has an 8-byte header before its data.
+    if end.checked_sub(start)? < 8 {
         return None;
     }
-    start += strike_base as u32;
-    end += strike_base as u32;
+    let start = start.checked_add(strike_base as u32)?;
+    let end = end.checked_add(strike_base as u32)?;
     let tag = b.read::<u32>(start as usize + 4)?;
     if tag == DUPE {
         let dupe = b.read::<u16>(start as usize + 8)?;
@@ -1068,6 +1070,21 @@ mod tests {
         }
     }
 
+    /// Index format 2: every glyph from `first` to `last` has the same size
+    /// and metrics, here `width` x 1 in image format 5.
+    fn constant(first: u16, last: u16, image_size: u32, width: u8, images: &[u8]) -> Subtable {
+        let mut body = image_size.to_be_bytes().to_vec();
+        body.extend([1, width, 0, 1, 6, 0, 0, 0]);
+        Subtable {
+            first,
+            last,
+            index_format: 2,
+            image_format: 5,
+            body,
+            images: images.to_vec(),
+        }
+    }
+
     /// Builds EBLC and EBDT tables with one strike, 12 ppem and 1 bit deep.
     fn tables(subtables: &[Subtable]) -> (Vec<u8>, Vec<u8>) {
         let mut ebdt = vec![0, 2, 0, 0];
@@ -1135,5 +1152,34 @@ mod tests {
         expected[4] = Some((0, 0, vec![]));
         expected[6] = Some((2, 1, vec![0xC0]));
         assert_eq!(found, expected);
+    }
+
+    #[test]
+    fn constant_metrics() {
+        let (eblc, ebdt) = tables(&[
+            constant(30, 31, 1, 8, &[0x80, 0x40]),
+            // The offset of the last glyph does not fit in 32 bits.
+            constant(40, 42, 0x8000_0000, 8, &[]),
+        ]);
+        assert_eq!(lookup(&eblc, &ebdt, 31), Some((8, 1, vec![0x40])));
+        assert_eq!(lookup(&eblc, &ebdt, 42), None);
+    }
+
+    // Each sbix glyph record starts with an 8-byte header.
+    #[test]
+    fn sbix_glyph_records() {
+        let mut sbix = vec![0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 12];
+        sbix.extend([0, 20, 0, 72]);
+        for offset in [20u32, 26, 0xFFFF_FFF0, 0xFFFF_FFFF] {
+            sbix.extend(offset.to_be_bytes());
+        }
+        // Too short for a header, though it reads as a PNG record.
+        sbix.extend([0, 0, 0, 0, b'p', b'n', b'g', b' ']);
+        let strikes = BitmapStrikes::new(&sbix, &sbix, 1000, true, false);
+        let strike = strikes.get(0).unwrap();
+        // The second and third glyphs end past 32 bits of offset.
+        for glyph_id in 0..3 {
+            assert!(strike.get(glyph_id).is_none(), "glyph {glyph_id}");
+        }
     }
 }
