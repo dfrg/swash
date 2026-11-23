@@ -389,8 +389,8 @@ impl<'a> Bitmap<'a> {
         let mut h = self.height;
         if size != 0. {
             let scale = size / self.ppem as f32;
-            w = (w as f32 * scale) as u32;
-            h = (h as f32 * scale) as u32;
+            w = (w as f32 * scale).round() as u32;
+            h = (h as f32 * scale).round() as u32;
         }
         (w, h, self.format.buffer_size(w, h))
     }

@@ -234,7 +234,7 @@ use super::internal;
 use super::{cache::FontCache, setting::Setting, FontRef, GlyphId, NormalizedCoord};
 use alloc::vec::Vec;
 use core::borrow::Borrow;
-#[cfg(all(feature = "libm", feature = "render"))]
+#[cfg(feature = "libm")]
 use core_maths::CoreFloat;
 use proxy::*;
 use zeno::Placement;
@@ -252,9 +252,12 @@ pub type StrikeIndex = u32;
 /// Bitmap strike selection mode.
 #[derive(Copy, Clone, Debug)]
 pub enum StrikeWith {
-    /// Load a bitmap only if the exact size is available.
+    /// Load a bitmap only if a strike exists for the requested size rounded
+    /// to the nearest whole pixel. It is drawn unscaled.
     ExactSize,
-    /// Load a bitmap of the best available size.
+    /// Load a bitmap of the best available size, scaled to the requested
+    /// size. A strike for the requested size rounded to the nearest whole
+    /// pixel is drawn unscaled.
     BestFit,
     /// Loads a bitmap of the largest size available.
     LargestSize,
@@ -670,6 +673,10 @@ impl<'a> Scaler<'a> {
     ) -> Option<bool> {
         image.clear();
         let size = self.size;
+        // Strikes are made for whole pixel sizes. Match the requested size
+        // rounded to the nearest one, as FreeType does, rather than
+        // truncated: 12.6 px is drawn from a 13 ppem strike.
+        let ppem = (size + 0.5) as u16;
         let mut strikes = if color {
             self.proxy.bitmaps.materialize_color(&self.font)
         } else {
@@ -680,18 +687,14 @@ impl<'a> Scaler<'a> {
                 if self.size == 0. {
                     None
                 } else {
-                    strikes
-                        .find_by_exact_ppem(size as u16, glyph_id)?
-                        .get(glyph_id)
+                    strikes.find_by_exact_ppem(ppem, glyph_id)?.get(glyph_id)
                 }
             }
             StrikeWith::BestFit => {
                 if self.size == 0. {
                     None
                 } else {
-                    strikes
-                        .find_by_nearest_ppem(size as u16, glyph_id)?
-                        .get(glyph_id)
+                    strikes.find_by_nearest_ppem(ppem, glyph_id)?.get(glyph_id)
                 }
             }
             StrikeWith::LargestSize => strikes.find_by_largest_ppem(glyph_id)?.get(glyph_id),
@@ -702,19 +705,25 @@ impl<'a> Scaler<'a> {
         if bitmap.ppem == 0 {
             return None;
         }
-        let (_, _, bufsize) = bitmap.scaled_size(size);
+        let (scaled_w, scaled_h, bufsize) = bitmap.scaled_size(size);
         image.data.resize(bufsize, 0);
         self.state.scratch0.clear();
         self.state.scratch1.clear();
         let mut w = bitmap.width;
         let mut h = bitmap.height;
-        let scale = size / bitmap.ppem as f32;
+        // A strike that matches the size is drawn as is: resampling it by a
+        // fraction of a pixel per em only blurs it.
+        let scale = if bitmap.ppem == ppem {
+            1.
+        } else {
+            size / bitmap.ppem as f32
+        };
         image.placement = if size != 0. && scale != 1. {
             self.state
                 .scratch0
                 .resize(bitmap.format.buffer_size(w, h), 0);
-            w = (w as f32 * scale) as u32;
-            h = (h as f32 * scale) as u32;
+            w = scaled_w;
+            h = scaled_h;
             image.data.resize(bitmap.format.buffer_size(w, h), 0);
             if !bitmap.decode(Some(&mut self.state.scratch1), &mut self.state.scratch0) {
                 return None;
@@ -732,8 +741,8 @@ impl<'a> Scaler<'a> {
             ) {
                 return None;
             }
-            let left = (bitmap.left as f32 * scale) as i32;
-            let top = (bitmap.top as f32 * scale) as i32;
+            let left = (bitmap.left as f32 * scale).round() as i32;
+            let top = (bitmap.top as f32 * scale).round() as i32;
             Placement {
                 left,
                 top,
@@ -989,5 +998,112 @@ impl<'a> Render<'a> {
         } else {
             None
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::{ScaleContext, StrikeWith};
+    use crate::FontRef;
+
+    /// A 1-bit glyph image in format 1: small metrics, then rows padded to a
+    /// byte. Its left bearing is 1 and its top is at its height.
+    fn image(width: u8, height: u8) -> Vec<u8> {
+        let mut image = vec![height, width, 1, height, width + 1];
+        image.extend((0..height).map(|y| 0xAA_u8.rotate_left(y as u32)));
+        image
+    }
+
+    /// Builds a font holding only EBLC and EBDT tables, with a 1-bit strike
+    /// per (ppem, image) pair, each with the image for glyph 1.
+    fn font(strikes: &[(u8, Vec<u8>)]) -> Vec<u8> {
+        let mut eblc = vec![0, 2, 0, 0];
+        eblc.extend((strikes.len() as u32).to_be_bytes());
+        let mut ebdt = vec![0, 2, 0, 0];
+        let mut lists = Vec::new();
+        for (ppem, image) in strikes {
+            let list = 8 + strikes.len() * 48 + lists.len();
+            eblc.extend((list as u32).to_be_bytes());
+            eblc.extend(24u32.to_be_bytes());
+            eblc.extend(1u32.to_be_bytes());
+            eblc.extend([0; 28]);
+            eblc.extend([0, 1, 0, 1, *ppem, *ppem, 1, 1]);
+            // One index subtable in format 1 for glyph 1, with image format 1.
+            lists.extend([0, 1, 0, 1, 0, 0, 0, 8, 0, 1, 0, 1]);
+            lists.extend((ebdt.len() as u32).to_be_bytes());
+            lists.extend(0u32.to_be_bytes());
+            lists.extend((image.len() as u32).to_be_bytes());
+            ebdt.extend(image);
+        }
+        eblc.extend(lists);
+        let mut font = vec![0, 1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0];
+        let mut offset = 12 + 2 * 16;
+        for (tag, table) in [(b"EBDT", &ebdt), (b"EBLC", &eblc)] {
+            font.extend(tag);
+            font.extend([0; 4]);
+            font.extend((offset as u32).to_be_bytes());
+            font.extend((table.len() as u32).to_be_bytes());
+            offset += table.len().next_multiple_of(4);
+        }
+        for table in [&ebdt, &eblc] {
+            font.extend(table);
+            font.resize(font.len().next_multiple_of(4), 0);
+        }
+        font
+    }
+
+    /// Renders glyph 1 at `size` and returns its placement and pixels.
+    fn render(font: &[u8], size: f32, strike: StrikeWith) -> Option<([i32; 4], Vec<u8>)> {
+        let font = FontRef::from_index(font, 0).unwrap();
+        let mut context = ScaleContext::new();
+        let mut scaler = context.builder(font).size(size).build();
+        let image = scaler.scale_bitmap(1, strike)?;
+        let p = image.placement;
+        let placement = [p.left, p.top, p.width as i32, p.height as i32];
+        Some((placement, image.data))
+    }
+
+    // A fractional size is matched to the strike for the nearest whole
+    // pixel size, which is drawn as is.
+    #[test]
+    fn exact_size_rounds_to_nearest_strike() {
+        let font = font(&[(12, image(5, 6)), (13, image(6, 7))]);
+        let exact = |size| render(&font, size, StrikeWith::ExactSize);
+        let (placement, pixels) = exact(13.).unwrap();
+        assert_eq!(placement, [1, 7, 6, 7]);
+        assert!(pixels.iter().all(|&p| p == 0 || p == 255));
+        for size in [12.5, 13.125, 13.49] {
+            assert_eq!(exact(size), exact(13.), "{size}");
+        }
+        assert_eq!(exact(12.).unwrap().0, [1, 6, 5, 6]);
+        assert_eq!(exact(12.49), exact(12.));
+        assert_eq!(exact(13.5), None);
+    }
+
+    // The strike for the rounded size is drawn as is; any other strike is
+    // scaled to the size.
+    #[test]
+    fn best_fit_scales_other_strikes() {
+        let font = font(&[(12, image(5, 6)), (13, image(6, 7))]);
+        let exact = render(&font, 13., StrikeWith::ExactSize).unwrap();
+        for size in [13.125, 13.49] {
+            let best = render(&font, size, StrikeWith::BestFit).unwrap();
+            assert_eq!(best, exact, "{size}");
+        }
+        // 13.6 rounds to 14, which has no strike, so the 13 strike is
+        // resampled by 13.6/13: the same dimensions here, but other pixels.
+        let (placement, pixels) = render(&font, 13.6, StrikeWith::BestFit).unwrap();
+        assert_eq!(placement, exact.0);
+        assert_ne!(pixels, exact.1);
+    }
+
+    // A scaled strike's size and position are rounded to the nearest pixel.
+    #[test]
+    fn best_fit_rounds_scaled_strike() {
+        let font = font(&[(13, image(6, 7))]);
+        // At 20/13 the 6 x 7 image at (1, 7) scales to 9.2 x 10.8 at
+        // (1.5, 10.8).
+        let (placement, _) = render(&font, 20., StrikeWith::BestFit).unwrap();
+        assert_eq!(placement, [2, 11, 9, 11]);
     }
 }
