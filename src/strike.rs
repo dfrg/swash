@@ -607,9 +607,22 @@ fn get_location(
             size: 0,
         };
         match index_format {
-            1 => {
-                loc.offset =
-                    image_offset + d.read::<u32>(base + (glyph_id - first) as usize * 4)?;
+            1 | 3 => {
+                // An offset per glyph and one past the last. Equal offsets
+                // mean the glyph has no bitmap in this strike.
+                let index = (glyph_id - first) as usize;
+                let (offset1, offset2) = if index_format == 1 {
+                    let rec = base + index * 4;
+                    (d.read::<u32>(rec)?, d.read::<u32>(rec + 4)?)
+                } else {
+                    let rec = base + index * 2;
+                    (d.read::<u16>(rec)? as u32, d.read::<u16>(rec + 2)? as u32)
+                };
+                if offset2 <= offset1 {
+                    return None;
+                }
+                loc.offset = image_offset.checked_add(offset1)?;
+                loc.size = offset2 - offset1;
                 return Some(loc);
             }
             2 => {
@@ -625,11 +638,6 @@ fn get_location(
                 )?;
                 loc.width = w;
                 loc.height = h;
-                return Some(loc);
-            }
-            3 => {
-                loc.offset =
-                    image_offset + d.read::<u16>(base + (glyph_id - first) as usize * 2)? as u32;
                 return Some(loc);
             }
             4 => {
@@ -845,7 +853,7 @@ fn get_metrics(
 
 #[cfg(all(test, feature = "scale"))]
 mod tests {
-    use super::{Bitmap, BitmapData, BitmapFormat, Metrics};
+    use super::{Bitmap, BitmapData, BitmapFormat, BitmapStrikes, Metrics};
     use BitmapFormat::{Alpha, Color, Packed};
 
     const FORMATS: [BitmapFormat; 9] = [
@@ -994,5 +1002,101 @@ mod tests {
         let (ok, target) = decode(&bitmap, 0);
         assert!(ok);
         assert_eq!(target, pixels);
+    }
+
+    /// An index subtable: its glyph range, formats, the bytes after its
+    /// header, and the image data it points into.
+    struct Subtable {
+        first: u16,
+        last: u16,
+        index_format: u16,
+        image_format: u16,
+        body: Vec<u8>,
+        images: Vec<u8>,
+    }
+
+    /// An image in format 1: small metrics, then byte-aligned rows.
+    fn image(width: u8, height: u8, rows: &[u8]) -> Vec<u8> {
+        let mut image = vec![height, width, 0, height, 6];
+        image.extend(rows);
+        image
+    }
+
+    /// Index format 1 or 3: an offset per glyph from `first`, and one past
+    /// the last image. An empty image leaves the glyph out of the strike.
+    fn offsets(index_format: u16, first: u16, images: &[&[u8]]) -> Subtable {
+        let mut body = Vec::new();
+        let mut offset = 0;
+        for image in images.iter().chain(&[&[][..]]) {
+            match index_format {
+                1 => body.extend((offset as u32).to_be_bytes()),
+                _ => body.extend((offset as u16).to_be_bytes()),
+            }
+            offset += image.len();
+        }
+        Subtable {
+            first,
+            last: first + images.len() as u16 - 1,
+            index_format,
+            image_format: 1,
+            body,
+            images: images.concat(),
+        }
+    }
+
+    /// Builds EBLC and EBDT tables with one strike, 12 ppem and 1 bit deep.
+    fn tables(subtables: &[Subtable]) -> (Vec<u8>, Vec<u8>) {
+        let mut ebdt = vec![0, 2, 0, 0];
+        let mut records = Vec::new();
+        let mut bodies = Vec::new();
+        for s in subtables {
+            let offset = subtables.len() * 8 + bodies.len();
+            records.extend(s.first.to_be_bytes());
+            records.extend(s.last.to_be_bytes());
+            records.extend((offset as u32).to_be_bytes());
+            bodies.extend(s.index_format.to_be_bytes());
+            bodies.extend(s.image_format.to_be_bytes());
+            bodies.extend((ebdt.len() as u32).to_be_bytes());
+            bodies.extend(&s.body);
+            bodies.resize(bodies.len().next_multiple_of(4), 0);
+            ebdt.extend(&s.images);
+        }
+        let first = subtables.iter().map(|s| s.first).min().unwrap();
+        let last = subtables.iter().map(|s| s.last).max().unwrap();
+        let mut eblc = vec![0, 2, 0, 0, 0, 0, 0, 1];
+        eblc.extend(56u32.to_be_bytes());
+        eblc.extend(((records.len() + bodies.len()) as u32).to_be_bytes());
+        eblc.extend((subtables.len() as u32).to_be_bytes());
+        eblc.extend([0; 28]);
+        eblc.extend(first.to_be_bytes());
+        eblc.extend(last.to_be_bytes());
+        eblc.extend([12, 12, 1, 1]);
+        eblc.extend(records);
+        eblc.extend(bodies);
+        (eblc, ebdt)
+    }
+
+    /// Looks a glyph up in the first strike and returns the size and data of
+    /// its bitmap.
+    fn lookup(eblc: &[u8], ebdt: &[u8], glyph_id: u16) -> Option<(u32, u32, Vec<u8>)> {
+        let strikes = BitmapStrikes::new(eblc, ebdt, 1000, false, false);
+        let bitmap: Bitmap = strikes.get(0)?.get(glyph_id)?;
+        Some((bitmap.width, bitmap.height, bitmap.data.to_vec()))
+    }
+
+    // Equal consecutive offsets mean the glyph has no bitmap in the strike.
+    // A blank glyph is still present: it has metrics, and no rows.
+    #[test]
+    fn missing_and_blank_glyphs() {
+        let (blank, ink, ink2) = (image(0, 0, &[]), image(1, 1, &[0x80]), image(2, 1, &[0xC0]));
+        let (eblc, ebdt) = tables(&[
+            offsets(1, 1, &[&blank, &[], &ink]),
+            offsets(3, 4, &[&blank, &[], &ink2]),
+        ]);
+        let blank = Some((0, 0, vec![]));
+        let ink = Some((1, 1, vec![0x80]));
+        let ink2 = Some((2, 1, vec![0xC0]));
+        let found: Vec<_> = (1..=6).map(|gid| lookup(&eblc, &ebdt, gid)).collect();
+        assert_eq!(found, [blank.clone(), None, ink, blank, None, ink2]);
     }
 }
