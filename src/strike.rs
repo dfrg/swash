@@ -317,7 +317,11 @@ impl BitmapFormat {
     /// Returns the buffer size for a bitmap of the specified dimensions in this
     /// format.
     pub fn buffer_size(&self, width: u32, height: u32) -> usize {
-        (width * height * self.channels()) as usize
+        // Saturates rather than wraps, so an impossible size is never taken
+        // for a small one.
+        (width as usize)
+            .saturating_mul(height as usize)
+            .saturating_mul(self.channels() as usize)
     }
 }
 
@@ -337,12 +341,14 @@ pub struct Bitmap<'a> {
 #[cfg(feature = "scale")]
 impl<'a> Bitmap<'a> {
     fn new(data: &BitmapData<'a>, upem: u16, is_apple: bool) -> Option<Self> {
-        let format = if data.is_packed {
-            BitmapFormat::Packed(data.bit_depth)
-        } else if data.is_png {
+        let format = if data.is_png {
             BitmapFormat::Png
         } else if data.bit_depth == 32 {
+            // 32-bit pixels are whole bytes, so bit-aligned data is laid out
+            // like byte-aligned data.
             BitmapFormat::Color
+        } else if data.is_packed {
+            BitmapFormat::Packed(data.bit_depth)
         } else {
             BitmapFormat::Alpha(data.bit_depth)
         };
@@ -407,78 +413,81 @@ impl<'a> Bitmap<'a> {
         if target.len() < size {
             return false;
         }
+        let dst = &mut target[..size];
         let w = self.width as usize;
         let h = self.height as usize;
-        let src = self.data;
-        let dst = &mut *target;
-        match self.format {
-            BitmapFormat::Packed(bits) => match bits {
-                1 => {
-                    for x in 0..(w * h) {
-                        dst[x] = (src[x >> 3] >> (!x & 7) & 1) * 255;
-                    }
-                }
-                2 => {
-                    for x in 0..(w * h) {
-                        dst[x] = (src[x >> 2] >> (!(x * 2) & 2) & 3) * 85;
-                    }
-                }
-                4 => {
-                    for x in 0..(w * h) {
-                        dst[x] = (src[x >> 1] >> (!(x * 4) & 4) & 15) * 17;
-                    }
-                }
-                8 | 32 => {
-                    dst.copy_from_slice(src);
-                }
-                _ => return false,
-            },
-            BitmapFormat::Alpha(bits) => match bits {
-                1 => {
-                    let mut dst_idx = 0;
-                    for row in src.chunks(((w * bits as usize) + 7) / 8) {
-                        for x in 0..w {
-                            dst[dst_idx] = (row[x >> 3] >> (!x & 7) & 1) * 255;
-                            dst_idx += 1;
-                        }
-                    }
-                }
-                2 => {
-                    let mut dst_idx = 0;
-                    for row in src.chunks(((w * bits as usize) + 7) / 8) {
-                        for x in 0..w {
-                            dst[dst_idx] = (row[x >> 2] >> (!(x * 2) & 2) & 3) * 85;
-                            dst_idx += 1;
-                        }
-                    }
-                }
-                4 => {
-                    let mut dst_idx = 0;
-                    for row in src.chunks(((w * bits as usize) + 7) / 8) {
-                        for x in 0..w {
-                            dst[dst_idx] = (row[x >> 1] >> (!(x * 4) & 4) & 15) * 17;
-                            dst_idx += 1;
-                        }
-                    }
-                }
-                8 | 32 => {
-                    dst.copy_from_slice(src);
-                }
-                _ => return false,
-            },
-
-            BitmapFormat::Color => {
-                dst.copy_from_slice(src);
-            }
-            BitmapFormat::Png => {
+        // Apart from PNG, each format needs a fixed number of source bytes.
+        // Checking it here keeps every index below in bounds, whatever the
+        // dimensions: a bitmap with no pixels (a blank glyph) decodes to
+        // nothing.
+        let src = self.data_len().and_then(|len| self.data.get(..len));
+        match (self.format, src) {
+            (BitmapFormat::Png, _) => {
                 use super::scale::decode_png;
                 scratch.clear();
-                if decode_png(src, scratch, target).is_none() {
-                    return false;
-                }
+                return decode_png(self.data, scratch, dst).is_some();
             }
+            (_, None) => return false,
+            (BitmapFormat::Packed(bits), Some(src)) => match bits {
+                1 => {
+                    for (x, out) in dst.iter_mut().enumerate() {
+                        *out = (src[x >> 3] >> (!x & 7) & 1) * 255;
+                    }
+                }
+                2 => {
+                    for (x, out) in dst.iter_mut().enumerate() {
+                        *out = (src[x >> 2] >> (!(x * 2) & 6) & 3) * 85;
+                    }
+                }
+                4 => {
+                    for (x, out) in dst.iter_mut().enumerate() {
+                        *out = (src[x >> 1] >> (!(x * 4) & 4) & 15) * 17;
+                    }
+                }
+                8 => dst.copy_from_slice(src),
+                _ => return false,
+            },
+            (BitmapFormat::Alpha(bits), Some(src)) => match bits {
+                1 | 2 | 4 => {
+                    // Each row starts on a byte.
+                    let stride = (w * bits as usize + 7) / 8;
+                    for y in 0..h {
+                        let row = &src[y * stride..][..stride];
+                        let out = &mut dst[y * w..][..w];
+                        for (x, out) in out.iter_mut().enumerate() {
+                            *out = match bits {
+                                1 => (row[x >> 3] >> (!x & 7) & 1) * 255,
+                                2 => (row[x >> 2] >> (!(x * 2) & 6) & 3) * 85,
+                                _ => (row[x >> 1] >> (!(x * 4) & 4) & 15) * 17,
+                            };
+                        }
+                    }
+                }
+                8 => dst.copy_from_slice(src),
+                _ => return false,
+            },
+            (BitmapFormat::Color, Some(src)) => dst.copy_from_slice(src),
         }
         true
+    }
+
+    /// Returns the number of bytes of source data the bitmap needs, or `None`
+    /// if that does not fit in memory. PNG data has no fixed size.
+    fn data_len(&self) -> Option<usize> {
+        let w = self.width as usize;
+        let h = self.height as usize;
+        match self.format {
+            BitmapFormat::Alpha(bits) => {
+                let stride = w.checked_mul(bits as usize)?.checked_add(7)? / 8;
+                stride.checked_mul(h)
+            }
+            BitmapFormat::Packed(bits) => {
+                let bits = w.checked_mul(h)?.checked_mul(bits as usize)?;
+                Some(bits.checked_add(7)? / 8)
+            }
+            BitmapFormat::Color => w.checked_mul(h)?.checked_mul(4),
+            BitmapFormat::Png => None,
+        }
     }
 }
 
@@ -598,14 +607,28 @@ fn get_location(
             size: 0,
         };
         match index_format {
-            1 => {
-                loc.offset =
-                    image_offset + d.read::<u32>(base + (glyph_id - first) as usize * 4)?;
+            1 | 3 => {
+                // An offset per glyph and one past the last. Equal offsets
+                // mean the glyph has no bitmap in this strike.
+                let index = (glyph_id - first) as usize;
+                let (offset1, offset2) = if index_format == 1 {
+                    let rec = base + index * 4;
+                    (d.read::<u32>(rec)?, d.read::<u32>(rec + 4)?)
+                } else {
+                    let rec = base + index * 2;
+                    (d.read::<u16>(rec)? as u32, d.read::<u16>(rec + 2)? as u32)
+                };
+                if offset2 <= offset1 {
+                    return None;
+                }
+                loc.offset = image_offset.checked_add(offset1)?;
+                loc.size = offset2 - offset1;
                 return Some(loc);
             }
             2 => {
                 loc.size = d.read::<u32>(base)?;
-                loc.offset = image_offset + loc.size * (glyph_id - first) as u32;
+                let index = (glyph_id - first) as u32;
+                loc.offset = image_offset.checked_add(loc.size.checked_mul(index)?)?;
                 let (w, h) = get_metrics(
                     &d,
                     base + 4,
@@ -618,34 +641,33 @@ fn get_location(
                 loc.height = h;
                 return Some(loc);
             }
-            3 => {
-                loc.offset =
-                    image_offset + d.read::<u16>(base + (glyph_id - first) as usize * 2)? as u32;
-                return Some(loc);
-            }
             4 => {
+                // The number of glyphs, then a (glyph, offset) pair for each,
+                // sorted by glyph, and one more pair to end the last image.
+                let records = base + 4;
                 let mut l = 0;
                 let mut h = d.read::<u32>(base)? as usize;
                 while l < h {
                     use core::cmp::Ordering::*;
-                    let i = (l + h) / 2;
-                    let rec = base + i * 4;
+                    let i = l + (h - l) / 2;
+                    let rec = records + i * 4;
                     let id = d.read::<u16>(rec)?;
                     match glyph_id.cmp(&id) {
                         Less => h = i,
-                        Greater => l = i + i,
+                        Greater => l = i + 1,
                         Equal => {
                             let offset1 = d.read::<u16>(rec + 2)? as u32;
                             let offset2 = d.read::<u16>(rec + 6)? as u32;
                             if offset2 <= offset1 {
                                 return None;
                             }
-                            loc.offset = image_offset + offset1;
+                            loc.offset = image_offset.checked_add(offset1)?;
                             loc.size = offset2 - offset1;
                             return Some(loc);
                         }
                     }
                 }
+                return None;
             }
             _ => {
                 return None;
@@ -749,13 +771,14 @@ fn sbix_range(table: &[u8], strike_base: usize, glyph_id: u16, recurse: i32) -> 
     let b = Bytes::new(table);
     let id = glyph_id as usize;
     let base = strike_base + 4;
-    let mut start = b.read::<u32>(base + id * 4)?;
-    let mut end = b.read::<u32>(base + (id + 1) * 4)?;
-    if end <= start {
+    let start = b.read::<u32>(base + id * 4)?;
+    let end = b.read::<u32>(base + (id + 1) * 4)?;
+    // A glyph record has an 8-byte header before its data.
+    if end.checked_sub(start)? < 8 {
         return None;
     }
-    start += strike_base as u32;
-    end += strike_base as u32;
+    let start = start.checked_add(strike_base as u32)?;
+    let end = end.checked_add(strike_base as u32)?;
     let tag = b.read::<u32>(start as usize + 4)?;
     if tag == DUPE {
         let dupe = b.read::<u16>(start as usize + 8)?;
@@ -832,4 +855,331 @@ fn get_metrics(
         m.advance = d.read::<u8>(offset + 4)?;
     }
     Some((width, height))
+}
+
+#[cfg(all(test, feature = "scale"))]
+mod tests {
+    use super::{Bitmap, BitmapData, BitmapFormat, BitmapStrikes, Metrics};
+    use BitmapFormat::{Alpha, Color, Packed};
+
+    const FORMATS: [BitmapFormat; 9] = [
+        Alpha(1),
+        Alpha(2),
+        Alpha(4),
+        Alpha(8),
+        Packed(1),
+        Packed(2),
+        Packed(4),
+        Packed(8),
+        Color,
+    ];
+
+    fn bitmap(format: BitmapFormat, width: u32, height: u32, data: &[u8]) -> Bitmap<'_> {
+        Bitmap {
+            format,
+            ppem: 12,
+            width,
+            height,
+            left: 0,
+            top: 0,
+            data,
+        }
+    }
+
+    /// Bytes of source data for a `width` x `height` bitmap.
+    fn data_len(format: BitmapFormat, width: usize, height: usize) -> usize {
+        match format {
+            Alpha(bits) => (width * bits as usize + 7) / 8 * height,
+            Packed(bits) => (width * height * bits as usize + 7) / 8,
+            _ => width * height * 4,
+        }
+    }
+
+    /// Decodes into a buffer `extra` bytes larger than needed, filled with a
+    /// marker, and returns the result and the buffer.
+    fn decode(bitmap: &Bitmap, extra: usize) -> (bool, Vec<u8>) {
+        let mut target = vec![0xAA; bitmap.decoded_size() + extra];
+        let ok = bitmap.decode(None, &mut target);
+        (ok, target)
+    }
+
+    // A glyph can be present in a strike with no pixels, such as the space
+    // in many bitmap fonts (#139). It decodes to an empty image.
+    #[test]
+    fn decode_empty() {
+        for format in FORMATS {
+            for (w, h) in [(0, 3), (3, 0), (0, 0)] {
+                let (ok, target) = decode(&bitmap(format, w, h, &[]), 4);
+                assert!(ok, "{format:?} {w}x{h}");
+                assert_eq!(target, [0xAA; 4], "{format:?} {w}x{h}");
+            }
+        }
+    }
+
+    #[test]
+    fn decode_short_data() {
+        for format in FORMATS {
+            let data = vec![0xFF; data_len(format, 3, 2) - 1];
+            let (ok, target) = decode(&bitmap(format, 3, 2, &data), 0);
+            assert!(!ok, "{format:?}");
+            assert!(target.iter().all(|&b| b == 0xAA), "{format:?}");
+        }
+    }
+
+    #[test]
+    fn decode_into_larger_target() {
+        for format in FORMATS {
+            let data = vec![0xFF; data_len(format, 3, 2)];
+            let bitmap = bitmap(format, 3, 2, &data);
+            let size = bitmap.decoded_size();
+            let (ok, target) = decode(&bitmap, 4);
+            assert!(ok, "{format:?}");
+            assert!(target[..size].iter().all(|&b| b == 0xFF), "{format:?}");
+            assert_eq!(target[size..], [0xAA; 4], "{format:?}");
+        }
+    }
+
+    #[test]
+    fn decode_unsupported_depth() {
+        for format in [Alpha(3), Alpha(32), Packed(3), Packed(32)] {
+            let data = [0xFF; 32];
+            let (ok, _) = decode(&bitmap(format, 2, 2, &data), 0);
+            assert!(!ok, "{format:?}");
+        }
+    }
+
+    #[test]
+    fn decode_pixels() {
+        let cases: [(BitmapFormat, &[u8], &[u8]); 7] = [
+            // Rows are padded to a byte.
+            (
+                Alpha(1),
+                &[0b1010_0000, 0b0100_0000],
+                &[255, 0, 255, 0, 255, 0],
+            ),
+            (
+                Alpha(4),
+                &[0xF0, 0x80, 0x12, 0x30],
+                &[255, 0, 136, 17, 34, 51],
+            ),
+            (Alpha(8), &[1, 2, 3, 4, 5, 6], &[1, 2, 3, 4, 5, 6]),
+            // Rows follow each other bit by bit.
+            (Packed(1), &[0b1010_1000], &[255, 0, 255, 0, 255, 0]),
+            (Packed(4), &[0xF0, 0x81, 0x23], &[255, 0, 136, 17, 34, 51]),
+            (Packed(8), &[1, 2, 3, 4, 5, 6], &[1, 2, 3, 4, 5, 6]),
+            (Color, &[1; 24], &[1; 24]),
+        ];
+        for (format, data, pixels) in cases {
+            let (ok, target) = decode(&bitmap(format, 3, 2, data), 0);
+            assert!(ok, "{format:?}");
+            assert_eq!(target, pixels, "{format:?}");
+        }
+    }
+
+    // Four 2-bit pixels per byte, the first in the high bits.
+    #[test]
+    fn decode_2_bit_pixels() {
+        for format in [Alpha(2), Packed(2)] {
+            let (ok, target) = decode(&bitmap(format, 4, 1, &[0b11_10_01_00]), 0);
+            assert!(ok, "{format:?}");
+            assert_eq!(target, [255, 170, 85, 0], "{format:?}");
+        }
+    }
+
+    // A 32-bit strike stores whole bytes per pixel, so its bit-aligned image
+    // formats hold the same bytes as the byte-aligned ones.
+    #[test]
+    fn packed_32_bit_is_color() {
+        let pixels = [1, 2, 3, 4, 5, 6, 7, 8];
+        let data = BitmapData {
+            data: &pixels,
+            ppem: 12,
+            bit_depth: 32,
+            width: 2,
+            height: 1,
+            metrics: Metrics::default(),
+            vertical_metrics: Metrics::default(),
+            is_packed: true,
+            is_png: false,
+            is_sbix: false,
+        };
+        let bitmap = Bitmap::new(&data, 1000, false).unwrap();
+        assert_eq!(bitmap.format, Color);
+        let (ok, target) = decode(&bitmap, 0);
+        assert!(ok);
+        assert_eq!(target, pixels);
+    }
+
+    /// An index subtable: its glyph range, formats, the bytes after its
+    /// header, and the image data it points into.
+    struct Subtable {
+        first: u16,
+        last: u16,
+        index_format: u16,
+        image_format: u16,
+        body: Vec<u8>,
+        images: Vec<u8>,
+    }
+
+    /// An image in format 1: small metrics, then byte-aligned rows.
+    fn image(width: u8, height: u8, rows: &[u8]) -> Vec<u8> {
+        let mut image = vec![height, width, 0, height, 6];
+        image.extend(rows);
+        image
+    }
+
+    /// Index format 1 or 3: an offset per glyph from `first`, and one past
+    /// the last image. An empty image leaves the glyph out of the strike.
+    fn offsets(index_format: u16, first: u16, images: &[&[u8]]) -> Subtable {
+        let mut body = Vec::new();
+        let mut offset = 0;
+        for image in images.iter().chain(&[&[][..]]) {
+            match index_format {
+                1 => body.extend((offset as u32).to_be_bytes()),
+                _ => body.extend((offset as u16).to_be_bytes()),
+            }
+            offset += image.len();
+        }
+        Subtable {
+            first,
+            last: first + images.len() as u16 - 1,
+            index_format,
+            image_format: 1,
+            body,
+            images: images.concat(),
+        }
+    }
+
+    /// Index format 4: (glyph, offset) pairs for the glyphs present, and one
+    /// past the last image.
+    fn sparse(first: u16, last: u16, glyphs: &[(u16, &[u8])]) -> Subtable {
+        let mut body = (glyphs.len() as u32).to_be_bytes().to_vec();
+        let mut offset = 0;
+        for (glyph_id, image) in glyphs.iter().chain(&[(0, &[][..])]) {
+            body.extend(glyph_id.to_be_bytes());
+            body.extend((offset as u16).to_be_bytes());
+            offset += image.len();
+        }
+        Subtable {
+            first,
+            last,
+            index_format: 4,
+            image_format: 1,
+            body,
+            images: glyphs.iter().flat_map(|g| g.1).copied().collect(),
+        }
+    }
+
+    /// Index format 2: every glyph from `first` to `last` has the same size
+    /// and metrics, here `width` x 1 in image format 5.
+    fn constant(first: u16, last: u16, image_size: u32, width: u8, images: &[u8]) -> Subtable {
+        let mut body = image_size.to_be_bytes().to_vec();
+        body.extend([1, width, 0, 1, 6, 0, 0, 0]);
+        Subtable {
+            first,
+            last,
+            index_format: 2,
+            image_format: 5,
+            body,
+            images: images.to_vec(),
+        }
+    }
+
+    /// Builds EBLC and EBDT tables with one strike, 12 ppem and 1 bit deep.
+    fn tables(subtables: &[Subtable]) -> (Vec<u8>, Vec<u8>) {
+        let mut ebdt = vec![0, 2, 0, 0];
+        let mut records = Vec::new();
+        let mut bodies = Vec::new();
+        for s in subtables {
+            let offset = subtables.len() * 8 + bodies.len();
+            records.extend(s.first.to_be_bytes());
+            records.extend(s.last.to_be_bytes());
+            records.extend((offset as u32).to_be_bytes());
+            bodies.extend(s.index_format.to_be_bytes());
+            bodies.extend(s.image_format.to_be_bytes());
+            bodies.extend((ebdt.len() as u32).to_be_bytes());
+            bodies.extend(&s.body);
+            bodies.resize(bodies.len().next_multiple_of(4), 0);
+            ebdt.extend(&s.images);
+        }
+        let first = subtables.iter().map(|s| s.first).min().unwrap();
+        let last = subtables.iter().map(|s| s.last).max().unwrap();
+        let mut eblc = vec![0, 2, 0, 0, 0, 0, 0, 1];
+        eblc.extend(56u32.to_be_bytes());
+        eblc.extend(((records.len() + bodies.len()) as u32).to_be_bytes());
+        eblc.extend((subtables.len() as u32).to_be_bytes());
+        eblc.extend([0; 28]);
+        eblc.extend(first.to_be_bytes());
+        eblc.extend(last.to_be_bytes());
+        eblc.extend([12, 12, 1, 1]);
+        eblc.extend(records);
+        eblc.extend(bodies);
+        (eblc, ebdt)
+    }
+
+    /// Looks a glyph up in the first strike and returns the size and data of
+    /// its bitmap.
+    fn lookup(eblc: &[u8], ebdt: &[u8], glyph_id: u16) -> Option<(u32, u32, Vec<u8>)> {
+        let strikes = BitmapStrikes::new(eblc, ebdt, 1000, false, false);
+        let bitmap: Bitmap = strikes.get(0)?.get(glyph_id)?;
+        Some((bitmap.width, bitmap.height, bitmap.data.to_vec()))
+    }
+
+    // Equal consecutive offsets mean the glyph has no bitmap in the strike.
+    // A blank glyph is still present: it has metrics, and no rows.
+    #[test]
+    fn missing_and_blank_glyphs() {
+        let (blank, ink, ink2) = (image(0, 0, &[]), image(1, 1, &[0x80]), image(2, 1, &[0xC0]));
+        let (eblc, ebdt) = tables(&[
+            offsets(1, 1, &[&blank, &[], &ink]),
+            offsets(3, 4, &[&blank, &[], &ink2]),
+        ]);
+        let blank = Some((0, 0, vec![]));
+        let ink = Some((1, 1, vec![0x80]));
+        let ink2 = Some((2, 1, vec![0xC0]));
+        let found: Vec<_> = (1..=6).map(|gid| lookup(&eblc, &ebdt, gid)).collect();
+        assert_eq!(found, [blank.clone(), None, ink, blank, None, ink2]);
+    }
+
+    #[test]
+    fn sparse_glyphs() {
+        let (blank, ink, ink2) = (image(0, 0, &[]), image(1, 1, &[0x80]), image(2, 1, &[0xC0]));
+        let (eblc, ebdt) = tables(&[sparse(10, 20, &[(12, &ink), (14, &blank), (16, &ink2)])]);
+        // Includes glyphs in range below, between and above the records.
+        let found: Vec<_> = (10..=20).map(|gid| lookup(&eblc, &ebdt, gid)).collect();
+        let mut expected = vec![None; 11];
+        expected[2] = Some((1, 1, vec![0x80]));
+        expected[4] = Some((0, 0, vec![]));
+        expected[6] = Some((2, 1, vec![0xC0]));
+        assert_eq!(found, expected);
+    }
+
+    #[test]
+    fn constant_metrics() {
+        let (eblc, ebdt) = tables(&[
+            constant(30, 31, 1, 8, &[0x80, 0x40]),
+            // The offset of the last glyph does not fit in 32 bits.
+            constant(40, 42, 0x8000_0000, 8, &[]),
+        ]);
+        assert_eq!(lookup(&eblc, &ebdt, 31), Some((8, 1, vec![0x40])));
+        assert_eq!(lookup(&eblc, &ebdt, 42), None);
+    }
+
+    // Each sbix glyph record starts with an 8-byte header.
+    #[test]
+    fn sbix_glyph_records() {
+        let mut sbix = vec![0, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 12];
+        sbix.extend([0, 20, 0, 72]);
+        for offset in [20u32, 26, 0xFFFF_FFF0, 0xFFFF_FFFF] {
+            sbix.extend(offset.to_be_bytes());
+        }
+        // Too short for a header, though it reads as a PNG record.
+        sbix.extend([0, 0, 0, 0, b'p', b'n', b'g', b' ']);
+        let strikes = BitmapStrikes::new(&sbix, &sbix, 1000, true, false);
+        let strike = strikes.get(0).unwrap();
+        // The second and third glyphs end past 32 bits of offset.
+        for glyph_id in 0..3 {
+            assert!(strike.get(glyph_id).is_none(), "glyph {glyph_id}");
+        }
+    }
 }
